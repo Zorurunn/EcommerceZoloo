@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { CategoryBar } from "@/components/header/Category-Bar";
+import SignupForm from "@/components/signup/SignupForm";
 import { Container } from "@/constants/Container";
 import Image from "next/image";
 
