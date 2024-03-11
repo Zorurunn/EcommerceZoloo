@@ -13,7 +13,7 @@ export default function Signup() {
       <Stack position={"relative"} px={"6%"} py={"2%"} alignSelf={"flex-start"}>
         <Image src="/Pinecone Logo.svg" alt="" fill />
       </Stack>
-      {/* signup components end orj irne */}
+      {/* signup components end orj irne... */}
       <Stack>
         <Typography color={"#94A3B1"}>© 2023 Pinecone</Typography>
       </Stack>
