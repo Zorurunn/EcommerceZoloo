@@ -1,3 +1,3 @@
 export function Footer() {
-  return <>foot</>;
+  return <div className="w-[100vw] bg-red">aa</div>;
 }

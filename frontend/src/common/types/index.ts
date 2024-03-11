@@ -1,3 +1,3 @@
 export type saleItemType = {
-  a: string;
+  title: string;
 };
