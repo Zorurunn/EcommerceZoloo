@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "E Commerce",
-  description: "",
+  description: "Welcome to my web",
 };
 
 export default function RootLayout({
