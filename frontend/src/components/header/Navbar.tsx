@@ -14,7 +14,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import React from "react";
-import Search from "./Search";
 
 const Navbar = () => {
   return (
