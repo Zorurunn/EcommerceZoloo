@@ -3,5 +3,7 @@ import { Container } from "@/constants/Container";
 import Image from "next/image";
 
 export default function Home() {
-  return <div>ads</div>;
+  return <div>
+    <Footer/>
+  </div>;
 }
