@@ -56,6 +56,7 @@ export function Footer() {
                             textUnderlinePosition: "under"
                         }}
                     >
+                        
                         <Link href="/"
                         >
                             Холбоо барих
