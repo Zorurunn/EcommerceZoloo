@@ -94,7 +94,9 @@ export const CustomInput = (props: CustomInputProps) => {
         multiline={multiLine}
         rows={multiLine ? 4 : 0}
         sx={{
+          borderRadius: "8px",
           "& fieldset": {
+            borderRadius: "8px",
             borderColor: borderColor,
           },
           width: "100%",
