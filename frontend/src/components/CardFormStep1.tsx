@@ -3,6 +3,7 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { CustomInput } from ".";
 
 export function CardFormStep1() {
     return (
@@ -36,16 +37,15 @@ export function CardFormStep1() {
                     >
                         Танай дэлгүүрийн нэр юу вэ?
                     </Typography>
-                    <TextField
 
-                        placeholder="Дэлгүүрийн нэр"
-                        sx={{
-                            backgroundColor: "#F7F7F8",
-                            borderColor: "#D6D8DB",
-                            fontWeight: "400",
-                            lineHeight: "24px"
-                        }}
-                    />
+                    <CustomInput
+                    placeHolder="Дэлгүүрийн нэр"
+                    type = "text" 
+                    sx ={{
+                        fontSize: "16px", fontWeight: "400" 
+                    }}
+                     />
+                
                 </Stack>
                 <Stack direction="row"
                     sx={{
