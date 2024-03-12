@@ -8,25 +8,18 @@ import Image from "next/image";
 
 // server implement hiisnii daraa Props oor img path bolon une, category, ner busad medeellee awna
 // TODO: props iin type zaaj uguh
-//  zoloo
 export const GeneralCard = () => {
   return (
     <Card sx={{ maxWidth: 240 }}>
       <CardActionArea>
-        <Stack position={"relative"}>
+        <Stack position={"relative"} width={"100%"} height={240}>
           <Image
-            src={"model.jpg"}
+            src={"/zoru/model.jpg"}
             alt="Product Image"
-            style={{ objectFit: "contain" }}
+            fill
+            style={{ objectFit: "cover" }}
           />
         </Stack>
-        {/* <CardMedia
-          component="img"
-          height="240"
-          image="/model.jpg"
-          alt="Guess jacket"
-          sx={{ objectFit: "fit" }}
-        /> */}
         <CardContent>
           <Typography fontSize={20} fontWeight={700}>
             Guess салхин хүрэм
