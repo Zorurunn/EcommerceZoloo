@@ -6,12 +6,35 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "@/components";
 import { CardFormStep3Experience, CardFormStep3Products } from "@/constants";
 import { Dispatch, SetStateAction } from "react";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
 export function CardFormStep3({
   setStep,
 }: {
   setStep: Dispatch<SetStateAction<number>>;
 }) {
+  const validationSchema = yup.object({
+    salesExprience: yup.string().required("Сонгоно уу"),
+    productType: yup.string().required("Сонгоно уу"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      salesExprience: "",
+      productType: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      // await signup({
+      //   email: values.email,
+      //   name: values.name,
+      //   password: values.password,
+      //   address: values.address,
+      // });
+      console.log(formik.values);
+    },
+  });
   return (
     <Stack maxWidth={452} width={"100%"} gap={3} p={3}>
       <Typography fontSize={32} fontWeight={700} color={"text.primary"}>
@@ -23,12 +46,19 @@ export function CardFormStep3({
       <Stack gap={2}>
         <Stack gap={3}>
           <CustomInput
+            name="salesExprience"
             label="Та борлуулалт хийж байсан туршлагатай юу?"
-            name="market"
             type="text"
             placeHolder="Сонгох"
-            value={CardFormStep3Experience[0]}
             select={true}
+            handleChange={formik.handleChange}
+            value={formik.values.salesExprience}
+            error={
+              formik.touched.salesExprience &&
+              Boolean(formik.errors.salesExprience)
+            }
+            helperText={String(formik.errors.salesExprience)}
+            onBlur={formik.handleBlur}
           >
             {CardFormStep3Experience.map((item) => {
               return <MenuItem value={item}>{item}</MenuItem>;
@@ -36,16 +66,18 @@ export function CardFormStep3({
           </CustomInput>
 
           <CustomInput
+            name="productType"
             label="Та ямар төрлийн бүтээгдэхүүн борлуулах вэ?"
-            name="market"
             type="text"
             placeHolder="Сонгох"
-            value={CardFormStep3Products[0]}
             select={true}
-            sx={{
-              fontSize: "16px",
-              fontWeight: "400",
-            }}
+            handleChange={formik.handleChange}
+            value={formik.values.productType}
+            error={
+              formik.touched.productType && Boolean(formik.errors.productType)
+            }
+            helperText={String(formik.errors.productType)}
+            onBlur={formik.handleBlur}
           >
             {CardFormStep3Products.map((item) => {
               return <MenuItem value={item}>{item}</MenuItem>;
@@ -69,30 +101,30 @@ export function CardFormStep3({
             <ArrowBackIcon fontSize="medium" sx={{ color: "text.primary" }} />
           </Stack>
           <Button
-            onClick={() => {}}
-            variant="contained" // to do: change backgroundcolor to "#D6D8DB"
             sx={{
               width: "127px",
               height: "48px",
               borderRadius: "8px",
-              backgroundColor: "#D6D8DB",
-              textTransform: "none",
+              background: "#121316",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#393939",
+              },
+              gap: "8px",
+            }}
+            variant="contained"
+            fullWidth
+            disabled={!formik.isValid}
+            onClick={() => {
+              setStep((prev) => prev);
+              formik.handleSubmit();
             }}
           >
-            <Stack
-              direction={"row"}
-              sx={{
-                color: "text.secondary",
-                fontSize: "16px",
-                fontWeight: "600",
-              }}
-            >
-              <Typography>Дараах</Typography>
-              <ArrowForwardIcon
-                fontSize="medium"
-                sx={{ color: "text.secondary" }}
-              />
-            </Stack>
+            Дараах
+            <ArrowForwardIcon
+              fontSize="medium"
+              sx={{ color: "common.white" }}
+            />
           </Button>
         </Stack>
       </Stack>

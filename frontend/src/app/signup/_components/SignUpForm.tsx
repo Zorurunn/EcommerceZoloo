@@ -70,9 +70,9 @@ export const SignUpForm = ({
       </Stack>
       <Stack gap={3}>
         <CustomInput
+          name="name"
           label="Нэр"
           placeHolder="Нэр оруулна уу"
-          name="name"
           handleChange={formik.handleChange}
           value={formik.values.name}
           error={formik.touched.name && Boolean(formik.errors.name)}
@@ -81,8 +81,8 @@ export const SignUpForm = ({
           type="text"
         />
         <CustomInput
-          label="Имэйл"
           name="email"
+          label="Имэйл"
           placeHolder="Имэйл оруулна уу"
           handleChange={formik.handleChange}
           value={formik.values.email}
@@ -92,8 +92,8 @@ export const SignUpForm = ({
           type="text"
         />
         <CustomInput
-          label="Утасны дугаар"
           name="phoneNumber"
+          label="Утасны дугаар"
           placeHolder="Утасны дугаар оруулна уу"
           handleChange={formik.handleChange}
           value={formik.values.phoneNumber}
@@ -105,8 +105,8 @@ export const SignUpForm = ({
           type="tel"
         />
         <CustomInput
-          label="Нууц үг"
           name="password"
+          label="Нууц үг"
           placeHolder="Нууц үгээ оруулна уу"
           handleChange={formik.handleChange}
           value={formik.values.password}
@@ -116,8 +116,8 @@ export const SignUpForm = ({
           type="password"
         />
         <CustomInput
-          label="Нууц үг давтах"
           name="rePassword"
+          label="Нууц үг давтах"
           placeHolder="Нууц үгээ давтаж оруулна уу"
           handleChange={formik.handleChange}
           value={formik.values.rePassword}
@@ -126,18 +126,23 @@ export const SignUpForm = ({
           onBlur={formik.handleBlur}
           type="password"
         />
-        <Stack
-          onClick={() => {
-            setStep((prev) => prev + 1);
-          }}
-        >
+        <Stack>
           <Button
             fullWidth
+            onClick={() => {
+              setStep((prev) => prev + 1);
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+            variant="contained"
             sx={{
               position: "relative",
               py: "14.5px",
               background: "#121316",
               color: "white",
+              "&:hover": {
+                backgroundColor: "#393939",
+              },
             }}
           >
             дарааx

@@ -1,6 +1,7 @@
 import { stepNodeType } from "@/common/types";
 import { Container, Stack, Typography } from "@mui/material";
 
+const nameArr = ["Дэлгүүрийн нэр", "Бүс нутаг", "Нэмэлт мэдээлэл"];
 export default function ProgressStep({ step }: { step: number }) {
   // step iig props oor awah eswel provider aas awah
   // temporarily used static step number
@@ -18,23 +19,28 @@ export default function ProgressStep({ step }: { step: number }) {
           justifyContent={"center"}
           alignItems={"center"}
           width={"100%"}
-          maxWidth={"800px"}
+          maxWidth={"1200px"}
         >
-          {new Array(3).fill(0).map((_, index) => (
-            <Node
-              key={index}
-              isActive={index + 1 < Number(step)}
-              order={index * 2 + 1}
-            >
-              {index + 1}
-            </Node>
-          ))}
+          {nameArr.map((item, index) => {
+            return (
+              <Node
+                key={item}
+                isActive={index + 1 < Number(step)}
+                order={index * 2 + 1}
+                title={item}
+              >
+                {index + 1}
+              </Node>
+            );
+          })}
+
           <Stack
             flexGrow={1}
             order={2}
             height={8}
             sx={{ background: Number(step) > 2 ? "#121316" : "#eee" }}
           />
+
           <Stack
             flexGrow={1}
             order={4}
@@ -48,22 +54,36 @@ export default function ProgressStep({ step }: { step: number }) {
 }
 
 const Node = (props: stepNodeType) => {
-  const { children, isActive = false, order } = props;
+  const { children, isActive = false, order, title } = props;
   return (
     <Stack
-      width={50}
-      height={50}
-      direction={"row"}
+      order={order}
+      position={"relative"}
       justifyContent={"center"}
       alignItems={"center"}
-      borderRadius={"50%"}
-      order={order}
-      sx={{
-        color: isActive ? "#fff" : "#000",
-        background: isActive ? "#121316" : "#eee",
-      }}
     >
-      {children}
+      <Stack
+        width={50}
+        height={50}
+        direction={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        borderRadius={"50%"}
+        sx={{
+          color: isActive ? "#fff" : "#000",
+          background: isActive ? "#121316" : "#eee",
+        }}
+      >
+        {children}
+      </Stack>
+      <Typography
+        width={"140px"}
+        position={"absolute"}
+        left={"-50%"}
+        bottom={-30}
+      >
+        {title}
+      </Typography>
     </Stack>
   );
 };

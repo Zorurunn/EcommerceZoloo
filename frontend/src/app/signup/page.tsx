@@ -36,24 +36,36 @@ export default function SignUp() {
             width={"100%"}
             height={"100%"}
             alignItems={"center"}
-            gap={20}
-            mt={10}
+            gap={25}
+            mt={5}
           >
             <ProgressStep step={step} />
             <CardFormStep1 setStep={setStep} />
           </Stack>
         )}
         {step === 3 && (
-          <Stack width={"100%"} alignItems={"center"}>
-            <ProgressStep step={step} />
-            <CardFormStep2 setStep={setStep} />
-          </Stack>
+          <Stack
+          width={"100%"}
+          height={"100%"}
+          alignItems={"center"}
+          gap={25}
+          mt={5}
+        >
+          <ProgressStep step={step} />
+          <CardFormStep2 setStep={setStep} />
+        </Stack>
         )}
         {step === 4 && (
-          <Stack width={"100%"} alignItems={"center"}>
-            <ProgressStep step={step} />
-            <CardFormStep3 setStep={setStep} />
-          </Stack>
+          <Stack
+          width={"100%"}
+          height={"100%"}
+          alignItems={"center"}
+          gap={25}
+          mt={5}
+        >
+          <ProgressStep step={step} />
+          <CardFormStep3 setStep={setStep} />
+        </Stack>
         )}
       </Stack>
       <Stack marginTop={8}>

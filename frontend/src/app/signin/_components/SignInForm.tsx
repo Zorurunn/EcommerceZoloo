@@ -4,7 +4,40 @@ import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import Image from "next/image";
+import * as yup from "yup";
+import { useFormik } from "formik";
+
 export default function SignInForm() {
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .email("И-мэйл буруу байна")
+      .required("И-мэйлээ оруулна уу"),
+    password: yup
+      .string()
+      // .matches(
+      //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number, and One Special Case Character"
+      // )
+      .required("Нууц үгээ оруулна уу"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      // await signup({
+      //   email: values.email,
+      //   name: values.name,
+      //   password: values.password,
+      //   address: values.address,
+      // });
+      console.log(formik.values);
+    },
+  });
   return (
     <Stack padding={3} maxWidth={"400px"} width={"100%"}>
       <Stack gap={4}>
@@ -20,25 +53,43 @@ export default function SignInForm() {
       </Stack>
       <Stack gap={3}>
         <CustomInput
-          label="Имэйл"
           name="email"
-          placeholder="Имэйл оруулна уу"
-          type="text
-          "
+          label="Имэйл"
+          placeHolder="Имэйл оруулна уу"
+          type="text"
+          handleChange={formik.handleChange}
+          value={formik.values.email}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={String(formik.errors.email)}
+          onBlur={formik.handleBlur}
         />
         <CustomInput
+          name="password"
           label="Нууц үг"
-          placeholder="Нууц үг оруулна уу"
-          name=""
+          placeHolder="Нууц үг оруулна уу"
           type="password"
+          handleChange={formik.handleChange}
+          value={formik.values.password}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={String(formik.errors.password)}
+          onBlur={formik.handleBlur}
         />
         <Stack>
           <Button
             fullWidth
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+            disabled={!formik.isValid}
+            variant="contained"
             sx={{
+              position: "relative",
               py: "14.5px",
               background: "#121316",
               color: "white",
+              "&:hover": {
+                backgroundColor: "#393939",
+              },
             }}
           >
             Нэвтрэх
