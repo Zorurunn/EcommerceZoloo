@@ -4,9 +4,9 @@ import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import SignupForm from "./_components/SignupForm";
-import { CardFormStep1 } from "@/components/CardFormStep1";
 import { CardFormStep2 } from "./_components/CardFormStep2";
 import { CardFormStep3 } from "./_components/CardFormStep3";
+import { CardFormStep1 } from "./_components/CardFormStep1";
 
 export default function Signup() {
   const [step, setStep] = useState(1);
