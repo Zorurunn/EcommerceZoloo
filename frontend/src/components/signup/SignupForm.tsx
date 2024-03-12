@@ -74,7 +74,7 @@ export default function SignupForm() {
               }}
             >
               <Typography fontSize={12} fontWeight={200}>
-              Microsoft-оор нэвтрэх
+                Microsoft-оор нэвтрэх
               </Typography>
             </Button>
             <Button
@@ -86,7 +86,7 @@ export default function SignupForm() {
               }}
             >
               <Typography fontSize={12} fontWeight={200}>
-              Apple-аар нэвтрэх
+                Apple-аар нэвтрэх
               </Typography>
             </Button>
             <Stack border={1} borderColor="#ECEDF0"></Stack>
