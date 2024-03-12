@@ -98,7 +98,7 @@ export const CustomInput = (props: CustomInputProps) => {
             borderColor: borderColor,
           },
           width: "100%",
-          backgroundColor: "transparent",
+          bgcolor: "#ECEDF0",
         }}
         inputProps={{
           style: {
@@ -106,9 +106,6 @@ export const CustomInput = (props: CustomInputProps) => {
           },
         }}
         InputProps={{
-          sx: {
-            borderColor: "red",
-          },
           endAdornment: adornment === "end" && (
             <InputAdornment position="end">
               <IconButton onClick={handleShowPassword}>
