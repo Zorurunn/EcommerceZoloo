@@ -1,4 +1,3 @@
-import { GeneralCard } from "@/components";
 import { Footer } from "@/components/Footer";
 import { CategoryBar } from "@/components/header/Category-Bar";
 import { Container } from "@/constants/Container";
