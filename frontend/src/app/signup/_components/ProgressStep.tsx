@@ -32,13 +32,13 @@ export default function ProgressStep({ step }: { step: number }) {
           <Stack
             flexGrow={1}
             order={2}
-            height={4}
+            height={8}
             sx={{ background: Number(step) > 2 ? "#121316" : "#eee" }}
           />
           <Stack
             flexGrow={1}
             order={4}
-            height={4}
+            height={8}
             sx={{ background: Number(step) > 3 ? "#121316" : "#eee" }}
           />
         </Stack>
@@ -51,8 +51,8 @@ const Node = (props: stepNodeType) => {
   const { children, isActive = false, order } = props;
   return (
     <Stack
-      width={32}
-      height={32}
+      width={50}
+      height={50}
       direction={"row"}
       justifyContent={"center"}
       alignItems={"center"}

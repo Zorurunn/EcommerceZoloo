@@ -5,6 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "../../../components";
 import { Dispatch, SetStateAction } from "react";
+import ProgressStep from "./ProgressStep";
 
 export function CardFormStep1({
   setStep,
@@ -13,6 +14,7 @@ export function CardFormStep1({
 }) {
   return (
     <Stack width={452} p={3} gap={3}>
+      {/* <ProgressStep st/> */}
       <Typography
         sx={{
           fontSize: "32px",
@@ -33,17 +35,8 @@ export function CardFormStep1({
             gap: "8px",
           }}
         >
-          <Typography
-            sx={{
-              fontWeight: "600",
-              fontSize: "16px",
-              color: "text.primary",
-            }}
-          >
-            Танай дэлгүүрийн нэр юу вэ?
-          </Typography>
-
           <CustomInput
+            label=" Танай дэлгүүрийн нэр юу вэ?"
             placeHolder="Дэлгүүрийн нэр"
             type="text"
             sx={{

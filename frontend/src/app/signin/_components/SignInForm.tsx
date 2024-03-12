@@ -3,8 +3,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction } from "react";
-
+import Image from "next/image";
 export default function SignInForm() {
   return (
     <Stack padding={3} maxWidth={"400px"} width={"100%"}>
@@ -44,6 +43,76 @@ export default function SignInForm() {
           >
             Нэвтрэх
           </Button>
+        </Stack>
+        <Stack width={"100%"} pt={2} gap={2}>
+          <Stack border={1} borderColor="#ECEDF0"></Stack>
+          <Button
+            fullWidth
+            sx={{
+              py: "10.5px",
+              background: "#ECEDF0",
+              color: "#000",
+              direction: "row",
+              gap: "8px",
+            }}
+          >
+            <Image
+              src="/signup-imgs/Google Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
+            <Typography fontSize={12} fontWeight={200}>
+              Google-ээр нэвтрэх
+            </Typography>
+          </Button>
+          <Button
+            fullWidth
+            sx={{
+              py: "10.5px",
+              background: "#ECEDF0",
+              color: "#000",
+              direction: "row",
+              gap: "8px",
+            }}
+          >
+            <Image
+              src="/signup-imgs/Microsoft Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
+            <Typography fontSize={12} fontWeight={200}>
+              Microsoft-оор нэвтрэх
+            </Typography>
+          </Button>
+          <Button
+            fullWidth
+            sx={{
+              py: "10.5px",
+              background: "#ECEDF0",
+              color: "#000",
+              direction: "row",
+              gap: "8px",
+            }}
+          >
+            <Image
+              src="/signup-imgs/Apple Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
+            <Typography fontSize={12} fontWeight={200}>
+              Apple-аар нэвтрэх
+            </Typography>
+          </Button>
+          <Stack border={1} borderColor="#ECEDF0"></Stack>
+        </Stack>
+        <Stack direction={"row"} justifyContent={"center"} gap={1}>
+          <Typography>Бүртгэлгүй юу?</Typography>
+          <Link href={"/signup"}>
+            <Typography borderBottom={1}>Бүртгүүлэх</Typography>
+          </Link>
         </Stack>
       </Stack>
     </Stack>
