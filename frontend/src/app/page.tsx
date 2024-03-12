@@ -1,3 +1,4 @@
+import { CardFormStep1 } from "@/components/CardFormStep1";
 import { Footer } from "@/components/Footer";
 import { CategoryBar } from "@/components/header/Category-Bar";
 
