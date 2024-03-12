@@ -5,10 +5,15 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "@/components";
 import { CardFormStep3Experience, CardFormStep3Products } from "@/constants";
+import { Dispatch, SetStateAction } from "react";
 
-export function CardFormStep3() {
+export function CardFormStep3({
+  setStep,
+}: {
+  setStep: Dispatch<SetStateAction<number>>;
+}) {
   return (
-    <Stack sx={{ maxWidth: "452px", gap: "8px", padding: "24px" }}>
+    <Stack maxWidth={452} width={"100%"} gap={3} p={3}>
       <Typography fontSize={32} fontWeight={700} color={"text.primary"}>
         Жоохон танилцья
       </Typography>
@@ -73,6 +78,9 @@ export function CardFormStep3() {
           }}
         >
           <Stack
+            onClick={() => {
+              setStep((prev) => prev - 1);
+            }}
             sx={{
               width: "48px",
               height: "48px",
@@ -85,6 +93,7 @@ export function CardFormStep3() {
             <ArrowBackIcon fontSize="medium" sx={{ color: "text.primary" }} />
           </Stack>
           <Button
+            onClick={() => {}}
             variant="contained" // to do: change backgroundcolor to "#D6D8DB"
             sx={{
               width: "127px",

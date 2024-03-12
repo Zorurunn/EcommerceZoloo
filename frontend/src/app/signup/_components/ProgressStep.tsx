@@ -1,10 +1,9 @@
 import { stepNodeType } from "@/common/types";
 import { Container, Stack, Typography } from "@mui/material";
 
-export default function ProgressStep() {
+export default function ProgressStep({ step }: { step: number }) {
   // step iig props oor awah eswel provider aas awah
   // temporarily used static step number
-  const step = 2;
 
   return (
     <Container maxWidth="xl">

@@ -4,10 +4,15 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "../../../components";
+import { Dispatch, SetStateAction } from "react";
 
-export function CardFormStep1() {
+export function CardFormStep1({
+  setStep,
+}: {
+  setStep: Dispatch<SetStateAction<number>>;
+}) {
   return (
-    <Stack sx={{ width: "452px", gap: "8px", padding: "24px" }}>
+    <Stack width={452} p={3} gap={3}>
       <Typography
         sx={{
           fontSize: "32px",
@@ -56,6 +61,9 @@ export function CardFormStep1() {
           }}
         >
           <Stack
+            onClick={() => {
+              setStep((prev) => prev - 1);
+            }}
             sx={{
               width: "48px",
               height: "48px",
@@ -68,7 +76,10 @@ export function CardFormStep1() {
             <ArrowBackIcon fontSize="medium" sx={{ color: "text.primary" }} />
           </Stack>
           <Button
-            variant="contained" // to do: change backgroundcolor to "#D6D8DB"
+            onClick={() => {
+              setStep((prev) => prev + 1);
+            }}
+            variant="contained"
             sx={{
               width: "127px",
               height: "48px",
