@@ -3,16 +3,15 @@ import { Button, Stack, Typography } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
 import { CustomInput } from "@/components";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SignupForm() {
+export default function SignupForm({
+  setStep,
+}: {
+  setStep: Dispatch<SetStateAction<number>>;
+}) {
   return (
-    <Stack
-      flex={1}
-      gap={3}
-      alignItems={"center"}
-      justifyContent={"center"}
-      padding={4}
-    >
+    <Stack padding={3} maxWidth={"452px"} width={"100%"} direction={"row"}>
       <Stack
         py={6}
         px={6}
@@ -46,7 +45,11 @@ export default function SignupForm() {
             name="username"
             type="text"
           />
-          <Stack>
+          <Stack
+            onClick={() => {
+              setStep((prev) => prev + 1);
+            }}
+          >
             <Button
               fullWidth
               sx={{

@@ -1,10 +1,19 @@
+"use client";
+
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
+import SignupForm from "./_components/SignupForm";
+import { CardFormStep1 } from "@/components/CardFormStep1";
+import { CardFormStep2 } from "./_components/CardFormStep2";
+import { CardFormStep3 } from "./_components/CardFormStep3";
 
 export default function Signup() {
+  const [step, setStep] = useState(1);
+
   return (
     <Stack
-      height={"95vh"}
+      height={"100vh"}
       justifyContent={"space-between"}
       alignItems={"center"}
       paddingX={4}
@@ -13,7 +22,11 @@ export default function Signup() {
       <Stack position={"relative"} px={"6%"} py={"2%"} alignSelf={"flex-start"}>
         <Image src="/Pinecone Logo.svg" alt="" fill />
       </Stack>
-      {/* signup components end orj irne... */}
+      {step === 1 && <SignupForm setStep={setStep} />}
+      {step === 2 && <CardFormStep1 setStep={setStep} />}
+      {step === 3 && <CardFormStep2 setStep={setStep} />}
+      {step === 4 && <CardFormStep3 setStep={setStep} />}
+
       <Stack>
         <Typography color={"#94A3B1"}>© 2023 Pinecone</Typography>
       </Stack>
