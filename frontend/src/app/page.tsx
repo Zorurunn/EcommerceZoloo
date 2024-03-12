@@ -6,6 +6,7 @@ import { Stack } from "@mui/material";
 import { Container } from "@mui/material";
 import { CardFormStep2 } from "./signup/_components/CardFormStep2";
 import SignupForm from "./signup/_components/SignupForm";
+import { CardFormStep3 } from "./signup/_components/CardFormStep3";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <SignupForm />
       </Container>
       <Footer />
+      <CardFormStep3 />
     </Stack>
   );
 }
