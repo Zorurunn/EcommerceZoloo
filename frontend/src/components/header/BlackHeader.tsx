@@ -10,13 +10,13 @@ export const BlackHeader = () => {
   return (
     <>
       <Stack bgcolor={"#121316"}>
-        <Container maxWidth="xl">
+        <Stack px={4}>
           <Stack
             direction={"row"}
             gap={16}
             alignItems={"center"}
             width={"100%"}
-            px={"24px"}
+            // px={"24px"}
             py={"8px"}
             justifyContent={"space-between"}
           >
@@ -42,7 +42,7 @@ export const BlackHeader = () => {
               </Link>
             </Stack>
           </Stack>
-        </Container>
+        </Stack>
       </Stack>
     </>
   );
