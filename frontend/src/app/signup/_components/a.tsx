@@ -4,12 +4,14 @@ import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import { Dispatch, SetStateAction } from "react";
+import Image from "next/image";
+import GoogleIcon from "@mui/icons-material/Google";
 
-export default function SignUpForm({
+export const SignUpForm = ({
   setStep,
 }: {
   setStep: Dispatch<SetStateAction<number>>;
-}) {
+}) => {
   return (
     <Stack padding={3} maxWidth={"400px"} width={"100%"}>
       <Stack gap={4}>
@@ -63,8 +65,16 @@ export default function SignUpForm({
               py: "10.5px",
               background: "#ECEDF0",
               color: "#000",
+              direction: "row",
+              gap: "8px",
             }}
           >
+            <Image
+              src="/signup-imgs/Google Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
             <Typography fontSize={12} fontWeight={200}>
               Google-ээр нэвтрэх
             </Typography>
@@ -75,8 +85,16 @@ export default function SignUpForm({
               py: "10.5px",
               background: "#ECEDF0",
               color: "#000",
+              direction: "row",
+              gap: "8px",
             }}
           >
+            <Image
+              src="/signup-imgs/Microsoft Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
             <Typography fontSize={12} fontWeight={200}>
               Microsoft-оор нэвтрэх
             </Typography>
@@ -87,8 +105,16 @@ export default function SignUpForm({
               py: "10.5px",
               background: "#ECEDF0",
               color: "#000",
+              direction: "row",
+              gap: "8px",
             }}
           >
+            <Image
+              src="/signup-imgs/Apple Logo.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
             <Typography fontSize={12} fontWeight={200}>
               Apple-аар нэвтрэх
             </Typography>
@@ -98,10 +124,10 @@ export default function SignUpForm({
         <Stack direction={"row"} justifyContent={"center"} gap={1}>
           <Typography>Бүртгэлтэй юу?</Typography>
           <Link href={"/signin"}>
-            <Typography>Нэвтрэх</Typography>
+            <Typography borderBottom={1}>Нэвтрэх</Typography>
           </Link>
         </Stack>
       </Stack>
     </Stack>
   );
-}
+};

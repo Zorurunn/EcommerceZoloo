@@ -6,8 +6,7 @@ import { useState } from "react";
 import { CardFormStep2 } from "./_components/CardFormStep2";
 import { CardFormStep3 } from "./_components/CardFormStep3";
 import { CardFormStep1 } from "./_components/CardFormStep1";
-import SignInForm from "../signin/_components/SignInForm";
-import SignUpForm from "./_components/SignUpForm";
+import { SignUpForm } from "./_components/a";
 
 export default function SignUp() {
   const [step, setStep] = useState(1);
