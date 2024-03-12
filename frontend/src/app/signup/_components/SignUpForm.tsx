@@ -5,7 +5,6 @@ import Link from "next/link";
 import { CustomInput } from "@/components";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
-import GoogleIcon from "@mui/icons-material/Google";
 
 export const SignUpForm = ({
   setStep,
@@ -27,16 +26,27 @@ export const SignUpForm = ({
       </Stack>
       <Stack gap={3}>
         <CustomInput
-          label="Имэйл"
-          name="email"
-          placeholder="Имэйл"
-          type="text
-          "
+          label="Нэр"
+          placeHolder="Нэр оруулна уу"
+          name="name"
+          type="text"
         />
         <CustomInput
-          label="Нэр"
-          placeholder="Нэр"
-          name="username"
+          label="Имэйл"
+          name="email"
+          placeHolder="Имэйл оруулна уу"
+          type="text"
+        />
+        <CustomInput
+          label="Утасны дугаар"
+          name="email"
+          placeHolder="Имэйл оруулна уу"
+          type="text"
+        />
+        <CustomInput
+          label="Имэйл"
+          name="email"
+          placeHolder="Имэйл оруулна уу"
           type="text"
         />
         <Stack
