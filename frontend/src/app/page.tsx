@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <Container maxWidth="xl">
         <CategoryBar />
-        <CardFormStep1/>
+        <CardFormStep1 />
         <CardFormStep2 />
         <SignupForm />
       </Container>
