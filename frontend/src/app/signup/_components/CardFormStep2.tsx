@@ -4,13 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const arr = [
-  { select: "1" },
-  { select: "2" },
-  { select: "3" },
-  { select: "4" },
-  { select: "5" },
-];
+export const arr = ["1", "2", "3", "4", "5"];
 
 export const CardFormStep2 = ({
   setStep,
@@ -30,8 +24,8 @@ export const CardFormStep2 = ({
           select={true}
         >
           {arr.map((item: any) => (
-            <MenuItem sx={{ bgcolor: "#fff" }} key={item.select}>
-              {item.select}
+            <MenuItem sx={{ bgcolor: "#fff" }} key={item} value={item}>
+              {item}
             </MenuItem>
           ))}
         </CustomInput>
@@ -41,10 +35,9 @@ export const CardFormStep2 = ({
           placeHolder="Сонгох"
           select={true}
         >
-          {" "}
           {arr.map((item: any) => (
-            <MenuItem sx={{ bgcolor: "#fff" }} key={item.select}>
-              {item.select}
+            <MenuItem sx={{ bgcolor: "#fff" }} key={item} value={item}>
+              {item}
             </MenuItem>
           ))}
         </CustomInput>
@@ -54,10 +47,9 @@ export const CardFormStep2 = ({
           placeHolder="Сонгох"
           select={true}
         >
-          {" "}
           {arr.map((item: any) => (
-            <MenuItem sx={{ bgcolor: "#fff" }} key={item.select}>
-              {item.select}
+            <MenuItem sx={{ bgcolor: "#fff" }} key={item} value={item}>
+              {item}
             </MenuItem>
           ))}
         </CustomInput>
