@@ -32,11 +32,7 @@ const CustomInput = (props: TextFieldProps) => {
         }}
         InputProps={{
           endAdornment: type === "password" && (
-            <InputAdornment position="end">
-              {/* <IconButton onClick={handleShowPassword}>
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton> */}
-            </InputAdornment>
+            <InputAdornment position="end"></InputAdornment>
           ),
         }}
       />
