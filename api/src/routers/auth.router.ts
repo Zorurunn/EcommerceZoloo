@@ -1,19 +1,8 @@
-// import { Router } from "express";
-// import {
-//   signIn,
-//   signUp,
-//   reNewPassword,
-//   otpGenerate,
-//   changePassword,
-// } from "../controllers/auth.controller";
+import { Router } from "express";
+import { signIn } from "../controllers/auth.controller";
 
-// const authRouter = Router();
+const authRouter = Router();
 
-// authRouter
-//   .post("/signIn", signIn)
-//   .post("/signup", signUp)
-//   .post("/reNewPassword", reNewPassword)
-//   .post("/otpGenerate", otpGenerate)
-//   .post("/changePassword", changePassword);
+authRouter.post("/signIn", signIn);
 
-// export default authRouter;
+export default authRouter;
