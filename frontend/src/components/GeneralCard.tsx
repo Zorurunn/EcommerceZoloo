@@ -4,21 +4,29 @@ import { Stack, Typography, CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Image from "next/image";
 
 // server implement hiisnii daraa Props oor img path bolon une, category, ner busad medeellee awna
 // TODO: props iin type zaaj uguh
-
+//  zoloo
 export const GeneralCard = () => {
   return (
     <Card sx={{ maxWidth: 240 }}>
       <CardActionArea>
-        <CardMedia
+        <Stack position={"relative"}>
+          <Image
+            src={"model.jpg"}
+            alt="Product Image"
+            style={{ objectFit: "contain" }}
+          />
+        </Stack>
+        {/* <CardMedia
           component="img"
           height="240"
           image="/model.jpg"
           alt="Guess jacket"
           sx={{ objectFit: "fit" }}
-        />
+        /> */}
         <CardContent>
           <Typography fontSize={20} fontWeight={700}>
             Guess салхин хүрэм
