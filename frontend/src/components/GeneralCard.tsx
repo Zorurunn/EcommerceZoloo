@@ -37,3 +37,13 @@ export const GeneralCard = () => {
     </Card>
   );
 };
+
+{
+  /* <Card
+imgPath="/temporary/morning.jpg"
+name="Өглөөний хоол"
+price="4,800"
+discountPrice="4,800"
+discount="20"
+/> */
+}
