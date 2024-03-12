@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CustomInput } from "@/components";
 import { Dispatch, SetStateAction } from "react";
 
-export default function SignupForm({
+export default function SignUpForm({
   setStep,
 }: {
   setStep: Dispatch<SetStateAction<number>>;
@@ -97,7 +97,7 @@ export default function SignupForm({
         </Stack>
         <Stack direction={"row"} justifyContent={"center"} gap={1}>
           <Typography>Бүртгэлтэй юу?</Typography>
-          <Link href="/">
+          <Link href={"/signin"}>
             <Typography>Нэвтрэх</Typography>
           </Link>
         </Stack>
