@@ -1,8 +1,8 @@
 "use client";
-import CustomInput from "./CustomInput";
 import { Button, Stack, Typography } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
+import { CustomInput } from "@/components";
 
 export default function SignupForm() {
   return (
@@ -12,8 +12,6 @@ export default function SignupForm() {
       alignItems={"center"}
       justifyContent={"center"}
       padding={4}
-      border={1}
-      sx={{ backgroundColor: "#fff", borderRadius: "16px" }}
     >
       <Stack
         py={6}
@@ -35,8 +33,19 @@ export default function SignupForm() {
           </Typography>
         </Stack>
         <Stack gap={3}>
-          <CustomInput label="Имэйл" name="email" placeholder="Имэйл" />
-          <CustomInput label="Нэр" placeholder="Нэр" name="username" />
+          <CustomInput
+            label="Имэйл"
+            name="email"
+            placeholder="Имэйл"
+            type="text
+          "
+          />
+          <CustomInput
+            label="Нэр"
+            placeholder="Нэр"
+            name="username"
+            type="text"
+          />
           <Stack>
             <Button
               fullWidth

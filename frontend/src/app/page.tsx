@@ -5,6 +5,7 @@ import Navbar from "@/components/header/Navbar";
 import { Stack } from "@mui/material";
 import { Container } from "@mui/material";
 import { CardFormStep2 } from "./signup/_components/CardFormStep2";
+import SignupForm from "./signup/_components/SignupForm";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Container maxWidth="xl">
         <CategoryBar />
         <CardFormStep2 />
+        <SignupForm />
       </Container>
       <Footer />
     </Stack>
