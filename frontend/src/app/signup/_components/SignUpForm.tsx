@@ -7,14 +7,18 @@ import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import { useAuth } from "@/components/provider/AuthProvider";
 
 export const SignUpForm = ({
   setStep,
 }: {
   setStep: Dispatch<SetStateAction<number>>;
 }) => {
+  const { signUp } = useAuth();
+
   const validationSchema = yup.object({
-    name: yup.string().required("Нэрээ оруулна уу"),
+    userName: yup.string().required("Нэрээ оруулна уу"),
     email: yup
       .string()
       .email("И-мэйл буруу байна")
@@ -38,7 +42,7 @@ export const SignUpForm = ({
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      userName: "",
       email: "",
       phoneNumber: "",
       password: "",
@@ -46,13 +50,12 @@ export const SignUpForm = ({
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      // await signup({
-      //   email: values.email,
-      //   name: values.name,
-      //   password: values.password,
-      //   address: values.address,
-      // });
-      console.log(formik.values);
+      await signUp({
+        userName: values.userName,
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        password: values.password,
+      });
     },
   });
   return (
@@ -70,13 +73,13 @@ export const SignUpForm = ({
       </Stack>
       <Stack gap={3}>
         <CustomInput
-          name="name"
+          name="userName"
           label="Нэр"
           placeHolder="Нэр оруулна уу"
           handleChange={formik.handleChange}
-          value={formik.values.name}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={String(formik.errors.name)}
+          value={formik.values.userName}
+          error={formik.touched.userName && Boolean(formik.errors.userName)}
+          helperText={String(formik.errors.userName)}
           onBlur={formik.handleBlur}
           type="text"
         />
@@ -130,7 +133,6 @@ export const SignUpForm = ({
           <Button
             fullWidth
             onClick={() => {
-              setStep((prev) => prev + 1);
               formik.handleSubmit();
             }}
             disabled={!formik.isValid}
