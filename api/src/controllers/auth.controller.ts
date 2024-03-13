@@ -1,52 +1,50 @@
 import { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 import { UserModel } from "../models";
-const otpGenerator = require("otp-generator");
 
-export const secretKey = "food delivery application secret key";
 // SIGN UP
 export const signUp: RequestHandler = async (req, res) => {
-  const { email, password } = req.body;
-
-  const userExist = await UserModel.findOne({ email: email });
-
-  if (userExist) {
-    return res.status(401).json({
-      message: "This email already registered",
-    });
-  }
-
+  const { userName, email, phoneNumber, password } = req.body;
   try {
+    const userExist = await UserModel.find({ email: email });
+
+    if (userExist.length) {
+      return res.status(401).json({
+        message: `${email} и-мэйлтэй хэрэглэгч өмнө бүртгэгдсэн байна`,
+      });
+    }
+
     const user = await UserModel.create({
+      userName,
       email,
+      phoneNumber,
       password,
+      updatedAt: new Date(),
+      createdAt: new Date(),
     });
 
-    return res.json({ message: "Account successfully created", user: user });
+    return res.json({ message: "Шинэ хэрэглэгч амжилттай үүслээ" });
   } catch (error) {
-    return res.status(401).json({ error: error, message: "could create user" });
+    res.json(error);
   }
 };
 
 // SIGN IN
 export const signIn: RequestHandler = async (req, res) => {
   const { email, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ email, password });
 
-  const user = await UserModel.findOne({ email: email, password: password });
+    if (!user) {
+      return res.status(401).json({
+        message: "Бүртгэлтэй хэрэглэгч олдсонгүй",
+      });
+    }
+    const id = user._id;
+    const token = jwt.sign({ id }, "secret-key");
 
-  if (!user) {
-    return res.status(401).json({ message: "User not found" });
+    return res.json({ token, message: "Амжилттай нэвтэрлээ" });
+  } catch (error) {
+    res.json(error);
   }
-
-  const id = user._id;
-
-  const token = jwt.sign(
-    {
-      id: id,
-    },
-    secretKey,
-    { expiresIn: "1d" }
-  );
-
-  res.json({ token });
 };
