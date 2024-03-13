@@ -6,8 +6,11 @@ import { CustomInput } from "@/components";
 import Image from "next/image";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useAuth } from "@/components/provider/AuthProvider";
 
 export default function SignInForm() {
+  const { signIn } = useAuth();
+
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -29,13 +32,10 @@ export default function SignInForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      // await signup({
-      //   email: values.email,
-      //   name: values.name,
-      //   password: values.password,
-      //   address: values.address,
-      // });
-      console.log(formik.values);
+      await signIn({
+        email: values.email,
+        password: values.password,
+      });
     },
   });
   return (

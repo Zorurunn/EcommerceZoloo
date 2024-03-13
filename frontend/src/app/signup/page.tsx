@@ -8,9 +8,10 @@ import { CardFormStep3 } from "./_components/CardFormStep3";
 import { CardFormStep1 } from "./_components/CardFormStep1";
 import { SignUpForm } from "./_components/SignUpForm";
 import ProgressStep from "./_components/ProgressStep";
+import { useAuth } from "@/components/provider/AuthProvider";
 
 export default function SignUp() {
-  const [step, setStep] = useState(1);
+  const { step, setStep } = useAuth();
 
   return (
     <Stack

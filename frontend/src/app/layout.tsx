@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/header/Navbar";
-import { Footer } from "@/components";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { AuthProvider } from "@/components/provider/AuthProvider";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ToastContainer } from "react-toastify";
+
+import { theme } from "@/theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <AuthProvider>{children}</AuthProvider>
+            <ToastContainer />
+            <CssBaseline />
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
