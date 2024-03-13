@@ -117,6 +117,7 @@ export const SignUpForm = ({
           helperText={String(formik.errors.password)}
           onBlur={formik.handleBlur}
           type="password"
+          adornment="end"
         />
         <CustomInput
           name="rePassword"
@@ -128,6 +129,7 @@ export const SignUpForm = ({
           helperText={String(formik.errors.rePassword)}
           onBlur={formik.handleBlur}
           type="password"
+          adornment="end"
         />
         <Stack>
           <Button
@@ -144,6 +146,7 @@ export const SignUpForm = ({
               color: "white",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
             }}
           >

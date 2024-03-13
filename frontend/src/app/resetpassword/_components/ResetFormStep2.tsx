@@ -3,7 +3,7 @@
 import EastIcon from "@mui/icons-material/East";
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -15,6 +15,7 @@ export const ResetFormStep2 = ({
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
   const { userEmail, setUserOtb } = useAuth();
+  const [isClicked, setIsClicked] = useState(false);
 
   const validationSchema = yup.object({
     code: yup.string().required("").min(4),
@@ -45,22 +46,22 @@ export const ResetFormStep2 = ({
         <Stack gap={2}>
           <Typography>
             Таны
-            <Typography color={"primary.main"} component={"span"}>
+            <Typography ml={1} color={"primary.main"} component={"span"}>
               {userEmail}
             </Typography>
-            сэргээх код илгээх болно.
+            -руу сэргээх код илгээх болно.
           </Typography>
 
           <CustomInput
             name="code"
+            label="Нууц үг сэргээх код "
+            placeHolder="Нууц үг сэргээх кодоо оруулна уу"
+            type="text"
             handleChange={formik.handleChange}
             value={formik.values.code}
             error={formik.touched.code && Boolean(formik.errors.code)}
             onBlur={formik.handleBlur}
             helperText={String(formik.errors.code)}
-            label="Нууц үг сэргээх код "
-            placeHolder="Нууц үг сэргээх кодоо оруулна уу"
-            type="password"
           />
         </Stack>
 
@@ -68,6 +69,8 @@ export const ResetFormStep2 = ({
           fullWidth
           onClick={() => {
             formik.handleSubmit();
+            // setIsClicked(true);
+            setIndex((prev) => prev + 1);
           }}
           disabled={!formik.isValid}
           variant="contained"
@@ -78,6 +81,7 @@ export const ResetFormStep2 = ({
             color: "white",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
           }}
         >

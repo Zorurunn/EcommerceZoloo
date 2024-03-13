@@ -102,6 +102,7 @@ export function CardFormStep1({
               color: "white",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
               gap: "8px",
             }}

@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export const ResetFormStep3 = ({
   index,
@@ -18,27 +18,28 @@ export const ResetFormStep3 = ({
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
   const router = useRouter();
-  const { checkResetOtb, userEmail, userOtb } = useAuth();
+  const { resetPassword, userEmail, userOtb } = useAuth();
+  const [isClicked, setIsClicked] = useState(false);
 
   const validationSchema = yup.object({
-    password: yup.string().required(""),
-    rePassword: yup
+    newPassword: yup.string().required(""),
+    reNewPassword: yup
       .string()
       .required("")
-      .oneOf([yup.ref("password")]),
+      .oneOf([yup.ref("newPassword")]),
   });
 
   const formik = useFormik({
     initialValues: {
-      password: "",
-      rePassword: "",
+      newPassword: "",
+      reNewPassword: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      checkResetOtb({
+      resetPassword({
         email: userEmail,
         code: userOtb,
-        password: values.password,
+        newPassword: values.newPassword,
       });
     },
   });
@@ -57,29 +58,34 @@ export const ResetFormStep3 = ({
       <Stack gap={6} width={"100%"}>
         <Stack>
           <CustomInput
-            name="password"
-            handleChange={formik.handleChange}
-            value={formik.values.password}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            onBlur={formik.handleBlur}
-            helperText={String(formik.errors.password)}
+            name="newPassword"
             label="Нууц үг "
             placeHolder="Нууц үгээ оруулна уу"
             type="password"
+            adornment="end"
+            handleChange={formik.handleChange}
+            value={formik.values.newPassword}
+            error={
+              formik.touched.newPassword && Boolean(formik.errors.newPassword)
+            }
+            onBlur={formik.handleBlur}
+            helperText={String(formik.errors.newPassword)}
           />
 
           <CustomInput
-            name="rePassword"
-            handleChange={formik.handleChange}
-            value={formik.values.rePassword}
-            error={
-              formik.touched.rePassword && Boolean(formik.errors.rePassword)
-            }
-            onBlur={formik.handleBlur}
-            helperText={String(formik.errors.rePassword)}
+            name="reNewPassword"
             label="Нууц үг давтах "
             placeHolder="Нууц үгээ оруулна уу"
             type="password"
+            adornment="end"
+            handleChange={formik.handleChange}
+            value={formik.values.reNewPassword}
+            error={
+              formik.touched.reNewPassword &&
+              Boolean(formik.errors.reNewPassword)
+            }
+            onBlur={formik.handleBlur}
+            helperText={String(formik.errors.reNewPassword)}
           />
         </Stack>
 
@@ -87,12 +93,11 @@ export const ResetFormStep3 = ({
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            setIndex((prev) => prev + 1);
-            if (index === 2) {
-              router.push("/singin");
+            // setIsClicked(true);
+            if (index == 2) {
+              router.push("/signin");
               setIndex(0);
             }
-            formik.handleSubmit();
           }}
           disabled={!formik.isValid}
           variant="contained"
@@ -103,6 +108,7 @@ export const ResetFormStep3 = ({
             color: "white",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
           }}
         >

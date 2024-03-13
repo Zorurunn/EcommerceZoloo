@@ -41,29 +41,40 @@ export const sendEmail: RequestHandler = async (req, res) => {
       { $set: { otp: otpCode } }
     );
 
-    res.json(`Нэг удаагын код ${email}-рүү амжилттай илгээгдлээ`);
+    res.json({ message: `Нэг удаагын код ${email}-руу амжилттай илгээгдлээ` });
   } catch (error) {
     res.status(500).json(error);
   }
 };
 
-export const sendOtp: RequestHandler = async (req, res) => {
-  const { email, code, password } = req.body;
+export const reserPassword: RequestHandler = async (req, res) => {
+  const { email, code, rePassword } = req.body;
 
   const user = await UserModel.findOne({ email: email, otp: code });
 
   if (!user) {
     return res.status(401).json({
-      message: "Нэг удаагын код буруу байна",
+      message: "Нэг удаагийн код буруу байна.",
     });
   }
   try {
-    if (user.otp === code) {
+    if (user.otp != code) {
+      return res.status(401).json({
+        message: "Нэг удаагийн код буруу байна.o",
+      });
     }
 
-    const userPassword = await UserModel.updateOne({ password: password });
+    if (user.otp == code) {
+      await UserModel.findOneAndUpdate(
+        { _id: user._id },
+        {
+          password: rePassword,
+          updatedAt: new Date(),
+        }
+      );
+    }
 
-    res.json({ message: "" });
+    res.json({ message: "amjilltai soligdloo" });
   } catch (error) {
     res.status(500).json(error);
   }

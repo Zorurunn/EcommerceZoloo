@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { sendEmail, sendOtp } from "../controllers";
+import { reserPassword, sendEmail } from "../controllers";
 
 const emailRouter = Router();
 
-emailRouter.post("/sendEmail", sendEmail).post("/sendOtp", sendOtp);
+emailRouter.post("/sendEmail", sendEmail).post("/resetPassword", reserPassword);
 
 export default emailRouter;

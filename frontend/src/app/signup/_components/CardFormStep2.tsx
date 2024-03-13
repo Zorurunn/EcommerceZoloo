@@ -129,6 +129,7 @@ export const CardFormStep2 = ({
             color: "white",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
             gap: "8px",
           }}

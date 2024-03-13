@@ -8,13 +8,10 @@ import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { TurnLeft } from "@mui/icons-material";
 
-export const ResetFormStep1 = ({
-  setIndex,
-}: {
-  setIndex: Dispatch<SetStateAction<number>>;
-}) => {
-  const { checkResetEmail, setUserEmail } = useAuth();
+export const ResetFormStep1 = () => {
+  const { sendEmail, setUserEmail } = useAuth();
   const [isClicked, setIsClicked] = useState(false);
 
   const validationSchema = yup.object({
@@ -29,7 +26,7 @@ export const ResetFormStep1 = ({
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      checkResetEmail({ email: values.email });
+      sendEmail({ email: values.email });
       setUserEmail(values.email);
     },
   });
@@ -49,23 +46,23 @@ export const ResetFormStep1 = ({
       <Stack gap={6} width={"100%"}>
         <CustomInput
           name="email"
+          label="Имэйл "
+          placeHolder="Имэйл хаягаа оруулна уу"
+          type="text"
           handleChange={formik.handleChange}
           value={formik.values.email}
           error={formik.touched.email && Boolean(formik.errors.email)}
           onBlur={formik.handleBlur}
           helperText={String(formik.errors.email)}
-          label="Имэйл "
-          placeHolder="Имэйл хаягаа оруулна уу"
-          type="text"
         />
 
         <Button
           fullWidth
+          disabled={!formik.isValid}
           onClick={() => {
             formik.handleSubmit();
-            setIsClicked(true);
+            // setIsClicked(true);
           }}
-          disabled={!formik.isValid}
           variant="contained"
           sx={{
             position: "relative",
@@ -74,6 +71,7 @@ export const ResetFormStep1 = ({
             color: "white",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
           }}
         >

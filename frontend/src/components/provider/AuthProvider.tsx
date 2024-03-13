@@ -27,14 +27,14 @@ type signInParams = {
   password: string;
 };
 
-type checkResetEmailParams = {
+type sendEmailParams = {
   email: string;
 };
 
-type checkResetOtbParams = {
+type reserPasswordParams = {
   email: string;
   code: string;
-  password: string;
+  newPassword: string;
 };
 
 type AuthContextType = {
@@ -47,8 +47,8 @@ type AuthContextType = {
   setUserEmail: Dispatch<SetStateAction<string>>;
   userOtb: string;
   setUserOtb: Dispatch<SetStateAction<string>>;
-  checkResetEmail: (params: checkResetEmailParams) => Promise<void>;
-  checkResetOtb: (params: checkResetOtbParams) => Promise<void>;
+  sendEmail: (params: sendEmailParams) => Promise<void>;
+  resetPassword: (params: reserPasswordParams) => Promise<void>;
   signUp: (params: signUpParams) => Promise<void>;
   signIn: (params: signInParams) => Promise<void>;
   signOut: () => void;
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const checkResetEmail = async (params?: checkResetEmailParams) => {
+  const sendEmail = async (params: sendEmailParams) => {
     try {
       const { data } = await api.post("/sendEmail", params);
       console.log(data);
@@ -133,6 +133,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         autoClose: 3000,
         hideProgressBar: true,
       });
+
       setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -145,15 +146,17 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const checkResetOtb = async (params?: checkResetOtbParams) => {
+  const resetPassword = async (params: reserPasswordParams) => {
     try {
-      const { data } = await api.post("/sendOtb", params);
+      const { data } = await api.post("/resetPassword", params);
       console.log(data);
+
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
       });
+
       setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -189,8 +192,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         signIn,
         signUp,
         signOut,
-        checkResetEmail,
-        checkResetOtb,
+        sendEmail,
+        resetPassword,
       }}
     >
       {children}

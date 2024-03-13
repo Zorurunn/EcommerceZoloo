@@ -63,17 +63,25 @@ export default function SignInForm() {
           helperText={String(formik.errors.email)}
           onBlur={formik.handleBlur}
         />
-        <CustomInput
-          name="password"
-          label="Нууц үг"
-          placeHolder="Нууц үг оруулна уу"
-          type="password"
-          handleChange={formik.handleChange}
-          value={formik.values.password}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={String(formik.errors.password)}
-          onBlur={formik.handleBlur}
-        />
+        <Stack alignItems={"flex-end"}>
+          <CustomInput
+            name="password"
+            label="Нууц үг"
+            placeHolder="Нууц үг оруулна уу"
+            type="password"
+            adornment="end"
+            handleChange={formik.handleChange}
+            value={formik.values.password}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={String(formik.errors.password)}
+            onBlur={formik.handleBlur}
+          />
+          <Link href={"/resetpassword"}>
+            <Typography color={"#000"} fontSize={14} fontWeight={400}>
+              Нууц үг сэргээх
+            </Typography>
+          </Link>
+        </Stack>
         <Stack>
           <Button
             fullWidth
