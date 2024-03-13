@@ -4,10 +4,36 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "../../../components";
+import { Dispatch, SetStateAction } from "react";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
-export function CardFormStep1() {
+export function CardFormStep1({
+  setStep,
+}: {
+  setStep: Dispatch<SetStateAction<number>>;
+}) {
+  const validationSchema = yup.object({
+    storeName: yup.string().required("Нэрээ оруулна уу"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      storeName: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      // await signup({
+      //   email: values.email,
+      //   name: values.name,
+      //   password: values.password,
+      //   address: values.address,
+      // });
+      console.log(formik.values);
+    },
+  });
   return (
-    <Stack sx={{ width: "452px", gap: "8px", padding: "24px" }}>
+    <Stack width={452} p={3} gap={3}>
       <Typography
         sx={{
           fontSize: "32px",
@@ -28,19 +54,16 @@ export function CardFormStep1() {
             gap: "8px",
           }}
         >
-          <Typography
-            sx={{
-              fontWeight: "600",
-              fontSize: "16px",
-              color: "text.primary",
-            }}
-          >
-            Танай дэлгүүрийн нэр юу вэ?
-          </Typography>
-
           <CustomInput
+            name="storeName"
+            label=" Танай дэлгүүрийн нэр юу вэ?"
             placeHolder="Дэлгүүрийн нэр"
             type="text"
+            handleChange={formik.handleChange}
+            value={formik.values.storeName}
+            error={formik.touched.storeName && Boolean(formik.errors.storeName)}
+            helperText={String(formik.errors.storeName)}
+            onBlur={formik.handleBlur}
             sx={{
               fontSize: "16px",
               fontWeight: "400",
@@ -56,6 +79,9 @@ export function CardFormStep1() {
           }}
         >
           <Stack
+            onClick={() => {
+              setStep((prev) => prev - 1);
+            }}
             sx={{
               width: "48px",
               height: "48px",
@@ -68,29 +94,30 @@ export function CardFormStep1() {
             <ArrowBackIcon fontSize="medium" sx={{ color: "text.primary" }} />
           </Stack>
           <Button
-            variant="contained" // to do: change backgroundcolor to "#D6D8DB"
             sx={{
               width: "127px",
               height: "48px",
               borderRadius: "8px",
-              backgroundColor: "#D6D8DB",
-              textTransform: "none",
+              background: "#121316",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#393939",
+              },
+              gap: "8px",
+            }}
+            variant="contained"
+            fullWidth
+            disabled={!formik.isValid}
+            onClick={() => {
+              setStep((prev) => prev + 1);
+              formik.handleSubmit();
             }}
           >
-            <Stack
-              direction={"row"}
-              sx={{
-                color: "text.secondary",
-                fontSize: "16px",
-                fontWeight: "600",
-              }}
-            >
-              <Typography>Дараах</Typography>
-              <ArrowForwardIcon
-                fontSize="medium"
-                sx={{ color: "text.secondary" }}
-              />
-            </Stack>
+            Дараах
+            <ArrowForwardIcon
+              fontSize="medium"
+              sx={{ color: "common.white" }}
+            />
           </Button>
         </Stack>
       </Stack>

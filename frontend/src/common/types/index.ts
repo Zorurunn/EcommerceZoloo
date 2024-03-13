@@ -7,4 +7,5 @@ export type saleItemType = {
 export type stepNodeType = {
   order: number;
   isActive: boolean;
+  title: string;
 } & PropsWithChildren;

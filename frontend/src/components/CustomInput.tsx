@@ -126,6 +126,9 @@ export const CustomInput = (props: CustomInputProps) => {
       >
         {children}
       </TextField>
+      <Typography fontSize={12} color={"error"}>
+        {error && helperText}
+      </Typography>
     </Stack>
   );
 };
