@@ -1,6 +1,5 @@
 "use client";
 
-import EastIcon from "@mui/icons-material/East";
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -8,6 +7,7 @@ import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export const ResetFormStep2 = ({
   setIndex,
@@ -15,10 +15,10 @@ export const ResetFormStep2 = ({
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
   const { userEmail, setUserOtb } = useAuth();
-  const [isClicked, setIsClicked] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
-    code: yup.string().required("").min(4),
+    code: yup.string().required(""),
   });
 
   const formik = useFormik({
@@ -26,8 +26,9 @@ export const ResetFormStep2 = ({
       code: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      setUserOtb(values.code);
+    onSubmit: async (values) => {
+      setOpen(true);
+      await setUserOtb(values.code);
     },
   });
 
@@ -64,29 +65,32 @@ export const ResetFormStep2 = ({
             helperText={String(formik.errors.code)}
           />
         </Stack>
-
         <Button
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            // setIsClicked(true);
             setIndex((prev) => prev + 1);
+            setOpen(false);
           }}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || open}
           variant="contained"
           sx={{
-            position: "relative",
+            justifyContent: "flex-end",
             py: "14.5px",
             background: "#121316",
             color: "white",
+            gap: "8px",
             "&:hover": {
               backgroundColor: "#393939",
               color: "common.white",
             },
           }}
         >
-          дарааx
-          <EastIcon sx={{ position: "absolute", right: "10%" }} />
+          {open && <Stack className="btnLoader"></Stack>}
+          <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+            Нэвтрэх
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>

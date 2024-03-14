@@ -3,16 +3,16 @@
 import EastIcon from "@mui/icons-material/East";
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
-import { TurnLeft } from "@mui/icons-material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export const ResetFormStep1 = () => {
   const { sendEmail, setUserEmail } = useAuth();
-  const [isClicked, setIsClicked] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     email: yup
@@ -25,8 +25,9 @@ export const ResetFormStep1 = () => {
       email: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      sendEmail({ email: values.email });
+    onSubmit: async (values) => {
+      setOpen(true);
+      await sendEmail({ email: values.email });
       setUserEmail(values.email);
     },
   });
@@ -55,28 +56,31 @@ export const ResetFormStep1 = () => {
           onBlur={formik.handleBlur}
           helperText={String(formik.errors.email)}
         />
-
         <Button
           fullWidth
-          disabled={!formik.isValid}
           onClick={() => {
             formik.handleSubmit();
-            // setIsClicked(true);
+            setOpen(false);
           }}
+          disabled={!formik.isValid || open}
           variant="contained"
           sx={{
-            position: "relative",
+            justifyContent: "flex-end",
             py: "14.5px",
             background: "#121316",
             color: "white",
+            gap: "8px",
             "&:hover": {
               backgroundColor: "#393939",
               color: "common.white",
             },
           }}
         >
-          дарааx
-          <EastIcon sx={{ position: "absolute", right: "10%" }} />
+          {open && <Stack className="btnLoader"></Stack>}
+          <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+            Нэвтрэх
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>

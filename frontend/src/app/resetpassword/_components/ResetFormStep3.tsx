@@ -1,6 +1,6 @@
 "use client";
 
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
 import { Button } from "@mui/material";
@@ -19,7 +19,7 @@ export const ResetFormStep3 = ({
 }) => {
   const router = useRouter();
   const { resetPassword, userEmail, userOtb } = useAuth();
-  const [isClicked, setIsClicked] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     newPassword: yup.string().required(""),
@@ -35,8 +35,9 @@ export const ResetFormStep3 = ({
       reNewPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      resetPassword({
+    onSubmit: async (values) => {
+      setOpen(true);
+      await resetPassword({
         email: userEmail,
         code: userOtb,
         newPassword: values.newPassword,
@@ -88,32 +89,35 @@ export const ResetFormStep3 = ({
             helperText={String(formik.errors.reNewPassword)}
           />
         </Stack>
-
         <Button
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            // setIsClicked(true);
             if (index == 2) {
               router.push("/signin");
             }
             setIndex(0);
+            setOpen(false);
           }}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || open}
           variant="contained"
           sx={{
-            position: "relative",
+            justifyContent: "flex-end",
             py: "14.5px",
             background: "#121316",
             color: "white",
+            gap: "8px",
             "&:hover": {
               backgroundColor: "#393939",
               color: "common.white",
             },
           }}
         >
-          дарааx
-          <EastIcon sx={{ position: "absolute", right: "10%" }} />
+          {open && <Stack className="btnLoader"></Stack>}
+          <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+            Нэвтрэх
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>

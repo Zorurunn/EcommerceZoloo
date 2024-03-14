@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "@/components";
 import { CardFormStep3Experience, CardFormStep3Products } from "@/constants";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,8 @@ export function CardFormStep3({
   setStep: Dispatch<SetStateAction<number>>;
 }) {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+
   const validationSchema = yup.object({
     salesExprience: yup.string().required("Сонгоно уу"),
     productType: yup.string().required("Сонгоно уу"),
@@ -36,7 +38,8 @@ export function CardFormStep3({
       //   password: values.password,
       //   address: values.address,
       // });
-      console.log(formik.values);
+      setOpen(true);
+      await console.log(formik.values);
     },
   });
   return (
@@ -106,9 +109,9 @@ export function CardFormStep3({
           </Stack>
           <Button
             sx={{
-              width: "127px",
-              height: "48px",
-              borderRadius: "8px",
+              width: "fit-content",
+              py: "8px",
+              pr: "10px",
               background: "#121316",
               color: "white",
               "&:hover": {
@@ -119,20 +122,21 @@ export function CardFormStep3({
             }}
             variant="contained"
             fullWidth
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || open}
             onClick={() => {
               formik.handleSubmit();
               if (step == 4) {
                 router.push("singin");
                 setStep(0);
               }
+              setOpen(false);
             }}
           >
-            Дараах
-            <ArrowForwardIcon
-              fontSize="medium"
-              sx={{ color: "common.white" }}
-            />
+            {open && <Stack mr={1} className="btnLoader"></Stack>}
+            <Typography fontSize={16} fontWeight={600}>
+              Дараах
+            </Typography>
+            <ArrowForwardIcon fontSize="medium" />
           </Button>
         </Stack>
       </Stack>

@@ -1,15 +1,17 @@
 "use client";
 import { Button, Stack, Typography } from "@mui/material";
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import Image from "next/image";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { useState } from "react";
 
 export default function SignInForm() {
   const { signIn } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     email: yup
@@ -32,6 +34,7 @@ export default function SignInForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setOpen(true);
       await signIn({
         email: values.email,
         password: values.password,
@@ -87,20 +90,27 @@ export default function SignInForm() {
             fullWidth
             onClick={() => {
               formik.handleSubmit();
+              setOpen(false);
             }}
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || open}
             variant="contained"
             sx={{
-              position: "relative",
+              justifyContent: "flex-end",
               py: "14.5px",
               background: "#121316",
               color: "white",
+              gap: "8px",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
             }}
           >
-            Нэвтрэх
+            {open && <Stack className="btnLoader"></Stack>}
+            <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+              Нэвтрэх
+            </Typography>
+            <ArrowForwardIcon fontSize="medium" />
           </Button>
         </Stack>
         <Stack width={"100%"} pt={2} gap={2}>

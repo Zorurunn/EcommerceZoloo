@@ -1,6 +1,6 @@
 import { CustomInput } from "@/components";
 import { Button, MenuItem, Stack, Typography } from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import * as yup from "yup";
@@ -13,6 +13,8 @@ export const CardFormStep2 = ({
 }: {
   setStep: Dispatch<SetStateAction<number>>;
 }) => {
+  const [open, setOpen] = useState(false);
+
   const validationSchema = yup.object({
     city: yup.string().required("Сонгоно уу"),
     district: yup.string().required("Сонгоно уу"),
@@ -33,7 +35,8 @@ export const CardFormStep2 = ({
       //   password: values.password,
       //   address: values.address,
       // });
-      console.log(formik.values);
+      setOpen(true);
+      await console.log(formik.values);
     },
   });
   return (
@@ -122,9 +125,9 @@ export const CardFormStep2 = ({
         </Stack>
         <Button
           sx={{
-            width: "127px",
-            height: "48px",
-            borderRadius: "8px",
+            width: "fit-content",
+            py: "8px",
+            pr: "10px",
             background: "#121316",
             color: "white",
             "&:hover": {
@@ -135,14 +138,18 @@ export const CardFormStep2 = ({
           }}
           variant="contained"
           fullWidth
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || open}
           onClick={() => {
-            setStep((prev) => prev + 1);
             formik.handleSubmit();
+            setOpen(false);
+            setStep((prev) => prev + 1);
           }}
         >
-          Дараах
-          <ArrowForwardIcon fontSize="medium" sx={{ color: "common.white" }} />
+          {open && <Stack mr={1} className="btnLoader"></Stack>}
+          <Typography fontSize={16} fontWeight={600}>
+            Дараах
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>
