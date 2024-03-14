@@ -65,8 +65,8 @@ export const reserPassword: RequestHandler = async (req, res) => {
     }
 
     if (user.otp == code) {
-      await UserModel.findOneAndUpdate(
-        { _id: user._id },
+      const updatePassword = await UserModel.findOneAndUpdate(
+        { email: email },
         {
           password: rePassword,
           updatedAt: new Date(),
