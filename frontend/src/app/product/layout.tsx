@@ -1,9 +1,7 @@
 "use client";
 import { LeftSideBar } from "@/components/LeftSideBar";
 import { BlackHeader } from "@/components/header/BlackHeader";
-import { sideBarLines } from "@/constants";
-import { Button, Container, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Stack } from "@mui/material";
 
 export default function RootLayout({
   children,
