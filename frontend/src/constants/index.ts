@@ -32,3 +32,6 @@ export const sideBarLines = [
     icon: SettingsIcon,
   },
 ];
+
+export const SIDEBAR_WIDTH = 240;
+export const NAVBAR_HEIGHT = 50;

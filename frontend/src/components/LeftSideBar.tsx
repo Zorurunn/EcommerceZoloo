@@ -1,5 +1,5 @@
 import { sideBarLines } from "@/constants";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Container, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 export const LeftSideBar = () => {
