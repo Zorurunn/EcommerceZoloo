@@ -96,8 +96,8 @@ export const ResetFormStep3 = ({
             // setIsClicked(true);
             if (index == 2) {
               router.push("/signin");
-              setIndex(0);
             }
+            setIndex(0);
           }}
           disabled={!formik.isValid}
           variant="contained"
