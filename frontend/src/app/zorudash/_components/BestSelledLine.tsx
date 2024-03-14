@@ -15,7 +15,6 @@ type indexType = {
 
 export const BestSelledLine = (props: soldProductType & indexType) => {
   const { name, id, imgUrl, price, soldQuantity, index } = props;
-  //   console.log(imgUrl);
 
   return (
     <Stack
@@ -30,9 +29,18 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
       <Stack justifyContent={"center"} alignItems={"center"}>
         {index + 1}
       </Stack>
-      <Stack border="1px solid red">
-        ss
-        <Stack></Stack>
+      <Stack
+        border="1px solid red"
+        justifyContent={"center"}
+        alignItems={"center"}
+        direction={"row"}
+      >
+        <Stack>
+          <Avatar alt={name} src={imgUrl} />
+        </Stack>
+        <Stack flexGrow={1}>
+          <Typography>{name}</Typography>
+        </Stack>
       </Stack>
       {/* <Stack justifyContent={"center"} alignItems={"center"}>
         <Stack
@@ -53,7 +61,13 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
             <Avatar alt={name} src={imgUrl} />
           </Stack>
           <Stack border={"1px solid green"} width={"100%"}>
-            <Typography>{name}</Typography>
+            <Typography
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow={"ellipsis"}
+            >
+              {name}
+            </Typography>
           </Stack>
         </Stack>
       </Stack> */}
