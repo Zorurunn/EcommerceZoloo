@@ -1,4 +1,8 @@
 "use client";
+
+import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import {
   Search,
   VisibilityOff,
@@ -35,12 +39,13 @@ type CustomInputProps = {
   adornment?: "end" | "start";
   size?: "small" | "medium";
   borderColor?: string;
+  bgcolor?: string;
   id?: string;
   isError?: string;
   isTouched?: boolean;
   helperText?: string;
   select?: boolean;
-  iconType?: "location" | "search";
+  iconType?: "location" | "search" | "category" | "$" | "calendar";
   multiLine?: boolean;
 } & TextFieldProps;
 
@@ -65,6 +70,7 @@ export const CustomInput = (props: CustomInputProps) => {
     select = false,
     iconType = "search",
     multiLine = false,
+    bgcolor = "#ECEDF0",
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -99,7 +105,7 @@ export const CustomInput = (props: CustomInputProps) => {
             borderColor: borderColor,
           },
           width: "100%",
-          bgcolor: "#ECEDF0",
+          bgcolor: bgcolor,
         }}
         inputProps={{
           style: {
@@ -118,7 +124,11 @@ export const CustomInput = (props: CustomInputProps) => {
             <InputAdornment position="start">
               {
                 <IconButton onClick={handleSearch}>
-                  {iconType === "search" ? <Search /> : <LocationOn />}
+                  {iconType === "search" && <Search />}
+                  {iconType === "location" && <LocationOn />}
+                  {iconType === "category" && <CategoryOutlinedIcon />}
+                  {iconType === "$" && <AttachMoneyIcon />}
+                  {iconType === "calendar" && <CalendarTodayOutlinedIcon />}
                 </IconButton>
               }
             </InputAdornment>
