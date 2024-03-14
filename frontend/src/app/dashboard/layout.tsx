@@ -1,7 +1,7 @@
 "use client";
 import { LeftSideBar } from "@/components/LeftSideBar";
 import { BlackHeader } from "@/components/header/BlackHeader";
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH, sideBarLines } from "@/constants";
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from "@/constants";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ export default function RootLayout({
       <BlackHeader />
       <Stack
         direction={"row"}
-        gap={2}
+        // gap={2}
         height={`calc(100vh - ${NAVBAR_HEIGHT}px)`}
       >
         <Stack

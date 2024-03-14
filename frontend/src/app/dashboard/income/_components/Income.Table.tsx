@@ -1,8 +1,27 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+"use cleint";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import { Option as BaseOption, optionClasses } from "@mui/base/Option";
+import { useState } from "react";
+import { CustomInput } from "@/components";
+import { CardFormStep3Products } from "@/constants";
+import { ProductFilterDropdownCard } from "@/components/Product.DropDown.Menu";
+
+const mapDate = ["Сараар", "Өдрөөр", "Жилээр"];
 
 export const IncomeTable = () => {
+  const [category, setCategory] = useState("");
+
   return (
     <Stack
       width={"100%"}
@@ -30,6 +49,7 @@ export const IncomeTable = () => {
             display: "flex",
             alignItems: "center",
             padding: "8px, 12px, 8px, 12px",
+            ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
           }}
         >
           <FileDownloadOutlinedIcon />
@@ -50,10 +70,10 @@ export const IncomeTable = () => {
           <Button
             sx={{
               borderRadius: "8px",
-              bgcolor: "#18BA51",
-              color: "#ECEDF0",
-              gap: "4px",
+              color: "#121316",
+              border: "1px solid #ECEDF0",
               padding: "8px, 12px, 8px, 12px",
+              ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
             }}
           >
             <Typography>Өнөөдөр</Typography>
@@ -64,24 +84,17 @@ export const IncomeTable = () => {
               color: "#121316",
               border: "1px solid #ECEDF0",
               padding: "8px, 12px, 8px, 12px",
+              ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
             }}
           >
             <Typography>7 хоног</Typography>
           </Button>
-          <Button
-            sx={{
-              borderRadius: "8px",
-              color: "#121316",
-              border: "1px solid #ECEDF0",
-              gap: "4px",
-              display: "flex",
-              alignItems: "center",
-              padding: "8px, 12px, 8px, 12px",
-            }}
-          >
-            <CalendarTodayOutlinedIcon />
-            <Typography>Сараар</Typography>
-          </Button>
+
+          <ProductFilterDropdownCard
+            title="Сараар"
+            mapArr={mapDate}
+            setState={setCategory}
+          />
         </Stack>
       </Stack>
     </Stack>

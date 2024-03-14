@@ -5,11 +5,9 @@ import { OrderList } from "./_components/Order.List";
 
 export default function Home() {
   return (
-    <>
-      <Container maxWidth={"xl"}>
-        <IncomeTable />
-        <OrderList />
-      </Container>
-    </>
+    <Stack gap={3}>
+      <IncomeTable />
+      <OrderList />
+    </Stack>
   );
 }

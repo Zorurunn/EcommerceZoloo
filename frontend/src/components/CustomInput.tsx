@@ -34,7 +34,6 @@ type CustomInputProps = {
     | undefined;
   adornment?: "end" | "start";
   size?: "small" | "medium";
-
   borderColor?: string;
   id?: string;
   isError?: string;
@@ -57,7 +56,6 @@ export const CustomInput = (props: CustomInputProps) => {
     placeHolder,
     adornment,
     size,
-
     borderColor,
     id,
     isError,
