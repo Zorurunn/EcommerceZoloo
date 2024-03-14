@@ -15,24 +15,26 @@ export default function RootLayout({
       <BlackHeader />
 
       <Stack>
-        <Stack
-          direction={"row"}
-          gap={2}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "1fr 5fr",
-            backgroundColor: "#ECEDF0",
-          }}
-        >
+        <Container maxWidth="xl">
           <Stack
-            paddingTop={3}
-            sx={{ backgroundColor: "#fff" }}
-            height={"100vh"}
+            direction={"row"}
+            gap={2}
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 5fr",
+              backgroundColor: "#ECEDF0",
+            }}
           >
-            <LeftSideBar />
+            <Stack
+              paddingTop={3}
+              sx={{ backgroundColor: "#fff" }}
+              height={"100vh"}
+            >
+              <LeftSideBar />
+            </Stack>
+            <Stack paddingTop={3}>{children}</Stack>
           </Stack>
-          <Stack paddingTop={3}>{children}</Stack>
-        </Stack>
+        </Container>
       </Stack>
     </Stack>
   );

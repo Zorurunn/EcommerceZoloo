@@ -15,11 +15,10 @@ type indexType = {
 
 export const BestSelledLine = (props: soldProductType & indexType) => {
   const { name, id, imgUrl, price, soldQuantity, index } = props;
-
   return (
     <Stack
       direction={"row"}
-      height={54}
+      height={72}
       sx={{
         display: "grid",
         gridTemplateColumns: "1fr 6fr 3fr 3fr",
@@ -27,24 +26,34 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
       }}
     >
       <Stack justifyContent={"center"} alignItems={"center"}>
-        {index + 1}
+        {index}
       </Stack>
-      <Stack
-        border="1px solid red"
+      {/* <Stack
+        // border="1px solid red"
         justifyContent={"center"}
         alignItems={"center"}
         direction={"row"}
+        gap={1}
+        width={"100%"}
       >
         <Stack>
           <Avatar alt={name} src={imgUrl} />
         </Stack>
         <Stack flexGrow={1}>
-          <Typography>{name}</Typography>
+          <Typography
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow={"ellipsis"}
+            width={"calc(100% - 40px)"}
+          >
+            {name}
+          </Typography>
         </Stack>
-      </Stack>
-      {/* <Stack justifyContent={"center"} alignItems={"center"}>
+      </Stack> */}
+      <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
         <Stack
           direction={"row"}
+          height={"100%"}
           sx={{
             display: "grid",
             gridTemplateColumns: "1fr 4fr",
@@ -52,7 +61,6 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
           }}
         >
           <Stack
-            border={"1px solid red"}
             width={"100%"}
             height={"100%"}
             justifyContent={"center"}
@@ -60,22 +68,41 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
           >
             <Avatar alt={name} src={imgUrl} />
           </Stack>
-          <Stack border={"1px solid green"} width={"100%"}>
-            <Typography
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow={"ellipsis"}
+          <Stack position="relative">
+            <Stack
+              position="absolute"
+              top={0}
+              left={0}
+              width="100%"
+              height="100%"
+              gap={1}
+              justifyContent={"center"}
             >
-              {name}
-            </Typography>
+              <Typography
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow={"ellipsis"}
+                fontSize={14}
+                fontWeight={600}
+              >
+                {name}
+              </Typography>
+              <Typography
+                fontSize={14}
+                fontWeight={400}
+                color={"text.secondary"}
+              >
+                {id}
+              </Typography>
+            </Stack>
           </Stack>
         </Stack>
-      </Stack> */}
-      <Stack justifyContent={"center"} alignItems={"center"}>
-        Тоо ширхэг
       </Stack>
       <Stack justifyContent={"center"} alignItems={"center"}>
-        Үнэ
+        {soldQuantity}
+      </Stack>
+      <Stack justifyContent={"center"} alignItems={"center"}>
+        {new Intl.NumberFormat().format(price) + "₮"}
       </Stack>
     </Stack>
   );

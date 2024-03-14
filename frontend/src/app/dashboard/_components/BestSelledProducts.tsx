@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Divider, Stack, Typography } from "@mui/material";
 import React from "react";
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import { TableHeader } from "./TableHeader";
@@ -89,7 +89,7 @@ const products = [
 export const BestSelledProducts = () => {
   return (
     <Stack
-      overflow={"scroll"}
+      overflow={"hidden"}
       height={"100%"}
       borderRadius={3}
       px={3}
@@ -108,11 +108,30 @@ export const BestSelledProducts = () => {
         </Stack>
         <ChevronRightOutlinedIcon />
       </Stack>
-      <Stack>
+      <Stack gap={2} flexGrow={1}>
         <TableHeader />
-        {products.map((item, index) => {
-          return <BestSelledLine {...item} index={index} />;
-        })}
+        <Stack gap={2} flexGrow={1} overflow={"scroll"}>
+          <Stack width={"100%"} height={"100%"} position={"relative"}>
+            <Stack position={"absolute"} top={0} left={0}>
+              {products.map((item, index) => {
+                return (
+                  <Stack key={item.id + index}>
+                    <BestSelledLine {...item} index={index + 1} />
+                    <Divider />
+                  </Stack>
+                );
+              })}
+            </Stack>
+          </Stack>
+          {/* {products.map((item, index) => {
+            return (
+              <Stack key={item.id + index}>
+                <BestSelledLine {...item} index={index + 1} />
+                <Divider />
+              </Stack>
+            );
+          })} */}
+        </Stack>
       </Stack>
     </Stack>
   );

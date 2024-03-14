@@ -4,9 +4,15 @@ import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Stack } from "@mui/material";
 import { BestSelledProducts } from "./_components/BestSelledProducts";
+import { Sales } from "./_components/Sales";
+import { GeneralCard } from "@/components";
 export default function Home() {
   return (
-    <Stack pr={3} gap={2} height={"100vh"}>
+    <Stack
+      pr={3}
+      gap={2}
+      sx={{ display: "grid", gridTemplateRows: "fit 1fr", gap: 2 }}
+    >
       {/* HEADER CARDS */}
       <Stack
         sx={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2 }}
@@ -33,10 +39,11 @@ export default function Home() {
 
       <Stack
         sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
-        height={"70%"}
+        overflow={"hidden"}
+        // height={"70%"}
       >
         <BestSelledProducts />
-        <Stack></Stack>
+        <BestSelledProducts />
       </Stack>
     </Stack>
   );
