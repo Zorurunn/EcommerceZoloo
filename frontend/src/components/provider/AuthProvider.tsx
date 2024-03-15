@@ -45,8 +45,8 @@ type AuthContextType = {
   isLoggedIn: boolean;
   userEmail: string;
   setUserEmail: Dispatch<SetStateAction<string>>;
-  userOtb: string;
-  setUserOtb: Dispatch<SetStateAction<string>>;
+  userOtp: string;
+  setUserOtp: Dispatch<SetStateAction<string>>;
   sendEmail: (params: sendEmailParams) => Promise<void>;
   resetPassword: (params: reserPasswordParams) => Promise<void>;
   signUp: (params: signUpParams) => Promise<void>;
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [step, setStep] = useState(1);
   const [index, setIndex] = useState(0);
   const [userEmail, setUserEmail] = useState("");
-  const [userOtb, setUserOtb] = useState("");
+  const [userOtp, setUserOtp] = useState("");
 
   const signIn = async (params: signInParams) => {
     try {
@@ -133,8 +133,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         autoClose: 3000,
         hideProgressBar: true,
       });
-
-      setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message ?? error.message, {
@@ -182,8 +180,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       value={{
         userEmail,
         setUserEmail,
-        userOtb,
-        setUserOtb,
+        userOtp,
+        setUserOtp,
         step,
         setStep,
         index,

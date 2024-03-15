@@ -18,7 +18,7 @@ export const ResetFormStep3 = ({
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
   const router = useRouter();
-  const { resetPassword, userEmail, userOtb } = useAuth();
+  const { resetPassword, userEmail, userOtp } = useAuth();
   const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
@@ -39,7 +39,7 @@ export const ResetFormStep3 = ({
       setOpen(true);
       await resetPassword({
         email: userEmail,
-        code: userOtb,
+        code: userOtp,
         newPassword: values.newPassword,
       });
     },

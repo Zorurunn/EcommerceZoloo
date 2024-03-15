@@ -1,7 +1,7 @@
 "use client";
 
 import EastIcon from "@mui/icons-material/East";
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
 import { useState } from "react";
 import { Button } from "@mui/material";
@@ -11,7 +11,7 @@ import { useAuth } from "@/components/provider/AuthProvider";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export const ResetFormStep1 = () => {
-  const { sendEmail, setUserEmail } = useAuth();
+  const { sendEmail, setUserEmail, setIndex } = useAuth();
   const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
@@ -29,6 +29,7 @@ export const ResetFormStep1 = () => {
       setOpen(true);
       await sendEmail({ email: values.email });
       setUserEmail(values.email);
+      setIndex((prev) => prev + 1);
     },
   });
 
@@ -60,7 +61,6 @@ export const ResetFormStep1 = () => {
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            setOpen(false);
           }}
           disabled={!formik.isValid || open}
           variant="contained"
@@ -76,7 +76,17 @@ export const ResetFormStep1 = () => {
             },
           }}
         >
-          {open && <Stack className="btnLoader"></Stack>}
+          {!open && (
+            // <CircularProgress
+            //   sx={{
+            //     "& .MuiCircularProgress-circle": {
+            //       animation: "none",
+            //       stroke: "red",
+            //     },
+            //   }}
+            // />
+            <CircularProgress />
+          )}
           <Typography mr={"28%"} fontSize={16} fontWeight={600}>
             Нэвтрэх
           </Typography>
