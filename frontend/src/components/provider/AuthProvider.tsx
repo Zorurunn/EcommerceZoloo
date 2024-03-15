@@ -43,7 +43,7 @@ export const AuthContext = createContext<AuthContextType>(
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
 
   const signIn = async (params: signInParams) => {
     try {
