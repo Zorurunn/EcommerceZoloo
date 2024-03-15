@@ -9,12 +9,12 @@ import { ProductTag } from "../_components/Product.Tag";
 export default function Home() {
   return (
     <Stack direction={"row"}>
-      <Stack gap={2}>
+      <Stack gap={1}>
         <ProductNameSection />
         <ProductImageSection />
         <ProductTotalPrice />
       </Stack>
-      <Stack gap={2}>
+      <Stack gap={1}>
         <ProductGeneralCategory />
         <ProductType />
         <ProductTag />
