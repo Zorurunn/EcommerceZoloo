@@ -2,6 +2,7 @@ import { RequestHandler } from "express";
 import nodemailer from "nodemailer";
 import { UserModel } from "../models";
 
+// SENDEMAIL
 export const sendEmail: RequestHandler = async (req, res) => {
   const { email } = req.body;
 
@@ -47,6 +48,7 @@ export const sendEmail: RequestHandler = async (req, res) => {
   }
 };
 
+// RESETPASSWORD
 export const reserPassword: RequestHandler = async (req, res) => {
   const { email, code, rePassword } = req.body;
 
