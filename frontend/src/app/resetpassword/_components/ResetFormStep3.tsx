@@ -22,7 +22,7 @@ export const ResetFormStep3 = ({
   const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
-    newPassword: yup.string().required(""),
+    newPassword: yup.string().required("Шинэ нууц үгээ оруулна уу"),
     reNewPassword: yup
       .string()
       .required("")
@@ -57,11 +57,11 @@ export const ResetFormStep3 = ({
         Шинэ нууц үг зохиох
       </Typography>
       <Stack gap={6} width={"100%"}>
-        <Stack>
+        <Stack gap={3}>
           <CustomInput
             name="newPassword"
-            label="Нууц үг "
-            placeHolder="Нууц үгээ оруулна уу"
+            label="Шинэ нууц үг"
+            placeHolder="Шинэ нууц үгээ оруулна уу"
             type="password"
             adornment="end"
             handleChange={formik.handleChange}
@@ -75,8 +75,8 @@ export const ResetFormStep3 = ({
 
           <CustomInput
             name="reNewPassword"
-            label="Нууц үг давтах "
-            placeHolder="Нууц үгээ оруулна уу"
+            label="Шинэ нууц үг давтах "
+            placeHolder="Шинэ нууц үгээ давтаж оруулна уу"
             type="password"
             adornment="end"
             handleChange={formik.handleChange}

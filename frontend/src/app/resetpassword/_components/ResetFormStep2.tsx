@@ -18,7 +18,7 @@ export const ResetFormStep2 = ({
   const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
-    code: yup.string().required(""),
+    code: yup.string().required("Нууц үг сэргээх кодоо оруулна уу"),
   });
 
   const formik = useFormik({
@@ -55,7 +55,7 @@ export const ResetFormStep2 = ({
 
           <CustomInput
             name="code"
-            label="Нууц үг сэргээх код "
+            label="Нууц үг сэргээх код"
             placeHolder="Нууц үг сэргээх кодоо оруулна уу"
             type="text"
             handleChange={formik.handleChange}
