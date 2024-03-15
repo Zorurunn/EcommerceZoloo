@@ -65,7 +65,7 @@ export default function SignUp() {
             mt={5}
           >
             <ProgressStep step={step} />
-            <CardFormStep3 setStep={setStep} />
+            <CardFormStep3 setStep={setStep} step={step} />
           </Stack>
         )}
       </Stack>

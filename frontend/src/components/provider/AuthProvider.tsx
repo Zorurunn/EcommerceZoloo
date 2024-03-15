@@ -27,10 +27,28 @@ type signInParams = {
   password: string;
 };
 
+type checkResetEmailParams = {
+  email: string;
+};
+
+type checkResetOtbParams = {
+  email: string;
+  code: string;
+  password: string;
+};
+
 type AuthContextType = {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
   isLoggedIn: boolean;
+  userEmail: string;
+  setUserEmail: Dispatch<SetStateAction<string>>;
+  userOtb: string;
+  setUserOtb: Dispatch<SetStateAction<string>>;
+  checkResetEmail: (params: checkResetEmailParams) => Promise<void>;
+  checkResetOtb: (params: checkResetOtbParams) => Promise<void>;
   signUp: (params: signUpParams) => Promise<void>;
   signIn: (params: signInParams) => Promise<void>;
   signOut: () => void;
@@ -44,6 +62,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [step, setStep] = useState(3);
+  const [index, setIndex] = useState(0);
+  const [userEmail, setUserEmail] = useState("");
+  const [userOtb, setUserOtb] = useState("");
 
   const signIn = async (params: signInParams) => {
     try {
@@ -102,6 +123,49 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  const checkResetEmail = async (params?: checkResetEmailParams) => {
+    try {
+      const { data } = await api.post("/sendEmail", params);
+      console.log(data);
+
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
+      setIndex((prev) => prev + 1);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message ?? error.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+    }
+  };
+
+  const checkResetOtb = async (params?: checkResetOtbParams) => {
+    try {
+      const { data } = await api.post("/sendOtb", params);
+      console.log(data);
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
+      setIndex((prev) => prev + 1);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message ?? error.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -113,12 +177,20 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   return (
     <AuthContext.Provider
       value={{
+        userEmail,
+        setUserEmail,
+        userOtb,
+        setUserOtb,
         step,
         setStep,
+        index,
+        setIndex,
         isLoggedIn,
         signIn,
         signUp,
         signOut,
+        checkResetEmail,
+        checkResetOtb,
       }}
     >
       {children}

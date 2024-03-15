@@ -8,12 +8,16 @@ import { CardFormStep3Experience, CardFormStep3Products } from "@/constants";
 import { Dispatch, SetStateAction } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 
 export function CardFormStep3({
+  step,
   setStep,
 }: {
+  step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }) {
+  const router = useRouter();
   const validationSchema = yup.object({
     salesExprience: yup.string().required("Сонгоно уу"),
     productType: yup.string().required("Сонгоно уу"),
@@ -116,8 +120,11 @@ export function CardFormStep3({
             fullWidth
             disabled={!formik.isValid}
             onClick={() => {
-              setStep((prev) => prev);
               formik.handleSubmit();
+              if (step == 4) {
+                router.push("singin");
+                setStep(0);
+              }
             }}
           >
             Дараах
