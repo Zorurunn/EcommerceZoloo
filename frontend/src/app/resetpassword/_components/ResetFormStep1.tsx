@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Loader } from "@/app/signup/_components/Loader";
 
 export const ResetFormStep1 = () => {
   const { sendEmail, setUserEmail, setIndex } = useAuth();
@@ -76,17 +77,7 @@ export const ResetFormStep1 = () => {
             },
           }}
         >
-          {!open && (
-            // <CircularProgress
-            //   sx={{
-            //     "& .MuiCircularProgress-circle": {
-            //       animation: "none",
-            //       stroke: "red",
-            //     },
-            //   }}
-            // />
-            <CircularProgress />
-          )}
+          {!open && <Loader />}
           <Typography mr={"28%"} fontSize={16} fontWeight={600}>
             Нэвтрэх
           </Typography>
