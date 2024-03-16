@@ -14,7 +14,7 @@ export const ResetFormStep2 = ({
 }: {
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
-  const { userEmail, setUserOtb } = useAuth();
+  const { userEmail, setUserOtp } = useAuth();
   const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
@@ -28,7 +28,7 @@ export const ResetFormStep2 = ({
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       setOpen(true);
-      await setUserOtb(values.code);
+      await setUserOtp(values.code);
     },
   });
 
