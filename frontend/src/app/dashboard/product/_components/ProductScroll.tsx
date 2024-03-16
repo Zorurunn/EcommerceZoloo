@@ -56,11 +56,12 @@ export const ProductScroll = () => {
                 <Grid xs={0.8} item>
                   <Stack justifyContent="center" alignItems="center">
                     <TextField
-                      sx={
-                        {
-                          // "MuiInputBase-input MuiOutlinedInput-input mui-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                        }
-                      }
+                      sx={{
+                        ".MuiInputBase-input MuiOutlinedInput-input mui-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input":
+                          {
+                            outline: "none",
+                          },
+                      }}
                       type="checkbox"
                     />
                   </Stack>
