@@ -12,6 +12,9 @@ export const ProductInput = () => {
             width: "fit-content",
             color: "common.white",
             bgcolor: "common.black",
+            ":hover": {
+              bgcolor: "#2f2f2f",
+            },
             p: "16px 40px",
             gap: "8px",
             borderRadius: "8px",

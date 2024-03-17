@@ -124,11 +124,17 @@ export const CustomInput = (props: CustomInputProps) => {
             <InputAdornment position="start">
               {
                 <IconButton onClick={handleSearch}>
-                  {iconType === "search" && <Search />}
+                  {iconType === "search" && <Search style={{ fill: "#000" }} />}
                   {iconType === "location" && <LocationOn />}
-                  {iconType === "category" && <CategoryOutlinedIcon />}
-                  {iconType === "$" && <AttachMoneyIcon />}
-                  {iconType === "calendar" && <CalendarTodayOutlinedIcon />}
+                  {iconType === "category" && (
+                    <CategoryOutlinedIcon style={{ fill: "#000" }} />
+                  )}
+                  {iconType === "$" && (
+                    <AttachMoneyIcon style={{ fill: "#000" }} />
+                  )}
+                  {iconType === "calendar" && (
+                    <CalendarTodayOutlinedIcon style={{ fill: "#000" }} />
+                  )}
                 </IconButton>
               }
             </InputAdornment>

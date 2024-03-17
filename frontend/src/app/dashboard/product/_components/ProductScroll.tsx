@@ -1,5 +1,5 @@
 import { ProductInfos } from "@/constants";
-import { Grid, Stack, TextField, Typography } from "@mui/material";
+import { Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -57,9 +57,9 @@ export const ProductScroll = () => {
                   <Stack justifyContent="center" alignItems="center">
                     <TextField
                       sx={{
-                        ".MuiInputBase-input MuiOutlinedInput-input mui-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input":
+                        "& .MuiInputBase-input MuiOutlinedInput-input mui-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input":
                           {
-                            outline: "none",
+                            outline: "dashed",
                           },
                       }}
                       type="checkbox"
@@ -113,10 +113,14 @@ export const ProductScroll = () => {
                 </Grid>
 
                 <Grid xs={0.4} item>
-                  <DeleteOutlineOutlinedIcon />
+                  <IconButton>
+                    <DeleteOutlineOutlinedIcon style={{ fill: "#d6d6d6" }} />
+                  </IconButton>
                 </Grid>
                 <Grid xs={0.4} item>
-                  <EditOutlinedIcon />
+                  <IconButton>
+                    <EditOutlinedIcon style={{ fill: "#d6d6d6" }} />
+                  </IconButton>
                 </Grid>
               </Grid>
             ))}
