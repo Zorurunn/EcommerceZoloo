@@ -1,10 +1,10 @@
 "use client";
+
 import { Button, Stack, Typography } from "@mui/material";
 import EastIcon from "@mui/icons-material/East";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import { Dispatch, SetStateAction } from "react";
-import Image from "next/image";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";

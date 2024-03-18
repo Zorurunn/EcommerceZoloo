@@ -4,12 +4,7 @@ import { MenuItem, Stack, Typography } from "@mui/material";
 
 const ProductGeneralCategory = () => {
   return (
-    <Stack
-    width={"90%"}
-      padding={3}
-      borderRadius={"12px"}
-      bgcolor={"#FFFFFF"}
-    >
+    <Stack width={"90%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
       <Stack gap={2}>
         <CustomInput
           label="Ерөнхий ангилал"

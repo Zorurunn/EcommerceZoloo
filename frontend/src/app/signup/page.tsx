@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import { CardFormStep2 } from "./_components/CardFormStep2";
@@ -9,6 +9,7 @@ import { CardFormStep1 } from "./_components/CardFormStep1";
 import { SignUpForm } from "./_components/SignUpForm";
 import ProgressStep from "./_components/ProgressStep";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { Loader } from "@/components/Loader";
 
 export default function SignUp() {
   const { step, setStep } = useAuth();
@@ -65,7 +66,7 @@ export default function SignUp() {
             mt={5}
           >
             <ProgressStep step={step} />
-            <CardFormStep3 setStep={setStep} />
+            <CardFormStep3 setStep={setStep} step={step} />
           </Stack>
         )}
       </Stack>

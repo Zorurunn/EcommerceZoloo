@@ -25,7 +25,7 @@ export default function RootLayout({
           <LeftSideBar />
         </Stack>
 
-        <Stack paddingTop={3} flexGrow={1} sx={{ backgroundColor: "#F7F7F8" }}>
+        <Stack flexGrow={1} sx={{ backgroundColor: "#F7F7F8" }}>
           <Container sx={{ height: "100%" }} maxWidth="lg">
             {children}
           </Container>
