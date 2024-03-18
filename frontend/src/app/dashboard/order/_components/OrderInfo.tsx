@@ -3,72 +3,8 @@ import React from "react";
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import { OrderDetails } from "./OrderDetails";
 import { TableHead } from "./TableHead";
+import { ORDERINGS } from "@/constants";
 
-const orderings = [
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "delivered",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "ondelivery",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "neworder",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "ondelivery",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "ondelivery",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "ondelivery",
-  },
-  {
-    orderID: "#12345678",
-    name: "Zoloosoko",
-    user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
-    price: "12000",
-    s: "ondelivery",
-  },
-];
 export const OrderInfo = () => {
   return (
     <Stack
@@ -86,7 +22,7 @@ export const OrderInfo = () => {
         <TableHead />
         <Stack gap={2} flexGrow={1} overflow={"scroll"}>
           <Stack width={"100%"} height={"100%"}>
-            {orderings.map((item, orderID) => {
+            {ORDERINGS.map((item, orderID) => {
               return (
                 <Stack key={item.orderID + orderID}>
                   <OrderDetails {...item} index={orderID + 1} />

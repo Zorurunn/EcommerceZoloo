@@ -42,6 +42,73 @@ export const SIDEBAR_LINES = [
   },
 ];
 
+// order detials
+export const ORDERINGS = [
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "delivered",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "neworder",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+];
+
 // order list
 
 interface Data {
