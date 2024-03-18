@@ -61,14 +61,10 @@ export const AuthContext = createContext<AuthContextType>(
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-<<<<<<< HEAD
   const [step, setStep] = useState(3);
   const [index, setIndex] = useState(0);
   const [userEmail, setUserEmail] = useState("");
   const [userOtb, setUserOtb] = useState("");
-=======
-  const [step, setStep] = useState(4);
->>>>>>> 786b0ac (aa)
 
   const signIn = async (params: signInParams) => {
     try {
