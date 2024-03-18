@@ -42,6 +42,99 @@ export const SIDEBAR_LINES = [
   },
 ];
 
+// order list
+
+interface Data {
+  ID: number;
+  order: string;
+  pay: number;
+  date: string;
+}
+
+function createData(
+  ID: number,
+  order: string,
+  pay: number,
+  date: string
+): Data {
+  return { ID, order, pay, date };
+}
+export const ROWS = [
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+];
+
 export const SIDEBAR_WIDTH = 240;
 export const NAVBAR_HEIGHT = 50;
 
