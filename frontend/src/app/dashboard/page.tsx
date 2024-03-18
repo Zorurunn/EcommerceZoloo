@@ -1,3 +1,4 @@
+"use client";
 import { HeaderCard } from "./_components/HeaderCard";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
@@ -7,7 +8,6 @@ import { BarChartContainer } from "./_components/BarChartContainer";
 import { SalesBarChart } from "./_components/SalesBarChart";
 import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { AreasBarChart } from "./_components/AreasBarChart";
-import { CustomInput } from "@/components";
 export default function Home() {
   return (
     <Stack gap={2} height={"100%"}>
