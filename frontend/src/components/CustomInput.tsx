@@ -92,6 +92,9 @@ export const CustomInput = (props: CustomInputProps) => {
         multiline={multiLine}
         rows={multiLine ? 4 : 0}
         sx={{
+          "& .MuiSelect-select": {
+            padding: size === "small" ? "3px 8px" : "14px 16px",
+          },
           "& fieldset": {
             borderColor: borderColor,
           },
