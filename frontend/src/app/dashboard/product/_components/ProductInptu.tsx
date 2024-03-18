@@ -5,7 +5,7 @@ import { ProductInfos } from "@/constants";
 
 export const ProductInput = () => {
   return (
-    <Stack px={4} pt={4}>
+    <Stack pt={4}>
       <Stack gap={4} mb={3}>
         <Button
           sx={{
@@ -44,7 +44,6 @@ export const ProductInput = () => {
                 adornment="start"
                 select={true}
                 bgcolor="#fff"
-                size="small"
               >
                 {ProductInfos.map((item) => (
                   <MenuItem value={item.name}>{item.name}</MenuItem>

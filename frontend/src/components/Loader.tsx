@@ -1,26 +1,17 @@
-import { Stack } from "@mui/material";
-import { makeStyles } from "@mui/system";
+import { styled } from "@mui/system";
 
-const useStyles = makeStyles({
-  spinningAnimation: {
-    animation: "$spin 2s linear infinite", // Adjust the duration and timing function as needed
-  },
-  "@keyframes spin": {
-    "0%": {
-      transform: "rotate(0deg)",
-    },
-    "100%": {
-      transform: "rotate(360deg)",
-    },
-  },
+const Loader1 = styled("div")({
+  backgroundColor: "transparent",
+  borderTop: "5px solid #000",
+  borderRight: "5px solid #000",
+  borderLeft: "5px solid rgba(0,0,0, 0.2)",
+  borderBottom: "5px solid rgba(0,0,0, 0.2)",
+  height: "24px",
+  width: "24px",
+  borderRadius: "50%",
+  animation: "linear 5s spin infinite",
 });
 
 export const Loader = () => {
-  const classes = useStyles();
-
-  return (
-    <Stack className={classes.spinningAnimation}>
-      <Stack></Stack>
-    </Stack>
-  );
+  return <Loader1 />;
 };

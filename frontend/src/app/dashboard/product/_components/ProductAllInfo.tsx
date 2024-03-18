@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Stack, Typography, makeStyles } from "@mui/material";
 import { useState } from "react";
 import { ProductInput } from "./ProductInptu";

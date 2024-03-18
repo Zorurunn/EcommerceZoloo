@@ -6,7 +6,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 
 export const ProductScroll = () => {
   return (
-    <Stack px={4} width={"100%"} height={"65%"}>
+    <Stack width={"100%"} height={"65%"}>
       <Stack
         borderRadius={2}
         bgcolor={"#fff"}
