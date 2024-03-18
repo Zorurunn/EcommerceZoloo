@@ -28,28 +28,7 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
       <Stack justifyContent={"center"} alignItems={"center"}>
         {index}
       </Stack>
-      {/* <Stack
-        // border="1px solid red"
-        justifyContent={"center"}
-        alignItems={"center"}
-        direction={"row"}
-        gap={1}
-        width={"100%"}
-      >
-        <Stack>
-          <Avatar alt={name} src={imgUrl} />
-        </Stack>
-        <Stack flexGrow={1}>
-          <Typography
-            whiteSpace="nowrap"
-            overflow="hidden"
-            textOverflow={"ellipsis"}
-            width={"calc(100% - 40px)"}
-          >
-            {name}
-          </Typography>
-        </Stack>
-      </Stack> */}
+
       <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
         <Stack
           direction={"row"}

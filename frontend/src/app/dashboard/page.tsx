@@ -6,6 +6,9 @@ import { Grid, Stack } from "@mui/material";
 import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { Sales } from "./_components/Sales";
 import { CustomInput, GeneralCard } from "@/components";
+import { BarChartContainer } from "./_components/BarChartContainer";
+import { SalesBarChart } from "./_components/SalesBarChart";
+import { AreasBarChart } from "./_components/AreasBarChart";
 export default function Home() {
   return (
     <Stack gap={2} height={"100%"}>
@@ -43,23 +46,19 @@ export default function Home() {
         </Grid>
         <Grid item xs={6} container spacing={2}>
           <Grid item xs={12}>
-            <Sales />
+            <BarChartContainer title="Борлуулалт">
+              <SalesBarChart />
+            </BarChartContainer>
           </Grid>
           <Grid item xs={12}>
-            <Sales />
+            <BarChartContainer title="Идэвхтэй бүс нутаг">
+              <AreasBarChart />
+            </BarChartContainer>
           </Grid>
 
           {/* <BestSelledProducts /> */}
         </Grid>
       </Grid>
-      {/* <Stack
-        sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
-        overflow={"hidden"}
-        // height={"70%"}
-      >
-        <BestSelledProducts />
-        <BestSelledProducts />
-      </Stack> */}
     </Stack>
   );
 }

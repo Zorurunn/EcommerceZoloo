@@ -72,7 +72,14 @@ const salesData = [
 ];
 
 export const options = {
-  plugins: {},
+  plugins: {
+    title: {
+      display: false,
+    },
+    legend: {
+      display: false,
+    },
+  },
   responsive: true,
   scales: {
     y: {
@@ -129,7 +136,7 @@ export const data = {
       barRoundness: 100,
       borderRadius: 100,
       borderWidth: 1,
-      //   borderSkipped: "none",
+      borderSkipped: false,
     },
   ],
 };

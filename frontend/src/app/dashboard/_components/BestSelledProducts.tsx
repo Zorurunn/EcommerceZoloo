@@ -123,14 +123,6 @@ export const BestSelledProducts = () => {
               })}
             </Stack>
           </Stack>
-          {/* {products.map((item, index) => {
-            return (
-              <Stack key={item.id + index}>
-                <BestSelledLine {...item} index={index + 1} />
-                <Divider />
-              </Stack>
-            );
-          })} */}
         </Stack>
       </Stack>
     </Stack>
