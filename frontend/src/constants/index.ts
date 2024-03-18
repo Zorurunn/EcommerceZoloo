@@ -38,7 +38,7 @@ export const SIDEBAR_LINES = [
   {
     name: "Тохиргоо",
     icon: SettingsIcon,
-    href: "/",
+    href: "/dashboard",
   },
 ];
 
