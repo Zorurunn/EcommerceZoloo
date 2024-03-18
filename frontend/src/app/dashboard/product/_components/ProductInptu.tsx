@@ -2,29 +2,32 @@ import { CustomInput } from "@/components";
 import { Button, MenuItem, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { ProductInfos } from "@/constants";
+import Link from "next/link";
 
 export const ProductInput = () => {
   return (
     <Stack pt={4}>
       <Stack gap={4} mb={3}>
-        <Button
-          sx={{
-            width: "fit-content",
-            color: "common.white",
-            bgcolor: "common.black",
-            ":hover": {
-              bgcolor: "#2f2f2f",
-            },
-            p: "16px 40px",
-            gap: "8px",
-            borderRadius: "8px",
-          }}
-        >
-          <AddIcon />
-          <Typography fontSize={16} fontWeight={600}>
-            Бүтээгдэхүүн нэмэх
-          </Typography>
-        </Button>
+        <Link href="/dashboard/product/addProduct">
+          <Button
+            sx={{
+              width: "fit-content",
+              color: "common.white",
+              bgcolor: "common.black",
+              ":hover": {
+                bgcolor: "#2f2f2f",
+              },
+              p: "16px 40px",
+              gap: "8px",
+              borderRadius: "8px",
+            }}
+          >
+            <AddIcon />
+            <Typography fontSize={16} fontWeight={600}>
+              Бүтээгдэхүүн нэмэх
+            </Typography>
+          </Button>
+        </Link>
 
         <Stack
           gap={2}

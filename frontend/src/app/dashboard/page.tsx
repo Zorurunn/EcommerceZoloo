@@ -10,53 +10,55 @@ import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { AreasBarChart } from "./_components/AreasBarChart";
 export default function Home() {
   return (
-    <Stack gap={2} height={"100%"}>
+    <Stack height={"100%"}>
       {/* HEADER CARDS */}
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <HeaderCard
-            title="Орлого"
-            icon={<AttachMoneyIcon sx={{ fontSize: 20 }} />}
-            value={235000}
-            date="Өнөөдөр"
-          />
+      <Stack gap={3} my={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <HeaderCard
+              title="Орлого"
+              icon={<AttachMoneyIcon sx={{ fontSize: 20 }} />}
+              value={235000}
+              date="Өнөөдөр"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <HeaderCard
+              title="Захиалга"
+              icon={<ContentPasteIcon sx={{ fontSize: 20 }} />}
+              value={58}
+              date="Өнөөдөр"
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <HeaderCard
+              title="Хэрэглэгч"
+              icon={<PersonOutlineOutlinedIcon sx={{ fontSize: 20 }} />}
+              value={980}
+              date="Өнөөдөр"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <HeaderCard
-            title="Захиалга"
-            icon={<ContentPasteIcon sx={{ fontSize: 20 }} />}
-            value={58}
-            date="Өнөөдөр"
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <HeaderCard
-            title="Хэрэглэгч"
-            icon={<PersonOutlineOutlinedIcon sx={{ fontSize: 20 }} />}
-            value={980}
-            date="Өнөөдөр"
-          />
-        </Grid>
-      </Grid>
 
-      {/* DASHBOARD MAIN AREA CHARTS */}
-      <Grid container spacing={2} flexGrow={1} mb={3}>
-        <Grid item xs={6}>
-          <BestSelledProducts />
-        </Grid>
-        <Grid item xs={6} container spacing={2}>
-          <Grid item xs={12}>
-            <BarChartContainer title="Борлуулалт">
-              <SalesBarChart />
-            </BarChartContainer>
+        {/* DASHBOARD MAIN AREA CHARTS */}
+        <Grid container spacing={2} flexGrow={1} mb={3}>
+          <Grid item xs={6}>
+            <BestSelledProducts />
           </Grid>
-          <Grid item xs={12}>
-            <BarChartContainer title="Идэвхтэй бүс нутаг">
-              <AreasBarChart />
-            </BarChartContainer>
+          <Grid item xs={6} container spacing={2}>
+            <Grid item xs={12}>
+              <BarChartContainer title="Борлуулалт">
+                <SalesBarChart />
+              </BarChartContainer>
+            </Grid>
+            <Grid item xs={12}>
+              <BarChartContainer title="Идэвхтэй бүс нутаг">
+                <AreasBarChart />
+              </BarChartContainer>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </Stack>
     </Stack>
   );
 }
