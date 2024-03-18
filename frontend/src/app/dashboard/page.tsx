@@ -3,11 +3,11 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Grid, Stack } from "@mui/material";
-import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { Sales } from "./_components/Sales";
 import { CustomInput, GeneralCard } from "@/components";
 import { BarChartContainer } from "./_components/BarChartContainer";
 import { SalesBarChart } from "./_components/SalesBarChart";
+import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { AreasBarChart } from "./_components/AreasBarChart";
 export default function Home() {
   return (
