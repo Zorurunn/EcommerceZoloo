@@ -44,6 +44,7 @@ export const ProductInput = () => {
                 adornment="start"
                 select={true}
                 bgcolor="#fff"
+                size="small"
               >
                 {ProductInfos.map((item) => (
                   <MenuItem value={item.name}>{item.name}</MenuItem>

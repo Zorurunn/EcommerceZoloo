@@ -57,10 +57,9 @@ export const ProductScroll = () => {
                   <Stack justifyContent="center" alignItems="center">
                     <TextField
                       sx={{
-                        "& .MuiInputBase-input MuiOutlinedInput-input mui-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input":
-                          {
-                            outline: "dashed",
-                          },
+                        "& fieldset": {
+                          border: "none",
+                        },
                       }}
                       type="checkbox"
                     />
