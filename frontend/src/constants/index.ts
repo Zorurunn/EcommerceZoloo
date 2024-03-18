@@ -23,7 +23,7 @@ export const SIDEBAR_LINES = [
   {
     name: "Захиалга",
     icon: ContentPasteIcon,
-    href: "/dashboard",
+    href: "/dashboard/order",
   },
   {
     name: "Орлого",
@@ -38,7 +38,7 @@ export const SIDEBAR_LINES = [
   {
     name: "Тохиргоо",
     icon: SettingsIcon,
-    href: "/dashboard",
+    href: "/dashboard/settings",
   },
 ];
 
