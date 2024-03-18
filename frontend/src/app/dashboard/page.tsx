@@ -3,8 +3,6 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Grid, Stack } from "@mui/material";
-import { Sales } from "./_components/Sales";
-import { CustomInput, GeneralCard } from "@/components";
 import { BarChartContainer } from "./_components/BarChartContainer";
 import { SalesBarChart } from "./_components/SalesBarChart";
 import { BestSelledProducts } from "./_components/BestSelledProducts";
@@ -40,6 +38,7 @@ export default function Home() {
         </Grid>
       </Grid>
 
+      {/* DASHBOARD MAIN AREA CHARTS */}
       <Grid container spacing={2} flexGrow={1} mb={3}>
         <Grid item xs={6}>
           <BestSelledProducts />
@@ -55,8 +54,6 @@ export default function Home() {
               <AreasBarChart />
             </BarChartContainer>
           </Grid>
-
-          {/* <BestSelledProducts /> */}
         </Grid>
       </Grid>
     </Stack>

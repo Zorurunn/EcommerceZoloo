@@ -2,14 +2,7 @@
 import { LeftSideBar } from "@/components/LeftSideBar";
 import { BlackHeader } from "@/components/header/BlackHeader";
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from "@/constants";
-import {
-  Button,
-  Container,
-  CssBaseline,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useState } from "react";
+import { Container, Stack } from "@mui/material";
 
 export default function RootLayout({
   children,
