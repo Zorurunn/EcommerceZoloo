@@ -55,6 +55,7 @@ export const ResetFormStep2 = ({
           </Typography>
 
           <CustomInput
+            borderRadius="8px"
             name="code"
             label="Нууц үг сэргээх код"
             placeHolder="Нууц үг сэргээх кодоо оруулна уу"

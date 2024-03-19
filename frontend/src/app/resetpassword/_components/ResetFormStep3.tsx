@@ -62,11 +62,8 @@ export const ResetFormStep3 = ({
       <Stack gap={6} width={"100%"}>
         <Stack gap={3}>
           <CustomInput
-            name="newPassword"
-            label="Шинэ нууц үг"
-            placeHolder="Шинэ нууц үгээ оруулна уу"
-            type="password"
-            adornment="end"
+            borderRadius="8px"
+            name="password"
             handleChange={formik.handleChange}
             value={formik.values.newPassword}
             error={
@@ -77,11 +74,8 @@ export const ResetFormStep3 = ({
           />
 
           <CustomInput
-            name="reNewPassword"
-            label="Шинэ нууц үг давтах "
-            placeHolder="Шинэ нууц үгээ давтаж оруулна уу"
-            type="password"
-            adornment="end"
+            borderRadius="8px"
+            name="rePassword"
             handleChange={formik.handleChange}
             value={formik.values.reNewPassword}
             error={

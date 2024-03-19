@@ -60,6 +60,7 @@ export function CardFormStep1({
           }}
         >
           <CustomInput
+            borderRadius="8px"
             name="storeName"
             label=" Танай дэлгүүрийн нэр юу вэ?"
             placeHolder="Дэлгүүрийн нэр"

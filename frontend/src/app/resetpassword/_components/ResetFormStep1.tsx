@@ -49,6 +49,7 @@ export const ResetFormStep1 = () => {
 
       <Stack gap={6} width={"100%"}>
         <CustomInput
+          borderRadius="8px"
           name="email"
           label="Имэйл "
           placeHolder="Имэйл хаягаа оруулна уу"
