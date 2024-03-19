@@ -5,6 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { Loader } from "@/components/Loader";
 
 export const arr = ["1", "2", "3", "4", "5"];
 
@@ -145,7 +146,7 @@ export const CardFormStep2 = ({
             setStep((prev) => prev + 1);
           }}
         >
-          {open && <Stack mr={1} className="btnLoader"></Stack>}
+          {open && <Loader />}
           <Typography fontSize={16} fontWeight={600}>
             Дараах
           </Typography>

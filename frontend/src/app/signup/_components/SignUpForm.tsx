@@ -8,6 +8,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { Loader } from "@/components/Loader";
 
 export const SignUpForm = ({
   setStep,
@@ -57,6 +58,7 @@ export const SignUpForm = ({
         phoneNumber: values.phoneNumber,
         password: values.password,
       });
+      setOpen(false);
     },
   });
   return (
@@ -137,7 +139,6 @@ export const SignUpForm = ({
             fullWidth
             onClick={() => {
               formik.handleSubmit();
-              setOpen(false);
             }}
             disabled={!formik.isValid || open}
             variant="contained"
@@ -153,7 +154,7 @@ export const SignUpForm = ({
               },
             }}
           >
-            {open && <Stack className="btnLoader"></Stack>}
+            {open && <Loader />}
             <Typography mr={"28%"} fontSize={16} fontWeight={600}>
               Дараах
             </Typography>

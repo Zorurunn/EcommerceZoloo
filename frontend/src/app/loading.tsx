@@ -1,4 +1,7 @@
-import { CircularProgress, Stack, Typography } from "@mui/material";
+"use client";
+
+import { Loader } from "@/components/Loader";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
 export default function Loading() {
@@ -14,7 +17,7 @@ export default function Loading() {
         <Image src="/Pinecone Logo.svg" alt="" fill />
       </Stack>
 
-      <Stack className="Loader"></Stack>
+      <Loader />
 
       <Stack marginTop={8}>
         <Typography color={"#94A3B1"}>© 2023 Pinecone</Typography>

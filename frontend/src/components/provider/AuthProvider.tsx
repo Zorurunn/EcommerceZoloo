@@ -154,8 +154,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         autoClose: 3000,
         hideProgressBar: true,
       });
-
-      setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message ?? error.message, {

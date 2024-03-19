@@ -29,6 +29,7 @@ export const ResetFormStep2 = ({
     onSubmit: async (values) => {
       setOpen(true);
       await setUserOtp(values.code);
+      setOpen(false);
     },
   });
 
@@ -70,7 +71,6 @@ export const ResetFormStep2 = ({
           onClick={() => {
             formik.handleSubmit();
             setIndex((prev) => prev + 1);
-            setOpen(false);
           }}
           disabled={!formik.isValid || open}
           variant="contained"

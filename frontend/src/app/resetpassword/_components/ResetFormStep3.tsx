@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
+import { Loader } from "@/components/Loader";
 
 export const ResetFormStep3 = ({
   index,
@@ -42,6 +43,8 @@ export const ResetFormStep3 = ({
         code: userOtp,
         newPassword: values.newPassword,
       });
+      setIndex((prev) => prev + 1);
+      setOpen(false);
     },
   });
 
@@ -97,7 +100,6 @@ export const ResetFormStep3 = ({
               router.push("/signin");
             }
             setIndex(0);
-            setOpen(false);
           }}
           disabled={!formik.isValid || open}
           variant="contained"
@@ -113,7 +115,7 @@ export const ResetFormStep3 = ({
             },
           }}
         >
-          {open && <Stack className="btnLoader"></Stack>}
+          {open && <Loader />}
           <Typography mr={"28%"} fontSize={16} fontWeight={600}>
             Нэвтрэх
           </Typography>

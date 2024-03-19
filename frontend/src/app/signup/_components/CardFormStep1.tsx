@@ -7,6 +7,7 @@ import { CustomInput } from "../../../components";
 import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { Loader } from "@/components/Loader";
 
 export function CardFormStep1({
   setStep,
@@ -33,6 +34,7 @@ export function CardFormStep1({
       // });
       setOpen(true);
       await console.log(formik.values);
+      setOpen(false);
     },
   });
   return (
@@ -114,11 +116,10 @@ export function CardFormStep1({
             disabled={!formik.isValid || open}
             onClick={() => {
               formik.handleSubmit();
-              setOpen(false);
               setStep((prev) => prev + 1);
             }}
           >
-            {open && <Stack className="btnLoader"></Stack>}
+            {open && <Loader />}
             <Typography fontSize={16} fontWeight={600}>
               Дараах
             </Typography>

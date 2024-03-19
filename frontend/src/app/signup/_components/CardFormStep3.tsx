@@ -9,6 +9,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/components/Loader";
 
 export function CardFormStep3({
   step,
@@ -132,7 +133,7 @@ export function CardFormStep3({
               setOpen(false);
             }}
           >
-            {open && <Stack mr={1} className="btnLoader"></Stack>}
+            {open && <Loader />}
             <Typography fontSize={16} fontWeight={600}>
               Дараах
             </Typography>

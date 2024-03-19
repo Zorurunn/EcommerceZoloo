@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useState } from "react";
+import { Loader } from "@/components/Loader";
 
 export default function SignInForm() {
   const { signIn } = useAuth();
@@ -39,6 +40,7 @@ export default function SignInForm() {
         email: values.email,
         password: values.password,
       });
+      setOpen(false);
     },
   });
   return (
@@ -106,7 +108,7 @@ export default function SignInForm() {
               },
             }}
           >
-            {open && <Stack className="btnLoader"></Stack>}
+            {open && <Loader />}
             <Typography mr={"28%"} fontSize={16} fontWeight={600}>
               Нэвтрэх
             </Typography>
