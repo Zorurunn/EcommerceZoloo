@@ -2,8 +2,8 @@ import { Router } from "express";
 import {
   createGeneralCategory,
   createSubCategory,
-  getGeneralCategory,
-  getSubCategory,
+  getGeneralCategories,
+  getSubCategories,
   updateSubCategory,
 } from "../controllers/category.controller";
 
@@ -12,8 +12,8 @@ const categoryRouter = Router();
 categoryRouter
   .post("/createGeneralCategory", createGeneralCategory)
   .post("/updateSubCategory", updateSubCategory)
-  .get("/getGeneralCategory", getGeneralCategory)
-  .get("/getSubCategory", getSubCategory)
+  .get("/getGeneralCategories", getGeneralCategories)
+  .get("/getSubCategories", getSubCategories)
   .post("/createSubCategory", createSubCategory);
 
 export default categoryRouter;

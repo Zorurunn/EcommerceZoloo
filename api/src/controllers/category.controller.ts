@@ -92,22 +92,22 @@ export const updateSubCategory: RequestHandler = async (req, res) => {
 };
 
 // GET GENERAL CATEGORY
-export const getGeneralCategory: RequestHandler = async (req, res) => {
+export const getGeneralCategories: RequestHandler = async (req, res) => {
   try {
-    const generalCategory = await GeneralCategoryModel.find({});
+    const generalCategories = await GeneralCategoryModel.find({});
 
-    return res.json(generalCategory);
+    return res.json(generalCategories);
   } catch (error) {
     res.json(error);
   }
 };
 
 // GET SUB CATEGORY
-export const getSubCategory: RequestHandler = async (req, res) => {
+export const getSubCategories: RequestHandler = async (req, res) => {
   try {
-    const subCategory = await SubCategoryModel.find({});
+    const subCategories = await SubCategoryModel.find({});
 
-    return res.json(subCategory);
+    return res.json(subCategories);
   } catch (error) {
     res.json(error);
   }
