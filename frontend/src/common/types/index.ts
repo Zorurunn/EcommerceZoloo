@@ -25,3 +25,13 @@ export type productType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type generalCategoryType = {
+  generalCategoryName: string;
+  _id: string;
+};
+export type subCategoryType = {
+  _id: string;
+  subCategoryName: string;
+  generalCategoryId: string[];
+};
