@@ -109,6 +109,52 @@ export const ORDERINGS = [
   },
 ];
 
+// order tabs
+export const TABS = [
+  {
+    label: "Бүгд",
+  },
+  {
+    label: "Шинэ захиалага",
+  },
+  {
+    label: "Бэлтгэгдэж байна",
+  },
+  {
+    label: "Хүргэлтэнд гарсан",
+  },
+  {
+    label: "Хүргэгдсэн",
+  },
+  {
+    label: "Цуцлагдсан",
+  },
+];
+
+// order section status map
+export const STATUS_MAP = {
+  delivered: {
+    backgroundColor: "#C1E6CF",
+    color: "#0A4E22",
+    title: "Хүргэгдсэн",
+  },
+  neworder: {
+    backgroundColor: "#FFFFFF",
+    color: "text.secondary",
+    title: "Шинэ захиалга",
+  },
+  ondelivery: {
+    backgroundColor: "#B7DDFF",
+    color: "#1890FF",
+    title: "Хүргэлтэнд гарсан",
+  },
+  inprogress: {
+    backgroundColor: "#ECEDF0",
+    color: "text.secondary",
+    title: "Бэлтгэгдэж байна",
+  },
+};
+
 // order list
 
 interface Data {

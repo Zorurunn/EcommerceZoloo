@@ -12,19 +12,32 @@ type productTotalPriceType = {
 
   // Price
   priceName: string;
-  priceValue: number | null;
+  priceValue: number | string;
   priceError?: boolean | undefined;
+  totalName: string;
+  totalValue: number | string;
+  totalError?: boolean | undefined;
 };
 
 export const ProductTotalPrice = (props: productTotalPriceType) => {
-  const { handleChange, handleBlur, priceName, priceValue, priceError } = props;
+  const {
+    handleChange,
+    handleBlur,
+    priceName,
+    priceValue,
+    priceError,
+    totalName,
+    totalValue,
+    totalError,
+  } = props;
   return (
-    <Stack width={"90%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
+    <Stack width={"100%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
       <Stack direction={"row"} gap={3}>
         <Stack flexGrow={1}>
           <CustomInput
+            borderRadius="8px"
             name={priceName}
-            value={priceValue ?? 0}
+            value={priceValue ?? "defaultValue"}
             handleChange={handleChange}
             onBlur={handleBlur}
             error={priceError}
@@ -35,6 +48,12 @@ export const ProductTotalPrice = (props: productTotalPriceType) => {
         </Stack>
         <Stack flexGrow={1}>
           <CustomInput
+            borderRadius="8px"
+            name={totalName}
+            value={totalValue ?? "defaultValue"}
+            handleChange={handleChange}
+            onBlur={handleBlur}
+            error={totalError}
             label="Үлдэгдэл тоо ширхэг"
             type="number"
             placeHolder="Үлдэгдэл тоо ширхэг"

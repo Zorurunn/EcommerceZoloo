@@ -11,29 +11,7 @@ import { number } from "yup";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const statusMap = {
-  delivered: {
-    backgroundColor: "#C1E6CF",
-    color: "#0A4E22",
-    title: "Хүргэгдсэн",
-  },
-  neworder: {
-    backgroundColor: "#FFFFFF",
-    color: "text.secondary",
-    title: "Шинэ захиалга",
-  },
-  ondelivery: {
-    backgroundColor: "#B7DDFF",
-    color: "#1890FF",
-    title: "Хүргэлтэнд гарсан",
-  },
-  inprogress: {
-    backgroundColor: "#ECEDF0",
-    color: "text.secondary",
-    title: "Бэлтгэгдэж байна",
-  },
-};
+import { STATUS_MAP } from "@/constants";
 
 type OrderDetailsType = {
   orderID: string | number;
@@ -53,12 +31,15 @@ export const OrderDetails = (props: OrderDetailsType & IndexType) => {
 
   const { orderID, user, date, price, time, name, s } = props;
 
-  const [status, setStatus] = useState<keyof typeof statusMap>("delivered");
+  const [status, setStatus] = useState<keyof typeof STATUS_MAP>("delivered");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setStatus(event.target.value as keyof typeof statusMap);
+    setStatus(event.target.value as keyof typeof STATUS_MAP);
   };
-
+  console.log(STATUS_MAP[status]);
+  //   useEffect(() => {
+  //     setStatus(s);
+  //   }, []);
   return (
     <Stack
       direction={"row"}
@@ -98,17 +79,17 @@ export const OrderDetails = (props: OrderDetailsType & IndexType) => {
           sx={{
             borderRadius: "50px",
             backgroundColor:
-              statusMap[s as keyof typeof statusMap].backgroundColor,
-            color: statusMap[s as keyof typeof statusMap].color,
+              STATUS_MAP[s as keyof typeof STATUS_MAP].backgroundColor,
+            color: STATUS_MAP[s as keyof typeof STATUS_MAP].color,
             height: "32px",
             fontSize: "14px",
             fontWeight: "400",
           }}
         >
-          {Object.keys(statusMap).map((item) => {
+          {Object.keys(STATUS_MAP).map((item) => {
             return (
               <MenuItem key={item} value={item}>
-                {statusMap[item as keyof typeof statusMap].title}
+                {STATUS_MAP[item as keyof typeof STATUS_MAP].title}
               </MenuItem>
             );
           })}

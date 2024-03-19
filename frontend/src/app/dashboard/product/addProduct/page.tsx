@@ -9,11 +9,16 @@ import { ProductTag } from "../_components/Product.Tag";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { CustomInput } from "@/components";
+import { info } from "console";
 
 const validationSchema = yup.object({
   generalCategory: yup.string().required(),
   subCategory: yup.string().required(),
   price: yup.number().required(),
+  total: yup.number().required(),
+  product: yup.string().required(),
+  info: yup.string().required(),
+  serialNumber: yup.number().required(),
 });
 
 export default function Home() {
@@ -21,7 +26,11 @@ export default function Home() {
     initialValues: {
       generalCategory: "defaultValue",
       subCategory: "defaultValue",
-      price: null,
+      price: "defaultValue",
+      total: "defaultValue",
+      product: "",
+      info: "",
+      serialNumber: "#",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -29,19 +38,38 @@ export default function Home() {
     },
   });
   return (
-    <Stack direction={"row"}>
-      <Stack gap={1}>
-        <ProductNameSection />
+    <Stack direction={"row"} gap={5} width={"100%"}>
+      <Stack gap={2} width={"50%"}>
+        <ProductNameSection
+          productName={"product"}
+          serialNumberName={"serialNumber"}
+          infoName={"info"}
+          productValue={formik.values.product}
+          infoValue={formik.values.info}
+          serialNumberValue={formik.values.serialNumber}
+          productError={
+            formik.touched.product && Boolean(formik.errors.product)
+          }
+          infoError={formik.touched.info && Boolean(formik.errors.info)}
+          serialNumberError={
+            formik.touched.serialNumber && Boolean(formik.errors.serialNumber)
+          }
+          handleChange={formik.handleChange}
+          handleBlur={formik.handleBlur}
+        />
         <ProductImageSection />
         <ProductTotalPrice
           priceName={"price"}
+          totalName={"total"}
           priceValue={formik.values.price}
+          totalValue={formik.values.total}
           priceError={formik.touched.price && Boolean(formik.errors.price)}
+          totalError={formik.touched.total && Boolean(formik.errors.total)}
           handleChange={formik.handleChange}
           handleBlur={formik.handleBlur}
         />
       </Stack>
-      <Stack gap={1}>
+      <Stack gap={2} width={"50%"}>
         <ProductGeneralCategory
           generalCategoryName={"generalCategory"}
           generalCategoryValue={formik.values.generalCategory}

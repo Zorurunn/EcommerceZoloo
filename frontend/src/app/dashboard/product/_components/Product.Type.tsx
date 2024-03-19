@@ -5,13 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export const ProductType = () => {
   return (
-    <Stack
-      width={"90%"}
-      padding={3}
-      borderRadius={"12px"}
-      bgcolor={"#FFFFFF"}
-      gap={3}
-    >
+    <Stack padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"} gap={3}>
       <Typography fontSize={18} fontWeight={600} color={"text.primary"}>
         Төрөл
       </Typography>

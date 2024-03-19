@@ -52,11 +52,12 @@ export const Filter = () => {
       </Stack>
       <Stack width={"302px"} direction={"row"} justifyContent={"center"}>
         <CustomInput
+          borderRadius="8px"
           // to do: widthee yanzlah
           adornment="start"
           placeHolder="Дугаар, Имэйл"
           size="medium"
-          backgroundColor="#fff"
+          bgcolor="#fff"
           sx={{
             fontSize: "14px",
             fontWeight: "400",
