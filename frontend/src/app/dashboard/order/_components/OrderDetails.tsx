@@ -58,10 +58,7 @@ export const OrderDetails = (props: OrderDetailsType & IndexType) => {
   const handleChange = (event: SelectChangeEvent) => {
     setStatus(event.target.value as keyof typeof statusMap);
   };
-  console.log(statusMap[status]);
-  //   useEffect(() => {
-  //     setStatus(s);
-  //   }, []);
+
   return (
     <Stack
       direction={"row"}
