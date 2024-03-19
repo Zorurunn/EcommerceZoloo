@@ -61,14 +61,28 @@ export const updateSubCategory: RequestHandler = async (req, res) => {
   try {
     const categoryExists = await SubCategoryModel.find({
       subCategoryName,
+    });
+    if (!categoryExists.length) {
+      return res.status(401).json({
+        message: "no sub category exists. first create sub category",
+      });
+    }
+    const categoryExistsWithGeneral = await SubCategoryModel.find({
+      subCategoryName,
       generalCategoryId,
     });
+
+    if (categoryExistsWithGeneral.length) {
+      return res.status(401).json({
+        message: "category already exists",
+      });
+    }
 
     await SubCategoryModel.updateOne(
       {
         subCategoryName,
       },
-      { $push: { generalCategoryId: generalCategoryId } }
+      { $push: { generalCategoryId: generalCategoryId }, updatedAt: new Date() }
     );
 
     return res.json({ message: "Successfully category updated" });

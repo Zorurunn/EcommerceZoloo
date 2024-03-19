@@ -12,7 +12,7 @@ const subCategorySchema = new Schema({
     },
   ],
   createdAt: Date,
-  // updatedAt: Date,
+  updatedAt: Date,
 });
 
 export const SubCategoryModel = model("subCategory", subCategorySchema);
