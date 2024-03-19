@@ -57,17 +57,18 @@ const ProductNameSection = (props: productNameSectionType) => {
           />
         </Stack>
         <Stack>
-          <TextField
+          <CustomInput
+            borderRadius="8px"
             size="medium"
-            sx={{ bgcolor: "#ECEDF0" }}
             name={infoName}
             value={infoValue ?? "defaultValue"}
-            onChange={handleChange}
+            handleChange={handleChange}
             onBlur={handleBlur}
             error={infoError}
             type="text"
+            multiLine={true}
             label="Нэмэлт мэдээлэл"
-            placeholder="Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар."
+            placeHolder="Гол онцлог, давуу тал, техникийн үзүүлэлтүүдийг онцолсон дэлгэрэнгүй, сонирхолтой тайлбар."
           />
         </Stack>
         <Stack flexGrow={1}>

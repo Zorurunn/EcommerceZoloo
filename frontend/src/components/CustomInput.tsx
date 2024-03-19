@@ -98,7 +98,7 @@ export const CustomInput = (props: CustomInputProps) => {
         type={type === "password" && showPassword ? "text" : type}
         select={select}
         multiline={multiLine}
-        rows={multiLine ? 4 : 0}
+        rows={multiLine ? 2 : 0}
         sx={{
           "& .MuiSelect-select": {
             padding: size === "small" ? "3px 8px" : "14px 16px",
