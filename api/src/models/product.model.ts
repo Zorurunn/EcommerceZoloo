@@ -1,14 +1,16 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const productSchema = new Schema({
   productName: {
     type: String,
     required: true,
   },
-  categoryId: {
-    // objectId mongo db
-    // userId: mongoose.Schema.Types.ObjectId,
-    type: String,
+  generalCategoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+  subCategoryId: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   price: {
@@ -38,10 +40,10 @@ const productSchema = new Schema({
   //   type: Number,
   //   required: true,
   // },
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
+  description: {
+    type: String,
+    required: true,
+  },
   viewsCount: {
     type: Number,
     required: false,

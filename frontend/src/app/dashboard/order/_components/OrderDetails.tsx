@@ -39,7 +39,7 @@ type OrderDetailsType = {
   orderID: string | number;
   name: string;
   user: string;
-  date: number;
+  date: string;
   time: number;
   price: number;
   s: string;

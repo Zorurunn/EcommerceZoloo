@@ -23,7 +23,7 @@ export const SIDEBAR_LINES = [
   {
     name: "Захиалга",
     icon: ContentPasteIcon,
-    href: "/dashboard",
+    href: "/dashboard/order",
   },
   {
     name: "Орлого",
@@ -38,8 +38,168 @@ export const SIDEBAR_LINES = [
   {
     name: "Тохиргоо",
     icon: SettingsIcon,
-    href: "/",
+    href: "/dashboard/settings",
   },
+];
+
+// order detials
+export const ORDERINGS = [
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "delivered",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "neworder",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-01-09",
+    time: "10:58",
+    price: "12000",
+    s: "ondelivery",
+  },
+];
+
+// order list
+
+interface Data {
+  ID: number;
+  order: string;
+  pay: number;
+  date: string;
+}
+
+function createData(
+  ID: number,
+  order: string,
+  pay: number,
+  date: string
+): Data {
+  return { ID, order, pay, date };
+}
+export const ROWS = [
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
+  createData(
+    12345678,
+    "Zoloosoko0526@gmail.com 99119009",
+    135000,
+    "2022-03-25"
+  ),
 ];
 
 export const SIDEBAR_WIDTH = 240;

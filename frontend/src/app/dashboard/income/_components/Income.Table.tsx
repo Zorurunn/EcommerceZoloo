@@ -27,7 +27,7 @@ export const IncomeTable = () => {
       width={"100%"}
       bgcolor={"#FFFFFF"}
       border={"1px solid #ECEDF0"}
-      borderRadius={1.5}
+      borderRadius={"12px"}
     >
       <Stack
         width={"100%"}
