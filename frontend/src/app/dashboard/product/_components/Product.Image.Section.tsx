@@ -8,7 +8,6 @@ import AddIcon from "@mui/icons-material/Add";
 export default function ProductImageSection() {
   return (
     <Stack
-      width={"90%"}
       py={4}
       pr={2}
       pl={4}
@@ -82,19 +81,6 @@ export default function ProductImageSection() {
             </Stack>
           </Stack>
         </Stack>
-        {/* <Stack
-          position={"absolute"}
-          top={0}
-          right={0}
-          alignItems={"center"}
-          justifyContent={"center"}
-          width={125}
-          height={125}
-        >
-          <Stack borderRadius={"50%"} padding={0.5} bgcolor={"#ECEDF0"}>
-            <AddIcon />
-          </Stack>
-        </Stack> */}
         <Stack
           position={"absolute"}
           top={0}

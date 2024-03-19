@@ -1,13 +1,15 @@
 "use client";
 import { CustomInput } from "@/components";
-import { Stack, TextField, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import { style } from "@mui/system";
+import { link } from "fs";
 import { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 
 export const ProductTag = () => {
   const [selected, setSelected] = useState([""]);
   return (
-    <Stack width={"90%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
+    <Stack padding={3} borderRadius={"8px"} bgcolor={"#FFFF"}>
       <Typography fontSize={16} fontWeight={600} color={"text.primary"}>
         Төрөл
       </Typography>

@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { ROWS } from "@/constants";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 interface Column {
   id: "ID" | "order" | "pay" | "date";
@@ -78,7 +78,7 @@ export default function OrderList() {
         border: "1px solid #ECEDF0",
       }}
     >
-      <TableContainer sx={{ maxHeight: 620 }}>
+      <TableContainer sx={{ maxHeight: 740 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

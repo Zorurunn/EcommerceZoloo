@@ -1,28 +1,8 @@
 "use client";
 
+import { TABS } from "@/constants";
 import { Box, Stack, Tab, Tabs as MuiTabs, Typography } from "@mui/material";
 import { useState } from "react";
-
-const tabs = [
-  {
-    label: "Бүгд",
-  },
-  {
-    label: "Шинэ захиалага",
-  },
-  {
-    label: "Бэлтгэгдэж байна",
-  },
-  {
-    label: "Хүргэлтэнд гарсан",
-  },
-  {
-    label: "Хүргэгдсэн",
-  },
-  {
-    label: "Цуцлагдсан",
-  },
-];
 
 export const Tabs = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -44,7 +24,7 @@ export const Tabs = () => {
             },
           }}
         >
-          {tabs.map((tab) => {
+          {TABS.map((tab) => {
             return (
               <Tab
                 key={tab.label}

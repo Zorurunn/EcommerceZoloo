@@ -48,66 +48,112 @@ export const ORDERINGS = [
     orderID: "#12345678",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
-    date: "2023-01-09",
-    time: "10:58",
+    date: "2023-03-19",
+    time: "13:58",
     price: "12000",
     s: "delivered",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345677",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:54",
     price: "12000",
     s: "ondelivery",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345676",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:55",
     price: "12000",
     s: "neworder",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345675",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:53",
     price: "12000",
     s: "ondelivery",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345674",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:52",
     price: "12000",
     s: "ondelivery",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345673",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:52",
     price: "12000",
     s: "ondelivery",
   },
   {
-    orderID: "#12345678",
+    orderID: "#12345672",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
     date: "2023-01-09",
-    time: "10:58",
+    time: "10:50",
     price: "12000",
     s: "ondelivery",
   },
 ];
+
+// order tabs
+export const TABS = [
+  {
+    label: "Бүгд",
+  },
+  {
+    label: "Шинэ захиалага",
+  },
+  {
+    label: "Бэлтгэгдэж байна",
+  },
+  {
+    label: "Хүргэлтэнд гарсан",
+  },
+  {
+    label: "Хүргэгдсэн",
+  },
+  {
+    label: "Цуцлагдсан",
+  },
+];
+
+// order section status map
+export const STATUS_MAP = {
+  delivered: {
+    backgroundColor: "#C1E6CF",
+    color: "#0A4E22",
+    title: "Хүргэгдсэн",
+  },
+  neworder: {
+    backgroundColor: "#FFFFFF",
+    color: "text.secondary",
+    title: "Шинэ захиалга",
+  },
+  ondelivery: {
+    backgroundColor: "#B7DDFF",
+    color: "#1890FF",
+    title: "Хүргэлтэнд гарсан",
+  },
+  inprogress: {
+    backgroundColor: "#ECEDF0",
+    color: "text.secondary",
+    title: "Бэлтгэгдэж байна",
+  },
+};
 
 // order list
 
@@ -128,77 +174,77 @@ function createData(
 }
 export const ROWS = [
   createData(
-    12345678,
+    12345682,
     "Zoloosoko0526@gmail.com 99119009",
     135000,
-    "2022-03-25"
+    "2022-03-19"
+  ),
+  createData(
+    12345681,
+    "Zoloosoko0526@gmail.com 99119009",
+    13000,
+    "2022-03-19"
+  ),
+  createData(
+    12345680,
+    "Zoloosoko0526@gmail.com 99119009",
+    15000,
+    "2022-03-16"
+  ),
+  createData(
+    12345679,
+    "Zoloosoko0526@gmail.com 99119009",
+    1350000,
+    "2022-03-14"
   ),
   createData(
     12345678,
     "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
-  ),
-  createData(
-    12345678,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
-  ),
-  createData(
-    12345678,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
-  ),
-  createData(
-    12345678,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
+    125000,
+    "2022-03-12"
   ),
 
   createData(
-    12345678,
+    12345677,
     "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
+    45000,
+    "2022-03-12"
   ),
   createData(
-    12345678,
+    12345676,
     "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
+    35000,
+    "2022-03-12"
   ),
   createData(
-    12345678,
+    12345675,
     "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-25"
+    1005000,
+    "2022-03-10"
   ),
   createData(
-    12345678,
+    12345674,
     "Zoloosoko0526@gmail.com 99119009",
     135000,
-    "2022-03-25"
+    "2022-03-08"
   ),
   createData(
-    12345678,
+    12345673,
     "Zoloosoko0526@gmail.com 99119009",
     135000,
-    "2022-03-25"
+    "2022-03-04"
   ),
   createData(
-    12345678,
+    12345672,
     "Zoloosoko0526@gmail.com 99119009",
     135000,
-    "2022-03-25"
+    "2022-03-03"
   ),
   createData(
-    12345678,
+    12345671,
     "Zoloosoko0526@gmail.com 99119009",
     135000,
-    "2022-03-25"
+    "2022-03-01"
   ),
 ];
 

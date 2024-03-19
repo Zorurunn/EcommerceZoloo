@@ -39,6 +39,7 @@ type CustomInputProps = {
   adornment?: "end" | "start";
   size?: "small" | "medium";
   borderColor?: string;
+  borderRadius: string;
   bgcolor?: string;
   id?: string;
   isError?: string;
@@ -62,6 +63,7 @@ export const CustomInput = (props: CustomInputProps) => {
     adornment,
     size,
     borderColor,
+    borderRadius = "8px",
     id,
     isError,
     isTouched,
@@ -96,16 +98,19 @@ export const CustomInput = (props: CustomInputProps) => {
         type={type === "password" && showPassword ? "text" : type}
         select={select}
         multiline={multiLine}
-        rows={multiLine ? 4 : 0}
+        rows={multiLine ? 2 : 0}
         sx={{
           "& .MuiSelect-select": {
             padding: size === "small" ? "3px 8px" : "14px 16px",
+            borderRadius: borderRadius,
           },
           "& fieldset": {
             borderColor: borderColor,
+            borderRadius: borderRadius,
           },
           width: "100%",
           bgcolor: bgcolor,
+          borderRadius: borderRadius,
         }}
         inputProps={{
           style: {

@@ -37,9 +37,10 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
   } = props;
 
   return (
-    <Stack width={"90%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
+    <Stack width={"100%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
       <Stack gap={2}>
         <CustomInput
+          borderRadius="8px"
           name={generalCategoryName}
           label="Ерөнхий ангилал"
           type="select"
@@ -67,6 +68,7 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
             })}
         </CustomInput>
         <CustomInput
+          borderRadius="8px"
           name={subCategoryName}
           label="Дэд ангилал"
           type="select"
