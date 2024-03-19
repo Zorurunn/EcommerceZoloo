@@ -76,7 +76,6 @@ export const SignUpForm = ({
       </Stack>
       <Stack gap={3}>
         <CustomInput
-          borderRadius="8px"
           name="userName"
           label="Нэр"
           placeHolder="Нэр оруулна уу"
@@ -88,7 +87,6 @@ export const SignUpForm = ({
           type="text"
         />
         <CustomInput
-          borderRadius="8px"
           name="email"
           label="Имэйл"
           placeHolder="Имэйл оруулна уу"
@@ -100,7 +98,6 @@ export const SignUpForm = ({
           type="text"
         />
         <CustomInput
-          borderRadius="8px"
           name="phoneNumber"
           label="Утасны дугаар"
           placeHolder="Утасны дугаар оруулна уу"
@@ -114,7 +111,6 @@ export const SignUpForm = ({
           type="tel"
         />
         <CustomInput
-          borderRadius="8px"
           name="password"
           label="Нууц үг"
           placeHolder="Нууц үгээ оруулна уу"
@@ -127,7 +123,6 @@ export const SignUpForm = ({
           adornment="end"
         />
         <CustomInput
-          borderRadius="8px"
           name="rePassword"
           label="Нууц үг давтах"
           placeHolder="Нууц үгээ давтаж оруулна уу"
