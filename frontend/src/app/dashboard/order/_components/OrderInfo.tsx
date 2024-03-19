@@ -1,6 +1,5 @@
 import { Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import { OrderDetails } from "./OrderDetails";
 import { TableHead } from "./TableHead";
 import { ORDERINGS } from "@/constants";
