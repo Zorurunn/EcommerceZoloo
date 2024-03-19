@@ -16,12 +16,15 @@ import { useState } from "react";
 import { CustomInput } from "@/components";
 import { CardFormStep3Products } from "@/constants";
 import { ProductFilterDropdownCard } from "@/components/Product.DropDown.Menu";
+import { bgcolor } from "@mui/system";
 
 const mapDate = ["Сараар", "Өдрөөр", "Жилээр"];
 
 export const IncomeTable = () => {
   const [category, setCategory] = useState("");
+  const [activeTab, setActiveTab] = useState("Өнөөдөр");
 
+  const data = [{ name: "Өнөөдөр" }, { name: "7 хоног" }];
   return (
     <Stack
       width={"100%"}
@@ -49,7 +52,6 @@ export const IncomeTable = () => {
             display: "flex",
             alignItems: "center",
             padding: "8px, 12px, 8px, 12px",
-            ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
           }}
         >
           <FileDownloadOutlinedIcon />
@@ -67,28 +69,29 @@ export const IncomeTable = () => {
           235,000₮
         </Typography>
         <Stack direction={"row"} gap={2}>
-          <Button
-            sx={{
-              borderRadius: "8px",
-              color: "#121316",
-              border: "1px solid #ECEDF0",
-              padding: "8px, 12px, 8px, 12px",
-              ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
-            }}
-          >
-            <Typography>Өнөөдөр</Typography>
-          </Button>
-          <Button
-            sx={{
-              borderRadius: "8px",
-              color: "#121316",
-              border: "1px solid #ECEDF0",
-              padding: "8px, 12px, 8px, 12px",
-              ":hover": { bgcolor: "#18BA51", color: "#ECEDF0" },
-            }}
-          >
-            <Typography>7 хоног</Typography>
-          </Button>
+          {data.map((item, index) => {
+            return (
+              <Button
+                key={index}
+                sx={{
+                  borderRadius: "8px",
+                  border: "1px solid #ECEDF0",
+                  padding: "8px, 12px, 8px, 12px",
+                  bgcolor: activeTab === item.name ? "#18BA51" : "#ffff",
+                  color: activeTab === item.name ? "#ECEDF0" : "#121316",
+                  ":hover": {
+                    bgcolor: activeTab === item.name ? "#18BA51" : "#ffff",
+                    color: activeTab === item.name ? "#ECEDF0" : "#121316",
+                  },
+                }}
+                onClick={() => {
+                  setActiveTab(item.name);
+                }}
+              >
+                <Typography>{item.name}</Typography>
+              </Button>
+            );
+          })}
 
           <ProductFilterDropdownCard
             title="Сараар"

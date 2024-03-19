@@ -78,7 +78,7 @@ export default function OrderList() {
         border: "1px solid #ECEDF0",
       }}
     >
-      <TableContainer sx={{ maxHeight: 620 }}>
+      <TableContainer sx={{ maxHeight: 740 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
