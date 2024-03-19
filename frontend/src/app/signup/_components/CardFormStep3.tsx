@@ -54,6 +54,7 @@ export function CardFormStep3({
       <Stack gap={2}>
         <Stack gap={3}>
           <CustomInput
+            borderRadius="8px"
             name="salesExprience"
             label="Та борлуулалт хийж байсан туршлагатай юу?"
             type="text"
@@ -74,6 +75,7 @@ export function CardFormStep3({
           </CustomInput>
 
           <CustomInput
+            borderRadius="8px"
             name="productType"
             label="Та ямар төрлийн бүтээгдэхүүн борлуулах вэ?"
             type="text"

@@ -39,7 +39,7 @@ type CustomInputProps = {
   adornment?: "end" | "start";
   size?: "small" | "medium";
   borderColor?: string;
-  borderRadius: string;
+  borderRadius?: string;
   bgcolor?: string;
   id?: string;
   isError?: string;

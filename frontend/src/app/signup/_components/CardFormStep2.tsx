@@ -47,6 +47,7 @@ export const CardFormStep2 = ({
           Бүс нутгийн мэдээлэл
         </Typography>
         <CustomInput
+          borderRadius="8px"
           name="city"
           label="Хот/Аймаг"
           type="text"
@@ -65,6 +66,7 @@ export const CardFormStep2 = ({
           ))}
         </CustomInput>
         <CustomInput
+          borderRadius="8px"
           name="district"
           label="Сум/Дүүрэг"
           type="text"
@@ -83,6 +85,7 @@ export const CardFormStep2 = ({
           ))}
         </CustomInput>
         <CustomInput
+          borderRadius="8px"
           name="street"
           label="Хороо"
           type="text"
