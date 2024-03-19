@@ -62,7 +62,6 @@ export const ResetFormStep3 = ({
       <Stack gap={6} width={"100%"}>
         <Stack gap={3}>
           <CustomInput
-            borderRadius="8px"
             name="password"
             handleChange={formik.handleChange}
             value={formik.values.newPassword}
@@ -71,10 +70,10 @@ export const ResetFormStep3 = ({
             }
             onBlur={formik.handleBlur}
             helperText={String(formik.errors.newPassword)}
+            type="text"
           />
 
           <CustomInput
-            borderRadius="8px"
             name="rePassword"
             handleChange={formik.handleChange}
             value={formik.values.reNewPassword}
@@ -84,6 +83,7 @@ export const ResetFormStep3 = ({
             }
             onBlur={formik.handleBlur}
             helperText={String(formik.errors.reNewPassword)}
+            type="text"
           />
         </Stack>
         <Button
