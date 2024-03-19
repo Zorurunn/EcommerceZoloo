@@ -5,7 +5,11 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  categoryId: {
+  generalCategoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+  subCategoryId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
@@ -36,10 +40,10 @@ const productSchema = new Schema({
   //   type: Number,
   //   required: true,
   // },
-  // description: {
-  //   type: String,
-  //   required: true,
-  // },
+  description: {
+    type: String,
+    required: true,
+  },
   viewsCount: {
     type: Number,
     required: false,

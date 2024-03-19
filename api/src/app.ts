@@ -5,6 +5,7 @@ import authRouter from "./routers/auth.router";
 import categoryRouter from "./routers/category.router";
 import { authMiddleware } from "./middlewares/auth.middleware";
 import emailRouter from "./routers/reset.router";
+import productRouter from "./routers/product.router";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(json());
 app.use("/", authRouter);
 app.use("/", emailRouter);
 app.use("/", categoryRouter);
+app.use("/", productRouter);
 
 // app.use(authMiddleware);
 
