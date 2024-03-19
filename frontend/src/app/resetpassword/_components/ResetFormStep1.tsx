@@ -1,21 +1,19 @@
 "use client";
 
 import EastIcon from "@mui/icons-material/East";
-import { Stack, Typography } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Loader } from "@/components/Loader";
 
-export const ResetFormStep1 = ({
-  setIndex,
-}: {
-  setIndex: Dispatch<SetStateAction<number>>;
-}) => {
-  const { checkResetEmail, setUserEmail } = useAuth();
-  const [isClicked, setIsClicked] = useState(false);
+export const ResetFormStep1 = () => {
+  const { sendEmail, setUserEmail, setIndex } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     email: yup
@@ -28,9 +26,12 @@ export const ResetFormStep1 = ({
       email: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      checkResetEmail({ email: values.email });
+    onSubmit: async (values) => {
+      setOpen(true);
+      await sendEmail({ email: values.email });
       setUserEmail(values.email);
+      setIndex((prev) => prev + 1);
+      setOpen(false);
     },
   });
 
@@ -49,36 +50,39 @@ export const ResetFormStep1 = ({
       <Stack gap={6} width={"100%"}>
         <CustomInput
           name="email"
+          label="Имэйл "
+          placeHolder="Имэйл хаягаа оруулна уу"
+          type="text"
           handleChange={formik.handleChange}
           value={formik.values.email}
           error={formik.touched.email && Boolean(formik.errors.email)}
           onBlur={formik.handleBlur}
           helperText={String(formik.errors.email)}
-          label="Имэйл "
-          placeHolder="Имэйл хаягаа оруулна уу"
-          type="text"
         />
-
         <Button
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            setIsClicked(true);
           }}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || open}
           variant="contained"
           sx={{
-            position: "relative",
+            justifyContent: "flex-end",
             py: "14.5px",
             background: "#121316",
             color: "white",
+            gap: "8px",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
           }}
         >
-          дарааx
-          <EastIcon sx={{ position: "absolute", right: "10%" }} />
+          {open && <Loader />}
+          <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+            Нэвтрэх
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>

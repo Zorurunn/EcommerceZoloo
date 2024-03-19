@@ -1,14 +1,14 @@
 "use client";
 
 import { Button, Stack, Typography } from "@mui/material";
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { useRouter } from "next/router";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { Loader } from "@/components/Loader";
 
 export const SignUpForm = ({
   setStep,
@@ -16,6 +16,7 @@ export const SignUpForm = ({
   setStep: Dispatch<SetStateAction<number>>;
 }) => {
   const { signUp } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     userName: yup.string().required("Нэрээ оруулна уу"),
@@ -50,12 +51,14 @@ export const SignUpForm = ({
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setOpen(true);
       await signUp({
         userName: values.userName,
         email: values.email,
         phoneNumber: values.phoneNumber,
         password: values.password,
       });
+      setOpen(false);
     },
   });
   return (
@@ -117,6 +120,7 @@ export const SignUpForm = ({
           helperText={String(formik.errors.password)}
           onBlur={formik.handleBlur}
           type="password"
+          adornment="end"
         />
         <CustomInput
           name="rePassword"
@@ -128,6 +132,7 @@ export const SignUpForm = ({
           helperText={String(formik.errors.rePassword)}
           onBlur={formik.handleBlur}
           type="password"
+          adornment="end"
         />
         <Stack>
           <Button
@@ -135,20 +140,25 @@ export const SignUpForm = ({
             onClick={() => {
               formik.handleSubmit();
             }}
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || open}
             variant="contained"
             sx={{
-              position: "relative",
+              justifyContent: "flex-end",
               py: "14.5px",
               background: "#121316",
               color: "white",
+              gap: "8px",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
             }}
           >
-            дарааx
-            <EastIcon sx={{ position: "absolute", right: "10%" }} />
+            {open && <Loader />}
+            <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+              Дараах
+            </Typography>
+            <ArrowForwardIcon fontSize="medium" />
           </Button>
         </Stack>
         <Stack border={1} borderColor="#ECEDF0"></Stack>

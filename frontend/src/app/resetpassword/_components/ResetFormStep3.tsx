@@ -1,6 +1,6 @@
 "use client";
 
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
 import { Button } from "@mui/material";
@@ -8,7 +8,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Loader } from "@/components/Loader";
 
 export const ResetFormStep3 = ({
   index,
@@ -18,28 +19,32 @@ export const ResetFormStep3 = ({
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
   const router = useRouter();
-  const { checkResetOtb, userEmail, userOtb } = useAuth();
+  const { resetPassword, userEmail, userOtp } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
-    password: yup.string().required(""),
-    rePassword: yup
+    newPassword: yup.string().required("Шинэ нууц үгээ оруулна уу"),
+    reNewPassword: yup
       .string()
       .required("")
-      .oneOf([yup.ref("password")]),
+      .oneOf([yup.ref("newPassword")]),
   });
 
   const formik = useFormik({
     initialValues: {
-      password: "",
-      rePassword: "",
+      newPassword: "",
+      reNewPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      checkResetOtb({
+    onSubmit: async (values) => {
+      setOpen(true);
+      await resetPassword({
         email: userEmail,
-        code: userOtb,
-        password: values.password,
+        code: userOtp,
+        newPassword: values.newPassword,
       });
+      setIndex((prev) => prev + 1);
+      setOpen(false);
     },
   });
 
@@ -55,59 +60,66 @@ export const ResetFormStep3 = ({
         Шинэ нууц үг зохиох
       </Typography>
       <Stack gap={6} width={"100%"}>
-        <Stack>
+        <Stack gap={3}>
           <CustomInput
-            name="password"
-            handleChange={formik.handleChange}
-            value={formik.values.password}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            onBlur={formik.handleBlur}
-            helperText={String(formik.errors.password)}
-            label="Нууц үг "
-            placeHolder="Нууц үгээ оруулна уу"
+            name="newPassword"
+            label="Шинэ нууц үг"
+            placeHolder="Шинэ нууц үгээ оруулна уу"
             type="password"
-          />
-
-          <CustomInput
-            name="rePassword"
+            adornment="end"
             handleChange={formik.handleChange}
-            value={formik.values.rePassword}
+            value={formik.values.newPassword}
             error={
-              formik.touched.rePassword && Boolean(formik.errors.rePassword)
+              formik.touched.newPassword && Boolean(formik.errors.newPassword)
             }
             onBlur={formik.handleBlur}
-            helperText={String(formik.errors.rePassword)}
-            label="Нууц үг давтах "
-            placeHolder="Нууц үгээ оруулна уу"
+            helperText={String(formik.errors.newPassword)}
+          />
+
+          <CustomInput
+            name="reNewPassword"
+            label="Шинэ нууц үг давтах "
+            placeHolder="Шинэ нууц үгээ давтаж оруулна уу"
             type="password"
+            adornment="end"
+            handleChange={formik.handleChange}
+            value={formik.values.reNewPassword}
+            error={
+              formik.touched.reNewPassword &&
+              Boolean(formik.errors.reNewPassword)
+            }
+            onBlur={formik.handleBlur}
+            helperText={String(formik.errors.reNewPassword)}
           />
         </Stack>
-
         <Button
           fullWidth
           onClick={() => {
             formik.handleSubmit();
-            setIndex((prev) => prev + 1);
-            if (index === 2) {
-              router.push("/singin");
-              setIndex(0);
+            if (index == 2) {
+              router.push("/signin");
             }
-            formik.handleSubmit();
+            setIndex(0);
           }}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || open}
           variant="contained"
           sx={{
-            position: "relative",
+            justifyContent: "flex-end",
             py: "14.5px",
             background: "#121316",
             color: "white",
+            gap: "8px",
             "&:hover": {
               backgroundColor: "#393939",
+              color: "common.white",
             },
           }}
         >
-          дарааx
-          <EastIcon sx={{ position: "absolute", right: "10%" }} />
+          {open && <Loader />}
+          <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+            Нэвтрэх
+          </Typography>
+          <ArrowForwardIcon fontSize="medium" />
         </Button>
       </Stack>
     </Stack>

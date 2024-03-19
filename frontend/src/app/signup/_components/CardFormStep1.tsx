@@ -4,15 +4,18 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { CustomInput } from "../../../components";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { Loader } from "@/components/Loader";
 
 export function CardFormStep1({
   setStep,
 }: {
   setStep: Dispatch<SetStateAction<number>>;
 }) {
+  const [open, setOpen] = useState(false);
+
   const validationSchema = yup.object({
     storeName: yup.string().required("Нэрээ оруулна уу"),
   });
@@ -29,7 +32,9 @@ export function CardFormStep1({
       //   password: values.password,
       //   address: values.address,
       // });
-      console.log(formik.values);
+      setOpen(true);
+      await console.log(formik.values);
+      setOpen(false);
     },
   });
   return (
@@ -95,29 +100,30 @@ export function CardFormStep1({
           </Stack>
           <Button
             sx={{
-              width: "127px",
-              height: "48px",
-              borderRadius: "8px",
+              width: "fit-content",
+              py: "8px",
+              pr: "10px",
               background: "#121316",
               color: "white",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
               gap: "8px",
             }}
             variant="contained"
             fullWidth
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || open}
             onClick={() => {
-              setStep((prev) => prev + 1);
               formik.handleSubmit();
+              setStep((prev) => prev + 1);
             }}
           >
-            Дараах
-            <ArrowForwardIcon
-              fontSize="medium"
-              sx={{ color: "common.white" }}
-            />
+            {open && <Loader />}
+            <Typography fontSize={16} fontWeight={600}>
+              Дараах
+            </Typography>
+            <ArrowForwardIcon fontSize="medium" />
           </Button>
         </Stack>
       </Stack>

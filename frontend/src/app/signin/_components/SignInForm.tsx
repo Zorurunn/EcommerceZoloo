@@ -1,15 +1,18 @@
 "use client";
 import { Button, Stack, Typography } from "@mui/material";
-import EastIcon from "@mui/icons-material/East";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
 import { CustomInput } from "@/components";
 import Image from "next/image";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { useAuth } from "@/components/provider/AuthProvider";
+import { useState } from "react";
+import { Loader } from "@/components/Loader";
 
 export default function SignInForm() {
   const { signIn } = useAuth();
+  const [open, setOpen] = useState(false);
 
   const validationSchema = yup.object({
     email: yup
@@ -32,10 +35,12 @@ export default function SignInForm() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setOpen(true);
       await signIn({
         email: values.email,
         password: values.password,
       });
+      setOpen(false);
     },
   });
   return (
@@ -63,36 +68,51 @@ export default function SignInForm() {
           helperText={String(formik.errors.email)}
           onBlur={formik.handleBlur}
         />
-        <CustomInput
-          name="password"
-          label="Нууц үг"
-          placeHolder="Нууц үг оруулна уу"
-          type="password"
-          handleChange={formik.handleChange}
-          value={formik.values.password}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={String(formik.errors.password)}
-          onBlur={formik.handleBlur}
-        />
+        <Stack alignItems={"flex-end"}>
+          <CustomInput
+            name="password"
+            label="Нууц үг"
+            placeHolder="Нууц үг оруулна уу"
+            type="password"
+            adornment="end"
+            handleChange={formik.handleChange}
+            value={formik.values.password}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={String(formik.errors.password)}
+            onBlur={formik.handleBlur}
+          />
+          <Link href={"/resetpassword"}>
+            <Typography color={"#000"} fontSize={14} fontWeight={400}>
+              Нууц үг сэргээх
+            </Typography>
+          </Link>
+        </Stack>
         <Stack>
           <Button
             fullWidth
             onClick={() => {
               formik.handleSubmit();
+              setOpen(false);
             }}
-            disabled={!formik.isValid}
+            disabled={!formik.isValid || open}
             variant="contained"
             sx={{
-              position: "relative",
+              justifyContent: "flex-end",
               py: "14.5px",
               background: "#121316",
               color: "white",
+              gap: "8px",
               "&:hover": {
                 backgroundColor: "#393939",
+                color: "common.white",
               },
             }}
           >
-            Нэвтрэх
+            {open && <Loader />}
+            <Typography mr={"28%"} fontSize={16} fontWeight={600}>
+              Нэвтрэх
+            </Typography>
+            <ArrowForwardIcon fontSize="medium" />
           </Button>
         </Stack>
         <Stack width={"100%"} pt={2} gap={2}>

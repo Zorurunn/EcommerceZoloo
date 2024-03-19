@@ -27,14 +27,14 @@ type signInParams = {
   password: string;
 };
 
-type checkResetEmailParams = {
+type sendEmailParams = {
   email: string;
 };
 
-type checkResetOtbParams = {
+type reserPasswordParams = {
   email: string;
   code: string;
-  password: string;
+  newPassword: string;
 };
 
 type AuthContextType = {
@@ -45,10 +45,10 @@ type AuthContextType = {
   isLoggedIn: boolean;
   userEmail: string;
   setUserEmail: Dispatch<SetStateAction<string>>;
-  userOtb: string;
-  setUserOtb: Dispatch<SetStateAction<string>>;
-  checkResetEmail: (params: checkResetEmailParams) => Promise<void>;
-  checkResetOtb: (params: checkResetOtbParams) => Promise<void>;
+  userOtp: string;
+  setUserOtp: Dispatch<SetStateAction<string>>;
+  sendEmail: (params: sendEmailParams) => Promise<void>;
+  resetPassword: (params: reserPasswordParams) => Promise<void>;
   signUp: (params: signUpParams) => Promise<void>;
   signIn: (params: signInParams) => Promise<void>;
   signOut: () => void;
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [step, setStep] = useState(1);
   const [index, setIndex] = useState(0);
   const [userEmail, setUserEmail] = useState("");
-  const [userOtb, setUserOtb] = useState("");
+  const [userOtp, setUserOtp] = useState("");
 
   const signIn = async (params: signInParams) => {
     try {
@@ -123,7 +123,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const checkResetEmail = async (params?: checkResetEmailParams) => {
+  const sendEmail = async (params: sendEmailParams) => {
     try {
       const { data } = await api.post("/sendEmail", params);
       console.log(data);
@@ -133,7 +133,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         autoClose: 3000,
         hideProgressBar: true,
       });
-      setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message ?? error.message, {
@@ -145,16 +144,16 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const checkResetOtb = async (params?: checkResetOtbParams) => {
+  const resetPassword = async (params: reserPasswordParams) => {
     try {
-      const { data } = await api.post("/sendOtb", params);
+      const { data } = await api.post("/resetPassword", params);
       console.log(data);
+
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
       });
-      setIndex((prev) => prev + 1);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message ?? error.message, {
@@ -179,8 +178,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       value={{
         userEmail,
         setUserEmail,
-        userOtb,
-        setUserOtb,
+        userOtp,
+        setUserOtp,
         step,
         setStep,
         index,
@@ -189,8 +188,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         signIn,
         signUp,
         signOut,
-        checkResetEmail,
-        checkResetOtb,
+        sendEmail,
+        resetPassword,
       }}
     >
       {children}

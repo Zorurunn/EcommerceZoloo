@@ -84,7 +84,7 @@ export const CustomInput = (props: CustomInputProps) => {
   };
 
   return (
-    <Stack>
+    <Stack width={"100%"}>
       <Typography color={"text.primary"}>{label}</Typography>
       <TextField
         name={name}
