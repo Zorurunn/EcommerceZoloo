@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type BackTabsType = {
   text: string;
-  href: string;
+  // href: string;
 };
 
 export const BackTabs = (props: BackTabsType) => {
@@ -16,10 +16,13 @@ export const BackTabs = (props: BackTabsType) => {
       borderBottom={2}
       borderColor={"#eee"}
       borderRadius={"0px 0px 8px 8px"}
-      sx={{ fontSize: "16px", py: "12px", px: "16px" }}
+      px={2}
+      py={1.5}
+      fontSize={"16px"}
+      fontWeight={"400"}
       bgcolor={"#ffff"}
     >
-      <Link href={props.href}>
+      <Link href={"./"}>
         <ChevronLeftIcon />
       </Link>
       <Typography>{props.text}</Typography>

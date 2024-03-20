@@ -37,7 +37,7 @@ export const InfoDetail = () => {
           date="2024-01-20"
           productID="30349049903"
           amount="1"
-          price="₮125,700"
+          price={12500}
           total="₮125,700"
         />
       </Stack>

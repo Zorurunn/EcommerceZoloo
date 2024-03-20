@@ -1,12 +1,13 @@
 "use client";
 import { Container } from "@mui/material";
-import { Head } from "./_components/Head";
 import { Mainpage } from "./_components/Mainpage";
+import { Stack } from "@mui/system";
+import { BackTabs } from "@/components/Back.Tabs";
 export default function Home() {
   return (
-    <Container maxWidth={"xl"}>
-      <Head />
+    <Stack>
+      <BackTabs text="Захиалгын дэлгэрэнгүй" />
       <Mainpage />
-    </Container>
+    </Stack>
   );
 }
