@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import Image from "next/image";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Divider } from "@mui/material";
 
 const style = {
   maxWidth: "274px",
