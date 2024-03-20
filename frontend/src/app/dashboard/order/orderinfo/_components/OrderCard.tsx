@@ -39,7 +39,7 @@ export const OrderCard = (props: OrderDetailsType) => {
           fontWeight={400}
         >
           <Typography fontSize={16}>
-            Тоо ширхэг: {amount} * {price}
+            Тоо ширхэг: {amount} * {"₮" + new Intl.NumberFormat().format(price)}
           </Typography>
           <Typography fontWeight={600} fontSize={16} color={"text.primary"}>
             {total}

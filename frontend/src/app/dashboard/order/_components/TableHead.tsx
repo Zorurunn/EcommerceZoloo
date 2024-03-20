@@ -31,7 +31,6 @@ export const TableHead = () => {
       <Stack justifyContent={"center"}>Цаг</Stack>
       <Stack justifyContent={"center"}>Төлбөр</Stack>
       <Stack justifyContent={"center"}>Статус</Stack>
-
       <Stack justifyContent={"center"} alignItems={"center"}>
         Дэлгэрэнгүй
       </Stack>

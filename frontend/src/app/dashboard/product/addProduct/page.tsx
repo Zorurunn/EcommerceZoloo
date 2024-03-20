@@ -47,7 +47,7 @@ export default function Home() {
   });
   return (
     <Stack gap={3} width={"100%"}>
-      <BackTabs href="/dashboard/product" text="Бүтээгдэхүүн" />
+      <BackTabs text="Бүтээгдэхүүн" />
       <Stack direction={"row"} gap={5}>
         <Stack gap={2} width={"50%"}>
           <ProductNameSection

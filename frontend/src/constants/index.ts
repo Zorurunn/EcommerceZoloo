@@ -54,6 +54,34 @@ export const ORDERINGS = [
     s: "delivered",
   },
   {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-03-19",
+    time: "13:58",
+    price: "12000",
+    s: "delivered",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-03-19",
+    time: "13:58",
+    price: "12000",
+    s: "delivered",
+  },
+  {
+    orderID: "#12345678",
+    name: "Zoloosoko",
+    user: "Zoloosoko@gmail.com",
+    date: "2023-03-19",
+    time: "13:58",
+    price: "12000",
+    s: "delivered",
+  },
+
+  {
     orderID: "#12345677",
     name: "Zoloosoko",
     user: "Zoloosoko@gmail.com",
@@ -156,10 +184,60 @@ export const STATUS_MAP = {
 };
 
 // order list
+interface column {
+  id: "ID" | "order" | "pay" | "date";
+  label: string;
+  minWidth?: number;
+  fontSize: number;
+  fontColor: string;
+  fontWeight: number;
+  align?: "center" | "left";
+  format?: (value: number) => string;
+}
+
+export const COLUMNS: readonly column[] = [
+  {
+    id: "ID",
+    label: " Захиалгын ID дугаар",
+    minWidth: 100,
+    fontSize: 14,
+    fontColor: "#3F4145",
+    fontWeight: 900,
+  },
+  {
+    id: "order",
+    label: " Захиалагч",
+    minWidth: 170,
+    fontSize: 14,
+    fontColor: "#3F4145",
+    fontWeight: 900,
+  },
+  {
+    id: "pay",
+    label: " Төлбөр",
+    minWidth: 100,
+    fontSize: 14,
+    align: "left",
+    fontColor: "#3F4145",
+    fontWeight: 900,
+    format: (value: number) => value.toLocaleString("en-US"),
+  },
+  {
+    id: "date",
+    label: "Огноо",
+    minWidth: 100,
+    fontSize: 14,
+    align: "left",
+    fontColor: "#3F4145",
+    fontWeight: 900,
+    format: (value: number) => value.toFixed(2),
+  },
+];
 
 interface Data {
   ID: number;
   order: string;
+  phoneNum: number;
   pay: number;
   date: string;
 }
@@ -167,65 +245,25 @@ interface Data {
 function createData(
   ID: number,
   order: string,
+  phoneNum: number,
   pay: number,
   date: string
 ): Data {
-  return { ID, order, pay, date };
+  return { ID, order, phoneNum, pay, date };
 }
 export const ROWS = [
-  createData(
-    12345682,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-19"
-  ),
-  createData(12345681, "Zoloosoko0526@gmail.com 99119009", 13000, "2022-03-19"),
-  createData(12345680, "Zoloosoko0526@gmail.com 99119009", 15000, "2022-03-16"),
-  createData(
-    12345679,
-    "Zoloosoko0526@gmail.com 99119009",
-    1350000,
-    "2022-03-14"
-  ),
-  createData(
-    12345678,
-    "Zoloosoko0526@gmail.com 99119009",
-    125000,
-    "2022-03-12"
-  ),
-
-  createData(12345677, "Zoloosoko0526@gmail.com 99119009", 45000, "2022-03-12"),
-  createData(12345676, "Zoloosoko0526@gmail.com 99119009", 35000, "2022-03-12"),
-  createData(
-    12345675,
-    "Zoloosoko0526@gmail.com 99119009",
-    1005000,
-    "2022-03-10"
-  ),
-  createData(
-    12345674,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-08"
-  ),
-  createData(
-    12345673,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-04"
-  ),
-  createData(
-    12345672,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-03"
-  ),
-  createData(
-    12345671,
-    "Zoloosoko0526@gmail.com 99119009",
-    135000,
-    "2022-03-01"
-  ),
+  createData(12, "Zoloosoko0526@gmail.com ", 99119009, 135000, "2022-03-19"),
+  createData(11, "Zoloosoko0526@gmail.com ", 99119009, 13000, "2022-03-19"),
+  createData(10, "Zoloosoko0526@gmail.com ", 99119009, 15000, "2022-03-16"),
+  createData(9, "Zoloosoko0526@gmail.com ", 99119009, 1350000, "2022-03-14"),
+  createData(8, "gmail.com ", 99119009, 125000, "2022-03-12"),
+  createData(7, "Zoloosoko0526@gmail.com ", 99119009, 45000, "2022-03-12"),
+  createData(6, "Zoloosoko0526@gmail.com ", 99119009, 35000, "2022-03-12"),
+  createData(5, "Zoloosoko0526@gmail.com ", 99119009, 1005000, "2022-03-10"),
+  createData(4, "Zoloosoko0526@gmail.com ", 99119009, 135000, "2022-03-08"),
+  createData(3, "Zoloosoko0526@gmail.com ", 99119009, 135000, "2022-03-04"),
+  createData(2, "Zoloosoko0526@gmail.com ", 99119009, 135000, "2022-03-03"),
+  createData(1, "Zoloosoko0526@gmail.com ", 99119009, 135000, "2022-03-01"),
 ];
 
 export const SIDEBAR_WIDTH = 240;

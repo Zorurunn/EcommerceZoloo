@@ -2,38 +2,44 @@
 import { Button, Stack, Typography } from "@mui/material";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { CustomInput } from "@/components";
+import { useState } from "react";
 
 export const Filter = () => {
+  const [activeTab, setActiveTab] = useState("Өнөөдөр");
+  const data = [{ name: "Өнөөдөр" }, { name: "7 хоног" }];
+
   return (
     <Stack
       width={"100%"}
-      py={"34px"}
+      py={4}
       direction={"row"}
       justifyContent="space-between"
     >
       <Stack direction={"row"} gap={2}>
-        <Button
-          sx={{
-            borderRadius: "8px",
-            bgcolor: "#18BA51",
-            color: "#ECEDF0",
-            gap: "4px",
-            padding: "8px, 12px, 8px, 12px",
-          }}
-        >
-          <Typography>Өнөөдөр</Typography>
-        </Button>
-        <Button
-          sx={{
-            borderRadius: "8px",
-            bgcolor: "#FFFFFF",
-            color: "#121316",
-            border: "1px solid #ECEDF0",
-            padding: "8px, 12px, 8px, 12px",
-          }}
-        >
-          <Typography>7 хоног</Typography>
-        </Button>
+        {data.map((item, index) => {
+          return (
+            <Button
+              key={index}
+              sx={{
+                borderRadius: "8px",
+                border: "1px solid #ECEDF0",
+                px: "20px",
+                py: "8px",
+                bgcolor: activeTab === item.name ? "#18BA51" : "#ffff",
+                color: activeTab === item.name ? "#ECEDF0" : "#121316",
+                ":hover": {
+                  bgcolor: activeTab === item.name ? "#18BA51" : "#ffff",
+                  color: activeTab === item.name ? "#ECEDF0" : "#121316",
+                },
+              }}
+              onClick={() => {
+                setActiveTab(item.name);
+              }}
+            >
+              <Typography>{item.name}</Typography>
+            </Button>
+          );
+        })}
         <Button
           sx={{
             bgcolor: "#FFFFFF",
@@ -43,7 +49,8 @@ export const Filter = () => {
             gap: "4px",
             display: "flex",
             alignItems: "center",
-            padding: "8px, 12px, 8px, 12px",
+            px: "20px",
+            py: "8px",
           }}
         >
           <CalendarTodayOutlinedIcon />

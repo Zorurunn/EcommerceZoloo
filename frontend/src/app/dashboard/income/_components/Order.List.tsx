@@ -6,53 +6,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { ROWS } from "@/constants";
+import { COLUMNS, ROWS } from "@/constants";
 import { Stack } from "@mui/material";
-
-interface Column {
-  id: "ID" | "order" | "pay" | "date";
-  label: string;
-  minWidth?: number;
-  fontSize: number;
-  fontColor: string;
-  align?: "center";
-  format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-  {
-    id: "ID",
-    label: " Захиалгын ID дугаар",
-    minWidth: 100,
-    fontSize: 12,
-    fontColor: "#3F4145",
-  },
-  {
-    id: "order",
-    label: " Захиалагч",
-    minWidth: 170,
-    fontSize: 12,
-    fontColor: "#3F4145",
-  },
-  {
-    id: "pay",
-    label: " Төлбөр",
-    minWidth: 100,
-    fontSize: 12,
-    align: "center",
-    fontColor: "#3F4145",
-    format: (value: number) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "date",
-    label: "Огноо",
-    minWidth: 100,
-    fontSize: 12,
-    align: "center",
-    fontColor: "#3F4145",
-    format: (value: number) => value.toFixed(2),
-  },
-];
 
 export default function OrderList() {
   const [page, setPage] = React.useState(0);
@@ -74,7 +29,7 @@ export default function OrderList() {
       sx={{
         width: "100%",
         overflow: "hidden",
-        borderRadius: "8px",
+        borderRadius: "12px",
         border: "1px solid #ECEDF0",
       }}
     >
@@ -82,7 +37,7 @@ export default function OrderList() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {COLUMNS.map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}
@@ -97,7 +52,7 @@ export default function OrderList() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody sx={{ px: "20px" }}>
+          <TableBody sx={{ px: "20px", maxHeight: 740 }}>
             {ROWS
               .slice
               //   page * rowsPerPage,
@@ -106,18 +61,21 @@ export default function OrderList() {
               .map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.order}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          <Stack p={2}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
-                          </Stack>
-                        </TableCell>
-                      );
-                    })}
+                    <TableCell>
+                      <Stack>{"#" + row.ID}</Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Stack>{row.order}</Stack>
+                      <Stack>{row.phoneNum}</Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Stack>
+                        {new Intl.NumberFormat().format(row.pay) + "₮"}
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Stack>{row.date}</Stack>
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -127,3 +85,16 @@ export default function OrderList() {
     </Paper>
   );
 }
+
+// {COLUMNS.map((column) => {
+//   const value = row[column.id];
+//   return (
+//     <TableCell key={column.id} align={column.align}>
+//       <Stack p={2}>
+//         {column.format && typeof value === "number"
+//           ? column.format(value) + "₮"
+//           : value}
+//       </Stack>
+//     </TableCell>
+//   );
+// })}
