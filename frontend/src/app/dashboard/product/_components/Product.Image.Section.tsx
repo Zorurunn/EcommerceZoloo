@@ -4,9 +4,12 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
 export default function ProductImageSection() {
-  const [imgQty, setImgQty] = useState(3);
-  const [urls, setUrls] = useState<string[]>([]);
-  console.log(urls);
+  const [images, setImages] = useState<string[]>(["", "", ""]);
+  // const [urls, setUrls] = useState<string[]>([]);
+
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, idx) => idx !== index));
+  };
 
   return (
     <Stack
@@ -32,15 +35,17 @@ export default function ProductImageSection() {
         <Stack
           direction={"row"}
           overflow={"scroll"}
-          width={"100%"}
-          maxWidth={410}
+          width={"80%"}
+          minWidth={410}
         >
           <Stack gap={2} direction={"row"}>
-            {new Array(imgQty).fill(0).map((_, index) => (
+            {images.map((image, index) => (
               <ProductImgField
-                urls={urls}
-                setUrls={setUrls}
-                setImgQty={setImgQty}
+                image={image}
+                setImages={setImages}
+                handleDelete={() => {
+                  removeImage(index);
+                }}
               />
             ))}
           </Stack>
@@ -55,7 +60,7 @@ export default function ProductImageSection() {
             size="small"
             aria-label="adds"
             onClick={() => {
-              setImgQty((prev) => prev + 1);
+              setImages((prev) => [...prev, ""]);
             }}
           >
             <Stack borderRadius={"50%"} padding={1} bgcolor={"#ECEDF0"}>

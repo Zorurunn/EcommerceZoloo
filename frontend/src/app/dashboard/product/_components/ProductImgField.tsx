@@ -7,27 +7,27 @@ import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 
 export const ProductImgField = ({
-  urls,
-  setUrls,
-  setImgQty,
+  image,
+  setImages,
+  handleDelete,
 }: {
-  urls: string[];
-  setUrls: Dispatch<SetStateAction<string[]>>;
-  setImgQty: Dispatch<SetStateAction<number>>;
+  image: string;
+  setImages: Dispatch<SetStateAction<string[]>>;
+  handleDelete: () => void;
 }) => {
   const [open, setOpen] = useState(false);
   const [showPicture, setShowPicture] = useState(false);
   const [imgUrl, setImgUrl] = useState<string | undefined>();
 
-  useEffect(() => {
-    if (urls && imgUrl) {
-      setUrls((prev) => [...prev, imgUrl]);
-    } else {
-      if (imgUrl) {
-        setImgUrl(imgUrl);
-      }
-    }
-  }, [imgUrl]);
+  // useEffect(() => {
+  //   if (urls && imgUrl) {
+  //     setUrls((prev) => [...prev, imgUrl]);
+  //   } else {
+  //     if (imgUrl) {
+  //       setImgUrl(imgUrl);
+  //     }
+  //   }
+  // }, [imgUrl]);
 
   return (
     <Stack direction={"row"}>
@@ -43,7 +43,7 @@ export const ProductImgField = ({
             setImgUrl={setImgUrl}
           />
         )}
-        {!showPicture && (
+        {!image && (
           <Stack>
             <Stack
               onClick={() => {
@@ -59,20 +59,22 @@ export const ProductImgField = ({
             >
               <ImageOutlinedIcon />
               <Stack
-                onClick={() => {
-                  setImgQty((prev) => prev - 1);
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete();
                 }}
                 position={"absolute"}
                 top={5}
                 right={5}
-                zIndex={1}
+                zIndex={10}
                 bgcolor={"#000"}
                 borderRadius={"50%"}
+                p={0.2}
               >
                 <CloseIcon
                   sx={{
                     fill: "#fff",
-                    fontSize: "18px",
+                    fontSize: "12px",
                   }}
                 />
               </Stack>
@@ -80,7 +82,7 @@ export const ProductImgField = ({
           </Stack>
         )}
 
-        {showPicture && (
+        {image && (
           <Stack direction={"row"} gap={2}>
             <Stack
               position={"relative"}
@@ -90,17 +92,18 @@ export const ProductImgField = ({
               borderRadius={2}
             >
               <Stack
-                onClick={() => {
-                  const newUrls = urls.filter((item) => {
-                    return item != imgUrl;
-                  });
-                  setUrls(newUrls);
-                  setImgQty((prev) => prev - 1);
-                }}
+                // onClick={(e) => {
+                //   const newUrls = urls.filter((item) => {
+                //     return item != imgUrl;
+                //   });
+                //   setUrls(newUrls);
+                //   setImgQty((prev) => prev - 1);
+                //   e.stopPropagation();
+                // }}
                 position={"absolute"}
                 top={5}
                 right={5}
-                zIndex={1}
+                zIndex={10}
                 bgcolor={"#fff"}
                 borderRadius={"50%"}
               >
@@ -110,7 +113,7 @@ export const ProductImgField = ({
                   }}
                 />
               </Stack>
-              <Image src={imgUrl ?? ""} alt="" fill objectFit="cover" />
+              <Image src={image} alt="" fill objectFit="cover" />
             </Stack>
           </Stack>
         )}
