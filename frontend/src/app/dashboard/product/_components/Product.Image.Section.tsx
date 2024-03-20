@@ -1,13 +1,19 @@
-"use client";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
-import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
+import { IconButton, Stack, Typography } from "@mui/material";
+import { ProductImgField } from "./ProductImgField";
+import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
-// test
-
 export default function ProductImageSection() {
+  const [images, setImages] = useState<string[]>(["", "", ""]);
+  // const [urls, setUrls] = useState<string[]>([]);
+
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, idx) => idx !== index));
+  };
+
   return (
     <Stack
+      width={"100%"}
       py={4}
       pr={2}
       pl={4}
@@ -25,72 +31,38 @@ export default function ProductImageSection() {
       >
         Бүтээгдэхүүний зураг
       </Typography>
-
-      <Stack position={"relative"}>
-        <Stack direction={"row"} overflow={"scroll"} width={"80%"}>
-          <Stack direction={"row"} gap={2}>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={125}
-              height={125}
-              border={"dashed #D6D8DB 1px"}
-              borderRadius={2}
-            >
-              <ImageOutlinedIcon />
-            </Stack>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={125}
-              height={125}
-              border={"dashed #D6D8DB 1px"}
-              borderRadius={2}
-            >
-              <ImageOutlinedIcon />
-            </Stack>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={125}
-              height={125}
-              border={"dashed #D6D8DB 1px"}
-              borderRadius={2}
-            >
-              <ImageOutlinedIcon />
-            </Stack>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={125}
-              height={125}
-              border={"dashed #D6D8DB 1px"}
-              borderRadius={2}
-            >
-              <ImageOutlinedIcon />
-            </Stack>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              width={125}
-              height={125}
-              border={"dashed #D6D8DB 1px"}
-              borderRadius={2}
-            >
-              <ImageOutlinedIcon />
-            </Stack>
+      <Stack direction={"row"}>
+        <Stack
+          direction={"row"}
+          overflow={"scroll"}
+          width={"80%"}
+          minWidth={410}
+        >
+          <Stack gap={2} direction={"row"}>
+            {images.map((image, index) => (
+              <ProductImgField
+                image={image}
+                setImages={setImages}
+                handleDelete={() => {
+                  removeImage(index);
+                }}
+              />
+            ))}
           </Stack>
         </Stack>
         <Stack
-          position={"absolute"}
-          top={0}
-          right={0}
           alignItems={"center"}
           justifyContent={"center"}
           width={125}
           height={125}
         >
-          <IconButton size="small" aria-label="adds">
+          <IconButton
+            size="small"
+            aria-label="adds"
+            onClick={() => {
+              setImages((prev) => [...prev, ""]);
+            }}
+          >
             <Stack borderRadius={"50%"} padding={1} bgcolor={"#ECEDF0"}>
               <AddIcon />
             </Stack>
