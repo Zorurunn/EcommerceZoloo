@@ -9,7 +9,7 @@ import { TagsInput } from "react-tag-input-component";
 export const ProductTag = () => {
   const [selected, setSelected] = useState([""]);
   return (
-    <Stack padding={3} borderRadius={"8px"} bgcolor={"#FFFF"}>
+    <Stack px={3} pt={4} pb={8} borderRadius={"8px"} bgcolor={"#FFFF"}>
       <Typography fontSize={16} fontWeight={600} color={"text.primary"}>
         Төрөл
       </Typography>

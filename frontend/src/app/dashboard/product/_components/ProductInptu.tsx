@@ -1,7 +1,7 @@
 import { CustomInput } from "@/components";
 import { Button, MenuItem, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { ProductInfos } from "@/constants";
+import { PRODUCT_INFO } from "@/constants";
 import Link from "next/link";
 
 export const ProductInput = () => {
@@ -48,7 +48,7 @@ export const ProductInput = () => {
                 select={true}
                 bgcolor="#fff"
               >
-                {ProductInfos.map((item) => (
+                {PRODUCT_INFO.map((item) => (
                   <MenuItem value={item.name}>{item.name}</MenuItem>
                 ))}
               </CustomInput>
@@ -61,7 +61,7 @@ export const ProductInput = () => {
                 select={true}
                 bgcolor="#fff"
               >
-                {ProductInfos.map((item) => (
+                {PRODUCT_INFO.map((item) => (
                   <MenuItem value={item.category}>{item.category}</MenuItem>
                 ))}
               </CustomInput>
@@ -74,7 +74,7 @@ export const ProductInput = () => {
                 select={true}
                 bgcolor="#fff"
               >
-                {ProductInfos.map((item) => (
+                {PRODUCT_INFO.map((item) => (
                   <MenuItem value={item.price}>{item.price}</MenuItem>
                 ))}
               </CustomInput>

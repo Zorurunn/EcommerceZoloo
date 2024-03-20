@@ -1,4 +1,4 @@
-import { ProductInfos } from "@/constants";
+import { PRODUCT_INFO } from "@/constants";
 import { Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -12,9 +12,20 @@ export const ProductScroll = () => {
         bgcolor={"#fff"}
         overflow={"scroll"}
         height={"100%"}
+        border={"1px solid #ECEDF0"}
       >
         <Stack>
-          <Grid container height={55} alignItems={"center"}>
+          <Grid
+            position={"sticky"}
+            top={0}
+            left={0}
+            container
+            height={55}
+            alignItems={"center"}
+            bgcolor={"#fff"}
+            zIndex={1}
+            borderBottom={"1px solid #ECEDF0"}
+          >
             <Grid xs={0.8} item></Grid>
 
             <Grid xs={1.7} item>
@@ -44,11 +55,11 @@ export const ProductScroll = () => {
             <Grid xs={1} item></Grid>
           </Grid>
           <Grid container>
-            {ProductInfos.map((item, index) => (
+            {PRODUCT_INFO.map((item, index) => (
               <Grid
                 key={index}
                 container
-                borderTop={1}
+                border={"0.5px solid #ECEDF0"}
                 alignItems={"center"}
                 justifyContent={"center"}
                 height={80}
@@ -107,16 +118,16 @@ export const ProductScroll = () => {
                   <Typography>{item.soldOut}</Typography>
                 </Grid>
 
-                <Grid xs={1.9} item>
+                <Grid xs={1.7} item>
                   <Typography>{item.createdAt}</Typography>
                 </Grid>
 
-                <Grid xs={0.4} item>
+                <Grid xs={0.5} item>
                   <IconButton>
                     <DeleteOutlineOutlinedIcon style={{ fill: "#d6d6d6" }} />
                   </IconButton>
                 </Grid>
-                <Grid xs={0.4} item>
+                <Grid xs={0.5} item>
                   <IconButton>
                     <EditOutlinedIcon style={{ fill: "#d6d6d6" }} />
                   </IconButton>
