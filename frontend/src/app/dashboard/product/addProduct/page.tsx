@@ -1,5 +1,5 @@
 "use client";
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import ProductNameSection from "../_components/Product.Name.Section";
 import ProductImageSection from "../_components/Product.Image.Section";
 import { ProductTotalPrice } from "../_components/Product.Total.Price";
@@ -9,6 +9,8 @@ import { ProductTag } from "../_components/Product.Tag";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { BackTabs } from "@/components/Back.Tabs";
+import { useEffect, useState } from "react";
+import { AlertModal } from "../_components/Alert.Modal";
 
 const validationSchema = yup.object({
   generalCategory: yup.string().required(),
@@ -21,6 +23,13 @@ const validationSchema = yup.object({
 });
 
 export default function Home() {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOpen(false);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+  const [open, setOpen] = useState(false);
   const formik = useFormik({
     initialValues: {
       generalCategory: "defaultValue",
@@ -70,7 +79,7 @@ export default function Home() {
             handleBlur={formik.handleBlur}
           />
         </Stack>
-        <Stack gap={2} width={"50%"}>
+        <Stack gap={3} width={"50%"}>
           <ProductGeneralCategory
             generalCategoryName={"generalCategory"}
             generalCategoryValue={formik.values.generalCategory}
@@ -94,6 +103,47 @@ export default function Home() {
           />
           <ProductType />
           <ProductTag />
+          <Stack alignSelf={"end"} direction={"row"} gap={1}>
+            <Button
+              sx={{
+                borderRadius: "8px",
+                border: "1px solid #D6D8DB",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "#121316",
+                bgcolor: "#FFFFFF",
+                px: "20px",
+                py: "10px",
+              }}
+            >
+              Ноорог
+            </Button>
+            <Button
+              sx={{
+                borderRadius: "8px",
+                fontSize: "18px",
+                fontWeight: "600",
+                color: "#FFFFFF",
+                bgcolor: "#121316",
+                px: "20px",
+                py: "10px",
+                ":hover": { bgcolor: "#393939" },
+              }}
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              Нийтлэх
+            </Button>
+            {open && (
+              <AlertModal
+                open={open}
+                handleClose={() => {
+                  setOpen(false);
+                }}
+              />
+            )}
+          </Stack>
         </Stack>
       </Stack>
     </Stack>

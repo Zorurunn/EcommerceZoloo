@@ -38,7 +38,7 @@ export const SIDEBAR_LINES = [
   {
     name: "Тохиргоо",
     icon: SettingsIcon,
-    href: "/dashboard/pageOption",
+    href: "/dashboard/settings",
   },
 ];
 
@@ -179,18 +179,8 @@ export const ROWS = [
     135000,
     "2022-03-19"
   ),
-  createData(
-    12345681,
-    "Zoloosoko0526@gmail.com 99119009",
-    13000,
-    "2022-03-19"
-  ),
-  createData(
-    12345680,
-    "Zoloosoko0526@gmail.com 99119009",
-    15000,
-    "2022-03-16"
-  ),
+  createData(12345681, "Zoloosoko0526@gmail.com 99119009", 13000, "2022-03-19"),
+  createData(12345680, "Zoloosoko0526@gmail.com 99119009", 15000, "2022-03-16"),
   createData(
     12345679,
     "Zoloosoko0526@gmail.com 99119009",
@@ -204,18 +194,8 @@ export const ROWS = [
     "2022-03-12"
   ),
 
-  createData(
-    12345677,
-    "Zoloosoko0526@gmail.com 99119009",
-    45000,
-    "2022-03-12"
-  ),
-  createData(
-    12345676,
-    "Zoloosoko0526@gmail.com 99119009",
-    35000,
-    "2022-03-12"
-  ),
+  createData(12345677, "Zoloosoko0526@gmail.com 99119009", 45000, "2022-03-12"),
+  createData(12345676, "Zoloosoko0526@gmail.com 99119009", 35000, "2022-03-12"),
   createData(
     12345675,
     "Zoloosoko0526@gmail.com 99119009",
@@ -251,10 +231,10 @@ export const ROWS = [
 export const SIDEBAR_WIDTH = 240;
 export const NAVBAR_HEIGHT = 50;
 
-export const ProductInfos = [
+export const PRODUCT_INFO = [
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -264,7 +244,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -274,7 +254,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -284,7 +264,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -294,7 +274,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -304,7 +284,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -314,7 +294,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -324,7 +304,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -334,7 +314,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -344,7 +324,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -354,7 +334,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -364,7 +344,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -374,7 +354,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -384,7 +364,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -394,7 +374,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -404,7 +384,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -414,7 +394,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -424,7 +404,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -434,7 +414,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",
@@ -444,7 +424,7 @@ export const ProductInfos = [
   },
   {
     name: "laptop",
-    img: "/instagram.svg",
+    img: "/FeaturedIcon.png",
     code: "0001",
     category: "notebooks",
     price: "1'000'000",

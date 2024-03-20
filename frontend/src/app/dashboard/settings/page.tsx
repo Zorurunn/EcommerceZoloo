@@ -3,7 +3,7 @@ import { Stack } from "@mui/system";
 import CheckIcon from "@mui/icons-material/Check";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
-export const PageOption = () => {
+export default function Home() {
   return (
     <Stack
       ml={"10%"}
@@ -95,4 +95,4 @@ export const PageOption = () => {
       </Stack>
     </Stack>
   );
-};
+}
