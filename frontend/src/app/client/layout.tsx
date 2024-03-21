@@ -6,8 +6,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ToastContainer } from "react-toastify";
 import { theme } from "@/theme";
 import { DataProvider } from "@/components/provider/DataProvider";
-import Navbar from "./_components/header&footer/Navbar";
+import Navbar from "./_components/header&footer/HeadingBar";
 import { Footer } from "./_components/header&footer/Footer";
+import Header from "./_components/header&footer/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
           <ThemeProvider theme={theme}>
             <AuthProvider>
               <DataProvider>
-                <Navbar />
+                <Header />
                 {children}
               </DataProvider>
               <Footer />
