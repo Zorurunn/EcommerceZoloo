@@ -1,6 +1,6 @@
 "use client";
 import { LeftSideBar } from "@/components/LeftSideBar";
-import { BlackHeader } from "@/components/header/BlackHeader";
+import { BlackHeader } from "@/components/BlackHeader";
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from "@/constants";
 import { Container, Stack } from "@mui/material";
 
@@ -24,7 +24,6 @@ export default function RootLayout({
         >
           <LeftSideBar />
         </Stack>
-
         <Stack flexGrow={1} sx={{ backgroundColor: "#F7F7F8" }}>
           <Container sx={{ height: "100%" }} maxWidth="lg">
             {children}

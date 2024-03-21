@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <Stack
       sx={{
-        bgcolor: "#12A795",
+        bgcolor: "#E7E4F8",
         py: "114px",
       }}
     >

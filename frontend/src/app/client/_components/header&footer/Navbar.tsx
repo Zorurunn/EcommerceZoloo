@@ -17,7 +17,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <Stack position={"sticky"} width="100vw" bgcolor="#12A795">
+    <Stack position={"sticky"} width="100vw" bgcolor="#7E33E0">
       <Container maxWidth="xl">
         <Stack
           direction={"row"}
