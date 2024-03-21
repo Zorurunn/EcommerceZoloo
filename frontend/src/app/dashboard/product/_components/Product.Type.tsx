@@ -20,17 +20,20 @@ export const ProductType = () => {
           <Typography fontSize={14} fontWeight={400} color={"text.primary"}>
             Өнгө
           </Typography>
-
-          {colors.map((item, index) => (
-            <Stack
-              width={25}
-              height={25}
-              borderRadius={"50%"}
-              bgcolor={item}
-              border={1}
-            />
-          ))}
-          <Stack alignItems={"center"} justifyContent={"center"} padding={1}>
+          <Stack overflow={"scroll"} minWidth={380}>
+            <Stack direction={"row"} gap={2}>
+              {colors.map((item, index) => (
+                <Stack
+                  width={40}
+                  height={40}
+                  borderRadius={"50%"}
+                  bgcolor={item}
+                  border={1}
+                />
+              ))}
+            </Stack>
+          </Stack>
+          <Stack alignItems={"center"} justifyContent={"center"}>
             <IconButton
               onClick={() => {
                 setOpenColor(true);
@@ -38,7 +41,7 @@ export const ProductType = () => {
               size="small"
               aria-label="adds"
             >
-              <Stack borderRadius={"50%"} bgcolor={"#ECEDF0"}>
+              <Stack p={1} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
@@ -64,7 +67,7 @@ export const ProductType = () => {
           </Typography>
           <Stack alignItems={"center"} justifyContent={"center"} padding={1}>
             <IconButton size="small" aria-label="adds">
-              <Stack borderRadius={"50%"} bgcolor={"#ECEDF0"}>
+              <Stack p={1} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
