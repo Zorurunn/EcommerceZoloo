@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ProductColor } from "./ProductColor";
 
 export const ProductType = () => {
-  const [color, setColor] = useState(0);
+  const [colors, setColors] = useState<string[]>([]);
   const [openColor, setOpenColor] = useState(false);
   const [openSize, setOpenSize] = useState(false);
 
@@ -20,19 +20,31 @@ export const ProductType = () => {
           <Typography fontSize={14} fontWeight={400} color={"text.primary"}>
             Өнгө
           </Typography>
-          {/* 
-          {new Array.fill().map(() => {
-            <Stack></Stack>;
-          })} */}
 
+          {colors.map((item, index) => (
+            <Stack
+              width={25}
+              height={25}
+              borderRadius={"50%"}
+              bgcolor={item}
+              border={1}
+            />
+          ))}
           <Stack alignItems={"center"} justifyContent={"center"} padding={1}>
-            <IconButton size="small" aria-label="adds">
+            <IconButton
+              onClick={() => {
+                setOpenColor(true);
+              }}
+              size="small"
+              aria-label="adds"
+            >
               <Stack borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
             {openColor && (
               <ProductColor
+                setColors={setColors}
                 openColor={openColor}
                 handleCloseColor={() => {
                   setOpenColor(false);

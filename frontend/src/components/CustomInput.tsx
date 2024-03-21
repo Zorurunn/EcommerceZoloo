@@ -73,6 +73,7 @@ export const CustomInput = (props: CustomInputProps) => {
     iconType = "search",
     multiLine = false,
     bgcolor = "#ECEDF0",
+    ...rest
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -87,6 +88,7 @@ export const CustomInput = (props: CustomInputProps) => {
     <Stack width={"100%"}>
       <Typography color={"text.primary"}>{label}</Typography>
       <TextField
+        {...rest}
         name={name}
         id={id}
         value={value}
