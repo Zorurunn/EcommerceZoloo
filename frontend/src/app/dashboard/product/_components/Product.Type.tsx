@@ -1,35 +1,92 @@
 import { CustomInput } from "@/components";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  CardActionArea,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import { ProductColor } from "./ProductColor";
+import { ProductSize } from "./ProductSIze";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 export const ProductType = () => {
   const [colors, setColors] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
   const [openColor, setOpenColor] = useState(false);
   const [openSize, setOpenSize] = useState(false);
+  const [ColorClearBtn, setClearColorBtn] = useState(false);
+  const [SizeClearBtn, setSizeClearBtn] = useState(false);
+
+  const showColorBtn = () => {
+    setClearColorBtn(true);
+  };
+  const hideColorBtn = () => {
+    setClearColorBtn(false);
+  };
+
+  const showSizeBtn = () => {
+    setSizeClearBtn(true);
+  };
+  const hideSizeBtn = () => {
+    setSizeClearBtn(false);
+  };
 
   return (
     <Stack padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"} gap={3}>
       <Typography fontSize={18} fontWeight={600} color={"text.primary"}>
         Төрөл
       </Typography>
-      <Stack gap={1}>
+
+      <Stack gap={2}>
         <Stack direction={"row"} alignItems={"center"} gap={4}>
-          <Typography fontSize={14} fontWeight={400} color={"text.primary"}>
+          <Typography fontSize={16} fontWeight={400} color={"text.primary"}>
             Өнгө
           </Typography>
-          <Stack overflow={"scroll"} minWidth={380}>
+          <Stack direction={"row"} overflow={"scroll"} maxWidth={335}>
             <Stack direction={"row"} gap={2}>
               {colors.map((item, index) => (
                 <Stack
-                  width={40}
-                  height={40}
-                  borderRadius={"50%"}
-                  bgcolor={item}
-                  border={1}
-                />
+                  position={"relative"}
+                  onMouseOver={showColorBtn}
+                  onMouseOut={hideColorBtn}
+                >
+                  <Stack
+                    key={index}
+                    width={50}
+                    height={50}
+                    borderRadius={"50%"}
+                    bgcolor={item}
+                    border={1}
+                  />
+                  {ColorClearBtn && (
+                    <IconButton
+                      sx={{
+                        bgcolor: "#000",
+                        position: "absolute",
+                        top: "0",
+                        right: "0",
+                        width: 10,
+                        height: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        "&:hover": {
+                          bgcolor: "#121316",
+                        },
+                      }}
+                    >
+                      <ClearOutlinedIcon
+                        sx={{
+                          color: "#fff",
+                          fontSize: "12px",
+                        }}
+                      />
+                    </IconButton>
+                  )}
+                </Stack>
               ))}
             </Stack>
           </Stack>
@@ -41,7 +98,7 @@ export const ProductType = () => {
               size="small"
               aria-label="adds"
             >
-              <Stack p={1} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
+              <Stack p={1.8} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
@@ -56,39 +113,105 @@ export const ProductType = () => {
             )}
           </Stack>
         </Stack>
+
         <Stack direction={"row"} alignItems={"center"} gap={4}>
           <Typography
-            fontSize={14}
+            fontSize={16}
             fontWeight={400}
             color={"text.primary"}
             lineHeight={"20px"}
           >
             Хэмжээ
           </Typography>
-          <Stack alignItems={"center"} justifyContent={"center"} padding={1}>
-            <IconButton size="small" aria-label="adds">
-              <Stack p={1} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
+
+          <Stack direction={"row"} overflow={"scroll"} maxWidth={335}>
+            <Stack
+              direction={"row"}
+              gap={2}
+              onMouseOver={showSizeBtn}
+              onMouseOut={hideSizeBtn}
+            >
+              {sizes.map((item, index) => (
+                <Stack position={"relative"}>
+                  <Stack
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    key={index}
+                    width={50}
+                    height={50}
+                    borderRadius={"50%"}
+                    bgcolor={"#ECEDF0"}
+                    border={1}
+                  >
+                    <Typography>{item}</Typography>
+                  </Stack>
+                  {SizeClearBtn && (
+                    <IconButton
+                      sx={{
+                        bgcolor: "#000",
+                        position: "absolute",
+                        top: "0",
+                        right: "0",
+                        width: 10,
+                        height: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                        "&:hover": {
+                          bgcolor: "#121316",
+                        },
+                      }}
+                    >
+                      <ClearOutlinedIcon
+                        sx={{
+                          color: "#fff",
+                          fontSize: "12px",
+                        }}
+                      />
+                    </IconButton>
+                  )}
+                </Stack>
+              ))}
+            </Stack>
+          </Stack>
+          <Stack alignItems={"center"} justifyContent={"center"}>
+            <IconButton
+              onClick={() => {
+                setOpenSize(true);
+              }}
+              size="small"
+              aria-label="adds"
+            >
+              <Stack p={1.8} borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
+            {openSize && (
+              <ProductSize
+                setSizes={setSizes}
+                openSize={openSize}
+                handleCloseSize={() => {
+                  setOpenSize(false);
+                }}
+              />
+            )}
           </Stack>
         </Stack>
-        <Stack width={150}>
-          <Button
-            fullWidth
-            sx={{
-              border: "1px solid #D6D8DB",
-              borderRadius: "8px",
-              whiteSpace: "nowrap",
-              padding: "8px",
-              color: "#000",
-            }}
-          >
-            <Typography fontSize={14} fontWeight={600}>
-              Төрөл нэмэх
-            </Typography>
-          </Button>
-        </Stack>
+      </Stack>
+      <Stack width={150}>
+        <Button
+          fullWidth
+          sx={{
+            border: "1px solid #D6D8DB",
+            borderRadius: "8px",
+            whiteSpace: "nowrap",
+            padding: "8px",
+            color: "#000",
+          }}
+        >
+          <Typography fontSize={14} fontWeight={600}>
+            Төрөл нэмэх
+          </Typography>
+        </Button>
       </Stack>
     </Stack>
   );

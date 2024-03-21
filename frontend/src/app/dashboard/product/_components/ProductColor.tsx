@@ -33,6 +33,7 @@ export const ProductColor = ({
           flexDirection: "column",
           alignItems: "flex-end",
           gap: "20px",
+          borderRadius: "16px",
         }}
       >
         <Stack
