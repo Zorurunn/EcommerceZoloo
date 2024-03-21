@@ -105,6 +105,7 @@ export function Footer() {
                 ))}
               </Stack>
               <Stack gap={1}>
+                {/* gukgkjgkgkgk */}
                 {other_categories.map((item) => (
                   <>
                     <Typography
