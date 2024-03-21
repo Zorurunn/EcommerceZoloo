@@ -1,74 +1,84 @@
 "use client";
-import {
-  Stack,
-  Container,
-  Typography,
-  TextField,
-  Input,
-  InputAdornment,
-  styled,
-  Avatar,
-} from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { InputAdornment, Stack, TextField, Typography } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
-import Image from "next/image";
-import React from "react";
+import { Container } from "@mui/material";
+import { useState } from "react";
+import { TextFields } from "@mui/icons-material";
 
-const Navbar = () => {
+export const Navbar = () => {
+  const [activeTab, setActiveTab] = useState(" Нүүр");
+
+  const data = [{ name: "Нүүр" }, { name: " Ангилал" }];
   return (
-    <Stack position={"sticky"} width="100vw" bgcolor="#7E33E0">
-      <Container maxWidth="xl">
+    <Stack width={"100%"} bgcolor={"#FFFFFF"}>
+      <Container maxWidth={"xl"}>
         <Stack
+          width={"100%"}
+          py={3}
+          px={1}
           direction={"row"}
-          justifyContent={"space-between"}
-          padding={"10px"}
           alignItems={"center"}
+          justifyContent={"space-between"}
         >
           <Stack
             direction={"row"}
             alignItems={"center"}
-            justifyContent={"center"}
-            gap={2}
+            justifyContent={"space-between"}
+            gap={"25%"}
           >
-            <Image src="/images/Logo.png" alt="Logo" width={37} height={31} />
-            <Typography fontSize={31} fontWeight={700} color={"white"}>
+            <Typography fontSize={34} fontWeight={700} color={"#0D0E43"}>
               Ecommerce
             </Typography>
+            <Stack direction={"row"} alignItems={"center"} gap={3}>
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"center"}
+              >
+                <Typography
+                  fontSize={16}
+                  fontWeight={400}
+                  sx={{
+                    color: activeTab === "Нүүр" ? "#0D0E43" : "#0D0E43",
+                  }}
+                >
+                  Нүүр
+                </Typography>
+                <KeyboardArrowDownIcon />
+              </Stack>
+
+              <Typography fontSize={16} fontWeight={400} color={"#0D0E43"}>
+                Ангилал
+              </Typography>
+            </Stack>
           </Stack>
           <Stack direction={"row"} alignItems={"center"}>
             <TextField
               sx={{}}
               variant="outlined"
               type="search"
-              placeholder="Хайлт"
               InputProps={{
-                sx: { borderRadius: "8px", background: "#F7F7F8" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    {/* search */}
-                    <SearchIcon sx={{ cursor: "pointer" }} />
+                sx: {
+                  background: "#FB2E86",
+                },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon sx={{ cursor: "pointer", color: "#FFFFFF" }} />
                   </InputAdornment>
                 ),
               }}
               inputProps={{
                 style: {
                   padding: "8px",
-                  border: "1px",
-                  borderRadius: "8px",
+                  border: "2px solid #E7E6EF",
                   background: "#F7F7F8",
                 },
               }}
             />
-          </Stack>
-          <Stack direction={"row"} alignItems={"center"} gap={5}>
-            <FavoriteIcon sx={{ color: "white" }} />
-            <ShoppingCartIcon sx={{ color: "white" }} />
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </Stack>
         </Stack>
       </Container>
     </Stack>
   );
 };
-export default Navbar;
