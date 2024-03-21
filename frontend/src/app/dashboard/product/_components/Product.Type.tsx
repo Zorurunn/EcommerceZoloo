@@ -2,8 +2,14 @@ import { CustomInput } from "@/components";
 import { Button, IconButton, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useState } from "react";
+import { ProductColor } from "./ProductColor";
 
 export const ProductType = () => {
+  const [color, setColor] = useState(0);
+  const [openColor, setOpenColor] = useState(false);
+  const [openSize, setOpenSize] = useState(false);
+
   return (
     <Stack padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"} gap={3}>
       <Typography fontSize={18} fontWeight={600} color={"text.primary"}>
@@ -14,12 +20,25 @@ export const ProductType = () => {
           <Typography fontSize={14} fontWeight={400} color={"text.primary"}>
             Өнгө
           </Typography>
+          {/* 
+          {new Array.fill().map(() => {
+            <Stack></Stack>;
+          })} */}
+
           <Stack alignItems={"center"} justifyContent={"center"} padding={1}>
             <IconButton size="small" aria-label="adds">
               <Stack borderRadius={"50%"} bgcolor={"#ECEDF0"}>
                 <AddIcon />
               </Stack>
             </IconButton>
+            {openColor && (
+              <ProductColor
+                openColor={openColor}
+                handleCloseColor={() => {
+                  setOpenColor(false);
+                }}
+              />
+            )}
           </Stack>
         </Stack>
         <Stack direction={"row"} alignItems={"center"} gap={4}>

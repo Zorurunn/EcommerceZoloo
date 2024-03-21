@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 export default function ProductImageSection() {
   const [images, setImages] = useState<string[]>(["", "", ""]);
+  const [colors, setColors] = useState<string[]>([]);
   // const [urls, setUrls] = useState<string[]>([]);
 
   const removeImage = (index: number) => {
@@ -68,6 +69,23 @@ export default function ProductImageSection() {
             </Stack>
           </IconButton>
         </Stack>
+      </Stack>
+
+      <Stack direction="row" gap={2}>
+        {colors.map((color) => (
+          <Stack
+            width={100}
+            height={100}
+            borderRadius={"50%"}
+            bgcolor={color}
+          />
+        ))}
+        <input
+          type="color"
+          onChange={(e) => {
+            setColors((prev) => [...prev, e.target.value]);
+          }}
+        />
       </Stack>
     </Stack>
   );
