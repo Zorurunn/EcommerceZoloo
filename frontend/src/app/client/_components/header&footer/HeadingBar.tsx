@@ -2,7 +2,6 @@
 import { Stack, Container, Typography, Avatar } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -11,7 +10,7 @@ import React from "react";
 export const HeadingBar = () => {
   return (
     <Stack position={"sticky"} width="100vw" bgcolor="#7E33E0">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Stack
           direction={"row"}
           justifyContent={"space-between"}

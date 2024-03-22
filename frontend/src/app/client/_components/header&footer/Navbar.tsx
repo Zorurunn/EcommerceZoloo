@@ -12,7 +12,7 @@ export const Navbar = () => {
   const data = [{ name: "Нүүр" }, { name: " Ангилал" }];
   return (
     <Stack width={"100%"} bgcolor={"#FFFFFF"}>
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"lg"}>
         <Stack
           width={"100%"}
           py={3}
