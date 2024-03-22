@@ -35,6 +35,14 @@ export const ProductType = () => {
     setSizeClearBtn(false);
   };
 
+  const removeColor = (index: number) => {
+    setColors((prev) => prev.filter((_, idx) => idx !== index));
+  };
+
+  const removeSize = (index: number) => {
+    setSizes((prev) => prev.filter((_, idx) => idx !== index));
+  };
+
   return (
     <Stack padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"} gap={3}>
       <Typography fontSize={18} fontWeight={600} color={"text.primary"}>
@@ -42,50 +50,57 @@ export const ProductType = () => {
       </Typography>
 
       <Stack gap={2}>
-        <Stack direction={"row"} alignItems={"center"} gap={4}>
+        <Stack direction={"row"} alignItems={"center"} gap={3}>
           <Typography fontSize={16} fontWeight={400} color={"text.primary"}>
             Өнгө
           </Typography>
-          <Stack direction={"row"} overflow={"scroll"} maxWidth={335}>
-            <Stack direction={"row"} gap={2}>
-              {colors.map((item, index) => (
+          <Stack direction={"row"} overflow={"scroll"} maxWidth={340}>
+            <Stack direction={"row"} gap={3}>
+              {colors.map((color, index) => (
                 <Stack
                   position={"relative"}
-                  onMouseOver={showColorBtn}
-                  onMouseOut={hideColorBtn}
+                  sx={{
+                    "&:hover .deleteColorBtn": {
+                      display: "flex",
+                    },
+                  }}
                 >
                   <Stack
                     key={index}
                     width={50}
                     height={50}
                     borderRadius={"50%"}
-                    bgcolor={item}
+                    bgcolor={color}
                     border={1}
                   />
-                  {ColorClearBtn && (
-                    <IconButton
+
+                  <IconButton
+                    onClick={() => {
+                      removeColor(index);
+                    }}
+                    className="deleteColorBtn"
+                    sx={{
+                      display: "none",
+                      bgcolor: "#000",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: 10,
+                      height: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      "&:hover": {
+                        bgcolor: "#121316",
+                      },
+                    }}
+                  >
+                    <ClearOutlinedIcon
                       sx={{
-                        bgcolor: "#000",
-                        position: "absolute",
-                        top: "0",
-                        right: "0",
-                        width: 10,
-                        height: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        "&:hover": {
-                          bgcolor: "#121316",
-                        },
+                        color: "#fff",
+                        fontSize: "12px",
                       }}
-                    >
-                      <ClearOutlinedIcon
-                        sx={{
-                          color: "#fff",
-                          fontSize: "12px",
-                        }}
-                      />
-                    </IconButton>
-                  )}
+                    />
+                  </IconButton>
                 </Stack>
               ))}
             </Stack>
@@ -114,7 +129,7 @@ export const ProductType = () => {
           </Stack>
         </Stack>
 
-        <Stack direction={"row"} alignItems={"center"} gap={4}>
+        <Stack direction={"row"} alignItems={"center"} gap={3}>
           <Typography
             fontSize={16}
             fontWeight={400}
@@ -124,15 +139,17 @@ export const ProductType = () => {
             Хэмжээ
           </Typography>
 
-          <Stack direction={"row"} overflow={"scroll"} maxWidth={335}>
-            <Stack
-              direction={"row"}
-              gap={2}
-              onMouseOver={showSizeBtn}
-              onMouseOut={hideSizeBtn}
-            >
-              {sizes.map((item, index) => (
-                <Stack position={"relative"}>
+          <Stack direction={"row"} overflow={"scroll"} maxWidth={320}>
+            <Stack direction={"row"} gap={3}>
+              {sizes.map((size, index) => (
+                <Stack
+                  position={"relative"}
+                  sx={{
+                    "&:hover .deleteSizeBtn": {
+                      display: "flex",
+                    },
+                  }}
+                >
                   <Stack
                     justifyContent={"center"}
                     alignItems={"center"}
@@ -143,32 +160,36 @@ export const ProductType = () => {
                     bgcolor={"#ECEDF0"}
                     border={1}
                   >
-                    <Typography>{item}</Typography>
+                    <Typography>{size}</Typography>
                   </Stack>
-                  {SizeClearBtn && (
-                    <IconButton
+
+                  <IconButton
+                    className="deleteSizeBtn"
+                    onClick={() => {
+                      removeSize(index);
+                    }}
+                    sx={{
+                      display: "none",
+                      bgcolor: "#000",
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      width: 10,
+                      height: 10,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      "&:hover": {
+                        bgcolor: "#121316",
+                      },
+                    }}
+                  >
+                    <ClearOutlinedIcon
                       sx={{
-                        bgcolor: "#000",
-                        position: "absolute",
-                        top: "0",
-                        right: "0",
-                        width: 10,
-                        height: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        "&:hover": {
-                          bgcolor: "#121316",
-                        },
+                        color: "#fff",
+                        fontSize: "12px",
                       }}
-                    >
-                      <ClearOutlinedIcon
-                        sx={{
-                          color: "#fff",
-                          fontSize: "12px",
-                        }}
-                      />
-                    </IconButton>
-                  )}
+                    />
+                  </IconButton>
                 </Stack>
               ))}
             </Stack>

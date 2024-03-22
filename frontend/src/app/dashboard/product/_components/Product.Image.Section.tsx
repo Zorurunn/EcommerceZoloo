@@ -42,6 +42,7 @@ export default function ProductImageSection() {
             {images.map((image, index) => (
               <ProductImgField
                 image={image}
+                images={images}
                 setImages={setImages}
                 handleDelete={() => {
                   removeImage(index);

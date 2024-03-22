@@ -9,10 +9,12 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 export const ProductImgField = ({
   image,
+  images,
   setImages,
   handleDelete,
 }: {
   image: string;
+  images: string[];
   setImages: Dispatch<SetStateAction<string[]>>;
   handleDelete: () => void;
 }) => {
@@ -28,21 +30,22 @@ export const ProductImgField = ({
     setImgClearBtn(false);
   };
 
-  // useEffect(() => {
-  //   if (urls && imgUrl) {
-  //     setUrls((prev) => [...prev, imgUrl]);
-  //   } else {
-  //     if (imgUrl) {
-  //       setImgUrl(imgUrl);
-  //     }
-  //   }
-  // }, [imgUrl]);
+  useEffect(() => {
+    if (images && imgUrl) {
+      setImages((prev) => [...prev, imgUrl]);
+    } else {
+      if (imgUrl) {
+        setImgUrl(imgUrl);
+      }
+    }
+  }, [imgUrl]);
 
   return (
     <Stack direction={"row"}>
       <Stack direction={"row"} gap={2}>
         {open && (
           <AddProductImg
+            image={image}
             open={open}
             handleClose={() => {
               setOpen(false);
@@ -52,7 +55,7 @@ export const ProductImgField = ({
             setImgUrl={setImgUrl}
           />
         )}
-        {!image && (
+        {!showPicture && (
           <Stack onMouseOver={showImgBtn} onMouseOut={hideImgBtn}>
             <Stack
               onClick={() => {
@@ -99,8 +102,13 @@ export const ProductImgField = ({
           </Stack>
         )}
 
-        {image && (
-          <Stack direction={"row"} gap={2}>
+        {showPicture && (
+          <Stack
+            direction={"row"}
+            gap={2}
+            onMouseOver={showImgBtn}
+            onMouseOut={hideImgBtn}
+          >
             <Stack
               position={"relative"}
               overflow={"hidden"}
@@ -108,29 +116,35 @@ export const ProductImgField = ({
               height={125}
               borderRadius={2}
             >
-              <Stack
-                // onClick={(e) => {
-                //   const newUrls = urls.filter((item) => {
-                //     return item != imgUrl;
-                //   });
-                //   setUrls(newUrls);
-                //   setImgQty((prev) => prev - 1);
-                //   e.stopPropagation();
-                // }}
-                position={"absolute"}
-                top={5}
-                right={5}
-                zIndex={10}
-                bgcolor={"#fff"}
-                borderRadius={"50%"}
-              >
-                <CloseIcon
-                  sx={{
-                    fontSize: "18px",
+              <Image src={imgUrl ?? ""} alt="" fill objectFit="cover" />
+              {imgClearBtn && (
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete();
                   }}
-                />
-              </Stack>
-              <Image src={image} alt="" fill objectFit="cover" />
+                  sx={{
+                    bgcolor: "#000",
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    width: 10,
+                    height: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    "&:hover": {
+                      bgcolor: "#121316",
+                    },
+                  }}
+                >
+                  <ClearOutlinedIcon
+                    sx={{
+                      color: "#fff",
+                      fontSize: "12px",
+                    }}
+                  />
+                </IconButton>
+              )}
             </Stack>
           </Stack>
         )}

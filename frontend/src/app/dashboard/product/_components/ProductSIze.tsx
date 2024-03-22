@@ -10,6 +10,8 @@ import {
 import { Stack } from "@mui/system";
 import { Dispatch, SetStateAction, useState } from "react";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import * as yup from "yup";
+import { useFormik } from "formik";
 
 const sizes = [
   { size: "XS" },
@@ -94,6 +96,9 @@ export const ProductSize = ({
           </Stack>
           <Button
             onClick={() => {
+              if (!size) {
+                return;
+              }
               setSizes((prev) => [...prev, size]);
             }}
             sx={{
@@ -109,7 +114,7 @@ export const ProductSize = ({
               },
             }}
           >
-            Өнгө нэмэх
+            Хэмжээ нэмэх
           </Button>
         </Stack>
       </Card>
