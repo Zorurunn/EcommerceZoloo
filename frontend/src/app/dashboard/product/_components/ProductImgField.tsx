@@ -8,12 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 export const ProductImgField = ({
-  image,
   images,
   setImages,
   handleDelete,
 }: {
-  image: string;
   images: string[];
   setImages: Dispatch<SetStateAction<string[]>>;
   handleDelete: () => void;
@@ -45,7 +43,6 @@ export const ProductImgField = ({
       <Stack direction={"row"} gap={2}>
         {open && (
           <AddProductImg
-            image={image}
             open={open}
             handleClose={() => {
               setOpen(false);

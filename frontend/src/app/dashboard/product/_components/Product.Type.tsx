@@ -18,22 +18,6 @@ export const ProductType = () => {
   const [sizes, setSizes] = useState<string[]>([]);
   const [openColor, setOpenColor] = useState(false);
   const [openSize, setOpenSize] = useState(false);
-  const [ColorClearBtn, setClearColorBtn] = useState(false);
-  const [SizeClearBtn, setSizeClearBtn] = useState(false);
-
-  const showColorBtn = () => {
-    setClearColorBtn(true);
-  };
-  const hideColorBtn = () => {
-    setClearColorBtn(false);
-  };
-
-  const showSizeBtn = () => {
-    setSizeClearBtn(true);
-  };
-  const hideSizeBtn = () => {
-    setSizeClearBtn(false);
-  };
 
   const removeColor = (index: number) => {
     setColors((prev) => prev.filter((_, idx) => idx !== index));

@@ -4,7 +4,6 @@ import { Button, Container, Stack, TextField, Modal } from "@mui/material";
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 type AddProductImgProps = {
-  image: string;
   open: boolean;
   handleClose: () => void;
   imgUrl: string | undefined;
@@ -13,7 +12,7 @@ type AddProductImgProps = {
 };
 
 export const AddProductImg = (props: AddProductImgProps) => {
-  const { imgUrl, setImgUrl, setShowPicture, open, handleClose, image } = props;
+  const { imgUrl, setImgUrl, setShowPicture, open, handleClose } = props;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
