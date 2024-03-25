@@ -38,7 +38,7 @@ export const createOrder: RequestHandler = async (req, res) => {
       }
     }
 
-    // DECREASE STOCK bulk write yaj bichih???
+    // DECREASE STOCK
     for (let i = 0; i < orderedProducts.length; i++) {
       const { productId, quantity } = orderedProducts[i];
       await ProductModel.updateOne({ _id: productId },
@@ -53,3 +53,28 @@ export const createOrder: RequestHandler = async (req, res) => {
     res.json(error);
   }
 };
+
+// BILKWRITE MINUS STOCK
+//  for (let i = 0; i <= orderedProducts.length; i++) {
+//   console.log("eeee");
+
+//   const { productId, quantity, name } = orderedProducts[i];
+//   const thisProduct = await ProductModel.findOne({ _id: productId });
+//   console.log("Aaaa");
+
+//   await ProductModel.updateOne(
+//     { _id: productId },
+//     {
+//       $inc: { qty: -2 },
+//     }
+//   );
+// }
+
+// Too shirheg < stovk
+// bulkwrite;
+// await ProductModel.updateOne(
+//   { _id: "" },
+//   {
+//     $inc: { stock: -5 },
+//   }
+// );
