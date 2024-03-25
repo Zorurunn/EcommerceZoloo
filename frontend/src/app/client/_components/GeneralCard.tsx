@@ -13,7 +13,7 @@ export type GeneralCardType = {
 };
 
 export const CARD_TYPE = [
-  { src: "/cam.png", name: "Canon камер", price: 750000 },
+  { src: "/canon.png", name: "Canon камер", price: 750000 },
   { src: "/Chair.png", name: "Усан ягаан сандал", price: 750000 },
   { src: "/chair2.png", name: "Саарал сандал", price: 750000 },
   { src: "/backpack.png", name: "Laptop цүнх", price: 750000 },
@@ -27,8 +27,19 @@ export const GeneralCard = (props: GeneralCardType) => {
   const { src, name, price } = props;
   return (
     <Stack
-      maxWidth={270}
+      box-shadow={"0px 0px 25px 0px #0000001A"}
+      width={1}
       sx={{
+        aspectRatio: 1 / 1,
+        transition: "0.2 linear",
+        "&:hover .card": {
+          transform: "scale(1.05)",
+          transition: "0.2s ease",
+        },
+        "&:hover .bg": {
+          bgcolor: "#EBF4F3",
+          transition: "0.2s ease",
+        },
         "&:hover .edit": {
           opacity: "100%",
           transition: "300ms ease-in-out",
@@ -39,6 +50,7 @@ export const GeneralCard = (props: GeneralCardType) => {
         width={"100%"}
         height={280}
         bgcolor={"#F6F7FB"}
+        className="bg"
         position={"relative"}
       >
         {
@@ -84,7 +96,13 @@ export const GeneralCard = (props: GeneralCardType) => {
             </Stack>
           </Stack>
         }
-        <Image fill objectFit="contain" src={props.src} alt="Product Image" />
+        <Image
+          className="card"
+          fill
+          objectFit="cover"
+          src={props.src}
+          alt="Product Image"
+        />
       </Stack>
       <Stack
         alignItems={"center"}

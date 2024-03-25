@@ -13,6 +13,30 @@ export const GENERAL_CATEGORIES = ["Сонгох", "b", "c"];
 
 export const SUB_CATEGORIES = ["Сонгох", "b", "c"];
 
+// Service side
+export const SERVICECARD_ICON = [
+  {
+    title: "Үнэгүй хүргэлт",
+    src: "/deliverycar.png",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa purus gravida.",
+  },
+  {
+    title: "Буцаан олголт",
+    src: "/cashback.png",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa purus gravida.",
+  },
+  {
+    title: "Найдвартай",
+    src: "/premium.png",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa purus gravida.",
+  },
+  {
+    title: "24/7 тусламж",
+    src: "/callcenter.png",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa purus gravida.",
+  },
+];
+
 // Dashboard layout side bar
 export const SIDEBAR_LINES = [
   {

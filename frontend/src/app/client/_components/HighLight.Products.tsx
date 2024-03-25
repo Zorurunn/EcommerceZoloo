@@ -5,7 +5,7 @@ import { CARD_TYPE, GeneralCard } from "./GeneralCard";
 import { useState } from "react";
 import { generalCategoryType } from "@/common/types";
 
-export const NewProducts = () => {
+export const HighLightProducts = () => {
   const [cards, setCards] = useState<generalCategoryType[]>();
 
   return (
@@ -13,7 +13,7 @@ export const NewProducts = () => {
       <Stack width={"100%"}>
         <Stack alignItems={"center"} gap={6}>
           <Stack color={"#151875"} fontSize={42} fontWeight={800}>
-            Шинээр нэмэгдсэн
+            Онцлох бүтээгдэхүүн
           </Stack>
           <Grid
             width={"100%"}
@@ -22,7 +22,7 @@ export const NewProducts = () => {
             // columns={{ xs: 4, sm: 8 }}
             justifyContent={"space-between"}
           >
-            {CARD_TYPE?.map((item, _) => (
+            {CARD_TYPE?.slice(0, 4).map((item, _) => (
               <Grid item xs={3}>
                 <GeneralCard {...item} />
               </Grid>
