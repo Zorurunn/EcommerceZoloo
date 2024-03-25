@@ -25,8 +25,11 @@ export type ProductParams = {
   remainQty: number;
   images: string[];
   description: string;
-  productType: string[];
-  tag: string;
+  productType: {
+    productColor: string[];
+    productSize: string[];
+  };
+  productTag: string;
 };
 
 export type CategoryParams = {};

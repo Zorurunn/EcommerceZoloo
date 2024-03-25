@@ -3,8 +3,22 @@ import { CustomInput } from "@/components";
 import { Stack, Typography } from "@mui/material";
 import { style } from "@mui/system";
 import { link } from "fs";
-import { useState } from "react";
+import { ChangeEventHandler, FocusEventHandler, useState } from "react";
 import { TagsInput } from "react-tag-input-component";
+
+type ProductTagType = {
+  handleBlur?:
+    | FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined;
+  handleChange:
+    | ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined;
+
+  // Product tag
+  productTagName: string;
+  productTagValue: string;
+  productTagError: boolean | undefined;
+};
 
 export const ProductTag = () => {
   const [selected, setSelected] = useState([""]);

@@ -24,7 +24,7 @@ const validationSchema = yup.object({
   images: yup.array().required(),
   description: yup.string().required(),
   productType: yup.array().required(),
-  tag: yup.string().required(),
+  productTag: yup.string().required(),
 });
 
 export default function Home() {
@@ -44,6 +44,8 @@ export default function Home() {
     // formik.values.imgUrls = images;
   }, [images]);
   const [open, setOpen] = useState(false);
+  const [colors, setColors] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
   const formik = useFormik({
     initialValues: {
       productName: "",
@@ -52,10 +54,13 @@ export default function Home() {
       serialNumber: 0,
       price: 0,
       remainQty: 0,
-      images: [],
+      images: [""],
       description: "",
-      productType: [],
-      tag: "",
+      productType: {
+        productColor: "",
+        productSize: "",
+      },
+      productTag: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -68,7 +73,10 @@ export default function Home() {
         remainQty: values.remainQty,
         images: values.images,
         description: values.description,
-        productType: values.productType,
+        productType: {
+          productColor: colors,
+          productSize: sizes,
+        },
         tag: values.tag,
       });
     },
@@ -142,13 +150,25 @@ export default function Home() {
             handleBlur={formik.handleBlur}
           />
           <ProductType
-            productTypeName={"productType"}
-            productTypeValue={formik.values.productType}
-            productTypeError={
-              formik.touched.productType && Boolean(formik.errors.productType)
-            }
+            // productTypeName={"productType"}
+            // productTypeValue={formik.values.productType}
+            // productTypeError={
+            //   formik.touched.productType && Boolean(formik.errors.productType)
+            // }
+            colors={colors}
+            setColors={setColors}
+            sizes={sizes}
+            setSizes={setSizes}
           />
-          <ProductTag />
+          <ProductTag
+            productTagName={"productTag"}
+            productTageValue={formik.values.productTag}
+            productTagError={
+              formik.touched.productTag && Boolean(formik.values.productTag)
+            }
+            handleChange={formik.handleChange}
+            handleBlur={formik.handleBlur}
+          />
           <Stack alignSelf={"end"} direction={"row"} gap={1}>
             <Button
               sx={{
@@ -178,7 +198,7 @@ export default function Home() {
               }}
               onClick={() => {
                 formik.handleSubmit();
-                // setOpen(true);
+                setOpen(true);
               }}
               disabled={!formik.isValid || !formik.dirty}
             >

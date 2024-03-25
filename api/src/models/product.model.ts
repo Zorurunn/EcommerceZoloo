@@ -53,22 +53,24 @@ const productSchema = new Schema({
     required: true,
   },
   productType: {
-    type: [],
+    type: {
+      productColor: [
+        {
+          type: String,
+          required: true,
+        },
+      ],
+      productSize: [
+        {
+          type: String,
+          required: true,
+        },
+      ],
+    },
+
     required: true,
-    productColor: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
-    productSize: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
   },
-  tag: {
+  productTag: {
     type: String,
     required: true,
   },
