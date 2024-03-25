@@ -15,7 +15,7 @@ export const Navbar = () => {
       <Container maxWidth={"lg"}>
         <Stack
           width={"100%"}
-          py={1}
+          py={1.5}
           px={1}
           direction={"row"}
           alignItems={"center"}
