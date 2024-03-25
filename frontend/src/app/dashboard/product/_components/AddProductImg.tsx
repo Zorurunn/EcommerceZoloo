@@ -65,6 +65,7 @@ export const AddProductImg = (props: AddProductImgProps) => {
                 onClick={async () => {
                   await handleImageUpload();
                   setShowPicture(true);
+                  console.log(imgUrl);
                 }}
                 variant="contained"
                 sx={{

@@ -41,7 +41,8 @@ export default function ProductImageSection() {
           <Stack gap={2} direction={"row"}>
             {images.map((image, index) => (
               <ProductImgField
-                image={image}
+                key={image}
+                images={images}
                 setImages={setImages}
                 handleDelete={() => {
                   removeImage(index);
