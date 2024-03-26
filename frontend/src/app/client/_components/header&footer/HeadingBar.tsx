@@ -6,10 +6,16 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import React from "react";
+import { NAVBAR_HEIGHT } from "@/constants";
 
 export const HeadingBar = () => {
   return (
-    <Stack position={"sticky"} width="100vw" bgcolor="#7E33E0">
+    <Stack
+      position={"sticky"}
+      width="100vw"
+      bgcolor="#7E33E0"
+      height={NAVBAR_HEIGHT}
+    >
       <Container maxWidth="lg">
         <Stack
           direction={"row"}

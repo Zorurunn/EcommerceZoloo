@@ -5,6 +5,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomInOutlinedIcon from "@mui/icons-material/ZoomInOutlined";
 import Image from "next/image";
+import { useState } from "react";
 
 export type GeneralCardType = {
   src: string;
@@ -13,46 +14,59 @@ export type GeneralCardType = {
 };
 
 export const CARD_TYPE = [
-  { src: "/canon.png", name: "Canon камер", price: 750000 },
-  { src: "/Chair.png", name: "Усан ягаан сандал", price: 750000 },
-  { src: "/chair2.png", name: "Саарал сандал", price: 750000 },
-  { src: "/backpack.png", name: "Laptop цүнх", price: 750000 },
-  { src: "/product2.jpg", name: "Canon камер", price: 750000 },
-  { src: "/Chair.png", name: "Усан ягаан сандал", price: 750000 },
-  { src: "/ss.png", name: "Саарал сандал", price: 750000 },
-  { src: "/backpack.png", name: "Laptop цүнх", price: 750000 },
+  { src: "/pro.jpg", name: "Product", price: 750000 },
+  { src: "/pro2.jpg", name: "Product", price: 750000 },
+  { src: "/pro3.jpg", name: "Product", price: 750000 },
+  { src: "/pro4.jpg", name: "Product", price: 750000 },
+  { src: "/pro5.jpg", name: "Product", price: 750000 },
+  { src: "/pro6.jpg", name: "Product", price: 750000 },
+  { src: "/pro7.jpg", name: "Product", price: 750000 },
+  { src: "/pro8.jpg", name: "Product", price: 750000 },
+  { src: "/pro9.jpg", name: "Product", price: 750000 },
+  { src: "/pro10.jpg", name: "Product", price: 750000 },
+  { src: "/pro11.jpg", name: "Product", price: 750000 },
+  { src: "/pro12.jpg", name: "Product", price: 750000 },
 ];
 
 export const GeneralCard = (props: GeneralCardType) => {
   const { src, name, price } = props;
+  const [open, setOpen] = useState(false);
+  const [fav, setFav] = useState(false);
   return (
-    <Stack
-      box-shadow={"0px 0px 25px 0px #0000001A"}
-      width={1}
-      sx={{
-        aspectRatio: 1 / 1,
-        transition: "0.2 linear",
-        "&:hover .card": {
-          transform: "scale(1.05)",
-          transition: "0.2s ease",
-        },
-        "&:hover .bg": {
-          bgcolor: "#EBF4F3",
-          transition: "0.2s ease",
-        },
-        "&:hover .edit": {
-          opacity: "100%",
-          transition: "300ms ease-in-out",
-        },
-      }}
-    >
+    <Stack width={1} height={1}>
       <Stack
-        width={"100%"}
-        height={280}
         bgcolor={"#F6F7FB"}
         className="bg"
         position={"relative"}
+        box-shadow={"0px 0px 25px 0px #0000001A"}
+        width={1}
+        overflow={"hidden"}
+        sx={{
+          aspectRatio: 1 / 1,
+          transition: "0.2 linear",
+          "&:hover .card": {
+            transform: "scale(1.05)",
+            transition: "0.2s ease",
+            bgcolor: "#EBF4F3",
+          },
+          "&:hover .bg": {
+            bgcolor: "#EBF4F3",
+            transition: "0.2s ease",
+          },
+          "&:hover .edit": {
+            opacity: "100%",
+            transition: "300ms ease-in-out",
+          },
+        }}
       >
+        <Image
+          className="card"
+          fill
+          sizes="small"
+          style={{ objectFit: "cover", mixBlendMode: "multiply" }}
+          src={props.src}
+          alt="Product Image"
+        />
         {
           <Stack
             py={3}
@@ -96,13 +110,6 @@ export const GeneralCard = (props: GeneralCardType) => {
             </Stack>
           </Stack>
         }
-        <Image
-          className="card"
-          fill
-          objectFit="cover"
-          src={props.src}
-          alt="Product Image"
-        />
       </Stack>
       <Stack
         alignItems={"center"}

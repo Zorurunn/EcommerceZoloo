@@ -3,19 +3,18 @@ import { InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/material";
-import { useState } from "react";
 import { TextFields } from "@mui/icons-material";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Navbar = () => {
-  const [activeTab, setActiveTab] = useState(" Нүүр");
-
-  const data = [{ name: "Нүүр" }, { name: " Ангилал" }];
+  const pathname = usePathname();
+  const router = useRouter();
   return (
     <Stack width={"100%"} bgcolor={"#FFFFFF"}>
       <Container maxWidth={"lg"}>
         <Stack
           width={"100%"}
-          py={1.5}
+          py={2}
           px={1}
           direction={"row"}
           alignItems={"center"}
@@ -27,7 +26,15 @@ export const Navbar = () => {
             justifyContent={"space-between"}
             gap={"25%"}
           >
-            <Typography fontSize={34} fontWeight={700} color={"#0D0E43"}>
+            <Typography
+              fontSize={34}
+              fontWeight={700}
+              color={"#0D0E43"}
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+            >
               Ecommerce
             </Typography>
             <Stack direction={"row"} alignItems={"center"} gap={3}>
@@ -35,20 +42,31 @@ export const Navbar = () => {
                 direction={"row"}
                 alignItems={"center"}
                 justifyContent={"center"}
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  router.push("/client");
+                }}
+                color={
+                  pathname.includes("category") ? "#0D0E43" : "primary.light"
+                }
               >
-                <Typography
-                  fontSize={16}
-                  fontWeight={400}
-                  sx={{
-                    color: activeTab === "Нүүр" ? "#0D0E43" : "#0D0E43",
-                  }}
-                >
+                <Typography fontSize={16} fontWeight={400}>
                   Нүүр
                 </Typography>
                 <KeyboardArrowDownIcon />
               </Stack>
 
-              <Typography fontSize={16} fontWeight={400} color={"#0D0E43"}>
+              <Typography
+                fontSize={16}
+                fontWeight={400}
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  router.push("/client/category");
+                }}
+                color={
+                  !pathname.includes("category") ? "#0D0E43" : "primary.light"
+                }
+              >
                 Ангилал
               </Typography>
             </Stack>

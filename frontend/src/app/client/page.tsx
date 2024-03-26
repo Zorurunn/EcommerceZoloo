@@ -2,8 +2,8 @@
 import { HighLightProducts } from "./_components/HighLight.Products";
 import { IndexCard } from "./_components/Index.Card";
 import { NewProducts } from "./_components/New.Products";
-import { ServiceCards } from "./_components/Service";
 import { Container, Stack } from "@mui/material";
+import { HomePageService } from "./_components/Service";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <IndexCard />
         <HighLightProducts />
         <NewProducts />
-        <ServiceCards />
+        <HomePageService />
       </Stack>
     </>
   );
