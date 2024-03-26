@@ -26,12 +26,12 @@ const productSchema = new Schema({
   //   required: true,
   // },
 
-  // images: [
-  //   {
-  //     type: String,
-  //     required: true,
-  //   },
-  // ],
+  images: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   // coupon: {
   //   type: String,
   //   required: true,

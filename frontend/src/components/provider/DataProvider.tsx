@@ -2,6 +2,8 @@
 
 import { api } from "@/common";
 import { generalCategoryType, subCategoryType } from "@/common/types";
+import { AxiosError } from "axios";
+import { error } from "console";
 import {
   Dispatch,
   PropsWithChildren,
@@ -11,6 +13,21 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
+import { date } from "yup";
+
+export type ProductParams = {
+  productName: string;
+  generalCategory: string;
+  subCategory: string;
+  price: number;
+  qty: number;
+  images: string[];
+  description: string;
+};
+
+export type CategoryParams = {};
+
 type countityType = {
   countity: number;
 };
@@ -18,6 +35,7 @@ type countityType = {
 type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
+  createProduct: (params: ProductParams) => Promise<void>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -28,6 +46,27 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [generalCategories, setGeneralCategories] =
     useState<generalCategoryType[]>();
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
+
+  // POST PRODUCT
+
+  const createProduct = async (params: ProductParams) => {
+    try {
+      const { data } = await api.post("/createProduct", params);
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message ?? error.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+    }
+  };
 
   // GET GENERAL CATEGORIES
   const getGeneralCategories = async () => {
@@ -59,6 +98,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
       value={{
         generalCategories,
         subCategories,
+        createProduct,
       }}
     >
       {children}

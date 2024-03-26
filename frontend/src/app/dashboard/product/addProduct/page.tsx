@@ -12,6 +12,7 @@ import { BackTabs } from "@/components/Back.Tabs";
 import { useEffect, useState } from "react";
 import { AlertModal } from "../_components/Alert.Modal";
 import UploadImg from "../_components/UploadImg";
+import { useData } from "@/components/provider/DataProvider";
 
 const validationSchema = yup.object({
   product: yup.string().required(),
@@ -43,6 +44,11 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const formik = useFormik({
     initialValues: {
+      productName: "",
+      generalCategory: "defaultValue",
+      subCategory: "defaultValue",
+      price: 0,
+      total: "defaultValue",
       product: "",
       info: "",
       serialNumber: "#",
@@ -61,6 +67,13 @@ export default function Home() {
     },
   });
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOpen(false);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Stack gap={3} width={"100%"}>
       <BackTabs text="Бүтээгдэхүүн" />
@@ -70,11 +83,11 @@ export default function Home() {
             productName={"product"}
             serialNumberName={"serialNumber"}
             infoName={"info"}
-            productValue={formik.values.product}
+            productValue={formik.values.productName}
             infoValue={formik.values.info}
             serialNumberValue={formik.values.serialNumber}
             productError={
-              formik.touched.product && Boolean(formik.errors.product)
+              formik.touched.productName && Boolean(formik.errors.productName)
             }
             infoError={formik.touched.info && Boolean(formik.errors.info)}
             serialNumberError={
