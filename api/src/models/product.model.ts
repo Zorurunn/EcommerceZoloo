@@ -5,19 +5,19 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  generalCategoryId: {
-    type: mongoose.Schema.Types.ObjectId,
+  generalCategory: {
+    type: String,
     required: true,
   },
-  subCategoryId: {
-    type: mongoose.Schema.Types.ObjectId,
+  subCategory: {
+    type: String,
     required: true,
   },
   price: {
     type: Number,
     required: true,
   },
-  qty: {
+  remainQty: {
     type: Number,
     required: true,
   },
@@ -48,6 +48,31 @@ const productSchema = new Schema({
     type: Number,
     required: false,
   },
+  serialNumber: {
+    type: Number,
+    required: true,
+  },
+  productType: {
+    type: [],
+    required: true,
+    productColor: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    productSize: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+  },
+  tag: {
+    type: String,
+    required: true,
+  },
+
   createdAt: Date,
   updatedAt: Date,
 });

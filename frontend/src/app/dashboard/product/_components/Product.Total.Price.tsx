@@ -14,9 +14,16 @@ type productTotalPriceType = {
   priceName: string;
   priceValue: number | null;
   priceError?: boolean | undefined;
+<<<<<<< HEAD
   totalName: string;
   totalValue: number | null;
   totalError?: boolean | undefined;
+=======
+  // Remain qty
+  remainQtyName: string;
+  remainQtyValue: number | string;
+  remainQtyError?: boolean | undefined;
+>>>>>>> 8a9bac0 (kk)
 };
 
 export const ProductTotalPrice = (props: productTotalPriceType) => {
@@ -26,9 +33,9 @@ export const ProductTotalPrice = (props: productTotalPriceType) => {
     priceName,
     priceValue,
     priceError,
-    totalName,
-    totalValue,
-    totalError,
+    remainQtyName,
+    remainQtyValue,
+    remainQtyError,
   } = props;
   return (
     <Stack width={"100%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
@@ -49,11 +56,11 @@ export const ProductTotalPrice = (props: productTotalPriceType) => {
         <Stack flexGrow={1}>
           <CustomInput
             borderRadius="8px"
-            name={totalName}
-            value={totalValue ?? "defaultValue"}
+            name={remainQtyName}
+            value={remainQtyValue ?? "defaultValue"}
             handleChange={handleChange}
             onBlur={handleBlur}
-            error={totalError}
+            error={remainQtyError}
             label="Үлдэгдэл тоо ширхэг"
             type="number"
             placeHolder="Үлдэгдэл тоо ширхэг"

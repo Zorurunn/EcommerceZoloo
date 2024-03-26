@@ -15,14 +15,16 @@ import UploadImg from "../_components/UploadImg";
 import { useData } from "@/components/provider/DataProvider";
 
 const validationSchema = yup.object({
-  product: yup.string().required(),
-  info: yup.string().required(),
-  serialNumber: yup.number().required(),
-  price: yup.number().required(),
-  total: yup.number().required(),
-  // imgUrls: yup.array().of(yup.string()).min(1).required(),
+  productName: yup.string().required(),
   generalCategory: yup.string().required(),
   subCategory: yup.string().required(),
+  serialNumber: yup.number().required(),
+  price: yup.number().required(),
+  remainQty: yup.number().required(),
+  images: yup.array().required(),
+  description: yup.string().required(),
+  productType: yup.array().required(),
+  tag: yup.string().required(),
 });
 
 export default function Home() {
@@ -47,23 +49,28 @@ export default function Home() {
       productName: "",
       generalCategory: "defaultValue",
       subCategory: "defaultValue",
+      serialNumber: 0,
       price: 0,
-      total: "defaultValue",
-      product: "",
-      info: "",
-      serialNumber: "#",
-      price: null,
-      total: null,
-      // imgUrls: [],
-      generalCategory: "defaultValue",
-      subCategory: "defaultValue",
+      remainQty: 0,
+      images: [],
+      description: "",
+      productType: [],
+      tag: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      // if (images.length)
-      console.log(values);
-
-      // BAck holbolt todo
+      await createProduct({
+        productName: values.productName,
+        generalCategory: values.generalCategory,
+        subCategory: values.subCategory,
+        serialNumber: values.serialNumber,
+        price: values.price,
+        remainQty: values.remainQty,
+        images: values.images,
+        description: values.description,
+        productType: values.productType,
+        tag: values.tag,
+      });
     },
   });
 
@@ -80,16 +87,18 @@ export default function Home() {
       <Stack direction={"row"} gap={5}>
         <Stack gap={2} width={"50%"}>
           <ProductNameSection
-            productName={"product"}
+            productName={"productName"}
             serialNumberName={"serialNumber"}
-            infoName={"info"}
+            descriptionName={"description"}
             productValue={formik.values.productName}
-            infoValue={formik.values.info}
+            descriptionValue={formik.values.description}
             serialNumberValue={formik.values.serialNumber}
             productError={
               formik.touched.productName && Boolean(formik.errors.productName)
             }
-            infoError={formik.touched.info && Boolean(formik.errors.info)}
+            descriptionError={
+              formik.touched.description && Boolean(formik.errors.description)
+            }
             serialNumberError={
               formik.touched.serialNumber && Boolean(formik.errors.serialNumber)
             }
@@ -99,11 +108,13 @@ export default function Home() {
           <ProductImageSection images={images} setImages={setImages} />
           <ProductTotalPrice
             priceName={"price"}
+            remainQtyName={"remainQty"}
             priceValue={formik.values.price}
+            remainQtyValue={formik.values.remainQty}
             priceError={formik.touched.price && Boolean(formik.errors.price)}
-            totalName={"total"}
-            totalValue={formik.values.total}
-            totalError={formik.touched.total && Boolean(formik.errors.total)}
+            remainQtyError={
+              formik.touched.remainQty && Boolean(formik.errors.remainQty)
+            }
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
@@ -130,7 +141,13 @@ export default function Home() {
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
-          <ProductType />
+          <ProductType
+            productTypeName={"productType"}
+            productTypeValue={formik.values.productType}
+            productTypeError={
+              formik.touched.productType && Boolean(formik.errors.productType)
+            }
+          />
           <ProductTag />
           <Stack alignSelf={"end"} direction={"row"} gap={1}>
             <Button

@@ -20,10 +20,13 @@ export type ProductParams = {
   productName: string;
   generalCategory: string;
   subCategory: string;
+  serialNumber: number;
   price: number;
-  qty: number;
+  remainQty: number;
   images: string[];
   description: string;
+  productType: string[];
+  tag: string;
 };
 
 export type CategoryParams = {};
