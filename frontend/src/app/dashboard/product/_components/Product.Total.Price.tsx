@@ -12,10 +12,10 @@ type productTotalPriceType = {
 
   // Price
   priceName: string;
-  priceValue: number | string;
+  priceValue: number | null;
   priceError?: boolean | undefined;
   totalName: string;
-  totalValue: number | string;
+  totalValue: number | null;
   totalError?: boolean | undefined;
 };
 

@@ -11,7 +11,7 @@ export const LeftSideBar = () => {
   return (
     <Stack gap={2}>
       {SIDEBAR_LINES.map((item) => (
-        <Link href={item.href}>
+        <Link href={item.href} key={item.name + item.href}>
           <Stack
             py={1}
             bgcolor={pathName == item.href ? "#1C202414" : ""}
@@ -22,7 +22,7 @@ export const LeftSideBar = () => {
               setSelectedOption(item.name);
             }}
           >
-            <Stack key={item.name} direction={"row"} gap={1} pl={3}>
+            <Stack direction={"row"} gap={1} pl={3}>
               <item.icon className="w-8 h-8" />
               <Typography>{item.name}</Typography>
             </Stack>
