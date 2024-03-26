@@ -12,7 +12,7 @@ import { Loader } from "@/components/Loader";
 import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
-  const { signIn } = useAuth();
+  const { signIn, isLoggedIn } = useAuth();
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -42,7 +42,6 @@ export default function SignInForm() {
         email: values.email,
         password: values.password,
       });
-      router.push("/dashboard");
       setOpen(false);
     },
   });
@@ -95,6 +94,9 @@ export default function SignInForm() {
             fullWidth
             onClick={() => {
               formik.handleSubmit();
+              if (isLoggedIn) {
+                router.push("/dashboard");
+              }
               setOpen(false);
             }}
             disabled={!formik.isValid || open}

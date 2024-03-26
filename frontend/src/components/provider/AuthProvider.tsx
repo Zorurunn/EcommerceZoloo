@@ -73,13 +73,12 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       const { token } = data;
       console.log(data);
       localStorage.setItem("token", token);
-
+      setIsLoggedIn(true);
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
       });
-      setIsLoggedIn(true);
     } catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data.message ?? error.message, {
@@ -170,6 +169,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
     if (token) {
       setIsLoggedIn(true);
+    } else if (!token) {
+      setIsLoggedIn(false);
+      router.push("/signin");
     }
   }, []);
 
