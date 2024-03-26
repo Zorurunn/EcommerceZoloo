@@ -19,14 +19,18 @@ const validationSchema = yup.object({
   serialNumber: yup.number().required(),
   price: yup.number().required(),
   total: yup.number().required(),
-  imgUrls: yup.array().of(yup.string()).min(1).required(),
+  // imgUrls: yup.array().of(yup.string()).min(1).required(),
   generalCategory: yup.string().required(),
   subCategory: yup.string().required(),
 });
 
 export default function Home() {
   const [images, setImages] = useState<string[]>(["", "", ""]);
-
+  const checkImages = () => {
+    if (images.length === 1) {
+      if (images[0] === "") return false;
+    }
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
@@ -44,12 +48,13 @@ export default function Home() {
       serialNumber: "#",
       price: null,
       total: null,
-      imgUrls: [],
+      // imgUrls: [],
       generalCategory: "defaultValue",
       subCategory: "defaultValue",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      // if (images.length)
       console.log(values);
 
       // BAck holbolt todo
