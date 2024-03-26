@@ -37,6 +37,7 @@ export const ProductImgField = ({
       }
     }
   }, [imgUrl]);
+  console.log("url", images);
 
   return (
     <Stack direction={"row"}>

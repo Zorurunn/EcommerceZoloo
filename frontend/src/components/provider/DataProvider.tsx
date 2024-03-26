@@ -54,8 +54,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     getSubCategories();
   }, [refresh]);
 
-  console.log(generalCategories, subCategories);
-
   return (
     <DataContext.Provider
       value={{

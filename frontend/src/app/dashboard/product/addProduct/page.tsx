@@ -11,40 +11,51 @@ import * as yup from "yup";
 import { BackTabs } from "@/components/Back.Tabs";
 import { useEffect, useState } from "react";
 import { AlertModal } from "../_components/Alert.Modal";
+import UploadImg from "../_components/UploadImg";
 
 const validationSchema = yup.object({
-  generalCategory: yup.string().required(),
-  subCategory: yup.string().required(),
-  price: yup.number().required(),
-  total: yup.number().required(),
   product: yup.string().required(),
   info: yup.string().required(),
   serialNumber: yup.number().required(),
+  price: yup.number().required(),
+  total: yup.number().required(),
+  imgUrls: yup.array().of(yup.string()).min(1).required(),
+  generalCategory: yup.string().required(),
+  subCategory: yup.string().required(),
 });
 
 export default function Home() {
+  const [images, setImages] = useState<string[]>(["", "", ""]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+  useEffect(() => {
+    // formik.values.imgUrls = images;
+  }, [images]);
   const [open, setOpen] = useState(false);
   const formik = useFormik({
     initialValues: {
-      generalCategory: "defaultValue",
-      subCategory: "defaultValue",
-      price: "defaultValue",
-      total: "defaultValue",
       product: "",
       info: "",
       serialNumber: "#",
+      price: null,
+      total: null,
+      imgUrls: [],
+      generalCategory: "defaultValue",
+      subCategory: "defaultValue",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      console.log(values);
+
       // BAck holbolt todo
     },
   });
+
   return (
     <Stack gap={3} width={"100%"}>
       <BackTabs text="Бүтээгдэхүүн" />
@@ -67,13 +78,13 @@ export default function Home() {
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
-          <ProductImageSection />
+          <ProductImageSection images={images} setImages={setImages} />
           <ProductTotalPrice
             priceName={"price"}
-            totalName={"total"}
             priceValue={formik.values.price}
-            totalValue={formik.values.total}
             priceError={formik.touched.price && Boolean(formik.errors.price)}
+            totalName={"total"}
+            totalValue={formik.values.total}
             totalError={formik.touched.total && Boolean(formik.errors.total)}
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
@@ -120,6 +131,7 @@ export default function Home() {
             </Button>
             <Button
               sx={{
+                ":disabled": { color: "gray" },
                 borderRadius: "8px",
                 fontSize: "18px",
                 fontWeight: "600",
@@ -130,8 +142,10 @@ export default function Home() {
                 ":hover": { bgcolor: "#393939" },
               }}
               onClick={() => {
-                setOpen(true);
+                formik.handleSubmit();
+                // setOpen(true);
               }}
+              disabled={!formik.isValid || !formik.dirty}
             >
               Нийтлэх
             </Button>

@@ -1,13 +1,19 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import { ProductImgField } from "./ProductImgField";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-
-export default function ProductImageSection() {
-  const [images, setImages] = useState<string[]>(["", "", ""]);
-  // const [urls, setUrls] = useState<string[]>([]);
-
+import UploadImg from "./UploadImg";
+type productImageSectionType = {
+  images: string[];
+  setImages: Dispatch<SetStateAction<string[]>>;
+};
+export default function ProductImageSection(props: productImageSectionType) {
+  const { images, setImages } = props;
   const removeImage = (index: number) => {
+    if (images.length <= 1) {
+      alert("Please add at least one image");
+      return;
+    }
     setImages((prev) => prev.filter((_, idx) => idx !== index));
   };
 
@@ -39,16 +45,30 @@ export default function ProductImageSection() {
           minWidth={410}
         >
           <Stack gap={2} direction={"row"}>
-            {images.map((image, index) => (
+            {/* {images.map((image, index) => (
               <ProductImgField
-                key={image}
+                key={image + index}
                 images={images}
                 setImages={setImages}
                 handleDelete={() => {
                   removeImage(index);
                 }}
               />
-            ))}
+            ))} */}
+
+            {images.map((item, index) => {
+              return (
+                <UploadImg
+                  key={item + index}
+                  images={images}
+                  setImages={setImages}
+                  handleDelete={() => {
+                    removeImage(index);
+                  }}
+                  index={index}
+                />
+              );
+            })}
           </Stack>
         </Stack>
         <Stack
