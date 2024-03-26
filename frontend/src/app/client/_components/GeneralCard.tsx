@@ -17,9 +17,9 @@ export const CARD_TYPE = [
   { src: "/Chair.png", name: "Усан ягаан сандал", price: 750000 },
   { src: "/chair2.png", name: "Саарал сандал", price: 750000 },
   { src: "/backpack.png", name: "Laptop цүнх", price: 750000 },
-  { src: "/cam.png", name: "Canon камер", price: 750000 },
+  { src: "/product2.jpg", name: "Canon камер", price: 750000 },
   { src: "/Chair.png", name: "Усан ягаан сандал", price: 750000 },
-  { src: "/chair2.png", name: "Саарал сандал", price: 750000 },
+  { src: "/ss.png", name: "Саарал сандал", price: 750000 },
   { src: "/backpack.png", name: "Laptop цүнх", price: 750000 },
 ];
 

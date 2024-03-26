@@ -92,7 +92,7 @@ const items = [
         height={"80vh"}
         justifyContent={"center"}
         sx={{
-          backgroundImage: "url(/product2.jpg)",
+          backgroundImage: "url(/product3.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
@@ -133,7 +133,7 @@ const items = [
         height={"80vh"}
         justifyContent={"center"}
         sx={{
-          backgroundImage: "url(/product3.jpg)",
+          backgroundImage: "url(/product4.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
