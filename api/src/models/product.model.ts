@@ -24,7 +24,7 @@ const productSchema = new Schema({
   images: [
     {
       type: String,
-      required: false,
+      required: true,
     },
   ],
   discount: {
@@ -37,7 +37,7 @@ const productSchema = new Schema({
     required: true,
   },
   serialNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   productType: {

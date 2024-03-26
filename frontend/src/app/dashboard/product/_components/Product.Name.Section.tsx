@@ -82,7 +82,7 @@ const ProductNameSection = (props: productNameSectionType) => {
             error={serialNumberError}
             label="Барааны код"
             helperText="Incorrect Serial Number."
-            type="number"
+            type="text"
             placeHolder="#12345678"
           />
         </Stack>

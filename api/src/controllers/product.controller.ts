@@ -17,17 +17,13 @@ export const createProduct: RequestHandler = async (req, res) => {
     serialNumber,
     productType,
     productTag,
-
     // thumbnails,
     // coupon,
   } = req.body;
   console.log(req.body);
   try {
     const productExists = await ProductModel.find({
-      productName,
-      generalCategory,
-      subCategory,
-      price,
+      serialNumber,
     });
 
     if (productExists.length) {
@@ -43,14 +39,14 @@ export const createProduct: RequestHandler = async (req, res) => {
       price,
       remainQty,
       images,
-      // discount,
+      discount,
       description,
       serialNumber,
       productType,
       productTag,
       // thumbnails,
       // coupon,
-      // salePercent,
+
       createdAt: new Date(),
     });
 
@@ -59,6 +55,14 @@ export const createProduct: RequestHandler = async (req, res) => {
     res.json(error);
   }
 };
+
+// GET PRODUCTS
+export const getProducts: RequestHandler = async (req, res) => {
+  const products = await ProductModel.find({});
+
+  res.json(products);
+};
+
 // UPDATE PRODUCT
 export const updateProduct: RequestHandler = async (req, res) => {
   const {

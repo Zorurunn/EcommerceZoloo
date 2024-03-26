@@ -1,6 +1,7 @@
 import { CustomInput } from "@/components";
-import { Stack } from "@mui/material";
-import React, { ChangeEventHandler, FocusEventHandler } from "react";
+import { IOSSwitch } from "@/components/IOSSwitch";
+import { Stack, Typography } from "@mui/material";
+import React, { ChangeEventHandler, FocusEventHandler, useState } from "react";
 
 type productTotalPriceType = {
   handleBlur?:
@@ -14,6 +15,10 @@ type productTotalPriceType = {
   priceName: string;
   priceValue: number | null;
   priceError?: boolean | undefined;
+  // Discount
+  discountName: string;
+  discountValue: number | null;
+  discountError: boolean | undefined;
   // Remain qty
   remainQtyName: string;
   remainQtyValue: number | string;
@@ -27,14 +32,18 @@ export const ProductTotalPrice = (props: productTotalPriceType) => {
     priceName,
     priceValue,
     priceError,
+    discountName,
+    discountValue,
+    discountError,
     remainQtyName,
     remainQtyValue,
     remainQtyError,
   } = props;
+  const [checkDiscount, setCheckDiscount] = useState(false);
   return (
     <Stack width={"100%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
-      <Stack direction={"row"} gap={3}>
-        <Stack flexGrow={1}>
+      <Stack gap={3}>
+        <Stack>
           <CustomInput
             borderRadius="8px"
             name={priceName}
@@ -47,18 +56,41 @@ export const ProductTotalPrice = (props: productTotalPriceType) => {
             placeHolder="Үндсэн үнэ"
           />
         </Stack>
-        <Stack flexGrow={1}>
-          <CustomInput
-            borderRadius="8px"
-            name={remainQtyName}
-            value={remainQtyValue ?? "defaultValue"}
-            handleChange={handleChange}
-            onBlur={handleBlur}
-            error={remainQtyError}
-            label="Үлдэгдэл тоо ширхэг"
-            type="number"
-            placeHolder="Үлдэгдэл тоо ширхэг"
-          />
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack width={"45%"}>
+            <Stack direction={"row"} alignItems={"center"} gap={1}>
+              <IOSSwitch
+                onChange={() => {
+                  setCheckDiscount((prev) => !prev);
+                }}
+              />
+              <Typography>Хямдралтай эсэх</Typography>
+            </Stack>
+            <CustomInput
+              type="discount"
+              name={discountName}
+              value={discountValue ?? ""}
+              error={discountError}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              onClick={() => setCheckDiscount(true)}
+              disabled={!checkDiscount}
+            />
+          </Stack>
+
+          <Stack width={"45%"}>
+            <CustomInput
+              borderRadius="8px"
+              name={remainQtyName}
+              value={remainQtyValue ?? "defaultValue"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              error={remainQtyError}
+              label="Үлдэгдэл тоо ширхэг"
+              type="number"
+              placeHolder="Үлдэгдэл тоо ширхэг"
+            />
+          </Stack>
         </Stack>
       </Stack>
     </Stack>

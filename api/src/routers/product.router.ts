@@ -3,6 +3,7 @@ import {
   viewUpdate,
   createProduct,
   updateProduct,
+  getProducts,
 } from "../controllers/product.controller";
 
 const productRouter = Router();
@@ -10,6 +11,7 @@ const productRouter = Router();
 productRouter
   .post("/createProduct", createProduct)
   .post("/updateProduct", updateProduct)
-  .post("/viewUpdate", viewUpdate);
+  .post("/viewUpdate", viewUpdate)
+  .get("/getProducts", getProducts);
 
 export default productRouter;

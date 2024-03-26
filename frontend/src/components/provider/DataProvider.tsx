@@ -19,7 +19,7 @@ export type ProductParams = {
   productName: string;
   generalCategory: string;
   subCategory: string;
-  serialNumber: number;
+  serialNumber: string;
   price: number;
   remainQty: number;
   images: string[];
@@ -44,6 +44,9 @@ type DataContextType = {
   createProduct: (params: ProductParams) => Promise<void>;
   selectedIndex: number;
   setIndex: Dispatch<SetStateAction<number>>;
+  products: ProductParams[];
+  setProducts: Dispatch<SetStateAction<ProductParams[]>>;
+  getProducts: () => Promise<void>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -55,13 +58,12 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     useState<generalCategoryType[]>();
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
   const [selectedIndex, setIndex] = useState<number>(0);
+  const [products, setProducts] = useState<ProductParams[]>([]);
 
   // POST PRODUCT
-
   const createProduct = async (params: ProductParams) => {
     try {
       const { data } = await api.post("/createProduct", params);
-      // alert("hi");
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
@@ -75,6 +77,18 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
           hideProgressBar: true,
         });
       }
+    }
+  };
+
+  // GET PRODUCT
+  const getProducts = async () => {
+    try {
+      const { data } = await api.get("/getProduct", {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+      setProducts(data);
+    } catch (error) {
+      console.log(error), "FFF";
     }
   };
 
@@ -99,6 +113,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
+    getProducts();
     getGeneralCategories();
     getSubCategories();
   }, [refresh]);
@@ -111,6 +126,9 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         createProduct,
         selectedIndex,
         setIndex,
+        products,
+        setProducts,
+        getProducts,
       }}
     >
       {children}

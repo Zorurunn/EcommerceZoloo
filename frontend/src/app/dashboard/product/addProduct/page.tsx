@@ -17,9 +17,10 @@ const validationSchema = yup.object({
   productName: yup.string().required(),
   generalCategory: yup.string().required(),
   subCategory: yup.string().required(),
-  serialNumber: yup.number().required(),
+  serialNumber: yup.string().required(),
   price: yup.number().required(),
   remainQty: yup.number().required(),
+  discount: yup.number().required(),
   description: yup.string().required(),
 });
 
@@ -29,7 +30,7 @@ export default function Home() {
   const [tags, setTags] = useState();
   const [colors, setColors] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
-  const [images, setImages] = useState<string[]>(["", "", ""]);
+  const [images, setImages] = useState<string[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const checkImages = () => {
     if (images.length === 1) {
@@ -40,27 +41,26 @@ export default function Home() {
   const formik = useFormik({
     initialValues: {
       productName: "",
+      description: "",
+      serialNumber: "",
+      price: 0,
+      discount: 0,
+      remainQty: 0,
       generalCategory: "",
       subCategory: "",
-      serialNumber: 0,
-      price: 0,
-      remainQty: 0,
-      discount: 0,
-      description: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      alert("qqw");
       await createProduct({
         productName: values.productName,
-        generalCategory: values.generalCategory,
-        subCategory: values.subCategory,
+        description: values.description,
         serialNumber: values.serialNumber,
         price: values.price,
-        remainQty: values.remainQty,
-        images: images,
         discount: values.discount,
-        description: values.description,
+        remainQty: values.remainQty,
+        generalCategory: values.generalCategory,
+        subCategory: values.subCategory,
+        images: images,
         productType: {
           productColor: colors,
           productSize: sizes,
@@ -104,10 +104,15 @@ export default function Home() {
           <ProductImageSection images={images} setImages={setImages} />
           <ProductTotalPrice
             priceName={"price"}
+            discountName={"discount"}
             remainQtyName={"remainQty"}
             priceValue={formik.values.price}
+            discountValue={formik.values.discount}
             remainQtyValue={formik.values.remainQty}
             priceError={formik.touched.price && Boolean(formik.errors.price)}
+            discountError={
+              formik.touched.price && Boolean(formik.errors.discount)
+            }
             remainQtyError={
               formik.touched.remainQty && Boolean(formik.errors.remainQty)
             }

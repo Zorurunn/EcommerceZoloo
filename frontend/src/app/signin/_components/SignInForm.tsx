@@ -9,10 +9,12 @@ import { useFormik } from "formik";
 import { useAuth } from "@/components/provider/AuthProvider";
 import { useState } from "react";
 import { Loader } from "@/components/Loader";
+import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
   const { signIn } = useAuth();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const validationSchema = yup.object({
     email: yup
@@ -40,6 +42,7 @@ export default function SignInForm() {
         email: values.email,
         password: values.password,
       });
+      router.push("/dashboard");
       setOpen(false);
     },
   });
