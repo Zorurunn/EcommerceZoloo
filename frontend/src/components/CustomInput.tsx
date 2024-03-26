@@ -48,6 +48,7 @@ type CustomInputProps = {
   select?: boolean;
   iconType?: "location" | "search" | "category" | "$" | "calendar";
   multiLine?: boolean;
+  variant?: "outlined" | "filled" | "standard";
 } & TextFieldProps;
 
 export const CustomInput = (props: CustomInputProps) => {
@@ -73,6 +74,8 @@ export const CustomInput = (props: CustomInputProps) => {
     iconType = "search",
     multiLine = false,
     bgcolor = "#ECEDF0",
+    variant = "outlined",
+    sx,
     ...rest
   } = props;
 
@@ -101,6 +104,7 @@ export const CustomInput = (props: CustomInputProps) => {
         select={select}
         multiline={multiLine}
         rows={multiLine ? 2 : 0}
+        variant={variant}
         sx={{
           "& .MuiSelect-select": {
             padding: size === "small" ? "3px 8px" : "14px 16px",
@@ -113,6 +117,7 @@ export const CustomInput = (props: CustomInputProps) => {
           width: "100%",
           bgcolor: bgcolor,
           borderRadius: borderRadius,
+          ...sx,
         }}
         inputProps={{
           style: {
