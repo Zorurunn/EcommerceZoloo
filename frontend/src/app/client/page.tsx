@@ -1,3 +1,19 @@
+"use client";
+import { HighLightProducts } from "./_components/HighLight.Products";
+import { IndexCard } from "./_components/Index.Card";
+import { NewProducts } from "./_components/New.Products";
+import { Container, Stack } from "@mui/material";
+import { HomePageService } from "./_components/Service";
+
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <Stack gap={4}>
+        <IndexCard />
+        <HighLightProducts />
+        <NewProducts />
+        <HomePageService />
+      </Stack>
+    </>
+  );
 }

@@ -1,3 +1,4 @@
+"use client";
 import { HeadingBar } from "./HeadingBar";
 import { Navbar } from "./Navbar";
 

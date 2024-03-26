@@ -33,7 +33,7 @@ export function Footer() {
   return (
     <>
       <Stack bgcolor={"#EEEFFB"} py={12}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Stack width={"100%"} direction={"row"}>
             <Stack width={"50%"} gap={4}>
               <Typography fontSize={34} fontWeight={700} color={"#0D0E43"}>
