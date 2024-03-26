@@ -6,55 +6,49 @@ import { AddProductImg } from "./AddProductImg";
 import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import { useData } from "@/components/provider/DataProvider";
 
 export const ProductImgField = ({
+  index,
   images,
   setImages,
-  handleDelete,
+  removeImage,
 }: {
+  index: number;
   images: string[];
   setImages: Dispatch<SetStateAction<string[]>>;
-  handleDelete: () => void;
+  removeImage: () => void;
 }) => {
   const [open, setOpen] = useState(false);
   const [showPicture, setShowPicture] = useState(false);
-  const [imgUrl, setImgUrl] = useState<string | undefined>();
-  const [imgClearBtn, setImgClearBtn] = useState(false);
-
-  const showImgBtn = () => {
-    setImgClearBtn(true);
-  };
-  const hideImgBtn = () => {
-    setImgClearBtn(false);
-  };
-
-  useEffect(() => {
-    if (images && imgUrl) {
-      setImages((prev) => [...prev, imgUrl]);
-    } else {
-      if (imgUrl) {
-        setImgUrl(imgUrl);
-      }
-    }
-  }, [imgUrl]);
-  console.log("url", images);
+  const { selectedIndex, setIndex } = useData();
 
   return (
     <Stack direction={"row"}>
       <Stack direction={"row"} gap={2}>
         {open && (
           <AddProductImg
+            index={index}
             open={open}
             handleClose={() => {
               setOpen(false);
             }}
+            images={images}
+            setImages={setImages}
             setShowPicture={setShowPicture}
-            imgUrl={imgUrl}
-            setImgUrl={setImgUrl}
           />
         )}
-        {!showPicture && (
-          <Stack onMouseOver={showImgBtn} onMouseOut={hideImgBtn}>
+        {/* {!showPicture && (
+          <Stack
+            onClick={() => {
+              setIndex(index);
+            }}
+            sx={{
+              "&:hover .deleteImgBtn": {
+                display: "flex",
+              },
+            }}
+          >
             <Stack
               onClick={() => {
                 setOpen(true);
@@ -68,84 +62,89 @@ export const ProductImgField = ({
               borderRadius={2}
             >
               <ImageOutlinedIcon />
-              {imgClearBtn && (
-                <IconButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDelete();
-                  }}
-                  sx={{
-                    bgcolor: "#000",
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    width: 10,
-                    height: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    "&:hover": {
-                      bgcolor: "#121316",
-                    },
-                  }}
-                >
-                  <ClearOutlinedIcon
-                    sx={{
-                      color: "#fff",
-                      fontSize: "12px",
-                    }}
-                  />
-                </IconButton>
-              )}
-            </Stack>
-          </Stack>
-        )}
 
-        {showPicture && (
-          <Stack
-            direction={"row"}
-            gap={2}
-            onMouseOver={showImgBtn}
-            onMouseOut={hideImgBtn}
-          >
-            <Stack
-              position={"relative"}
-              overflow={"hidden"}
-              width={125}
-              height={125}
-              borderRadius={2}
-            >
-              <Image src={imgUrl ?? ""} alt="" fill objectFit="cover" />
-              {imgClearBtn && (
-                <IconButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDelete();
-                  }}
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeImage();
+                }}
+                className="deleteImgBtn"
+                sx={{
+                  display: "none",
+                  bgcolor: "#000",
+                  position: "absolute",
+                  top: "0",
+                  right: "0",
+                  width: 10,
+                  height: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  "&:hover": {
+                    bgcolor: "#121316",
+                  },
+                }}
+              >
+                <ClearOutlinedIcon
                   sx={{
-                    bgcolor: "#000",
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    width: 10,
-                    height: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    "&:hover": {
-                      bgcolor: "#121316",
-                    },
+                    color: "#fff",
+                    fontSize: "12px",
                   }}
-                >
-                  <ClearOutlinedIcon
-                    sx={{
-                      color: "#fff",
-                      fontSize: "12px",
-                    }}
-                  />
-                </IconButton>
-              )}
+                />
+              </IconButton>
             </Stack>
           </Stack>
-        )}
+        )} */}
+
+        <Stack
+          direction={"row"}
+          gap={2}
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          <Stack
+            sx={{
+              "&:hover .deleteImgBtn": {
+                display: "flex",
+              },
+            }}
+            position={"relative"}
+            overflow={"hidden"}
+            width={125}
+            height={125}
+            borderRadius={2}
+          >
+            <Image src={`${images[index]}`} alt="" fill objectFit="cover" />
+
+            <IconButton
+              onClick={() => {
+                removeImage();
+              }}
+              className="deleteImgBtn"
+              sx={{
+                display: "none",
+                bgcolor: "#000",
+                position: "absolute",
+                top: "0",
+                right: "0",
+                width: 10,
+                height: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                "&:hover": {
+                  bgcolor: "#121316",
+                },
+              }}
+            >
+              <ClearOutlinedIcon
+                sx={{
+                  color: "#fff",
+                  fontSize: "12px",
+                }}
+              />
+            </IconButton>
+          </Stack>
+        </Stack>
       </Stack>
     </Stack>
   );

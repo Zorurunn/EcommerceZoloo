@@ -21,59 +21,58 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
-  // thumbnails: {
-  //   type: String,
-  //   required: true,
-  // },
-
   images: [
     {
       type: String,
-      required: true,
+      required: false,
     },
   ],
-  // coupon: {
-  //   type: String,
-  //   required: true,
-  // },
-  // salePercent: {
-  //   type: Number,
-  //   required: true,
-  // },
+  discount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
   description: {
     type: String,
     required: true,
-  },
-  viewsCount: {
-    type: Number,
-    required: false,
   },
   serialNumber: {
     type: Number,
     required: true,
   },
   productType: {
-    type: {
-      productColor: [
-        {
-          type: String,
-          required: true,
-        },
-      ],
-      productSize: [
-        {
-          type: String,
-          required: true,
-        },
-      ],
-    },
+    productColor: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    productSize: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+  },
 
-    required: true,
+  productTag: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  viewsCount: {
+    type: Number,
+    required: false,
   },
-  productTag: {
-    type: String,
-    required: true,
-  },
+  // thumbnails: {
+  //   type: String,
+  //   required: true,
+  // },
+  // coupon: {
+  //   type: String,
+  //   required: true,
+  // },
 
   createdAt: Date,
   updatedAt: Date,

@@ -62,8 +62,10 @@ export const ProductColor = ({
 
           <Button
             onClick={() => {
+              if (!color) {
+                return;
+              }
               setColors((prev) => [...prev, color]);
-              console.log(color);
             }}
             sx={{
               fontSize: "16px",

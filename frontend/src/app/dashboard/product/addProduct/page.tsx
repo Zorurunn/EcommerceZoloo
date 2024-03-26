@@ -11,7 +11,6 @@ import * as yup from "yup";
 import { BackTabs } from "@/components/Back.Tabs";
 import { useEffect, useState } from "react";
 import { AlertModal } from "../_components/Alert.Modal";
-import UploadImg from "../_components/UploadImg";
 import { useData } from "@/components/provider/DataProvider";
 
 const validationSchema = yup.object({
@@ -21,49 +20,37 @@ const validationSchema = yup.object({
   serialNumber: yup.number().required(),
   price: yup.number().required(),
   remainQty: yup.number().required(),
-  images: yup.array().required(),
   description: yup.string().required(),
-  productType: yup.array().required(),
-  productTag: yup.string().required(),
 });
 
 export default function Home() {
+  const { createProduct } = useData();
+  const [open, setOpen] = useState(false);
+  const [tags, setTags] = useState();
+  const [colors, setColors] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
   const [images, setImages] = useState<string[]>(["", "", ""]);
+  const [selected, setSelected] = useState<string[]>([]);
   const checkImages = () => {
     if (images.length === 1) {
       if (images[0] === "") return false;
     }
   };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOpen(false);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-  useEffect(() => {
-    // formik.values.imgUrls = images;
-  }, [images]);
-  const [open, setOpen] = useState(false);
-  const [colors, setColors] = useState<string[]>([]);
-  const [sizes, setSizes] = useState<string[]>([]);
+  useEffect(() => {}, [images]);
   const formik = useFormik({
     initialValues: {
       productName: "",
-      generalCategory: "defaultValue",
-      subCategory: "defaultValue",
+      generalCategory: "",
+      subCategory: "",
       serialNumber: 0,
       price: 0,
       remainQty: 0,
-      images: [""],
+      discount: 0,
       description: "",
-      productType: {
-        productColor: "",
-        productSize: "",
-      },
-      productTag: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      alert("qqw");
       await createProduct({
         productName: values.productName,
         generalCategory: values.generalCategory,
@@ -71,13 +58,14 @@ export default function Home() {
         serialNumber: values.serialNumber,
         price: values.price,
         remainQty: values.remainQty,
-        images: values.images,
+        images: images,
+        discount: values.discount,
         description: values.description,
         productType: {
           productColor: colors,
           productSize: sizes,
         },
-        tag: values.tag,
+        productTag: selected,
       });
     },
   });
@@ -150,25 +138,12 @@ export default function Home() {
             handleBlur={formik.handleBlur}
           />
           <ProductType
-            // productTypeName={"productType"}
-            // productTypeValue={formik.values.productType}
-            // productTypeError={
-            //   formik.touched.productType && Boolean(formik.errors.productType)
-            // }
             colors={colors}
             setColors={setColors}
             sizes={sizes}
             setSizes={setSizes}
           />
-          <ProductTag
-            productTagName={"productTag"}
-            productTageValue={formik.values.productTag}
-            productTagError={
-              formik.touched.productTag && Boolean(formik.values.productTag)
-            }
-            handleChange={formik.handleChange}
-            handleBlur={formik.handleBlur}
-          />
+          <ProductTag selected={selected} setSelected={setSelected} />
           <Stack alignSelf={"end"} direction={"row"} gap={1}>
             <Button
               sx={{
@@ -198,9 +173,9 @@ export default function Home() {
               }}
               onClick={() => {
                 formik.handleSubmit();
-                setOpen(true);
+
+                // setOpen(true);
               }}
-              disabled={!formik.isValid || !formik.dirty}
             >
               Нийтлэх
             </Button>

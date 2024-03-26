@@ -14,7 +14,6 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
-import { date } from "yup";
 
 export type ProductParams = {
   productName: string;
@@ -24,12 +23,13 @@ export type ProductParams = {
   price: number;
   remainQty: number;
   images: string[];
+  discount: number;
   description: string;
   productType: {
     productColor: string[];
     productSize: string[];
   };
-  productTag: string;
+  productTag: string[];
 };
 
 export type CategoryParams = {};
@@ -42,6 +42,8 @@ type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
   createProduct: (params: ProductParams) => Promise<void>;
+  selectedIndex: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -52,12 +54,14 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [generalCategories, setGeneralCategories] =
     useState<generalCategoryType[]>();
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
+  const [selectedIndex, setIndex] = useState<number>(0);
 
   // POST PRODUCT
 
   const createProduct = async (params: ProductParams) => {
     try {
       const { data } = await api.post("/createProduct", params);
+      // alert("hi");
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
@@ -105,6 +109,8 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         generalCategories,
         subCategories,
         createProduct,
+        selectedIndex,
+        setIndex,
       }}
     >
       {children}

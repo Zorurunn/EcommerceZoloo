@@ -14,16 +14,10 @@ type productTotalPriceType = {
   priceName: string;
   priceValue: number | null;
   priceError?: boolean | undefined;
-<<<<<<< HEAD
-  totalName: string;
-  totalValue: number | null;
-  totalError?: boolean | undefined;
-=======
   // Remain qty
   remainQtyName: string;
   remainQtyValue: number | string;
   remainQtyError?: boolean | undefined;
->>>>>>> 8a9bac0 (kk)
 };
 
 export const ProductTotalPrice = (props: productTotalPriceType) => {

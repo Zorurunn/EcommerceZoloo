@@ -7,22 +7,26 @@ import mongoose from "mongoose";
 export const createProduct: RequestHandler = async (req, res) => {
   const {
     productName,
-    generalCategoryId,
-    subCategoryId,
+    generalCategory,
+    subCategory,
     price,
-    qty,
-    // thumbnails,
+    remainQty,
     images,
-    // coupon,
-    // salePercent,
+    discount,
     description,
-  } = req.body;
+    serialNumber,
+    productType,
+    productTag,
 
+    // thumbnails,
+    // coupon,
+  } = req.body;
+  console.log(req.body);
   try {
     const productExists = await ProductModel.find({
       productName,
-      generalCategoryId,
-      subCategoryId,
+      generalCategory,
+      subCategory,
       price,
     });
 
@@ -34,15 +38,19 @@ export const createProduct: RequestHandler = async (req, res) => {
 
     const product = await ProductModel.create({
       productName,
-      generalCategoryId,
-      subCategoryId,
+      generalCategory,
+      subCategory,
       price,
-      qty,
-      // thumbnails,
+      remainQty,
       images,
+      // discount,
+      description,
+      serialNumber,
+      productType,
+      productTag,
+      // thumbnails,
       // coupon,
       // salePercent,
-      description,
       createdAt: new Date(),
     });
 
@@ -59,7 +67,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
     generalCategoryId,
     subCategoryId,
     price,
-    qty,
+    remainQty,
     // thumbnails,
     // images,
     // coupon,
@@ -83,7 +91,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
         generalCategoryId,
         subCategoryId,
         price,
-        qty,
+        remainQty,
         // thumbnails,
         // images,
         // coupon,
