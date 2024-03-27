@@ -5,11 +5,11 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  generalCategory: {
+  generalCategoryId: {
     type: String,
     required: true,
   },
-  subCategory: {
+  subCategoryId: {
     type: String,
     required: true,
   },
