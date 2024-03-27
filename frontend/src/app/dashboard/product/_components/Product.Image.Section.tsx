@@ -2,7 +2,7 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import { ProductImgField } from "./ProductImgField";
 import { Dispatch, SetStateAction, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import UploadImg from "./UploadImg";
+
 type productImageSectionType = {
   images: string[];
   setImages: Dispatch<SetStateAction<string[]>>;
