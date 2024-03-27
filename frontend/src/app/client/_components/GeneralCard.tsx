@@ -6,6 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomInOutlinedIcon from "@mui/icons-material/ZoomInOutlined";
 import Image from "next/image";
 import { useState } from "react";
+import { ProductParams } from "@/components/provider/DataProvider";
 
 export type GeneralCardType = {
   src: string;
@@ -28,8 +29,8 @@ export const CARD_TYPE = [
   { src: "/pro12.jpg", name: "Product", price: 750000 },
 ];
 
-export const GeneralCard = (props: GeneralCardType) => {
-  const { src, name, price } = props;
+export const GeneralCard = (props: ProductParams) => {
+  const { images, productName, price } = props;
   const [open, setOpen] = useState(false);
   const [fav, setFav] = useState(false);
   return (
@@ -64,7 +65,9 @@ export const GeneralCard = (props: GeneralCardType) => {
           fill
           sizes="small"
           style={{ objectFit: "cover", mixBlendMode: "multiply" }}
-          src={props.src}
+          // src={images[0]??"/cam.png"}
+          // Todo zurag ynzal
+          src={"/cam.png"}
           alt="Product Image"
         />
         {
@@ -118,7 +121,7 @@ export const GeneralCard = (props: GeneralCardType) => {
         marginY={1}
       >
         <Typography fontSize={18} fontWeight={700} color={"#151875"}>
-          {props.name}
+          {productName}
         </Typography>
         <Stack>{/* color input props */}</Stack>
         <Stack
@@ -128,7 +131,7 @@ export const GeneralCard = (props: GeneralCardType) => {
           color={"#151875"}
           alignItems={"center"}
         >
-          {new Intl.NumberFormat().format(props.price) + "₮"}
+          {new Intl.NumberFormat().format(price) + "₮"}
         </Stack>
       </Stack>
     </Stack>

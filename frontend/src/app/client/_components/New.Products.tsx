@@ -4,10 +4,12 @@ import Grid from "@mui/material/Grid";
 import { CARD_TYPE, GeneralCard } from "./GeneralCard";
 import { useState } from "react";
 import { generalCategoryType } from "@/common/types";
+import { useData } from "@/components/provider/DataProvider";
 
 export const NewProducts = () => {
   const [cards, setCards] = useState<generalCategoryType[]>();
-
+  const { products } = useData();
+  console.log(products);
   return (
     <Container maxWidth={"lg"}>
       <Stack width={"100%"}>
@@ -22,7 +24,7 @@ export const NewProducts = () => {
             // columns={{ xs: 4, sm: 8 }}
             justifyContent={"space-between"}
           >
-            {CARD_TYPE?.map((item, _) => (
+            {products && products.map((item) => (
               <Grid item xs={3}>
                 <GeneralCard {...item} />
               </Grid>

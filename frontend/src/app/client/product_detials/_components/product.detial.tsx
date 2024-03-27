@@ -4,6 +4,11 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
+type ProductdetialProps = {
+  userId?: string;
+  productId?: string;
+};
+
 export const Productdetial = () => {
   return (
     <Container>

@@ -4,7 +4,7 @@ import { Container, Stack, Typography, Box, Tab } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
-import { AddComment } from "./Add.Comment";
+import { ProductRating } from "./Product.Rating";
 import { AllComment } from "./All.Comment";
 
 interface TabPanelProps {
@@ -147,7 +147,7 @@ export const MoreDetial = () => {
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
               <Stack alignItems={"center"} gap={2}>
-                <AddComment />
+                <ProductRating />
                 <AllComment />
               </Stack>
             </CustomTabPanel>
