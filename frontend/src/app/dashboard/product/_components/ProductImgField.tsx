@@ -117,7 +117,8 @@ export const ProductImgField = ({
             <Image src={`${images[index]}`} alt="" fill objectFit="cover" />
 
             <IconButton
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 removeImage();
               }}
               className="deleteImgBtn"
