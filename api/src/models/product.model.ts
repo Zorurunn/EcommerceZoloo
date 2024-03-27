@@ -5,11 +5,11 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  generalCategory: {
+  generalCategoryId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  subCategory: {
+  subCategoryId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
@@ -78,6 +78,9 @@ const productSchema = new Schema({
   merchantId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
+  },
+  saledQty: {
+    type: Number,
   },
   // thumbnails: {
   //   type: String,

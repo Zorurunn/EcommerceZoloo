@@ -1,10 +1,22 @@
 import { RequestHandler } from "express";
 import { ProductModel } from "../models";
 import { ViewModel } from "../models/view.model";
+import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-
+type Payload = {
+  id: string;
+};
 // CREATE PRODUCT
 export const createProduct: RequestHandler = async (req, res) => {
+  const { authorization } = req.headers;
+  console.log(req.body);
+
+  if (!authorization) {
+    return res.status(401).json({
+      message: "Invalid credentials: AUTHORIZATION NOT FOUND",
+    });
+  }
+  const { id } = jwt.verify(authorization, "secret-key") as Payload;
   const {
     productName,
     generalCategoryId,
@@ -31,6 +43,7 @@ export const createProduct: RequestHandler = async (req, res) => {
         message: "This product is already exists",
       });
     }
+    const a = "test";
 
     const product = await ProductModel.create({
       productName,
@@ -44,6 +57,7 @@ export const createProduct: RequestHandler = async (req, res) => {
       serialNumber,
       productType,
       productTag,
+      merchantId: id,
       // thumbnails,
       // coupon,
 
