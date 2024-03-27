@@ -54,7 +54,8 @@ export default function Home() {
       await createProduct({
         productName: values.productName,
         description: values.description,
-        serialNumber: values.serialNumber,
+        serialNumber: "aad333",
+        // serialNumber: values.serialNumber,
         price: values.price,
         discount: values.discount,
         remainQty: values.remainQty,
@@ -79,6 +80,28 @@ export default function Home() {
 
   return (
     <Stack gap={3} width={"100%"}>
+      <Stack
+        onClick={async () => {
+          await createProduct({
+            productName: "Zoloo boot",
+            description: "very nice boot",
+            serialNumber: "11223344",
+            price: 230000,
+            discount: 0,
+            remainQty: 30,
+            generalCategoryId: "65f7bebbb68ed01626961270",
+            subCategoryId: "6603999e947b9df45618ce29",
+            images: ["1", "2"],
+            productType: {
+              productColor: ["#fff", "aaa"],
+              productSize: ["s", "x"],
+            },
+            productTag: ["nice", "boot"],
+          });
+        }}
+      >
+        oook
+      </Stack>
       <BackTabs text="Бүтээгдэхүүн" />
       <Stack direction={"row"} gap={5}>
         <Stack gap={2} width={"50%"}>

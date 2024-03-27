@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
 import { OrderModel, ProductModel } from "../models";
 import mongoose from "mongoose";
+import { log } from "console";
 
 type orderedProductsType = {
   productId: {
@@ -54,15 +55,27 @@ export const createOrder: RequestHandler = async (req, res) => {
     );
 
     // INCREASE SALED QTY
-
-    //
+    await ProductModel.bulkWrite(
+      orderedProducts.map((item: orderedProductsType) => ({
+        updateOne: {
+          filter: { _id: item.productId },
+          update: {
+            $inc: { saledQty: item.quantity },
+          },
+        },
+      }))
+    );
 
     // CREATE ORDER
     const myOrder = await OrderModel.create({
+      userId,
+      deliveryDetails,
+      orderedProducts,
+      deliveryStatus,
       createdAt: new Date(),
     });
 
-    return res.json({ message: "Successfully order added" });
+    return res.json({ message: "Successfully order added", myOrder });
   } catch (error) {
     console.log(error);
     res.json(error);

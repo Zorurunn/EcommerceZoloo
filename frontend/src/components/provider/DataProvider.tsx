@@ -63,7 +63,12 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   // POST PRODUCT
   const createProduct = async (params: ProductParams) => {
     try {
-      const { data } = await api.post("/createProduct", params);
+      const { data } = await api.post("/createProduct", params, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
