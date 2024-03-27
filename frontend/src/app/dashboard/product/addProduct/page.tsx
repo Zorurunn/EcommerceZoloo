@@ -25,6 +25,8 @@ const validationSchema = yup.object({
 });
 
 export default function Home() {
+  console.log("A");
+
   const { createProduct } = useData();
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState();
