@@ -94,9 +94,6 @@ export default function SignInForm() {
             fullWidth
             onClick={() => {
               formik.handleSubmit();
-              if (isLoggedIn) {
-                router.push("/dashboard");
-              }
               setOpen(false);
             }}
             disabled={!formik.isValid || open}

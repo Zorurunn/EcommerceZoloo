@@ -7,8 +7,8 @@ import mongoose from "mongoose";
 export const createProduct: RequestHandler = async (req, res) => {
   const {
     productName,
-    generalCategory,
-    subCategory,
+    generalCategoryId,
+    subCategoryId,
     price,
     remainQty,
     images,
@@ -34,8 +34,8 @@ export const createProduct: RequestHandler = async (req, res) => {
 
     const product = await ProductModel.create({
       productName,
-      generalCategory,
-      subCategory,
+      generalCategoryId,
+      subCategoryId,
       price,
       remainQty,
       images,

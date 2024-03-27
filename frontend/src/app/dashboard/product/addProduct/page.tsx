@@ -46,8 +46,8 @@ export default function Home() {
       price: 0,
       discount: 0,
       remainQty: 0,
-      generalCategory: "",
-      subCategory: "",
+      generalCategoryId: "",
+      subCategoryId: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -58,8 +58,8 @@ export default function Home() {
         price: values.price,
         discount: values.discount,
         remainQty: values.remainQty,
-        generalCategory: values.generalCategory,
-        subCategory: values.subCategory,
+        generalCategoryId: values.generalCategoryId,
+        subCategoryId: values.subCategoryId,
         images: images,
         productType: {
           productColor: colors,
@@ -122,22 +122,23 @@ export default function Home() {
         </Stack>
         <Stack gap={3} width={"50%"}>
           <ProductGeneralCategory
-            generalCategoryName={"generalCategory"}
-            generalCategoryValue={formik.values.generalCategory}
+            generalCategoryName={"generalCategoryId"}
+            generalCategoryValue={formik.values.generalCategoryId}
             generalCategoryError={
-              (formik.touched.generalCategory &&
-                Boolean(formik.errors.generalCategory)) ||
-              (formik.touched.generalCategory &&
-                formik.values.generalCategory ==
-                  formik.initialValues.generalCategory)
+              (formik.touched.generalCategoryId &&
+                Boolean(formik.errors.generalCategoryId)) ||
+              (formik.touched.generalCategoryId &&
+                formik.values.generalCategoryId ==
+                  formik.initialValues.generalCategoryId)
             }
-            subCategoryName={"subCategory"}
-            subCategoryValue={formik.values.subCategory}
+            subCategoryName={"subCategoryId"}
+            subCategoryValue={formik.values.subCategoryId}
             subCategoryError={
-              (formik.touched.subCategory &&
-                Boolean(formik.errors.subCategory)) ||
-              (formik.touched.subCategory &&
-                formik.values.subCategory == formik.initialValues.subCategory)
+              (formik.touched.subCategoryId &&
+                Boolean(formik.errors.subCategoryId)) ||
+              (formik.touched.subCategoryId &&
+                formik.values.subCategoryId ==
+                  formik.initialValues.subCategoryId)
             }
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}

@@ -17,8 +17,8 @@ import { toast } from "react-toastify";
 
 export type ProductParams = {
   productName: string;
-  generalCategory: string;
-  subCategory: string;
+  generalCategoryId: string;
+  subCategoryId: string;
   serialNumber: string;
   price: number;
   remainQty: number;

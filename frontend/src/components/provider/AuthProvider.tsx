@@ -169,9 +169,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
     if (token) {
       setIsLoggedIn(true);
-    } else if (!token) {
-      setIsLoggedIn(false);
-      router.push("/signin");
     }
   }, []);
 
