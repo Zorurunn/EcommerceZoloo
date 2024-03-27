@@ -1,3 +1,4 @@
+import { type } from "os";
 import { PropsWithChildren } from "react";
 
 export type saleItemType = {
