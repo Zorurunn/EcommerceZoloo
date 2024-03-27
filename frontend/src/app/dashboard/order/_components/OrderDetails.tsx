@@ -97,7 +97,7 @@ export const OrderDetails = (props: OrderDetailsType & IndexType) => {
       </Stack>
 
       <Stack justifyContent={"center"} alignItems={"center"}>
-        <Link href={"./"}>
+        <Link href={"/dashboard/order/orderinfo"}>
           <ArrowForwardIosIcon
             fontSize="small"
             sx={{ color: "text.secondary" }}

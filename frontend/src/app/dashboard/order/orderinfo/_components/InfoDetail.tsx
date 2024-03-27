@@ -28,7 +28,7 @@ export const InfoDetail = () => {
           date="2024-01-20"
           productID="30349049903"
           amount="3"
-          price="₮225,700"
+          price={225700}
           total="₮677,100"
         />
         <OrderCard
