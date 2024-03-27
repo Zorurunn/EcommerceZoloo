@@ -5,12 +5,12 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  generalCategoryId: {
-    type: String,
+  generalCategory: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  subCategoryId: {
-    type: String,
+  subCategory: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   price: {
@@ -64,6 +64,20 @@ const productSchema = new Schema({
   viewsCount: {
     type: Number,
     required: false,
+  },
+  rating: {
+    ratedQty: {
+      type: Number,
+      default: 0,
+    },
+    starAverage: {
+      type: Number,
+      default: 0,
+    },
+  },
+  merchantId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   // thumbnails: {
   //   type: String,

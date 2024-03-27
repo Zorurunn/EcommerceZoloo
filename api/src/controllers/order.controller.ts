@@ -41,30 +41,30 @@ export const createOrder: RequestHandler = async (req, res) => {
       }
     }
 
-    // DECREASE STOCK bulk write yaj bichih???
-    for (let i = 0; i < orderedProducts.length; i++) {
-      const { productId, quantity } = orderedProducts[i];
-      await ProductModel.updateOne(
-        { _id: productId },
-        {
-          $inc: { remainQty: -quantity },
-        }
-      );
-    }
+    // DECREASE STOCK
+    await ProductModel.bulkWrite(
+      orderedProducts.map((item: orderedProductsType) => ({
+        updateOne: {
+          filter: { _id: item.productId },
+          update: {
+            $inc: { remainQty: -item.quantity },
+          },
+        },
+      }))
+    );
+
+    // INCREASE SALED QTY
+
+    //
 
     // CREATE ORDER
-
-    // await OrderModel.bulkWrite(
-    //   orderedProducts.map((item:orderedProductsType) => ({
-    //     updateOne: {
-    //       filter: { _id: item.productId },
-    //       update: { quantity:  },
-    //     },
-    //   }))
-    // );
+    const myOrder = await OrderModel.create({
+      createdAt: new Date(),
+    });
 
     return res.json({ message: "Successfully order added" });
   } catch (error) {
+    console.log(error);
     res.json(error);
   }
 };
