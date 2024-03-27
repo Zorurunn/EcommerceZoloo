@@ -46,6 +46,7 @@ type DataContextType = {
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
+  addRating: (productId: string, star: number, comment: string) => void;
   getProducts: () => Promise<void>;
 };
 
@@ -117,6 +118,40 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  // add review
+  const addRating = async (
+    productId: string,
+    star: number,
+    comment: string
+  ) => {
+    try {
+      const { data } = await api.post(
+        "product/addReview",
+        { productId, star },
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+
+      const reviewID = data.reviewID;
+
+      const { data: dataComment } = await api.post(
+        "comment/addComment",
+        {
+          productId,
+          comment,
+          star,
+        },
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+      setRefresh((prev) => prev + 1);
+      toast.success(data.message, {
+        position: "top-center",
+        hideProgressBar: true,
+      });
+    } catch (error) {
+      console.log(error), "FFF";
+    }
+  };
+
   useEffect(() => {
     getProducts();
     getGeneralCategories();
@@ -132,6 +167,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         selectedIndex,
         setIndex,
         products,
+        addRating,
         setProducts,
         getProducts,
       }}
