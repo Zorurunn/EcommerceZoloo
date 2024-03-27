@@ -40,6 +40,7 @@ export const createOrder: RequestHandler = async (req, res) => {
         });
       }
     }
+    console.log("aaa");
 
     // DECREASE STOCK bulk write yaj bichih???
     for (let i = 0; i < orderedProducts.length; i++) {
@@ -51,17 +52,28 @@ export const createOrder: RequestHandler = async (req, res) => {
         }
       );
     }
+    await OrderModel.bulkWrite(
+      orderedProducts.map((item: orderedProductsType) => ({
+        updateOne: {
+          filter: { _id: item.productId },
+          update: {
+            $inc: { qty: -item.quantity },
+          },
+        },
+      }))
+    );
+
+    // for (let i = 0; i < orderedProducts.length; i++) {
+    //   const { productId, quantity } = orderedProducts[i];
+    //   await ProductModel.updateOne(
+    //     { _id: productId },
+    //     {
+    //       $inc: { qty: -quantity },
+    //     }
+    //   );
+    // }
 
     // CREATE ORDER
-
-    // await OrderModel.bulkWrite(
-    //   orderedProducts.map((item:orderedProductsType) => ({
-    //     updateOne: {
-    //       filter: { _id: item.productId },
-    //       update: { quantity:  },
-    //     },
-    //   }))
-    // );
 
     return res.json({ message: "Successfully order added" });
   } catch (error) {

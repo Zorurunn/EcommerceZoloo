@@ -7,9 +7,13 @@ const orderSchema = new Schema({
   },
   deliveryDetails: {
     type: {
-      address: String,
+      firstName: String,
+      lastName: String,
+      postalCode: Number,
+      countryName: String,
+      cityName: String,
+      addressDetail: String,
       phoneNumber: Number,
-      paymentMethod: String,
     },
     required: true,
   },
@@ -25,6 +29,7 @@ const orderSchema = new Schema({
         discount: Number,
         quantity: Number,
         thumbnailUrl: String,
+        color: String,
       },
     ],
     required: true,
