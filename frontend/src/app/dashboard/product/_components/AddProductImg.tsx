@@ -1,19 +1,35 @@
 "use client";
 
-import { Button, Container, Stack, TextField, Modal } from "@mui/material";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { useData } from "@/components/provider/DataProvider";
+import {
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Modal,
+  selectClasses,
+} from "@mui/material";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 type AddProductImgProps = {
+  images: string[];
+  setImages: Dispatch<SetStateAction<string[]>>;
+  index: number;
   open: boolean;
   handleClose: () => void;
-  imgUrl: string | undefined;
-  setImgUrl: Dispatch<SetStateAction<string | undefined>>;
   setShowPicture: Dispatch<SetStateAction<boolean>>;
 };
 
 export const AddProductImg = (props: AddProductImgProps) => {
-  const { imgUrl, setImgUrl, setShowPicture, open, handleClose } = props;
+  const { setShowPicture, open, handleClose, index, images, setImages } = props;
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const { selectedIndex } = useData();
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     setSelectedFile(event.target.files[0]);
@@ -32,13 +48,37 @@ export const AddProductImg = (props: AddProductImgProps) => {
           }
         );
         const data = await response.json();
-        console.log(data);
-        setImgUrl(data.secure_url);
+
+        console.log(images, "images");
+
+        let array = images;
+
+        console.log(array, "array");
+
+        array.splice(selectedIndex, 1, data.secure_url);
+
+        console.log(array, "arrayCahnged");
+
+        setImages(array);
+        return data.secure.url;
       } catch (error) {
         console.error("Image upload error:", error);
       }
     }
   };
+
+  // useEffect(() => {
+  //   if (imgUrl) {
+  //     const newImages = images.map((item, ind) => {
+  //       if (ind === index) {
+  //         item = imgUrl;
+  //       }
+  //       return item;
+  //     });
+  //     setImages(newImages);
+  //   }
+  // }, [imgUrl]);
+
   return (
     <Modal
       sx={{
@@ -65,7 +105,6 @@ export const AddProductImg = (props: AddProductImgProps) => {
                 onClick={async () => {
                   await handleImageUpload();
                   setShowPicture(true);
-                  console.log(imgUrl);
                 }}
                 variant="contained"
                 sx={{
@@ -79,10 +118,10 @@ export const AddProductImg = (props: AddProductImgProps) => {
                 Upload
               </Button>
 
-              {imgUrl && (
+              {images && (
                 <Stack width="100%" position="relative">
                   <img
-                    src={imgUrl ?? ""}
+                    src={`${images[index]}`}
                     alt="Uploaded"
                     width={"100%"}
                     height={"100%"}

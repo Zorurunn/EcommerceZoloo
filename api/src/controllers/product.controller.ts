@@ -7,23 +7,23 @@ import mongoose from "mongoose";
 export const createProduct: RequestHandler = async (req, res) => {
   const {
     productName,
-    generalCategoryId,
-    subCategoryId,
+    generalCategory,
+    subCategory,
     price,
-    qty,
-    // thumbnails,
-    // images,
-    // coupon,
-    // salePercent,
+    remainQty,
+    images,
+    discount,
     description,
+    serialNumber,
+    productType,
+    productTag,
+    // thumbnails,
+    // coupon,
   } = req.body;
-
+  console.log(req.body);
   try {
     const productExists = await ProductModel.find({
-      productName,
-      generalCategoryId,
-      subCategoryId,
-      price,
+      serialNumber,
     });
 
     if (productExists.length) {
@@ -34,15 +34,19 @@ export const createProduct: RequestHandler = async (req, res) => {
 
     const product = await ProductModel.create({
       productName,
-      generalCategoryId,
-      subCategoryId,
+      generalCategory,
+      subCategory,
       price,
-      qty,
-      // thumbnails,
-      // images,
-      // coupon,
-      // salePercent,
+      remainQty,
+      images,
+      discount,
       description,
+      serialNumber,
+      productType,
+      productTag,
+      // thumbnails,
+      // coupon,
+
       createdAt: new Date(),
     });
 
@@ -51,6 +55,14 @@ export const createProduct: RequestHandler = async (req, res) => {
     res.json(error);
   }
 };
+
+// GET PRODUCTS
+export const getProducts: RequestHandler = async (req, res) => {
+  const products = await ProductModel.find({});
+
+  res.json(products);
+};
+
 // UPDATE PRODUCT
 export const updateProduct: RequestHandler = async (req, res) => {
   const {
@@ -59,7 +71,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
     generalCategoryId,
     subCategoryId,
     price,
-    qty,
+    remainQty,
     // thumbnails,
     // images,
     // coupon,
@@ -83,7 +95,7 @@ export const updateProduct: RequestHandler = async (req, res) => {
         generalCategoryId,
         subCategoryId,
         price,
-        qty,
+        remainQty,
         // thumbnails,
         // images,
         // coupon,

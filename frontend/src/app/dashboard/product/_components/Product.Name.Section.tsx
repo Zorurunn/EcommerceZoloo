@@ -15,9 +15,9 @@ type productNameSectionType = {
   productValue: string;
   productError?: boolean | undefined;
   // info
-  infoName: string;
-  infoValue: string;
-  infoError?: boolean | undefined;
+  descriptionName: string;
+  descriptionValue: string;
+  descriptionError?: boolean | undefined;
   // code
   serialNumberName: string;
   serialNumberValue: number | string;
@@ -31,9 +31,9 @@ const ProductNameSection = (props: productNameSectionType) => {
     productName,
     productValue,
     productError,
-    infoName,
-    infoValue,
-    infoError,
+    descriptionName,
+    descriptionValue,
+    descriptionError,
     serialNumberName,
     serialNumberValue,
     serialNumberError,
@@ -60,11 +60,11 @@ const ProductNameSection = (props: productNameSectionType) => {
           <CustomInput
             borderRadius="8px"
             size="medium"
-            name={infoName}
-            value={infoValue ?? "defaultValue"}
+            name={descriptionName}
+            value={descriptionValue ?? "defaultValue"}
             handleChange={handleChange}
             onBlur={handleBlur}
-            error={infoError}
+            error={descriptionError}
             type="text"
             multiLine={true}
             label="Нэмэлт мэдээлэл"
@@ -82,7 +82,7 @@ const ProductNameSection = (props: productNameSectionType) => {
             error={serialNumberError}
             label="Барааны код"
             helperText="Incorrect Serial Number."
-            type="number"
+            type="text"
             placeHolder="#12345678"
           />
         </Stack>

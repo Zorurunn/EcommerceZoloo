@@ -31,9 +31,9 @@ export const createOrder: RequestHandler = async (req, res) => {
       }
 
       if (
-        thisProduct.qty < quantity ||
+        thisProduct.remainQty < quantity ||
         quantity <= 0 ||
-        thisProduct.qty === 0
+        thisProduct.remainQty === 0
       ) {
         return res.status(401).json({
           message: ` "${name}" no more stock`,
@@ -47,7 +47,7 @@ export const createOrder: RequestHandler = async (req, res) => {
       await ProductModel.updateOne(
         { _id: productId },
         {
-          $inc: { qty: -quantity },
+          $inc: { remainQty: -quantity },
         }
       );
     }

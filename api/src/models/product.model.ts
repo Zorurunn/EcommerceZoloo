@@ -5,49 +5,75 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  generalCategoryId: {
-    type: mongoose.Schema.Types.ObjectId,
+  generalCategory: {
+    type: String,
     required: true,
   },
-  subCategoryId: {
-    type: mongoose.Schema.Types.ObjectId,
+  subCategory: {
+    type: String,
     required: true,
   },
   price: {
     type: Number,
     required: true,
   },
-  qty: {
+  remainQty: {
     type: Number,
     required: true,
+  },
+  images: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  discount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  serialNumber: {
+    type: String,
+    required: true,
+  },
+  productType: {
+    productColor: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    productSize: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+  },
+
+  productTag: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  viewsCount: {
+    type: Number,
+    required: false,
   },
   // thumbnails: {
   //   type: String,
   //   required: true,
   // },
-
-  // images: [
-  //   {
-  //     type: String,
-  //     required: true,
-  //   },
-  // ],
   // coupon: {
   //   type: String,
   //   required: true,
   // },
-  // salePercent: {
-  //   type: Number,
-  //   required: true,
-  // },
-  description: {
-    type: String,
-    required: true,
-  },
-  viewsCount: {
-    type: Number,
-    required: false,
-  },
+
   createdAt: Date,
   updatedAt: Date,
 });

@@ -2,6 +2,8 @@
 
 import { api } from "@/common";
 import { generalCategoryType, subCategoryType } from "@/common/types";
+import { AxiosError } from "axios";
+import { error } from "console";
 import {
   Dispatch,
   PropsWithChildren,
@@ -11,6 +13,27 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
+
+export type ProductParams = {
+  productName: string;
+  generalCategory: string;
+  subCategory: string;
+  serialNumber: string;
+  price: number;
+  remainQty: number;
+  images: string[];
+  discount: number;
+  description: string;
+  productType: {
+    productColor: string[];
+    productSize: string[];
+  };
+  productTag: string[];
+};
+
+export type CategoryParams = {};
+
 type countityType = {
   countity: number;
 };
@@ -18,6 +41,12 @@ type countityType = {
 type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
+  createProduct: (params: ProductParams) => Promise<void>;
+  selectedIndex: number;
+  setIndex: Dispatch<SetStateAction<number>>;
+  products: ProductParams[];
+  setProducts: Dispatch<SetStateAction<ProductParams[]>>;
+  getProducts: () => Promise<void>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -28,6 +57,40 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [generalCategories, setGeneralCategories] =
     useState<generalCategoryType[]>();
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
+  const [selectedIndex, setIndex] = useState<number>(0);
+  const [products, setProducts] = useState<ProductParams[]>([]);
+
+  // POST PRODUCT
+  const createProduct = async (params: ProductParams) => {
+    try {
+      const { data } = await api.post("/createProduct", params);
+      toast.success(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message ?? error.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+        });
+      }
+    }
+  };
+
+  // GET PRODUCT
+  const getProducts = async () => {
+    try {
+      const { data } = await api.get("/getProduct", {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+      setProducts(data);
+    } catch (error) {
+      console.log(error), "FFF";
+    }
+  };
 
   // GET GENERAL CATEGORIES
   const getGeneralCategories = async () => {
@@ -50,6 +113,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
+    getProducts();
     getGeneralCategories();
     getSubCategories();
   }, [refresh]);
@@ -59,6 +123,12 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
       value={{
         generalCategories,
         subCategories,
+        createProduct,
+        selectedIndex,
+        setIndex,
+        products,
+        setProducts,
+        getProducts,
       }}
     >
       {children}

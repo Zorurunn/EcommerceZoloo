@@ -8,14 +8,22 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ProductColor } from "./ProductColor";
 import { ProductSize } from "./ProductSIze";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
-export const ProductType = () => {
-  const [colors, setColors] = useState<string[]>([]);
-  const [sizes, setSizes] = useState<string[]>([]);
+export const ProductType = ({
+  colors,
+  setColors,
+  sizes,
+  setSizes,
+}: {
+  colors: string[];
+  setColors: Dispatch<SetStateAction<string[]>>;
+  sizes: string[];
+  setSizes: Dispatch<SetStateAction<string[]>>;
+}) => {
   const [openColor, setOpenColor] = useState(false);
   const [openSize, setOpenSize] = useState(false);
 

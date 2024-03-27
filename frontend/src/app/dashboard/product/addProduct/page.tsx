@@ -11,55 +11,71 @@ import * as yup from "yup";
 import { BackTabs } from "@/components/Back.Tabs";
 import { useEffect, useState } from "react";
 import { AlertModal } from "../_components/Alert.Modal";
-import UploadImg from "../_components/UploadImg";
+import { useData } from "@/components/provider/DataProvider";
 
 const validationSchema = yup.object({
-  product: yup.string().required(),
-  info: yup.string().required(),
-  serialNumber: yup.number().required(),
-  price: yup.number().required(),
-  total: yup.number().required(),
-  // imgUrls: yup.array().of(yup.string()).min(1).required(),
+  productName: yup.string().required(),
   generalCategory: yup.string().required(),
   subCategory: yup.string().required(),
+  serialNumber: yup.string().required(),
+  price: yup.number().required(),
+  remainQty: yup.number().required(),
+  discount: yup.number().required(),
+  description: yup.string().required(),
 });
 
 export default function Home() {
-  const [images, setImages] = useState<string[]>(["", "", ""]);
+  const { createProduct } = useData();
+  const [open, setOpen] = useState(false);
+  const [tags, setTags] = useState();
+  const [colors, setColors] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
   const checkImages = () => {
     if (images.length === 1) {
       if (images[0] === "") return false;
     }
   };
+  useEffect(() => {}, [images]);
+  const formik = useFormik({
+    initialValues: {
+      productName: "",
+      description: "",
+      serialNumber: "",
+      price: 0,
+      discount: 0,
+      remainQty: 0,
+      generalCategory: "",
+      subCategory: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      await createProduct({
+        productName: values.productName,
+        description: values.description,
+        serialNumber: values.serialNumber,
+        price: values.price,
+        discount: values.discount,
+        remainQty: values.remainQty,
+        generalCategory: values.generalCategory,
+        subCategory: values.subCategory,
+        images: images,
+        productType: {
+          productColor: colors,
+          productSize: sizes,
+        },
+        productTag: selected,
+      });
+    },
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setOpen(false);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    // formik.values.imgUrls = images;
-  }, [images]);
-  const [open, setOpen] = useState(false);
-  const formik = useFormik({
-    initialValues: {
-      product: "",
-      info: "",
-      serialNumber: "#",
-      price: null,
-      total: null,
-      // imgUrls: [],
-      generalCategory: "defaultValue",
-      subCategory: "defaultValue",
-    },
-    validationSchema: validationSchema,
-    onSubmit: async (values) => {
-      // if (images.length)
-      console.log(values);
-
-      // BAck holbolt todo
-    },
-  });
 
   return (
     <Stack gap={3} width={"100%"}>
@@ -67,16 +83,18 @@ export default function Home() {
       <Stack direction={"row"} gap={5}>
         <Stack gap={2} width={"50%"}>
           <ProductNameSection
-            productName={"product"}
+            productName={"productName"}
             serialNumberName={"serialNumber"}
-            infoName={"info"}
-            productValue={formik.values.product}
-            infoValue={formik.values.info}
+            descriptionName={"description"}
+            productValue={formik.values.productName}
+            descriptionValue={formik.values.description}
             serialNumberValue={formik.values.serialNumber}
             productError={
-              formik.touched.product && Boolean(formik.errors.product)
+              formik.touched.productName && Boolean(formik.errors.productName)
             }
-            infoError={formik.touched.info && Boolean(formik.errors.info)}
+            descriptionError={
+              formik.touched.description && Boolean(formik.errors.description)
+            }
             serialNumberError={
               formik.touched.serialNumber && Boolean(formik.errors.serialNumber)
             }
@@ -86,11 +104,18 @@ export default function Home() {
           <ProductImageSection images={images} setImages={setImages} />
           <ProductTotalPrice
             priceName={"price"}
+            discountName={"discount"}
+            remainQtyName={"remainQty"}
             priceValue={formik.values.price}
+            discountValue={formik.values.discount}
+            remainQtyValue={formik.values.remainQty}
             priceError={formik.touched.price && Boolean(formik.errors.price)}
-            totalName={"total"}
-            totalValue={formik.values.total}
-            totalError={formik.touched.total && Boolean(formik.errors.total)}
+            discountError={
+              formik.touched.price && Boolean(formik.errors.discount)
+            }
+            remainQtyError={
+              formik.touched.remainQty && Boolean(formik.errors.remainQty)
+            }
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
@@ -117,8 +142,13 @@ export default function Home() {
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
-          <ProductType />
-          <ProductTag />
+          <ProductType
+            colors={colors}
+            setColors={setColors}
+            sizes={sizes}
+            setSizes={setSizes}
+          />
+          <ProductTag selected={selected} setSelected={setSelected} />
           <Stack alignSelf={"end"} direction={"row"} gap={1}>
             <Button
               sx={{
@@ -148,9 +178,9 @@ export default function Home() {
               }}
               onClick={() => {
                 formik.handleSubmit();
+
                 // setOpen(true);
               }}
-              disabled={!formik.isValid || !formik.dirty}
             >
               Нийтлэх
             </Button>
