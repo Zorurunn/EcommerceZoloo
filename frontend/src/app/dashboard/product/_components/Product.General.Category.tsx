@@ -35,7 +35,6 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
     handleChange,
     handleBlur,
   } = props;
-  const [selectedCategory, setSelectedCategory] = useState("");
 
   return (
     <Stack width={"100%"} padding={3} borderRadius={"12px"} bgcolor={"#FFFFFF"}>
@@ -51,7 +50,6 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
           onBlur={handleBlur}
           error={generalCategoryError}
           select={true}
-          // onSelect={}
           sx={{
             fontSize: "16px",
             fontWeight: "400",
@@ -62,14 +60,7 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
           </MenuItem>
           {generalCategories &&
             generalCategories.map((item) => (
-              <MenuItem
-                onSelect={() => {
-                  setSelectedCategory(item._id);
-                  console.log(selectedCategory);
-                }}
-                key={item._id}
-                value={item._id}
-              >
+              <MenuItem key={item._id} value={item._id}>
                 {item.generalCategoryName}
               </MenuItem>
             ))}
