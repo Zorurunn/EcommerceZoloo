@@ -1,10 +1,12 @@
 "use client";
 
 import { Button, Stack, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 type ProductTypeProps = {
   price: string;
 };
 export const OrderPrice = (props: ProductTypeProps) => {
+  const router = useRouter();
   const { price } = props;
   return (
     <Stack width={"100%"} bgcolor={"#F4F4FC"} borderRadius={3}>
@@ -47,6 +49,9 @@ export const OrderPrice = (props: ProductTypeProps) => {
             fontSize: "14px",
             fontWeight: 700,
             color: "#fff",
+          }}
+          onClick={() => {
+            router.push("/client/purchase/ordercompleted");
           }}
         >
           Худалдан авах

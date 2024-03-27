@@ -1,10 +1,12 @@
 "use client";
 
 import { Button, Stack, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 type ProductTypeProps = {
   price: string;
 };
 export const PaymnetCard = (props: ProductTypeProps) => {
+  const router = useRouter();
   const { price } = props;
   return (
     <Stack width={"100%"} alignItems={"center"} gap={6}>
@@ -51,6 +53,9 @@ export const PaymnetCard = (props: ProductTypeProps) => {
               fontSize: "14px",
               fontWeight: 700,
               color: "#fff",
+            }}
+            onClick={() => {
+              router.push("/client/purchase/hektodemo");
             }}
           >
             Худалдан авах

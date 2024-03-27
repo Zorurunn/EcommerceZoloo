@@ -5,7 +5,7 @@ import { Container, Stack, Typography } from "@mui/material";
 export const Head = () => {
   return (
     <Stack bgcolor={"#F6F5FF"}>
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"lg"}>
         <Stack
           height={"100px"}
           direction={"row"}

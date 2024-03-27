@@ -9,7 +9,7 @@ import { OrderPrice } from "./OrderPrice";
 const Main = () => {
   return (
     <Stack bgcolor={"#fff"}>
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"lg"}>
         <Stack direction={"row"} width={"100%"} py={10} gap={3}>
           <ContactInfo />
           <Stack width={"35%"} gap={4}>

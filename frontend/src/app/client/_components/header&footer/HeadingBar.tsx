@@ -83,7 +83,12 @@ export const HeadingBar = () => {
               </Typography>
               <FavoriteBorderIcon sx={{ fontSize: "18px" }} />
             </Stack>
-            <ShoppingCartIcon sx={{ fontSize: "22px" }} />
+            <ShoppingCartIcon
+              sx={{ fontSize: "22px", cursor: "pointer" }}
+              onClick={() => {
+                router.push("/client/purchase/shoppingcart");
+              }}
+            />
           </Stack>
         </Stack>
       </Container>
