@@ -7,8 +7,10 @@ import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import React from "react";
 import { NAVBAR_HEIGHT } from "@/constants";
+import { useRouter } from "next/navigation";
 
 export const HeadingBar = () => {
+  const router = useRouter();
   return (
     <Stack
       position={"sticky"}
@@ -60,6 +62,10 @@ export const HeadingBar = () => {
               alignItems={"center"}
               justifyContent={"center"}
               gap={0.5}
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                router.push("/signin");
+              }}
             >
               <Typography fontSize={16} fontWeight={600}>
                 Нэвтрэх

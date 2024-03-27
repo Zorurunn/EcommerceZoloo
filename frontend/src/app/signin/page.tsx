@@ -1,23 +1,23 @@
 import { Stack, Typography } from "@mui/material";
 import SignInForm from "./_components/SignInForm";
 import Image from "next/image";
+import Header from "../client/_components/header&footer/Header";
+import { Footer } from "../client/_components/header&footer/Footer";
 
 export default function SignIn() {
   return (
-    <Stack
-      height={"100vh"}
-      justifyContent={"space-between"}
-      alignItems={"center"}
-      paddingX={4}
-      paddingY={2}
-    >
-      <Stack position={"relative"} px={"6%"} py={"2%"} alignSelf={"flex-start"}>
-        <Image src="/Pinecone Logo.svg" alt="" fill />
+    <Stack height={"100vh"}>
+      <Header />
+      <Stack
+        height={"100%"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        px={4}
+        py={8}
+      >
+        <SignInForm />
       </Stack>
-      <SignInForm />
-      <Stack marginTop={8}>
-        <Typography color={"#94A3B1"}>© 2023 Pinecone</Typography>
-      </Stack>
+      <Footer />
     </Stack>
   );
 }
