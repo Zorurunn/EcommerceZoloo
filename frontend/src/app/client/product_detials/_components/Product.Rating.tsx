@@ -84,46 +84,47 @@ import { useState } from "react";
 const validationSchema = yup.object({
   comment: yup.string(),
 });
-type userType = {
-  userName: string;
-  email: string;
-  merchName: string;
-  address: { city: string; district: string; khoroo: string };
-  experience: string;
-  merchType: string;
-  password: string;
-  role: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
+// type userType = {
+//   userName: string;
+//   email: string;
+//   merchName: string;
+//   address: { city: string; district: string; khoroo: string };
+//   experience: string;
+//   merchType: string;
+//   password: string;
+//   role: string;
+//   createdAt: Date;
+//   updatedAt: Date;
+// };
 
-type CommentType = {
-  userId: userType;
-  productId: string;
-  comment: string;
-  star: number;
-  createdAt: object;
-  updatedAt: object;
-};
+// type CommentType = {
+//   userId: string;
+//   productId: string;
+//   comment: string;
+//   rate: number;
+//   createdAt: object;
+//   updatedAt: object;
+// };
 
 type ProductRatingProps = {
+  userId?: string;
   productId?: string;
   productRating?: number;
-  comments?: CommentType[];
-  reviewCount?: number;
+  comment?: string;
+  // reviewCount?: number;
 };
 
 export const ProductRating = (props: ProductRatingProps) => {
-  const { productId, comments, productRating, reviewCount } = props;
-  const { addReview } = useData();
-  const [star, setStar] = useState(0);
+  const { userId, productId, comment, productRating } = props;
+  const { addRating } = useData();
+  const [rate, setRate] = useState(0);
   const formik = useFormik({
     initialValues: {
-      comment: "",
+      comment: yup.string,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      addReview(productId || "", star, values.comment);
+      addRating(userId || "", productId || "", rate, values.comment);
     },
   });
 

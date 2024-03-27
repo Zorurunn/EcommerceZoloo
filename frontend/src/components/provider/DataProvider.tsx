@@ -46,7 +46,12 @@ type DataContextType = {
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
-  addRating: (productId: string, star: number, comment: string) => void;
+  addRating: (
+    userId: string,
+    productId: string,
+    rate: number,
+    comment: string
+  ) => void;
   getProducts: () => Promise<void>;
 };
 
@@ -120,14 +125,15 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
 
   // add review
   const addRating = async (
+    userId: string,
     productId: string,
-    star: number,
+    rate: number,
     comment: string
   ) => {
     try {
       const { data } = await api.post(
-        "product/addReview",
-        { productId, star },
+        "/addRating",
+        { userId, productId, rate },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
 
@@ -136,9 +142,10 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
       const { data: dataComment } = await api.post(
         "comment/addComment",
         {
+          userId,
           productId,
           comment,
-          star,
+          rate,
         },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
