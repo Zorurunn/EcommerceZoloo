@@ -14,21 +14,6 @@ export type GeneralCardType = {
   price: number;
 };
 
-export const CARD_TYPE = [
-  { src: "/pro.jpg", name: "Product", price: 750000 },
-  { src: "/pro2.jpg", name: "Product", price: 750000 },
-  { src: "/pro3.jpg", name: "Product", price: 750000 },
-  { src: "/pro4.jpg", name: "Product", price: 750000 },
-  { src: "/pro5.jpg", name: "Product", price: 750000 },
-  { src: "/pro6.jpg", name: "Product", price: 750000 },
-  { src: "/pro7.jpg", name: "Product", price: 750000 },
-  { src: "/pro8.jpg", name: "Product", price: 750000 },
-  { src: "/pro9.jpg", name: "Product", price: 750000 },
-  { src: "/pro10.jpg", name: "Product", price: 750000 },
-  { src: "/pro11.jpg", name: "Product", price: 750000 },
-  { src: "/pro12.jpg", name: "Product", price: 750000 },
-];
-
 export const GeneralCard = (props: ProductParams) => {
   const { images, productName, price } = props;
   const [open, setOpen] = useState(false);

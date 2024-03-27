@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Stack>
-        <Productdetial />
+        {/* <Productdetial /> */}
         <MoreDetial />
         <AssociationProduct />
       </Stack>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductRatingProps } from "@/app/client/product_detials/_components/Product.Rating";
+import { ProductRatingProps } from "@/app/client/products/_components/Product.Rating";
 import { api } from "@/common";
 import { generalCategoryType, subCategoryType } from "@/common/types";
 import { AxiosError } from "axios";
@@ -17,6 +17,7 @@ import {
 import { toast } from "react-toastify";
 
 export type ProductParams = {
+  _id: string;
   productName: string;
   generalCategoryId: string;
   subCategoryId: string;
