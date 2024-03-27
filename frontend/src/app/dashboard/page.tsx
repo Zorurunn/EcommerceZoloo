@@ -8,6 +8,13 @@ import { BarChartContainer } from "./_components/BarChartContainer";
 import { SalesBarChart } from "./_components/SalesBarChart";
 import { BestSelledProducts } from "./_components/BestSelledProducts";
 import { AreasBarChart } from "./_components/AreasBarChart";
+type ratingType = {
+  userId: string;
+  productId: string;
+  rate: number;
+  comment: string;
+};
+
 export default function Home() {
   return (
     <Stack height={"100%"}>

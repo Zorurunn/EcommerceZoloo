@@ -30,6 +30,7 @@ const orderSchema = new Schema({
         quantity: Number,
         thumbnailUrl: String,
         color: String,
+        merchantId: String,
       },
     ],
     required: true,

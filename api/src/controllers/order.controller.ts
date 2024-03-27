@@ -40,43 +40,31 @@ export const createOrder: RequestHandler = async (req, res) => {
         });
       }
     }
-    console.log("aaa");
 
-    // DECREASE STOCK bulk write yaj bichih???
-    for (let i = 0; i < orderedProducts.length; i++) {
-      const { productId, quantity } = orderedProducts[i];
-      await ProductModel.updateOne(
-        { _id: productId },
-        {
-          $inc: { remainQty: -quantity },
-        }
-      );
-    }
-    await OrderModel.bulkWrite(
+    // DECREASE STOCK
+    await ProductModel.bulkWrite(
       orderedProducts.map((item: orderedProductsType) => ({
         updateOne: {
           filter: { _id: item.productId },
           update: {
-            $inc: { qty: -item.quantity },
+            $inc: { remainQty: -item.quantity },
           },
         },
       }))
     );
 
-    // for (let i = 0; i < orderedProducts.length; i++) {
-    //   const { productId, quantity } = orderedProducts[i];
-    //   await ProductModel.updateOne(
-    //     { _id: productId },
-    //     {
-    //       $inc: { qty: -quantity },
-    //     }
-    //   );
-    // }
+    // INCREASE SALED QTY
+
+    //
 
     // CREATE ORDER
+    const myOrder = await OrderModel.create({
+      createdAt: new Date(),
+    });
 
     return res.json({ message: "Successfully order added" });
   } catch (error) {
+    console.log(error);
     res.json(error);
   }
 };

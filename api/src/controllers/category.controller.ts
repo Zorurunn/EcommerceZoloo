@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import { GeneralCategoryModel, SubCategoryModel } from "../models";
+import { Model } from "mongoose";
 
 // CREATE GENERAL CATEGORY
 export const createGeneralCategory: RequestHandler = async (req, res) => {
@@ -34,14 +35,29 @@ export const createSubCategory: RequestHandler = async (req, res) => {
   try {
     const categoryExists = await SubCategoryModel.find({
       subCategoryName,
-      generalCategoryId,
     });
 
     if (categoryExists.length) {
       return res.status(401).json({
-        message: "category already exists",
+        message: "category already exists. Update it !!!",
       });
     }
+
+    //
+    // id
+    // rating unelge number
+    // comment
+    // product ID
+
+    // product Model
+    // rating
+    // nemeed rate hiisen hunii toond huwaana
+    // dundaj  4.5
+    // niit heden hun unelgee ugsun  1000 hun
+
+    //
+    //
+    //
 
     await SubCategoryModel.create({
       subCategoryName,
