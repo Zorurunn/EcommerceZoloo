@@ -7,32 +7,32 @@ const data = [
   {
     name: "Үүргэвч",
     color: "Саарал",
-    image: "",
+    image: "/bindek/Rectangle20.png",
     price: "750’000₮",
   },
 
   {
     name: "Электрон цаг",
     color: "Brown",
-    image: "",
+    image: "/bindek/Rectangle21.png",
     price: "750’000₮",
   },
   {
     name: "Арьсан оосортой цаг",
     color: "Бор",
-    image: "",
+    image: "/bindek/Rectangle22.png",
     price: "750’000₮",
   },
   {
     name: "Подолк",
     color: "Саарал",
-    image: "",
+    image: "/bindek/Rectangle23.png",
     price: "750’000₮",
   },
   {
     name: "Загварлаг цаг",
     color: "Бор",
-    image: "",
+    image: "/bindek/Rectangle24.png",
     price: "750’000₮",
   },
 ];

@@ -6,45 +6,50 @@ import { CartComponents } from "./CartComponents";
 const data = [
   {
     name: "Электрон цаг",
-    image: "",
+    image: "/bindek/Rectangle34.png",
     color: "Мөнгөлөг",
     price: "750’000₮",
     total: "750’000₮",
+    amount: "1",
   },
   {
     name: "Электрон цаг",
-    image: "",
+    image: "/bindek/Rectangle35.png",
     color: "Хар",
     price: "750’000₮",
     total: "750’000₮",
+    amount: "1",
   },
   {
     name: "Электрон цаг",
-    image: "",
+    image: "/bindek/Rectangle36.png",
     color: "Улаан",
     price: "750’000₮",
     total: "750’000₮",
+    amount: "1",
   },
   {
     name: "Электрон цаг",
-    image: "",
+    image: "/bindek/Rectangle37.png",
     color: "Саарал",
     price: "750’000₮",
     total: "750’000₮",
+    amount: "1",
   },
   {
     name: "Электрон цаг",
-    image: "",
+    image: "/bindek/Rectangle38.png",
     color: "Хар саарал",
     price: "750’000₮",
     total: "750’000₮",
+    amount: "1",
   },
 ];
 export const Cart = () => {
   return (
     <Stack width={"100%"} paddingTop={"50px"} gap={5}>
       <Stack width={"100%"} gap={2}>
-        {data.map(({ name, image, color, price, total }, index) => {
+        {data.map(({ name, image, color, price, total, amount }, index) => {
           return (
             <CartComponents
               key={index}
@@ -53,6 +58,7 @@ export const Cart = () => {
               color={color}
               price={price}
               total={total}
+              amount={amount}
             />
           );
         })}
