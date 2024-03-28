@@ -1,14 +1,28 @@
 "use client";
 // to do: make product counter
 // add image by connecting with backend
-import { ListItem, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
 import { cartProductType } from "@/common/types";
 import { useData } from "@/components/provider/DataProvider";
 
+const numberFormatter = new Intl.NumberFormat("en-US", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
 export const CartComponents = (props: cartProductType) => {
   const { productCount, setProductCount, addCart, setAddCart } = useData();
+  const tatolPrice = addCart.reduce((sum, currentValue) => {
+    return (
+      sum +
+      currentValue.price *
+        currentValue.quantity *
+        (1 - 0.01 * (currentValue.discount || 0))
+    );
+  }, 0);
   return (
     <Stack
       width={"100%"}
@@ -58,6 +72,13 @@ export const CartComponents = (props: cartProductType) => {
           bgcolor={"#F0EFF2"}
         >
           <Stack
+            onClick={() => {
+              setProductCount(props.quantity);
+              if (props.quantity) {
+                return 1;
+              }
+              return props.quantity--;
+            }}
             width={"12px"}
             height={"100%"}
             bgcolor={"#E7E7EF"}
@@ -65,7 +86,7 @@ export const CartComponents = (props: cartProductType) => {
             justifyContent={"center"}
             color={"#BEBFC2"}
           >
-            -
+            _
           </Stack>
           <Stack
             height={"100%"}
@@ -79,6 +100,20 @@ export const CartComponents = (props: cartProductType) => {
             {props.quantity}
           </Stack>
           <Stack
+            onClick={() => {
+              let isShare = false;
+
+              const newAddCart = addCart.map((element) => {
+                if (element.quantity == props.quantity) {
+                  isShare = true;
+                  element.quantity += 1;
+                  return element;
+                } else {
+                  return element;
+                }
+              });
+              setProductCount(props.quantity);
+            }}
             width={"12px"}
             height={"100%"}
             bgcolor={"#E7E7EF"}
@@ -91,11 +126,9 @@ export const CartComponents = (props: cartProductType) => {
         </Stack>
       </Stack>
       <Stack justifyContent={"center"} alignItems={"self-end"}>
-        <Typography
-          color={"#151875"}
-          fontSize={14}
-          fontWeight={700}
-        ></Typography>
+        <Typography color={"#151875"} fontSize={14} fontWeight={700}>
+          {numberFormatter.format(tatolPrice)}
+        </Typography>
       </Stack>
     </Stack>
   );
