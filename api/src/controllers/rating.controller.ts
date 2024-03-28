@@ -7,7 +7,6 @@ type Payload = {
 };
 // ADD RATING
 export const addRating: RequestHandler = async (req, res) => {
-  const { productId, rate, comment } = req.body;
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -16,8 +15,7 @@ export const addRating: RequestHandler = async (req, res) => {
     });
   }
   const { id } = jwt.verify(authorization, "secret-key") as Payload;
-  const { userId, productId, rate, comment } = req.body;
-  console.log("kita");
+  const { productId, rate, comment } = req.body;
 
   try {
     // ADD RATING MODEL
