@@ -32,7 +32,7 @@ export const createProduct: RequestHandler = async (req, res) => {
     // thumbnails,
     // coupon,
   } = req.body;
-  console.log(req.body);
+  console.log("id", id);
   try {
     const productExists = await ProductModel.find({
       serialNumber,

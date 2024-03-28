@@ -12,40 +12,35 @@ import { BackTabs } from "@/components/Back.Tabs";
 import { useEffect, useState } from "react";
 import { AlertModal } from "../_components/Alert.Modal";
 import { useData } from "@/components/provider/DataProvider";
+import { CustomInput } from "@/components";
 
 const validationSchema = yup.object({
   productName: yup.string().required(),
-  generalCategory: yup.string().required(),
-  subCategory: yup.string().required(),
+  description: yup.string().required(),
   serialNumber: yup.string().required(),
   price: yup.number().required(),
+  discount: yup.number().nullable(),
   remainQty: yup.number().required(),
-  discount: yup.number().required(),
-  description: yup.string().required(),
+  generalCategoryId: yup.string().required(),
+  subCategoryId: yup.string().required(),
 });
 
 export default function Home() {
   const { createProduct } = useData();
   const [open, setOpen] = useState(false);
-  const [tags, setTags] = useState();
   const [colors, setColors] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
   const [images, setImages] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string[]>([]);
-  const checkImages = () => {
-    if (images.length === 1) {
-      if (images[0] === "") return false;
-    }
-  };
-  useEffect(() => {}, [images]);
+  const [tags, setTags] = useState<string[]>([]);
+
   const formik = useFormik({
     initialValues: {
       productName: "",
       description: "",
       serialNumber: "",
-      price: 0,
-      discount: 0,
-      remainQty: 0,
+      price: null,
+      discount: null,
+      remainQty: null,
       generalCategoryId: "",
       subCategoryId: "",
     },
@@ -53,29 +48,30 @@ export default function Home() {
     onSubmit: async (values) => {
       await createProduct({
         productName: values.productName,
-        description: values.description,
-        serialNumber: values.serialNumber,
-        price: values.price,
-        discount: values.discount,
-        remainQty: values.remainQty,
         generalCategoryId: values.generalCategoryId,
         subCategoryId: values.subCategoryId,
+        price: values.price,
+        remainQty: values.remainQty,
         images: images,
+        discount: values.discount,
+        description: values.description,
+        serialNumber: values.serialNumber,
         productType: {
           productColor: colors,
           productSize: sizes,
         },
-        productTag: selected,
+        productTag: tags,
       });
     },
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setOpen(false);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+  // YAGAAD interval time nemsen be ???
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setOpen(false);
+  //   }, 4000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <Stack gap={3} width={"100%"}>
@@ -84,17 +80,17 @@ export default function Home() {
         <Stack gap={2} width={"50%"}>
           <ProductNameSection
             productName={"productName"}
-            serialNumberName={"serialNumber"}
-            descriptionName={"description"}
             productValue={formik.values.productName}
-            descriptionValue={formik.values.description}
-            serialNumberValue={formik.values.serialNumber}
             productError={
               formik.touched.productName && Boolean(formik.errors.productName)
             }
+            descriptionName={"description"}
+            descriptionValue={formik.values.description}
             descriptionError={
               formik.touched.description && Boolean(formik.errors.description)
             }
+            serialNumberName={"serialNumber"}
+            serialNumberValue={formik.values.serialNumber}
             serialNumberError={
               formik.touched.serialNumber && Boolean(formik.errors.serialNumber)
             }
@@ -104,15 +100,15 @@ export default function Home() {
           <ProductImageSection images={images} setImages={setImages} />
           <ProductTotalPrice
             priceName={"price"}
-            discountName={"discount"}
-            remainQtyName={"remainQty"}
             priceValue={formik.values.price}
-            discountValue={formik.values.discount}
-            remainQtyValue={formik.values.remainQty}
             priceError={formik.touched.price && Boolean(formik.errors.price)}
+            discountName={"discount"}
+            discountValue={formik.values.discount}
             discountError={
               formik.touched.price && Boolean(formik.errors.discount)
             }
+            remainQtyName={"remainQty"}
+            remainQtyValue={formik.values.remainQty}
             remainQtyError={
               formik.touched.remainQty && Boolean(formik.errors.remainQty)
             }
@@ -143,13 +139,15 @@ export default function Home() {
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
           />
+
           <ProductType
             colors={colors}
             setColors={setColors}
             sizes={sizes}
             setSizes={setSizes}
           />
-          <ProductTag selected={selected} setSelected={setSelected} />
+
+          <ProductTag tags={tags} setTags={setTags} />
           <Stack alignSelf={"end"} direction={"row"} gap={1}>
             <Button
               sx={{
@@ -179,9 +177,15 @@ export default function Home() {
               }}
               onClick={() => {
                 formik.handleSubmit();
-
-                // setOpen(true);
               }}
+              disabled={
+                !formik.isValid ||
+                !formik.dirty ||
+                images.length === 0 ||
+                colors.length === 0 ||
+                sizes.length === 0 ||
+                tags.length === 0
+              }
             >
               Нийтлэх
             </Button>

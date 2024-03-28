@@ -82,14 +82,6 @@ const productSchema = new Schema({
   saledQty: {
     type: Number,
   },
-  // thumbnails: {
-  //   type: String,
-  //   required: true,
-  // },
-  // coupon: {
-  //   type: String,
-  //   required: true,
-  // },
 
   createdAt: Date,
   updatedAt: Date,

@@ -21,7 +21,7 @@ type productTotalPriceType = {
   discountError: boolean | undefined;
   // Remain qty
   remainQtyName: string;
-  remainQtyValue: number | string;
+  remainQtyValue: number | null;
   remainQtyError?: boolean | undefined;
 };
 

@@ -2,6 +2,9 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import { ProductImgField } from "./ProductImgField";
 import { Dispatch, SetStateAction, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import UploadImg from "./UploadImg";
+import { Test } from "./Test";
+import { useBackDrop } from "@/components/provider/BackDropProvider";
 
 type productImageSectionType = {
   images: string[];
@@ -47,15 +50,24 @@ export default function ProductImageSection(props: productImageSectionType) {
         >
           <Stack gap={2} direction={"row"}>
             {images.map((image, index) => (
-              <ProductImgField
+              <Test
                 key={image + index}
                 images={images}
                 setImages={setImages}
-                removeImage={() => {
+                handleDelete={() => {
                   removeImage(index);
                 }}
                 index={index}
               />
+              // <UploadImg
+              //   key={image + index}
+              //   images={images}
+              //   setImages={setImages}
+              //   handleDelete={() => {
+              //     removeImage(index);
+              //   }}
+              //   index={index}
+              // />
             ))}
           </Stack>
         </Stack>
