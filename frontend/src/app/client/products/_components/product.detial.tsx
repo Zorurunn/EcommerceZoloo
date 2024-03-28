@@ -4,14 +4,15 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ProductParams } from "@/components/provider/DataProvider";
-
-type ProductdetialProps = {
-  userId?: string;
-  productId?: string;
-};
+import { it } from "node:test";
 
 export const Productdetial = (props: ProductParams) => {
-  const { images, productName, price } = props;
+  const { images, productName, price, description, productType, rating } =
+    props;
+  const ratedQty = rating?.ratedQty;
+  const startAverage = rating?.startAverage;
+  const colors = productType.productColor;
+
   return (
     <Container>
       <Stack
@@ -23,78 +24,104 @@ export const Productdetial = (props: ProductParams) => {
         pb={4}
       >
         <Stack height={"100%"} width={"50%"}>
-          <Stack width={"100%"} height={"100%"} direction={"row"} gap={3}>
-            <Stack
-              width={"100%"}
-              height={"100%"}
-              gap={2}
-              flexGrow={1}
-              flexBasis={0}
-            >
-              <Stack
-                borderRadius={1}
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={"/product2.jpg"}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
-              <Stack
-                borderRadius={1}
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={"/product2.jpg"}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
-              <Stack
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={"/product2.jpg"}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
-            </Stack>
-            <Stack
-              width={"100%"}
-              height={"100%"}
-              position={"relative"}
-              flexGrow={3}
-              flexBasis={0}
-            >
-              <Image
-                src={images[0]}
-                alt="zl"
-                fill
-                objectFit="cover"
-                style={{ borderRadius: "3px" }}
-              />
-            </Stack>
-          </Stack>
+          {images &&
+            images.map((item) => {
+              if (item.length >= 2) {
+                return (
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    direction={"row"}
+                    gap={3}
+                  >
+                    <Stack
+                      width={"100%"}
+                      height={"100%"}
+                      gap={2}
+                      flexGrow={1}
+                      flexBasis={0}
+                    >
+                      <Stack
+                        borderRadius={1}
+                        width={"100%"}
+                        height={"100%"}
+                        position={"relative"}
+                        flexBasis={"33.3%"}
+                        flexGrow={1}
+                        bgcolor={"#FFFFFF"}
+                      >
+                        <Image
+                          src={item || "/backgroundnull.png"}
+                          alt="zurag bhgu bn"
+                          fill
+                          objectFit="cover"
+                          style={{ borderRadius: "3px" }}
+                        />
+                      </Stack>
+                    </Stack>
+                    <Stack
+                      width={"100%"}
+                      height={"100%"}
+                      position={"relative"}
+                      flexGrow={1}
+                      flexBasis={0}
+                    >
+                      <Image
+                        src={images[0]}
+                        alt="zurag bhgu bn"
+                        fill
+                        objectFit="cover"
+                        style={{ borderRadius: "3px" }}
+                      />
+                    </Stack>
+                  </Stack>
+                );
+              }
+              return (
+                <Stack width={"100%"} height={"100%"} direction={"row"} gap={3}>
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    gap={2}
+                    flexGrow={1}
+                    flexBasis={0}
+                  >
+                    <Stack
+                      borderRadius={1}
+                      width={"100%"}
+                      height={"100%"}
+                      position={"relative"}
+                      flexBasis={"33.3%"}
+                      flexGrow={1}
+                      bgcolor={"#FFFFFF"}
+                    >
+                      <Image
+                        src={item || "/backgroundnull.png"}
+                        alt="zurag bhgu bn"
+                        fill
+                        objectFit="cover"
+                        style={{ borderRadius: "3px" }}
+                      />
+                    </Stack>
+                  </Stack>
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    position={"relative"}
+                    flexGrow={3}
+                    flexBasis={0}
+                  >
+                    <Image
+                      src={images[0]}
+                      alt="zurag bhgu bn"
+                      fill
+                      objectFit="cover"
+                      style={{ borderRadius: "3px" }}
+                    />
+                  </Stack>
+                </Stack>
+              );
+            })}
         </Stack>
         <Stack width={"50%"} gap={6} alignItems={"flex-start"}>
           <Stack gap={1.5}>
@@ -102,18 +129,34 @@ export const Productdetial = (props: ProductParams) => {
               {productName}
             </Typography>
             <Stack spacing={1} direction={"row"} alignItems={"center"}>
-              <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+              <Rating
+                name="half-rating"
+                defaultValue={ratedQty}
+                precision={0.5}
+              />
               <Typography color={"#5A5C7E"} fontSize={15}>
-                (32{/* sanal ugsn too */})
+                ({startAverage})
               </Typography>
             </Stack>
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
-              {new Intl.NumberFormat().format(price) + "₮"}
+              {new Intl.NumberFormat().format(price ?? 0) + "₮"}
             </Typography>
-            <Stack></Stack>
+            <Stack direction={"row"} gap={1.5} alignItems={"center"}>
+              {colors &&
+                colors.map((item) => {
+                  return (
+                    <Stack
+                      width={20}
+                      height={20}
+                      borderRadius={"50%"}
+                      sx={{ backgroundColor: item }}
+                    ></Stack>
+                  );
+                })}
+            </Stack>
+
             <Typography color={"#9295AA"} fontSize={17} fontWeight={400}>
-              dlfwjbknlm,l Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit. Voluptatum obcaecati magni inventore veniam amet natus
+              {description}
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={2} alignItems={"center"}>

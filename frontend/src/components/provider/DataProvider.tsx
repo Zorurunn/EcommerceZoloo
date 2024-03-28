@@ -6,10 +6,10 @@ import { generalCategoryType, subCategoryType } from "@/common/types";
 import { AxiosError } from "axios";
 import { error } from "console";
 import {
+  createContext,
   Dispatch,
   PropsWithChildren,
   SetStateAction,
-  createContext,
   useContext,
   useEffect,
   useState,
@@ -22,11 +22,16 @@ export type ProductParams = {
   generalCategoryId: string;
   subCategoryId: string;
   serialNumber: string;
+  rating?: {
+    ratedQty: number;
+    startAverage: number;
+  };
   price: number | null;
   remainQty: number | null;
   images: string[];
   discount: number | null;
   description: string;
+  info: string;
   productType: {
     productColor: string[];
     productSize: string[];

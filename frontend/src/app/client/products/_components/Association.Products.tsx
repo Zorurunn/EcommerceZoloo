@@ -3,10 +3,14 @@ import { Stack, Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import { generalCategoryType } from "@/common/types";
-import { GeneralCard, CARD_TYPE } from "../../_components/GeneralCard";
+import { GeneralCard } from "../../_components/GeneralCard";
+import { useRouter } from "next/navigation";
+import { useData } from "@/components/provider/DataProvider";
 
 export const AssociationProduct = () => {
+  const router = useRouter();
   const [cards, setCards] = useState<generalCategoryType[]>();
+  const { products } = useData();
 
   return (
     <Container maxWidth={"lg"}>
@@ -22,11 +26,19 @@ export const AssociationProduct = () => {
             // columns={{ xs: 4, sm: 8 }}
             justifyContent={"space-between"}
           >
-            {CARD_TYPE?.slice(0, 4).map((item, _) => (
-              <Grid item xs={3}>
-                <GeneralCard {...item} />
-              </Grid>
-            ))}
+            {products &&
+              products.map((item) => (
+                <Grid item xs={3}>
+                  <Stack
+                    onClick={() => {
+                      router.push(`/client/products/${item._id}`);
+                      console.log(item._id);
+                    }}
+                  >
+                    <GeneralCard {...item} />
+                  </Stack>
+                </Grid>
+              ))}
           </Grid>
         </Stack>
       </Stack>
