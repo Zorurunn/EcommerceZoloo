@@ -17,6 +17,11 @@ export const addRating: RequestHandler = async (req, res) => {
   const { id } = jwt.verify(authorization, "secret-key") as Payload;
   const { productId, rate, comment } = req.body;
 
+  const isRated = await RatingModel.find({ userId: id, productId });
+  if (isRated)
+    return res.status(401).json({
+      message: "already rated",
+    });
   try {
     // ADD RATING MODEL
     await RatingModel.create({
@@ -55,7 +60,7 @@ export const addRating: RequestHandler = async (req, res) => {
         { _id: productId },
         {
           $inc: { "rating.ratedQty": 1 },
-          "rating.starAverage": newStarAverage,
+          "rating.starAverage": Math.floor(newStarAverage),
         }
       );
     }

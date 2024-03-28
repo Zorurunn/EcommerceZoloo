@@ -4,14 +4,18 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ProductParams } from "@/components/provider/DataProvider";
+import { useEffect } from "react";
 
 export const Productdetial = (props: ProductParams) => {
-  const { images, productName, price, description, productType, rating } =
-    props;
-  const ratedQty = rating?.ratedQty;
-  const startAverage = rating?.startAverage;
-  const colors = productType.productColor;
+  console.log("props", props);
 
+  const { images, productName, price, description, productType } = props;
+  const colors = productType.productColor;
+  useEffect(() => {
+    console.log(productName);
+
+    console.log("aaaa", props.rating);
+  }, [props]);
   return (
     <Container>
       <Stack
@@ -128,13 +132,9 @@ export const Productdetial = (props: ProductParams) => {
               {productName}
             </Typography>
             <Stack spacing={1} direction={"row"} alignItems={"center"}>
-              <Rating
-                name="half-rating"
-                defaultValue={ratedQty}
-                precision={0.5}
-              />
+              <Rating value={props.rating?.starAverage} readOnly />
               <Typography color={"#5A5C7E"} fontSize={15}>
-                ({startAverage})
+                ({props.rating?.ratedQty})
               </Typography>
             </Stack>
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
