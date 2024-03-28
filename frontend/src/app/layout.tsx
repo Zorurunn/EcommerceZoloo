@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 
 import { theme } from "@/theme";
 import { DataProvider } from "@/components/provider/DataProvider";
+import { BackDropProvider } from "@/components/provider/BackDropProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <AuthProvider>
-              <DataProvider>{children}</DataProvider>
+              <DataProvider>
+                <BackDropProvider>{children}</BackDropProvider>
+              </DataProvider>
             </AuthProvider>
             <ToastContainer />
             <CssBaseline />

@@ -20,10 +20,10 @@ export type ProductParams = {
   generalCategoryId: string;
   subCategoryId: string;
   serialNumber: string;
-  price: number;
-  remainQty: number;
+  price: number | null;
+  remainQty: number | null;
   images: string[];
-  discount: number;
+  discount: number | null;
   description: string;
   productType: {
     productColor: string[];
@@ -60,10 +60,10 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
 
-  // POST PRODUCT
-  const createProduct = async (params: ProductParams) => {
+  // CREATE PRODUCT
+  const createProduct = async (props: ProductParams) => {
     try {
-      const { data } = await api.post("/createProduct", params, {
+      const { data } = await api.post("/createProduct", props, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
