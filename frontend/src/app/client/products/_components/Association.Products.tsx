@@ -27,7 +27,7 @@ export const AssociationProduct = () => {
             justifyContent={"space-between"}
           >
             {products &&
-              products.map((item) => (
+              products.slice(0, 4).map((item) => (
                 <Grid item xs={3}>
                   <Stack
                     onClick={() => {

@@ -28,7 +28,7 @@ export const Productdetial = (props: ProductParams) => {
         pt={6}
         pb={4}
       >
-        <Stack height={"100%"} width={"50%"}>
+        {/* <Stack height={"100%"} width={"50%"}>
           <Stack width={"100%"} height={"100%"} direction={"row"} gap={3}>
             <Stack
               width={"100%"}
@@ -101,6 +101,106 @@ export const Productdetial = (props: ProductParams) => {
               />
             </Stack>
           </Stack>
+        </Stack> */}
+        <Stack height={"100%"} width={"50%"}>
+          {images &&
+            images.map((item) => {
+              if (item.length >= 1) {
+                return (
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    direction={"row"}
+                    gap={3}
+                  >
+                    <Stack
+                      width={"100%"}
+                      height={"100%"}
+                      gap={2}
+                      flexGrow={1}
+                      flexBasis={0}
+                    >
+                      <Stack
+                        borderRadius={1}
+                        width={"100%"}
+                        height={"100%"}
+                        position={"relative"}
+                        flexBasis={"33.3%"}
+                        flexGrow={1}
+                        bgcolor={"#FFFFFF"}
+                      >
+                        <Image
+                          src={item || "/backgroundnull.png"}
+                          alt="zurag bhgu bn"
+                          fill
+                          objectFit="cover"
+                          style={{ borderRadius: "3px" }}
+                        />
+                      </Stack>
+                    </Stack>
+                    <Stack
+                      width={"100%"}
+                      height={"100%"}
+                      position={"relative"}
+                      flexGrow={1}
+                      flexBasis={0}
+                    >
+                      <Image
+                        src={images[0]}
+                        alt="zurag bhgu bn"
+                        fill
+                        objectFit="cover"
+                        style={{ borderRadius: "3px" }}
+                      />
+                    </Stack>
+                  </Stack>
+                );
+              }
+              return (
+                <Stack width={"100%"} height={"100%"} direction={"row"} gap={3}>
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    gap={2}
+                    flexGrow={1}
+                    flexBasis={0}
+                  >
+                    <Stack
+                      borderRadius={1}
+                      width={"100%"}
+                      height={"100%"}
+                      position={"relative"}
+                      flexBasis={"33.3%"}
+                      flexGrow={1}
+                      bgcolor={"#FFFFFF"}
+                    >
+                      <Image
+                        src={item || "/backgroundnull.png"}
+                        alt="zurag bhgu bn"
+                        fill
+                        objectFit="cover"
+                        style={{ borderRadius: "3px" }}
+                      />
+                    </Stack>
+                  </Stack>
+                  <Stack
+                    width={"100%"}
+                    height={"100%"}
+                    position={"relative"}
+                    flexGrow={3}
+                    flexBasis={0}
+                  >
+                    <Image
+                      src={images[0]}
+                      alt="zurag bhgu bn"
+                      fill
+                      objectFit="cover"
+                      style={{ borderRadius: "3px" }}
+                    />
+                  </Stack>
+                </Stack>
+              );
+            })}
         </Stack>
         <Stack width={"50%"} gap={6} alignItems={"flex-start"}>
           <Stack gap={1.5}>

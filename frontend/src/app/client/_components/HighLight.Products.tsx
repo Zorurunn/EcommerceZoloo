@@ -37,7 +37,7 @@ export const HighLightProducts = () => {
               {products &&
                 products
                   .filter((item) => {
-                    3 >= item.rating?.starAverage ?? ;
+                    3 >= item?.rating?.starAverage ?? null;
                   })
                   .slice(0, 4)
                   .map((item) => (
