@@ -61,10 +61,13 @@ export const reserPassword: RequestHandler = async (req, res) => {
   }
   try {
     if (user.otp == code) {
-      await UserModel.updateOne({
-        password: newPassword,
-        updatedAt: new Date(),
-      });
+      await UserModel.updateOne(
+        { email: email },
+        {
+          password: newPassword,
+          updatedAt: new Date(),
+        }
+      );
     }
 
     res.json({ message: "Хэрэглэгчийн нууц үг шинэчлэгдсэн" });

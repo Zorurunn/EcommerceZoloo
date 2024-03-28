@@ -6,6 +6,7 @@ import {
   generalCategoryType,
   ratingType,
   subCategoryType,
+  userParamsType,
 } from "@/common/types";
 import { AxiosError } from "axios";
 import {
@@ -18,6 +19,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "./AuthProvider";
 
 export type ProductParams = {
   _id?: string;
@@ -58,11 +60,18 @@ type DataContextType = {
   setAddCart: Dispatch<SetStateAction<cartProductType[]>>;
   totalPrice: number;
   numberFormatter: Intl.NumberFormat;
+  user: userParamsType[];
+  setUser: Dispatch<SetStateAction<userParamsType[]>>;
+  getUser: (params: userParamsType) => Promise<void>;
+  productCount: number;
+  setProductCount: Dispatch<SetStateAction<number>>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
 
 export const DataProvider = ({ children }: PropsWithChildren) => {
+  const { isLoggedIn } = useAuth();
+
   const [refresh, setRefresh] = useState(0);
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [generalCategories, setGeneralCategories] =
@@ -71,6 +80,32 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
   const [addCart, setAddCart] = useState<cartProductType[]>([]);
+  const [user, setUser] = useState<userParamsType[]>([]);
+  const [productCount, setProductCount] = useState(1);
+
+  // GET USER
+  const getUser = async () => {
+    try {
+      const { data } = await api.get("/getUser", {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+      setUser(data);
+
+      toast.success(data.message, {
+        position: "top-center",
+        hideProgressBar: true,
+      });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message ?? error.message, {
+          position: "top-center",
+          hideProgressBar: true,
+        });
+      }
+      console.log(error), "FFF";
+    }
+  };
+
   // CREATE PRODUCT
   const createProduct = async (props: ProductParams) => {
     try {
@@ -79,7 +114,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
           Authorization: localStorage.getItem("token"),
         },
       });
-
+      setRefresh(refresh + 1);
       toast.success(data.message, {
         position: "top-center",
         autoClose: 3000,
@@ -149,6 +184,12 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     getSubCategories();
   }, [refresh]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      getUser();
+    }
+  }, [isLoggedIn, refresh]);
+
   const totalPrice = addCart.reduce(
     (sum, currentValue) => sum + currentValue.price * currentValue.quantity,
     0
@@ -174,6 +215,11 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         setAddCart,
         totalPrice,
         numberFormatter,
+        user,
+        setUser,
+        getUser,
+        productCount,
+        setProductCount,
       }}
     >
       {children}

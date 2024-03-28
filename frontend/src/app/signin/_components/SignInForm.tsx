@@ -106,7 +106,7 @@ export default function SignInForm() {
               color: "white",
               gap: "8px",
               "&:hover": {
-                backgroundColor: "#fff",
+                backgroundColor: "#E5E5E5",
                 color: "#FB2E86",
               },
             }}

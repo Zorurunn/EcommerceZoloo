@@ -1,5 +1,6 @@
 import { type } from "os";
 import { PropsWithChildren } from "react";
+import { string } from "yup";
 
 export type saleItemType = {
   title: string;
@@ -20,6 +21,12 @@ export type cartProductType = {
   thumbnailUrl: string;
   color: string;
   merchantId: string;
+};
+
+export type userParamsType = {
+  userName: string;
+  email: string;
+  phoneNumber: string;
 };
 
 export type generalCategoryType = {

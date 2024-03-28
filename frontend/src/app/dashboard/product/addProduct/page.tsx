@@ -29,7 +29,7 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [colors, setColors] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
-  const [images, setImages] = useState<string[]>(["", "", ""]);
+  const [images, setImages] = useState<string[]>([""]);
   const [tags, setTags] = useState<string[]>([]);
 
   const formik = useFormik({
