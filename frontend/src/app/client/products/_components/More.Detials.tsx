@@ -123,7 +123,7 @@ export const MoreDetial = (props: ProductParams) => {
               </Stack>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-              <ProductRating />
+              <ProductRating {...props} />
             </CustomTabPanel>
           </Box>
         </Stack>

@@ -4,7 +4,6 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ProductParams } from "@/components/provider/DataProvider";
-import { it } from "node:test";
 
 export const Productdetial = (props: ProductParams) => {
   const { images, productName, price, description, productType, rating } =

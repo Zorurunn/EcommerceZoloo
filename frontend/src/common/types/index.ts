@@ -45,3 +45,9 @@ export type cardProductType = {
   color: String;
   merchantId: String;
 };
+
+export type ratingType = {
+  productId: string;
+  rate: number;
+  comment: string;
+};

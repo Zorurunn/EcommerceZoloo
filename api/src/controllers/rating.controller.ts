@@ -16,6 +16,9 @@ export const addRating: RequestHandler = async (req, res) => {
     });
   }
   const { id } = jwt.verify(authorization, "secret-key") as Payload;
+  const { userId, productId, rate, comment } = req.body;
+  console.log("kita");
+
   try {
     // ADD RATING MODEL
     await RatingModel.create({

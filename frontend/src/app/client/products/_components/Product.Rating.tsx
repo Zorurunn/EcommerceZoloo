@@ -9,22 +9,18 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useData } from "../../../../components/provider/DataProvider";
+import {
+  ProductParams,
+  useData,
+} from "../../../../components/provider/DataProvider";
 import React, { useState } from "react";
 const validationSchema = yup.object({
   rate: yup.number(),
   comment: yup.string(),
 });
 
-export type ProductRatingProps = {
-  userId?: string;
-  productId?: string;
-  productRating?: number;
-  comment?: string;
-};
-
-export const ProductRating = (props: ProductRatingProps) => {
-  const { userId, productId, comment, productRating } = props;
+export const ProductRating = (props: ProductParams) => {
+  const { _id } = props;
   const { addRating } = useData();
   const [rate, setRate] = React.useState<number | null>(2);
   const formik = useFormik({
@@ -32,8 +28,9 @@ export const ProductRating = (props: ProductRatingProps) => {
       comment: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values.comment, rate, productId, userId);
+    onSubmit: async (values) => {
+      await addRating({ rate, productId: _id, comment: values.comment });
+      console.log(values.comment, rate, _id);
     },
   });
 
@@ -78,7 +75,7 @@ export const ProductRating = (props: ProductRatingProps) => {
                 formik.handleSubmit();
               }}
               color="success"
-              disabled={!rate || !formik.values.comment}
+              disabled={!rate || !formik.values.comment || !_id}
               variant="contained"
               sx={{ width: "fit-content" }}
             >
@@ -92,7 +89,7 @@ export const ProductRating = (props: ProductRatingProps) => {
           <Typography mr={2} fontSize={18} fontWeight={800} color={"#1D3178"}>
             Нийт үнэлгээ
           </Typography>
-          <Rating value={productRating} readOnly />
+          {/* <Rating value={productRating} readOnly /> */}
           <Typography ml={0.5}>
             {"("}
             {/*  {reviewCount} */}
