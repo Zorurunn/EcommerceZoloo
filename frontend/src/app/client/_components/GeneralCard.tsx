@@ -8,12 +8,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { ProductParams } from "@/components/provider/DataProvider";
 
-export type GeneralCardType = {
-  src: string;
-  name: string;
-  price: number;
-};
-
 export const GeneralCard = (props: ProductParams) => {
   const { images, productName, price } = props;
   const [open, setOpen] = useState(false);
@@ -50,9 +44,9 @@ export const GeneralCard = (props: ProductParams) => {
           fill
           sizes="small"
           style={{ objectFit: "cover", mixBlendMode: "multiply" }}
-          // src={images[0]??"/cam.png"}
+          src={images[0] ?? "/cam.png"}
           // Todo zurag ynzal
-          src={"/cam.png"}
+          // src={"/cam.png"}
           alt="Product Image"
         />
         {
@@ -116,7 +110,7 @@ export const GeneralCard = (props: ProductParams) => {
           color={"#151875"}
           alignItems={"center"}
         >
-          {new Intl.NumberFormat().format(price) + "₮"}
+          {new Intl.NumberFormat().format(price ?? 0) + "₮"}
         </Stack>
       </Stack>
     </Stack>
