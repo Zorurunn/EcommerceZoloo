@@ -208,13 +208,9 @@ export const Productdetial = (props: ProductParams) => {
               {productName}
             </Typography>
             <Stack spacing={1} direction={"row"} alignItems={"center"}>
-              <Rating
-                name="half-rating"
-                defaultValue={rating?.starAverage}
-                precision={0.5}
-              />
+              <Rating value={props.rating?.starAverage} readOnly />
               <Typography color={"#5A5C7E"} fontSize={15}>
-                {rating?.ratedQty}
+                ({props.rating?.ratedQty})
               </Typography>
             </Stack>
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
