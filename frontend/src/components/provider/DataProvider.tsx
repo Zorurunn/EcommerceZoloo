@@ -17,7 +17,7 @@ import {
 import { toast } from "react-toastify";
 
 export type ProductParams = {
-  _id: string;
+  _id?: string;
   productName: string;
   generalCategoryId: string;
   subCategoryId: string;
