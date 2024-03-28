@@ -4,6 +4,9 @@ import { ProductParams, useData } from "@/components/provider/DataProvider";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Productdetial } from "../_components/product.detial";
+import { MoreDetial } from "../_components/More.Detials";
+import { AssociationProduct } from "../_components/Association.Products";
+import { Stack } from "@mui/material";
 
 const Page = () => {
   const { id } = useParams();
@@ -16,7 +19,17 @@ const Page = () => {
     }
   }, [products]);
 
-  return <>{thisProduct && <Productdetial {...thisProduct} />}</>;
+  return (
+    <>
+      {thisProduct && (
+        <Stack>
+          <Productdetial {...thisProduct} />
+          <MoreDetial {...thisProduct} />
+          <AssociationProduct />
+        </Stack>
+      )}
+    </>
+  );
 };
 
 export default Page;

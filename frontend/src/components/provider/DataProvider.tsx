@@ -1,15 +1,18 @@
 "use client";
 
-import { ProductRatingProps } from "@/app/client/products/_components/Product.Rating";
 import { api } from "@/common";
-import { generalCategoryType, subCategoryType } from "@/common/types";
+import {
+  generalCategoryType,
+  ratingType,
+  subCategoryType,
+} from "@/common/types";
 import { AxiosError } from "axios";
 import { error } from "console";
 import {
+  createContext,
   Dispatch,
   PropsWithChildren,
   SetStateAction,
-  createContext,
   useContext,
   useEffect,
   useState,
@@ -22,11 +25,16 @@ export type ProductParams = {
   generalCategoryId: string;
   subCategoryId: string;
   serialNumber: string;
+  rating?: {
+    ratedQty: number;
+    startAverage: number;
+  };
   price: number | null;
   remainQty: number | null;
   images: string[];
   discount: number | null;
   description: string;
+  info: string;
   productType: {
     productColor: string[];
     productSize: string[];
@@ -48,7 +56,7 @@ type DataContextType = {
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
-  addRating: (props: ProductRatingProps) => void;
+  addRating: (props: ratingType) => void;
   getProducts: () => Promise<void>;
 };
 
@@ -120,13 +128,13 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  // add review
-  const addRating = async (props: ProductRatingProps) => {
-    const { userId, productId, comment, productRating } = props;
+  // ADD RATING
+  const addRating = async (props: ratingType) => {
+    const { productId, comment, rate } = props;
     try {
       const { data } = await api.post(
         "/addRating",
-        { userId, productId, rate: productRating, comment },
+        { productId, rate, comment },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
       console.log("Aaa");

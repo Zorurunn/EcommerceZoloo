@@ -3,7 +3,7 @@ import { ViewList, Window } from "@mui/icons-material";
 import { Box, Container, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { NewProducts } from "../_components/New.Products";
-import { HighLightProducts } from "../_components/HighLight.Products";
+// import { HighLightProducts } from "../_components/HighLight.Products";
 
 export default function Category() {
   const [listView, setListView] = useState(false);
@@ -103,7 +103,7 @@ export default function Category() {
           <Box display={"flex"} flexDirection={"row"} width={1} gap={6}>
             <Stack mr={"77px"}>{/* <FilterProdcut /> */}</Stack>
             <Stack alignItems={"center"} justifyContent={"center"}>
-              {listView ? <NewProducts /> : <HighLightProducts />}
+              {listView ?? <NewProducts />}
             </Stack>
           </Box>
         </Container>

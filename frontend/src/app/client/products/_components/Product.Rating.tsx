@@ -1,74 +1,4 @@
-// "use client";
-// import { Button, Container, Stack, TextField, Typography } from "@mui/material";
-// import { useState } from "react";
-// import * as React from "react";
-// import Rating from "@mui/material/Rating";
-
-// export const AddComment = () => {
-//   const [value, setValue] = useState<number | null>(2);
-
-//   return (
-//     <Container maxWidth={"lg"}>
-//       <Stack width={"100%"} gap={3}>
-//         <Typography color={"#1D3178"} fontSize={"18px"} fontWeight={800}>
-//           {"Үнэлгээ нэмэх"}
-//         </Typography>
-//         <Stack
-//           width={"100%"}
-//           bgcolor={"white"}
-//           borderRadius={"8px"}
-//           px={3}
-//           py={6}s
-//           gap={5}
-//         >
-//           <Stack width={"100%"} borderBottom={"solid 2px #BFC6E0"} padding={2}>
-//             {/* <Box
-//           // sx={{
-//           //   "& > legend": { mt: 2 },
-//           // }}
-//           >
-//             <Rating
-//               name="simple-controlled"
-//               value={value}
-//               onChange={(event, newValue) => {
-//                 setValue(newValue);
-//               }}
-//             />
-//           </Box> */}
-//             <Rating
-//               name="simple-controlled"
-//               value={value}
-//               onChange={(event, newValue) => {
-//                 setValue(newValue);
-//               }}
-//             />
-//           </Stack>
-//           <Stack width={"100%"} borderBottom={"solid 2px #BFC6E0"}>
-//             <TextField
-//               placeholder="Сэтгэгдэл бичих"
-//               type="text"
-//               sx={{
-//                 "& fieldset": { border: "none" },
-//               }}
-//             />
-//           </Stack>
-//           <Stack direction={"row"} justifyContent={"flex-end"}>
-//             <Button
-//               variant="contained"
-//               sx={{
-//                 background: "#FB2E86",
-//                 width: "fit-content",
-//               }}
-//             >
-//               {"Үнэлэх"}
-//             </Button>
-//           </Stack>
-//         </Stack>
-//       </Stack>
-//     </Container>
-//   );
-// };
-
+"use client";
 import {
   Box,
   Button,
@@ -79,33 +9,28 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useData } from "../../../../components/provider/DataProvider";
+import {
+  ProductParams,
+  useData,
+} from "../../../../components/provider/DataProvider";
 import React, { useState } from "react";
 const validationSchema = yup.object({
   rate: yup.number(),
   comment: yup.string(),
 });
 
-export type ProductRatingProps = {
-  userId?: string;
-  productId?: string;
-  productRating?: number;
-  comment?: string;
-};
-
-export const ProductRating = (props: ProductRatingProps) => {
-  const { userId, productId, comment, productRating } = props;
+export const ProductRating = (props: ProductParams) => {
+  const { _id } = props;
   const { addRating } = useData();
-  const [rate, setRate] = React.useState<number | null>(2);
+  const [rate, setRate] = React.useState<number>(2);
   const formik = useFormik({
     initialValues: {
       comment: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values.comment, rate, productId, userId);
-
-      // addRating(userId || "", productId || "", rate, values.comment);
+    onSubmit: async (values) => {
+      await addRating({ rate, productId: _id ?? "", comment: values.comment });
+      console.log(values.comment, rate, _id);
     },
   });
 
@@ -128,7 +53,7 @@ export const ProductRating = (props: ProductRatingProps) => {
               name="rating"
               value={rate}
               onChange={(event, newValue) => {
-                setRate(newValue);
+                setRate(rate);
               }}
             />
           </Stack>
@@ -150,7 +75,7 @@ export const ProductRating = (props: ProductRatingProps) => {
                 formik.handleSubmit();
               }}
               color="success"
-              disabled={!rate || !formik.values.comment}
+              disabled={!rate || !formik.values.comment || !_id}
               variant="contained"
               sx={{ width: "fit-content" }}
             >
@@ -164,7 +89,7 @@ export const ProductRating = (props: ProductRatingProps) => {
           <Typography mr={2} fontSize={18} fontWeight={800} color={"#1D3178"}>
             Нийт үнэлгээ
           </Typography>
-          <Rating value={productRating} readOnly />
+          {/* <Rating value={productRating} readOnly /> */}
           <Typography ml={0.5}>
             {"("}
             {/*  {reviewCount} */}

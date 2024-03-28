@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
 import { ProductRating } from "./Product.Rating";
 import { AllComment } from "./All.Comment";
+import { ProductParams } from "@/components/provider/DataProvider";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,7 +39,9 @@ function a11yProps(index: number) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-export const MoreDetial = () => {
+export const MoreDetial = (props: ProductParams) => {
+  const { productName, description } = props;
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -95,14 +98,10 @@ export const MoreDetial = () => {
               <Stack gap={1}>
                 <Stack gap={1}>
                   <Typography color={"#151875"} fontSize={22} fontWeight={800}>
-                    Varius tempor.
+                    {productName}
                   </Typography>
                   <Typography color={"#A9ACC6"} fontSize={16} fontWeight={800}>
-                    dlfwjbknlm,l Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Voluptatum obcaecati magni inventore
-                    veniam amet natus cumque quas quo facilis repellat ipsum
-                    alias, pariatur voluptatibus ullam voluptatem atque sunt est
-                    consectetur!
+                    {description}
                   </Typography>
                 </Stack>
                 <Stack gap={1}>
@@ -120,36 +119,11 @@ export const MoreDetial = () => {
                       adipisicing
                     </Typography>
                   </Stack>
-                  <Stack direction={"row"} gap={2}>
-                    <ArrowForwardIcon />
-                    <Typography
-                      color={"#A9ACC6"}
-                      fontSize={16}
-                      fontWeight={800}
-                    >
-                      dlfwjbknlm,l Lorem ipsum, dolor sit amet consectetur
-                      adipisicing
-                    </Typography>
-                  </Stack>
-                  <Stack direction={"row"} gap={2}>
-                    <ArrowForwardIcon />
-                    <Typography
-                      color={"#A9ACC6"}
-                      fontSize={16}
-                      fontWeight={800}
-                    >
-                      dlfwjbknlm,l Lorem ipsum, dolor sit amet consectetur
-                      adipisicing
-                    </Typography>
-                  </Stack>
                 </Stack>
               </Stack>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-              <Stack alignItems={"center"} gap={2}>
-                <ProductRating />
-                <AllComment />
-              </Stack>
+              <ProductRating {...props} />
             </CustomTabPanel>
           </Box>
         </Stack>
