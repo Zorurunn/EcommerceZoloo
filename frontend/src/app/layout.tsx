@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,10 +14,6 @@ import { BackDropProvider } from "@/components/provider/BackDropProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "E Commerce",
-  description: "Welcome to my web",
-};
 export default function RootLayout({
   children,
 }: Readonly<{
