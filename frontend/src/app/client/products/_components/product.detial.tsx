@@ -20,6 +20,7 @@ export const Productdetial = (props: ProductParams) => {
     merchantId,
     quantity,
   } = props;
+  const colors = productType.productColor;
   return (
     <Container>
       <Stack

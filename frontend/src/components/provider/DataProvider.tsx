@@ -34,14 +34,14 @@ export type ProductParams = {
   images: string[];
   discount: number | null;
   description: string;
-  info: string;
+  info?: string;
   productType: {
     productColor: string[];
     productSize: string[];
   };
   productTag: string[];
   merchantId?: string;
-  quantity: number | null;
+  quantity?: number | null;
 };
 
 export type CategoryParams = {};
