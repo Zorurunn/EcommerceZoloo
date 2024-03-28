@@ -27,7 +27,7 @@ export type ProductParams = {
   serialNumber: string;
   rating?: {
     ratedQty: number;
-    startAverage: number;
+    starAverage: number;
   };
   price: number | null;
   remainQty: number | null;
@@ -137,25 +137,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         { productId, rate, comment },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
-      console.log("Aaa");
-
-      // const reviewID = data.reviewID;
-
-      // const { data: dataComment } = await api.post(
-      //   "comment/addComment",
-      //   {
-      //     userId,
-      //     productId,
-      //     comment,
-      //     rate,
-      //   },
-      //   { headers: { Authorization: localStorage.getItem("token") } }
-      // );
-      // setRefresh((prev) => prev + 1);
-      // toast.success(data.message, {
-      //   position: "top-center",
-      //   hideProgressBar: true,
-      // });
+      setRefresh((prev) => prev + 1);
     } catch (error) {
       console.log(error), "FFF";
     }

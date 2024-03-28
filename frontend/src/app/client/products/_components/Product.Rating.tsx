@@ -22,14 +22,18 @@ const validationSchema = yup.object({
 export const ProductRating = (props: ProductParams) => {
   const { _id } = props;
   const { addRating } = useData();
-  const [rate, setRate] = React.useState<number>(2);
+  const [rate, setRate] = React.useState<number | null>(2);
   const formik = useFormik({
     initialValues: {
       comment: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      await addRating({ rate, productId: _id ?? "", comment: values.comment });
+      await addRating({
+        rate: rate ?? 2,
+        productId: _id ?? "",
+        comment: values.comment,
+      });
       console.log(values.comment, rate, _id);
     },
   });
@@ -53,7 +57,8 @@ export const ProductRating = (props: ProductParams) => {
               name="rating"
               value={rate}
               onChange={(event, newValue) => {
-                setRate(rate);
+                setRate(newValue);
+                // console.log(newValue);
               }}
             />
           </Stack>
