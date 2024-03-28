@@ -37,6 +37,7 @@ export type subCategoryType = {
 };
 
 export type cartProductType = {
+  productId: string;
   name: string;
   price: number;
   discount: number;

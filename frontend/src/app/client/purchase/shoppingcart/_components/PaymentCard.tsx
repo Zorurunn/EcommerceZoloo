@@ -1,12 +1,14 @@
 "use client";
 
+import { useData } from "@/components/provider/DataProvider";
 import { Button, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 type ProductTypeProps = {
-  price: string;
+  price: number;
 };
 export const PaymnetCard = (props: ProductTypeProps) => {
   const router = useRouter();
+  const { numberFormatter } = useData();
   const { price } = props;
   return (
     <Stack width={"100%"} alignItems={"center"} gap={6}>
@@ -42,7 +44,7 @@ export const PaymnetCard = (props: ProductTypeProps) => {
               Төлөх дүн:
             </Typography>
             <Typography fontSize={20} fontWeight={700} color={"#151875"}>
-              {price}
+              {numberFormatter.format(price) + "₮"}
             </Typography>
           </Stack>
           <Button

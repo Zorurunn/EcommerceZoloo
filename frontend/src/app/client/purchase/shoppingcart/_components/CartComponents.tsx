@@ -6,6 +6,8 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
 import { cartProductType } from "@/common/types";
 import { useData } from "@/components/provider/DataProvider";
+import Add from "@mui/icons-material/Add";
+import { Remove } from "@mui/icons-material";
 
 const numberFormatter = new Intl.NumberFormat("en-US", {
   style: "decimal",
@@ -15,14 +17,7 @@ const numberFormatter = new Intl.NumberFormat("en-US", {
 
 export const CartComponents = (props: cartProductType) => {
   const { productCount, setProductCount, addCart, setAddCart } = useData();
-  const tatolPrice = addCart.reduce((sum, currentValue) => {
-    return (
-      sum +
-      currentValue.price *
-        currentValue.quantity *
-        (1 - 0.01 * (currentValue.discount || 0))
-    );
-  }, 0);
+
   return (
     <Stack
       width={"100%"}
@@ -60,7 +55,7 @@ export const CartComponents = (props: cartProductType) => {
       </Stack>
       <Stack justifyContent={"center"}>
         <Typography color={"#151875"} fontSize={14} fontWeight={700}>
-          {props.price}
+          {numberFormatter.format(props.price) + "₮"}
         </Typography>
       </Stack>
       <Stack justifyContent={"center"} paddingLeft={3}>
@@ -73,11 +68,17 @@ export const CartComponents = (props: cartProductType) => {
         >
           <Stack
             onClick={() => {
-              setProductCount(props.quantity);
-              if (props.quantity) {
-                return 1;
-              }
-              return props.quantity--;
+              const newAddCart = addCart.map((element) => {
+                if (element.productId == props.productId) {
+                  if (element.quantity != 1) {
+                    element.quantity -= 1;
+                  }
+                  return element;
+                } else {
+                  return element;
+                }
+              });
+              setAddCart(newAddCart);
             }}
             width={"12px"}
             height={"100%"}
@@ -85,8 +86,9 @@ export const CartComponents = (props: cartProductType) => {
             alignItems={"center"}
             justifyContent={"center"}
             color={"#BEBFC2"}
+            sx={{ cursor: "pointer" }}
           >
-            _
+            <Remove fontSize="small" />
           </Stack>
           <Stack
             height={"100%"}
@@ -101,18 +103,15 @@ export const CartComponents = (props: cartProductType) => {
           </Stack>
           <Stack
             onClick={() => {
-              let isShare = false;
-
               const newAddCart = addCart.map((element) => {
-                if (element.quantity == props.quantity) {
-                  isShare = true;
+                if (element.productId == props.productId) {
                   element.quantity += 1;
                   return element;
                 } else {
                   return element;
                 }
               });
-              setProductCount(props.quantity);
+              setAddCart(newAddCart);
             }}
             width={"12px"}
             height={"100%"}
@@ -120,14 +119,15 @@ export const CartComponents = (props: cartProductType) => {
             alignItems={"center"}
             justifyContent={"center"}
             color={"#BEBFC2"}
+            sx={{ cursor: "pointer" }}
           >
-            +
+            <Add fontSize="small" />
           </Stack>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"} alignItems={"self-end"}>
         <Typography color={"#151875"} fontSize={14} fontWeight={700}>
-          {numberFormatter.format(tatolPrice)}
+          {numberFormatter.format(props.quantity * props.price) + "₮"}
         </Typography>
       </Stack>
     </Stack>
