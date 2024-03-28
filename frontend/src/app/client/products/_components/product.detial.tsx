@@ -6,7 +6,7 @@ import { ProductParams, useData } from "@/components/provider/DataProvider";
 import { FavoriteBorderOutlined } from "@mui/icons-material";
 
 export const Productdetial = (props: ProductParams) => {
-  const { productCount, setProductCount, addCart, setAddCart } = useData();
+  const { addCart, setAddCart } = useData();
   const {
     images,
     productName,
@@ -16,8 +16,8 @@ export const Productdetial = (props: ProductParams) => {
     rating,
     discount,
     merchantId,
+    quantity,
   } = props;
-  console.log(addCart);
   return (
     <Container>
       <Stack
@@ -133,10 +133,11 @@ export const Productdetial = (props: ProductParams) => {
                   setAddCart([
                     ...addCart,
                     {
+                      productId: props._id ?? "",
                       name: productName,
                       price: price ?? 0,
                       discount: discount ?? 0,
-                      quantity: productCount,
+                      quantity: quantity ?? 1,
                       thumbnailUrl: images[0],
                       color: productType.productColor[0],
                       merchantId: merchantId ?? "",
@@ -145,10 +146,11 @@ export const Productdetial = (props: ProductParams) => {
                 } else {
                   setAddCart([
                     {
+                      productId: props._id ?? "",
                       name: productName,
                       price: price ?? 0,
                       discount: discount ?? 0,
-                      quantity: productCount,
+                      quantity: quantity ?? 1,
                       thumbnailUrl: images[0],
                       color: productType.productColor[0],
                       merchantId: merchantId ?? "",

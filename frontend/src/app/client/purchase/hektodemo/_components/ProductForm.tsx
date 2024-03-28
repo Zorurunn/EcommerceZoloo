@@ -10,16 +10,20 @@ export const ProductForm = (props: cartProductType) => {
   return (
     <Stack
       direction={"row"}
+      alignItems={"center"}
       gap={3}
-      paddingBottom={3}
+      pb={3}
       sx={{ borderBottom: "1px solid #E1E1E4" }}
     >
-      <Image
-        src={props.thumbnailUrl}
-        alt="product picture"
-        width={86}
-        height={87}
-      />
+      {" "}
+      <Stack position={"relative"} width={86} height={74}>
+        <Image
+          src={props.thumbnailUrl}
+          alt="product picture"
+          fill
+          objectFit="cover"
+        />
+      </Stack>
       <Stack width={"100%"} gap={1}>
         <Typography fontSize={14} fontWeight={800}>
           {props.name}
@@ -27,13 +31,21 @@ export const ProductForm = (props: cartProductType) => {
         <Stack
           width={"100%"}
           direction={"row"}
-          alignItems={"center"}
+          alignItems={"flex-end"}
           justifyContent={"space-between"}
         >
           <Stack gap={1}>
-            <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-              Өнгө: {props.color}
-            </Typography>
+            <Stack direction={"row"} gap={1} alignItems={"center"}>
+              <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
+                Өнгө:
+              </Typography>
+              <Stack
+                width={10}
+                height={10}
+                borderRadius={"50%"}
+                bgcolor={props.color}
+              ></Stack>
+            </Stack>
             <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
               Тоо ширхэг: {props.quantity}
             </Typography>

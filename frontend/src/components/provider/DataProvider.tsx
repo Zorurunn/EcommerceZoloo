@@ -42,6 +42,7 @@ export type ProductParams = {
   };
   productTag: string[];
   merchantId?: string;
+  quantity: number | null;
 };
 
 export type CategoryParams = {};

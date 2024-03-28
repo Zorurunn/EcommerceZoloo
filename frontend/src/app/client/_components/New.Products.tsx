@@ -8,10 +8,9 @@ import { useData } from "@/components/provider/DataProvider";
 import { useRouter } from "next/navigation";
 
 export const NewProducts = () => {
-  const router = useRouter();
   const [cards, setCards] = useState<generalCategoryType[]>();
   const { products } = useData();
-  console.log(products);
+
   return (
     <Container maxWidth={"lg"}>
       <Stack width={"100%"}>
@@ -29,12 +28,7 @@ export const NewProducts = () => {
             {products &&
               products.map((item) => (
                 <Grid item xs={3}>
-                  <Stack
-                    onClick={() => {
-                      router.push(`/client/products/${item._id}`);
-                      console.log(item._id);
-                    }}
-                  >
+                  <Stack>
                     <GeneralCard {...item} />
                   </Stack>
                 </Grid>

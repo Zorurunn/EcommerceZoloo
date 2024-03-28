@@ -30,17 +30,25 @@ export const CartComponents = (props: cartProductType) => {
           <Image
             src={props.thumbnailUrl}
             alt="product picture"
-            width={86}
-            height={87}
+            fill
+            objectFit="cover"
           />
         </Stack>
         <Stack gap={1}>
           <Typography fontSize={14} fontWeight={800}>
             {props.name}
           </Typography>
-          <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-            Өнгө: {props.color}
-          </Typography>
+          <Stack direction={"row"} gap={1} alignItems={"center"}>
+            <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
+              Өнгө:
+            </Typography>
+            <Stack
+              width={10}
+              height={10}
+              borderRadius={"50%"}
+              bgcolor={props.color}
+            ></Stack>
+          </Stack>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"}>
@@ -61,17 +69,19 @@ export const CartComponents = (props: cartProductType) => {
         >
           <Stack
             onClick={() => {
-              const newAddCart = addCart.map((element) => {
-                if (element.productId == props.productId) {
-                  if (element.quantity != 1) {
-                    element.quantity -= 1;
+              setAddCart((prev) => {
+                const clone = [...prev];
+                return clone.map((item) => {
+                  {
+                    if (item.productId === props.productId) {
+                      if (item.quantity != 1) {
+                        item.quantity--;
+                      }
+                    }
+                    return item;
                   }
-                  return element;
-                } else {
-                  return element;
-                }
+                });
               });
-              setAddCart(newAddCart);
             }}
             sx={{ cursor: "pointer" }}
           >
@@ -86,15 +96,18 @@ export const CartComponents = (props: cartProductType) => {
 
           <Stack
             onClick={() => {
-              const newAddCart = addCart.map((element) => {
-                if (element.productId == props.productId) {
-                  element.quantity += 1;
-                  return element;
-                } else {
-                  return element;
-                }
+              setAddCart((prev) => {
+                const clone = [...prev];
+
+                return clone.map((item) => {
+                  if (item.productId === props.productId)
+                    return {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    };
+                  return item;
+                });
               });
-              setAddCart(newAddCart);
             }}
             sx={{ cursor: "pointer" }}
           >
