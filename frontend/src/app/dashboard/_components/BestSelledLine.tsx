@@ -12,10 +12,12 @@ export const BestSelledLine = (props: ProductParams & indexType) => {
     <Stack
       direction={"row"}
       height={72}
+      width={"100%"}
       sx={{
         display: "grid",
         gridTemplateColumns: "1fr 6fr 3fr 3fr",
         gap: 1,
+        cursor: "pointer",
       }}
     >
       <Stack justifyContent={"center"} alignItems={"center"}>
@@ -40,6 +42,7 @@ export const BestSelledLine = (props: ProductParams & indexType) => {
         >
           <Stack
             width={"100%"}
+            border={"1px solid red"}
             height={"100%"}
             justifyContent={"center"}
             alignItems={"center"}
@@ -50,6 +53,7 @@ export const BestSelledLine = (props: ProductParams & indexType) => {
           </Stack>
           <Stack position="relative">
             <Stack
+              border={"1px solid blue"}
               position="absolute"
               top={0}
               left={0}

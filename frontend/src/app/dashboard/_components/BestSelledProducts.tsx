@@ -38,7 +38,7 @@ export const BestSelledProducts = () => {
             <Stack position={"absolute"} top={0} left={0}>
               {products.map((item, index) => {
                 return (
-                  <Stack key={index}>
+                  <Stack key={index} width={"100%"}>
                     <BestSelledLine {...item} index={index + 1} />
                     <Divider />
                   </Stack>

@@ -1,15 +1,25 @@
 import { RequestHandler } from "express";
 import { ProductModel } from "../models";
 import { RatingModel } from "../models/rating.model";
-
+import jwt from "jsonwebtoken";
+type Payload = {
+  id: string;
+};
 // ADD RATING
 export const addRating: RequestHandler = async (req, res) => {
-  const { userId, productId, rate, comment } = req.body;
+  const { productId, rate, comment } = req.body;
+  const { authorization } = req.headers;
 
+  if (!authorization) {
+    return res.status(401).json({
+      message: "Invalid credentials: AUTHORIZATION NOT FOUND",
+    });
+  }
+  const { id } = jwt.verify(authorization, "secret-key") as Payload;
   try {
     // ADD RATING MODEL
     await RatingModel.create({
-      userId,
+      userId: id,
       productId,
       rate,
       comment,
