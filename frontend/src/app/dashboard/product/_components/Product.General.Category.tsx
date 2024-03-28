@@ -3,7 +3,7 @@ import { CustomInput } from "@/components";
 import { useData } from "@/components/provider/DataProvider";
 import { GENERAL_CATEGORIES, SUB_CATEGORIES } from "@/constants";
 import { MenuItem, Stack, Typography } from "@mui/material";
-import { ChangeEventHandler, FocusEventHandler } from "react";
+import { ChangeEventHandler, FocusEventHandler, useState } from "react";
 type productGeneralCategoryType = {
   handleBlur?:
     | FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>
@@ -13,12 +13,12 @@ type productGeneralCategoryType = {
     | undefined;
 
   // generalCategory
-  generalCategoryName: string;
+  generalCategoryId: string;
   generalCategoryValue: string;
   generalCategoryError?: boolean | undefined;
 
   // subCategory
-  subCategoryName: string;
+  subCategoryId: string;
   subCategoryValue: string;
   subCategoryError?: boolean | undefined;
 };
@@ -26,10 +26,10 @@ type productGeneralCategoryType = {
 const ProductGeneralCategory = (props: productGeneralCategoryType) => {
   const { generalCategories, subCategories } = useData();
   const {
-    generalCategoryName,
+    generalCategoryId,
     generalCategoryValue,
     generalCategoryError,
-    subCategoryName,
+    subCategoryId,
     subCategoryValue,
     subCategoryError,
     handleChange,
@@ -41,11 +41,11 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
       <Stack gap={2}>
         <CustomInput
           borderRadius="8px"
-          name={generalCategoryName}
+          name={generalCategoryId}
           label="Ерөнхий ангилал"
           type="select"
           placeHolder="Сонгох"
-          value={generalCategoryValue ?? "defaultValue"}
+          value={generalCategoryValue ?? "defualtValue"}
           handleChange={handleChange}
           onBlur={handleBlur}
           error={generalCategoryError}
@@ -59,17 +59,15 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
             Aнгилал сонгоно уу
           </MenuItem>
           {generalCategories &&
-            generalCategories.map((item) => {
-              return (
-                <MenuItem key={item._id} value={item._id}>
-                  {item.generalCategoryName}
-                </MenuItem>
-              );
-            })}
+            generalCategories.map((item) => (
+              <MenuItem key={item._id} value={item._id}>
+                {item.generalCategoryName}
+              </MenuItem>
+            ))}
         </CustomInput>
         <CustomInput
           borderRadius="8px"
-          name={subCategoryName}
+          name={subCategoryId}
           label="Дэд ангилал"
           type="select"
           placeHolder="Сонгох"

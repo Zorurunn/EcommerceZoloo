@@ -8,7 +8,6 @@ import {
   subCategoryType,
 } from "@/common/types";
 import { AxiosError } from "axios";
-import { error } from "console";
 import {
   createContext,
   Dispatch,
@@ -35,14 +34,14 @@ export type ProductParams = {
   images: string[];
   discount: number | null;
   description: string;
-  info: string;
+  info?: string;
   productType: {
     productColor: string[];
     productSize: string[];
   };
   productTag: string[];
   merchantId?: string;
-  quantity: number | null;
+  quantity?: number | null;
 };
 
 export type CategoryParams = {};
@@ -178,8 +177,8 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         selectedIndex,
         setIndex,
         products,
-        addRating,
         setProducts,
+        addRating,
         getProducts,
         addCart,
         setAddCart,

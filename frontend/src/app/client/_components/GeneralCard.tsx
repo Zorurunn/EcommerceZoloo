@@ -23,6 +23,7 @@ export const GeneralCard = (props: ProductParams) => {
     _id,
   } = props;
   const { addCart, setAddCart } = useData();
+  const colors = productType.productColor;
 
   return (
     <Stack
