@@ -29,7 +29,7 @@ export const PaymnetCard = (props: ProductTypeProps) => {
               Нийлбэр:
             </Typography>
             <Typography fontSize={18} fontWeight={700} color={"#151875"}>
-              {price}
+              {numberFormatter.format(price) + "₮"}
             </Typography>
           </Stack>
           <Stack

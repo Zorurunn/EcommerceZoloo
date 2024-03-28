@@ -1,16 +1,12 @@
 "use client";
 
+import { cartProductType } from "@/common/types";
+import { useData } from "@/components/provider/DataProvider";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
-type ProductTypeProps = {
-  name: string;
-  color: string;
-  price: string;
-  image: string;
-};
-export const ProductForm = (props: ProductTypeProps) => {
-  const { name, color, price, image } = props;
+export const ProductForm = (props: cartProductType) => {
+  const { numberFormatter } = useData();
   return (
     <Stack
       direction={"row"}
@@ -18,10 +14,15 @@ export const ProductForm = (props: ProductTypeProps) => {
       paddingBottom={3}
       sx={{ borderBottom: "1px solid #E1E1E4" }}
     >
-      <Image src={image} alt="product picture" width={86} height={87} />
+      <Image
+        src={props.thumbnailUrl}
+        alt="product picture"
+        width={86}
+        height={87}
+      />
       <Stack width={"100%"} gap={1}>
         <Typography fontSize={14} fontWeight={800}>
-          {name}
+          {props.name}
         </Typography>
         <Stack
           width={"100%"}
@@ -29,11 +30,16 @@ export const ProductForm = (props: ProductTypeProps) => {
           alignItems={"center"}
           justifyContent={"space-between"}
         >
-          <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-            Өнгө: {color}
-          </Typography>
+          <Stack gap={1}>
+            <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
+              Өнгө: {props.color}
+            </Typography>
+            <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
+              Тоо ширхэг: {props.quantity}
+            </Typography>
+          </Stack>
           <Typography fontSize={14} fontWeight={700} color={"#151875"}>
-            {price}
+            {numberFormatter.format(props.quantity * props.price) + "₮"}
           </Typography>
         </Stack>
       </Stack>
