@@ -1,6 +1,6 @@
 "use client";
-import { Avatar, Button, Stack, TextField } from "@mui/material";
-
+import { Badge, Button, IconButton, Stack, TextField } from "@mui/material";
+import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import {
   ChangeEvent,
   Dispatch,
@@ -8,7 +8,11 @@ import {
   useEffect,
   useState,
 } from "react";
-
+import { AddProductImg } from "./AddProductImg";
+import Image from "next/image";
+import CloseIcon from "@mui/icons-material/Close";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import { useBackDrop } from "@/components/provider/BackDropProvider";
 type uploadImgType = {
   images: string[];
   setImages: Dispatch<SetStateAction<string[]>>;
@@ -16,8 +20,9 @@ type uploadImgType = {
   index: number;
 };
 
-export default function UploadImg(props: uploadImgType) {
+export const UploadImg = (props: uploadImgType) => {
   const { images, setImages, handleDelete, index } = props;
+  const { setOpenLoading } = useBackDrop();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imgUrl, setImgUrl] = useState();
@@ -42,7 +47,6 @@ export default function UploadImg(props: uploadImgType) {
         );
         const data = await res.json();
         setImgUrl(data.secure_url);
-        return data.secure_url;
       } catch (e) {
         console.log(e);
       }
@@ -58,55 +62,88 @@ export default function UploadImg(props: uploadImgType) {
         return item;
       });
       setImages(newImages);
+      setOpenLoading(false);
     }
   }, [imgUrl]);
 
+  useEffect(() => {
+    if (selectedFile) {
+      setOpenLoading(true);
+      handleImageUpload();
+    }
+  }, [selectedFile]);
   return (
-    <Stack marginTop={"60px"} marginBottom={"60px"}>
-      <Stack alignItems={"center"} justifyContent={"center"} gap={3}>
-        <Stack>
-          {images[index] ? (
-            <Stack>
-              <Stack position={"relative"}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={images[index]}
-                  sx={{ width: "120px", height: "120px" }}
-                />
-              </Stack>
-            </Stack>
-          ) : (
-            <TextField
-              type="file"
-              onChange={handleImageChange}
-              variant="outlined"
-              sx={{
-                borderRadius: 2,
-                width: "100%",
-                height: 400,
-                justifyContent: "center",
-                alignItems: "center",
-                padding: 2,
-                backgroundColor: "primary.dark",
-              }}
-            />
-          )}
-          <Button
-            onClick={() => {
-              handleImageUpload();
-            }}
-          >
-            upload
-          </Button>
-          <Button
-            onClick={() => {
-              handleDelete();
-            }}
-          >
-            delete
-          </Button>
+    <Stack
+      sx={{
+        "&:hover .deleteImgBtn": {
+          display: "flex",
+        },
+      }}
+      position={"relative"}
+      overflow={"hidden"}
+      width={125}
+      height={125}
+      borderRadius={2}
+    >
+      {images[index] ? (
+        <Stack width={"100%"} height={"100%"} sx={{ border: imgUrl ? 0 : 1 }}>
+          <Image
+            alt="product image"
+            src={images[index]}
+            fill
+            objectFit="cover"
+          />
         </Stack>
-      </Stack>
+      ) : (
+        <TextField
+          type="file"
+          onChange={handleImageChange}
+          variant="outlined"
+          sx={{
+            ".MuiInputBase-input": {
+              width: "100%",
+              fontSize: 8,
+              textWrap: "wrap",
+            },
+            borderRadius: 2,
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 2,
+            border: 1,
+          }}
+        />
+      )}
+
+      {/* DELETE BUTTON */}
+      <IconButton
+        onClick={() => {
+          handleDelete();
+        }}
+        className="deleteImgBtn"
+        sx={{
+          display: "none",
+          bgcolor: "#000",
+          position: "absolute",
+          top: "0",
+          right: "0",
+          width: 10,
+          height: 10,
+          justifyContent: "center",
+          alignItems: "center",
+          "&:hover": {
+            bgcolor: "#121316",
+          },
+        }}
+      >
+        <ClearOutlinedIcon
+          sx={{
+            color: "#fff",
+            fontSize: "12px",
+          }}
+        />
+      </IconButton>
     </Stack>
   );
-}
+};
