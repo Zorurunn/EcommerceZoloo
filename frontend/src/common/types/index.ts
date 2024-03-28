@@ -35,3 +35,13 @@ export type subCategoryType = {
   subCategoryName: string;
   generalCategoryId: string[];
 };
+
+export type cardProductType = {
+  name: String;
+  price: Number;
+  discount: Number;
+  quantity: Number;
+  thumbnailUrl: String;
+  color: String;
+  merchantId: String;
+};

@@ -1,20 +1,13 @@
+import { ProductParams } from "@/components/provider/DataProvider";
 import { Avatar, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
-type soldProductType = {
-  name: string;
-  id: string;
-  imgUrl: string;
-  price: number;
-  soldQuantity: number;
-};
 type indexType = {
   index: number;
 };
 
-export const BestSelledLine = (props: soldProductType & indexType) => {
-  const { name, id, imgUrl, price, soldQuantity, index } = props;
+export const BestSelledLine = (props: ProductParams & indexType) => {
   return (
     <Stack
       direction={"row"}
@@ -26,7 +19,7 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
       }}
     >
       <Stack justifyContent={"center"} alignItems={"center"}>
-        {index}
+        {props.index}
       </Stack>
 
       <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
@@ -45,7 +38,9 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Avatar alt={name} src={imgUrl} />
+            <Stack borderRadius={"50%"} overflow={"hidden"}>
+              <Image src={"/Chair.png"} alt="" width={25} height={25} />
+            </Stack>
           </Stack>
           <Stack position="relative">
             <Stack
@@ -64,24 +59,24 @@ export const BestSelledLine = (props: soldProductType & indexType) => {
                 fontSize={14}
                 fontWeight={600}
               >
-                {name}
+                {props.productName}
               </Typography>
               <Typography
                 fontSize={14}
                 fontWeight={400}
                 color={"text.secondary"}
               >
-                {id}
+                {props.serialNumber}
               </Typography>
             </Stack>
           </Stack>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"} alignItems={"center"}>
-        {soldQuantity}
+        10
       </Stack>
       <Stack justifyContent={"center"} alignItems={"center"}>
-        {new Intl.NumberFormat().format(price) + "₮"}
+        {new Intl.NumberFormat().format(props.price) + "₮"}
       </Stack>
     </Stack>
   );
