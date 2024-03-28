@@ -120,7 +120,19 @@ export const Productdetial = (props: ProductParams) => {
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
               {new Intl.NumberFormat().format(price ?? 0) + "₮"}
             </Typography>
-            <Stack></Stack>
+            <Stack direction={"row"} gap={1.5} alignItems={"center"}>
+              {colors &&
+                colors.map((item) => {
+                  return (
+                    <Stack
+                      width={20}
+                      height={20}
+                      borderRadius={"50%"}
+                      sx={{ backgroundColor: item }}
+                    ></Stack>
+                  );
+                })}
+            </Stack>
             <Typography color={"#9295AA"} fontSize={17} fontWeight={400}>
               {description}
             </Typography>
