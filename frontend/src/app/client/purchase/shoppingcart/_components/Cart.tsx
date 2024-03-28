@@ -6,6 +6,7 @@ import { useData } from "@/components/provider/DataProvider";
 
 export const Cart = () => {
   const { addCart, setAddCart } = useData();
+
   return (
     <Stack width={"100%"} paddingTop={"50px"} gap={5}>
       <Stack width={"100%"} gap={2}>

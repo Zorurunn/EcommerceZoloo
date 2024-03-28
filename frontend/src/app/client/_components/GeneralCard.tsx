@@ -5,15 +5,33 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ZoomInOutlinedIcon from "@mui/icons-material/ZoomInOutlined";
 import Image from "next/image";
-import { useState } from "react";
-import { ProductParams } from "@/components/provider/DataProvider";
+import { ProductParams, useData } from "@/components/provider/DataProvider";
+import { useRouter } from "next/navigation";
 
 export const GeneralCard = (props: ProductParams) => {
-  const { images, productName, price } = props;
-  const [open, setOpen] = useState(false);
-  const [fav, setFav] = useState(false);
+  const router = useRouter();
+  const {
+    images,
+    productName,
+    price,
+    productType,
+    description,
+    rating,
+    discount,
+    merchantId,
+    quantity,
+    _id,
+  } = props;
+  const { addCart, setAddCart } = useData();
+
   return (
-    <Stack width={1} height={1}>
+    <Stack
+      width={1}
+      height={1}
+      onClick={() => {
+        router.push(`/client/products/${_id}`);
+      }}
+    >
       <Stack
         bgcolor={"#F6F7FB"}
         className="bg"
@@ -44,7 +62,7 @@ export const GeneralCard = (props: ProductParams) => {
           fill
           sizes="small"
           style={{ objectFit: "cover", mixBlendMode: "multiply" }}
-          src={images[0] ?? "/cam.png"}
+          src={images[0]}
           // Todo zurag ynzal
           // src={"/cam.png"}
           alt="Product Image"
@@ -71,10 +89,45 @@ export const GeneralCard = (props: ProductParams) => {
               p={1}
               borderRadius={"50%"}
               sx={{ "&:hover": { bgcolor: "#FFFFFF" }, cursor: "pointer" }}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (addCart.length) {
+                  setAddCart([
+                    ...addCart,
+                    {
+                      productId: props._id ?? "",
+                      name: productName,
+                      price: price ?? 0,
+                      discount: discount ?? 0,
+                      quantity: quantity ?? 1,
+                      thumbnailUrl: images[0],
+                      color: productType.productColor[0],
+                      merchantId: merchantId ?? "",
+                    },
+                  ]);
+                } else {
+                  setAddCart([
+                    {
+                      productId: props._id ?? "",
+                      name: productName,
+                      price: price ?? 0,
+                      discount: discount ?? 0,
+                      quantity: quantity ?? 1,
+                      thumbnailUrl: images[0],
+                      color: productType.productColor[0],
+                      merchantId: merchantId ?? "",
+                    },
+                  ]);
+                }
+                router.push("/client/purchase/shoppingcart");
+              }}
             >
               <ShoppingCartOutlinedIcon />
             </Stack>
             <Stack
+              onClick={() => {
+                router.push(`/client/products/${_id}`);
+              }}
               bgcolor={"transparent"}
               p={1}
               borderRadius={"50%"}

@@ -10,30 +10,28 @@ export type stepNodeType = {
   title: string;
 } & PropsWithChildren;
 
-export type productType = {
-  _id: string;
+export type ProductParams = {
+  _id?: string;
   productName: string;
-  categoryId: string;
-  price: number;
-  qty: number;
-  // thumbnails: string;
-  // images: string[];
-  // coupon: string;
-  // salePercent: number;
+  generalCategoryId: string;
+  subCategoryId: string;
+  serialNumber: string;
+  rating?: {
+    ratedQty: number;
+    starAverage: number;
+  };
+  price: number | null;
+  remainQty: number | null;
+  images: string[];
+  discount: number | null;
   description: string;
-  // viewsCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export type generalCategoryType = {
-  generalCategoryName: string;
-  _id: string;
-};
-export type subCategoryType = {
-  _id: string;
-  subCategoryName: string;
-  generalCategoryId: string[];
+  info: string;
+  productType: {
+    productColor: string[];
+    productSize: string[];
+  };
+  productTag: string[];
+  merchantId?: string;
 };
 
 export type cartProductType = {
@@ -45,6 +43,16 @@ export type cartProductType = {
   thumbnailUrl: string;
   color: string;
   merchantId: string;
+};
+
+export type generalCategoryType = {
+  generalCategoryName: string;
+  _id: string;
+};
+export type subCategoryType = {
+  _id: string;
+  subCategoryName: string;
+  generalCategoryId: string[];
 };
 
 export type ratingType = {

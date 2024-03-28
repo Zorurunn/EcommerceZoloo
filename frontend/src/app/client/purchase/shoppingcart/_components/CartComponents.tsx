@@ -9,15 +9,9 @@ import { useData } from "@/components/provider/DataProvider";
 import Add from "@mui/icons-material/Add";
 import { Remove } from "@mui/icons-material";
 
-const numberFormatter = new Intl.NumberFormat("en-US", {
-  style: "decimal",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-});
-
 export const CartComponents = (props: cartProductType) => {
   const { productCount, setProductCount, addCart, setAddCart } = useData();
-
+  const { numberFormatter } = useData();
   return (
     <Stack
       width={"100%"}
@@ -36,21 +30,25 @@ export const CartComponents = (props: cartProductType) => {
           <Image
             src={props.thumbnailUrl}
             alt="product picture"
-            width={86}
-            height={87}
-          />
-          <CancelIcon
-            fontSize="small"
-            sx={{ position: "absolute ", top: -8, right: -10 }}
+            fill
+            objectFit="cover"
           />
         </Stack>
         <Stack gap={1}>
           <Typography fontSize={14} fontWeight={800}>
             {props.name}
           </Typography>
-          <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-            Өнгө: {props.color}
-          </Typography>
+          <Stack direction={"row"} gap={1} alignItems={"center"}>
+            <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
+              Өнгө:
+            </Typography>
+            <Stack
+              width={10}
+              height={10}
+              borderRadius={"50%"}
+              bgcolor={props.color}
+            ></Stack>
+          </Stack>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"}>
@@ -60,68 +58,64 @@ export const CartComponents = (props: cartProductType) => {
       </Stack>
       <Stack justifyContent={"center"} paddingLeft={3}>
         <Stack
-          width={"51px"}
+          width={"fit-content"}
           height={"15px"}
           direction={"row"}
           alignItems={"center"}
           bgcolor={"#F0EFF2"}
+          color={"#BEBFC2"}
+          fontSize={"14px"}
+          gap={1}
         >
           <Stack
             onClick={() => {
-              const newAddCart = addCart.map((element) => {
-                if (element.productId == props.productId) {
-                  if (element.quantity != 1) {
-                    element.quantity -= 1;
+              setAddCart((prev) => {
+                const clone = [...prev];
+                return clone.map((item) => {
+                  {
+                    if (item.productId === props.productId) {
+                      if (item.quantity != 1) {
+                        item.quantity--;
+                      }
+                    }
+                    return item;
                   }
-                  return element;
-                } else {
-                  return element;
-                }
+                });
               });
-              setAddCart(newAddCart);
             }}
-            width={"12px"}
-            height={"100%"}
-            bgcolor={"#E7E7EF"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            color={"#BEBFC2"}
             sx={{ cursor: "pointer" }}
           >
-            <Remove fontSize="small" />
+            <Remove
+              sx={{
+                fontSize: "14px",
+              }}
+            />
           </Stack>
-          <Stack
-            height={"100%"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            width={"27px"}
-            fontSize={12}
-            fontWeight={800}
-            color={"#BEBFC2"}
-          >
-            {props.quantity}
-          </Stack>
+
+          {props.quantity}
+
           <Stack
             onClick={() => {
-              const newAddCart = addCart.map((element) => {
-                if (element.productId == props.productId) {
-                  element.quantity += 1;
-                  return element;
-                } else {
-                  return element;
-                }
+              setAddCart((prev) => {
+                const clone = [...prev];
+
+                return clone.map((item) => {
+                  if (item.productId === props.productId)
+                    return {
+                      ...item,
+                      quantity: item.quantity + 1,
+                    };
+                  return item;
+                });
               });
-              setAddCart(newAddCart);
             }}
-            width={"12px"}
-            height={"100%"}
-            bgcolor={"#E7E7EF"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            color={"#BEBFC2"}
             sx={{ cursor: "pointer" }}
           >
-            <Add fontSize="small" />
+            <Add
+              sx={{
+                fontSize: "14px",
+              }}
+            />
           </Stack>
         </Stack>
       </Stack>
