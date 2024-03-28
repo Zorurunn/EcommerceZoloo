@@ -9,7 +9,6 @@ type Payload = {
 // CREATE PRODUCT
 export const createProduct: RequestHandler = async (req, res) => {
   const { authorization } = req.headers;
-  console.log(req.body);
 
   if (!authorization) {
     return res.status(401).json({
