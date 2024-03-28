@@ -14,7 +14,7 @@ export const ResetFormStep2 = ({
 }: {
   setIndex: Dispatch<SetStateAction<number>>;
 }) => {
-  const { userEmail, setUserOtp } = useAuth();
+  const { userEmail, setUserOtp, sendEmail } = useAuth();
   const [open, setOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -37,7 +37,7 @@ export const ResetFormStep2 = ({
   useEffect(() => {
     const interval = setInterval(() => {
       setIsClicked(false);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [isClicked]);
 
@@ -77,6 +77,7 @@ export const ResetFormStep2 = ({
 
             <Button
               onClick={() => {
+                sendEmail({ email: userEmail });
                 setIsClicked(true);
               }}
               sx={{
