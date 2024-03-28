@@ -1,15 +1,25 @@
 "use client";
-import { Stack, Container, Typography, Avatar } from "@mui/material";
+import {
+  Stack,
+  Container,
+  Typography,
+  Avatar,
+  IconButton,
+  Badge,
+} from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import React from "react";
 import { NAVBAR_HEIGHT } from "@/constants";
 import { useRouter } from "next/navigation";
+import { ShoppingBasketOutlined } from "@mui/icons-material";
+import { useData } from "@/components/provider/DataProvider";
 
 export const HeadingBar = () => {
+  const { addCart } = useData();
   const router = useRouter();
   return (
     <Stack
@@ -22,7 +32,7 @@ export const HeadingBar = () => {
         <Stack
           direction={"row"}
           justifyContent={"space-between"}
-          padding={"10px"}
+          padding={"6px"}
           alignItems={"center"}
         >
           <Stack direction={"row"} gap={8} alignItems={"center"}>
@@ -83,12 +93,21 @@ export const HeadingBar = () => {
               </Typography>
               <FavoriteBorderIcon sx={{ fontSize: "18px" }} />
             </Stack>
-            <ShoppingCartIcon
-              sx={{ fontSize: "22px", cursor: "pointer" }}
+
+            <IconButton
               onClick={() => {
                 router.push("/client/purchase/shoppingcart");
               }}
-            />
+            >
+              <Badge badgeContent={addCart.length} color="warning">
+                <ShoppingCartOutlinedIcon
+                  sx={{
+                    fill: "#fff",
+                    fontSize: "18px",
+                  }}
+                />
+              </Badge>
+            </IconButton>
           </Stack>
         </Stack>
       </Container>

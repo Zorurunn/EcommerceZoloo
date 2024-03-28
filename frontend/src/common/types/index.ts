@@ -36,14 +36,15 @@ export type subCategoryType = {
   generalCategoryId: string[];
 };
 
-export type cardProductType = {
-  name: String;
-  price: Number;
-  discount: Number;
-  quantity: Number;
-  thumbnailUrl: String;
-  color: String;
-  merchantId: String;
+export type cartProductType = {
+  productId: string;
+  name: string;
+  price: number;
+  discount: number;
+  quantity: number;
+  thumbnailUrl: string;
+  color: string;
+  merchantId: string;
 };
 
 export type ratingType = {

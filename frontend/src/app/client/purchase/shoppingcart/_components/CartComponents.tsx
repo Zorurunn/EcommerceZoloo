@@ -1,12 +1,23 @@
 "use client";
 // to do: make product counter
 // add image by connecting with backend
-import { ListItem, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
-import { ProductParams } from "@/components/provider/DataProvider";
+import { cartProductType } from "@/common/types";
+import { useData } from "@/components/provider/DataProvider";
+import Add from "@mui/icons-material/Add";
+import { Remove } from "@mui/icons-material";
 
-export const CartComponents = (props: ProductParams) => {
+const numberFormatter = new Intl.NumberFormat("en-US", {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+export const CartComponents = (props: cartProductType) => {
+  const { productCount, setProductCount, addCart, setAddCart } = useData();
+
   return (
     <Stack
       width={"100%"}
@@ -23,7 +34,7 @@ export const CartComponents = (props: ProductParams) => {
       <Stack width={"100%"} direction={"row"} gap={3} paddingBottom={2}>
         <Stack position={"relative"} width={86} height={87}>
           <Image
-            src={props.images[0]}
+            src={props.thumbnailUrl}
             alt="product picture"
             width={86}
             height={87}
@@ -35,16 +46,16 @@ export const CartComponents = (props: ProductParams) => {
         </Stack>
         <Stack gap={1}>
           <Typography fontSize={14} fontWeight={800}>
-            {props.productName}
+            {props.name}
           </Typography>
           <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-            Өнгө: {props.productType.productColor}
+            Өнгө: {props.color}
           </Typography>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"}>
         <Typography color={"#151875"} fontSize={14} fontWeight={700}>
-          {props.price}
+          {numberFormatter.format(props.price) + "₮"}
         </Typography>
       </Stack>
       <Stack justifyContent={"center"} paddingLeft={3}>
@@ -56,14 +67,28 @@ export const CartComponents = (props: ProductParams) => {
           bgcolor={"#F0EFF2"}
         >
           <Stack
+            onClick={() => {
+              const newAddCart = addCart.map((element) => {
+                if (element.productId == props.productId) {
+                  if (element.quantity != 1) {
+                    element.quantity -= 1;
+                  }
+                  return element;
+                } else {
+                  return element;
+                }
+              });
+              setAddCart(newAddCart);
+            }}
             width={"12px"}
             height={"100%"}
             bgcolor={"#E7E7EF"}
             alignItems={"center"}
             justifyContent={"center"}
             color={"#BEBFC2"}
+            sx={{ cursor: "pointer" }}
           >
-            -
+            <Remove fontSize="small" />
           </Stack>
           <Stack
             height={"100%"}
@@ -74,23 +99,35 @@ export const CartComponents = (props: ProductParams) => {
             fontWeight={800}
             color={"#BEBFC2"}
           >
-            {props.remainQty}
+            {props.quantity}
           </Stack>
           <Stack
+            onClick={() => {
+              const newAddCart = addCart.map((element) => {
+                if (element.productId == props.productId) {
+                  element.quantity += 1;
+                  return element;
+                } else {
+                  return element;
+                }
+              });
+              setAddCart(newAddCart);
+            }}
             width={"12px"}
             height={"100%"}
             bgcolor={"#E7E7EF"}
             alignItems={"center"}
             justifyContent={"center"}
             color={"#BEBFC2"}
+            sx={{ cursor: "pointer" }}
           >
-            +
+            <Add fontSize="small" />
           </Stack>
         </Stack>
       </Stack>
       <Stack justifyContent={"center"} alignItems={"self-end"}>
         <Typography color={"#151875"} fontSize={14} fontWeight={700}>
-          {props.price}
+          {numberFormatter.format(props.quantity * props.price) + "₮"}
         </Typography>
       </Stack>
     </Stack>

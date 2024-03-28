@@ -2,6 +2,7 @@
 
 import { api } from "@/common";
 import {
+  cartProductType,
   generalCategoryType,
   ratingType,
   subCategoryType,
@@ -40,6 +41,7 @@ export type ProductParams = {
     productSize: string[];
   };
   productTag: string[];
+  merchantId?: string;
 };
 
 export type CategoryParams = {};
@@ -58,6 +60,12 @@ type DataContextType = {
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
   addRating: (props: ratingType) => void;
   getProducts: () => Promise<void>;
+  addCart: cartProductType[];
+  setAddCart: Dispatch<SetStateAction<cartProductType[]>>;
+  productCount: number;
+  setProductCount: Dispatch<SetStateAction<number>>;
+  totalPrice: number;
+  numberFormatter: Intl.NumberFormat;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -70,6 +78,8 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
+  const [addCart, setAddCart] = useState<cartProductType[]>([]);
+  const [productCount, setProductCount] = useState(1);
 
   // CREATE PRODUCT
   const createProduct = async (props: ProductParams) => {
@@ -149,6 +159,15 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     getSubCategories();
   }, [refresh]);
 
+  const totalPrice = addCart.reduce(
+    (sum, currentValue) => sum + currentValue.price * currentValue.quantity,
+    0
+  );
+  const numberFormatter = new Intl.NumberFormat("en-US", {
+    style: "decimal",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
   return (
     <DataContext.Provider
       value={{
@@ -161,6 +180,12 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         addRating,
         setProducts,
         getProducts,
+        addCart,
+        setAddCart,
+        productCount,
+        setProductCount,
+        totalPrice,
+        numberFormatter,
       }}
     >
       {children}

@@ -4,8 +4,10 @@ import { Head } from "../_components/Head";
 import { Title } from "./_components/Title";
 import { Cart } from "./_components/Cart";
 import { PaymnetCard } from "./_components/PaymentCard";
+import { useData } from "@/components/provider/DataProvider";
 
 const ShoppingCart = () => {
+  const { totalPrice } = useData();
   return (
     <Stack bgcolor={"#fff"}>
       <Head />
@@ -16,7 +18,7 @@ const ShoppingCart = () => {
             <Cart />
           </Stack>
           <Stack width={"30%"}>
-            <PaymnetCard price="750’000₮" />
+            <PaymnetCard price={totalPrice} />
           </Stack>
         </Stack>
       </Container>
