@@ -5,11 +5,11 @@ import { CartComponents } from "./CartComponents";
 import { useData } from "@/components/provider/DataProvider";
 
 export const Cart = () => {
-  const { products } = useData();
+  const { addCart } = useData();
   return (
     <Stack width={"100%"} paddingTop={"50px"} gap={5}>
       <Stack width={"100%"} gap={2}>
-        {products.map((item, index) => {
+        {addCart.map((item, index) => {
           return <CartComponents key={index} {...item} />;
         })}
       </Stack>

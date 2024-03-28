@@ -4,9 +4,11 @@
 import { ListItem, Stack, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
-import { cardProductType } from "@/common/types";
+import { cartProductType } from "@/common/types";
+import { useData } from "@/components/provider/DataProvider";
 
-export const CartComponents = (props: cardProductType) => {
+export const CartComponents = (props: cartProductType) => {
+  const { productCount, setProductCount, addCart, setAddCart } = useData();
   return (
     <Stack
       width={"100%"}
@@ -89,9 +91,11 @@ export const CartComponents = (props: cardProductType) => {
         </Stack>
       </Stack>
       <Stack justifyContent={"center"} alignItems={"self-end"}>
-        <Typography color={"#151875"} fontSize={14} fontWeight={700}>
-          {props.price}
-        </Typography>
+        <Typography
+          color={"#151875"}
+          fontSize={14}
+          fontWeight={700}
+        ></Typography>
       </Stack>
     </Stack>
   );
