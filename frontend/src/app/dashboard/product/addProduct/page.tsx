@@ -73,6 +73,8 @@ export default function Home() {
   //   return () => clearInterval(interval);
   // }, []);
 
+  console.log(formik.values.generalCategoryId);
+
   return (
     <Stack gap={3} width={"100%"}>
       <BackTabs text="Бүтээгдэхүүн" />
@@ -118,7 +120,7 @@ export default function Home() {
         </Stack>
         <Stack gap={3} width={"50%"}>
           <ProductGeneralCategory
-            generalCategoryName={"generalCategoryId"}
+            generalCategoryId={"generalCategoryId"}
             generalCategoryValue={formik.values.generalCategoryId}
             generalCategoryError={
               (formik.touched.generalCategoryId &&
@@ -127,7 +129,7 @@ export default function Home() {
                 formik.values.generalCategoryId ==
                   formik.initialValues.generalCategoryId)
             }
-            subCategoryName={"subCategoryId"}
+            subCategoryId={"subCategoryId"}
             subCategoryValue={formik.values.subCategoryId}
             subCategoryError={
               (formik.touched.subCategoryId &&
