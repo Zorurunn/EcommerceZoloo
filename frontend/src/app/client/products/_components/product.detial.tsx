@@ -7,7 +7,7 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { useState } from "react";
 
 export const Productdetial = (props: ProductParams) => {
-  const { productCount, setProductCount, addCart, setAddCart } = useData();
+  const { addCart, setAddCart } = useData();
   const [selectImg, setSelectImg] = useState(0);
   const {
     images,

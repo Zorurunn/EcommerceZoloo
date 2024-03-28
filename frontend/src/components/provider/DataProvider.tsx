@@ -44,12 +44,6 @@ export type ProductParams = {
   quantity?: number | null;
 };
 
-export type CategoryParams = {};
-
-type countityType = {
-  countity: number;
-};
-
 type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
@@ -62,8 +56,6 @@ type DataContextType = {
   getProducts: () => Promise<void>;
   addCart: cartProductType[];
   setAddCart: Dispatch<SetStateAction<cartProductType[]>>;
-  productCount: number;
-  setProductCount: Dispatch<SetStateAction<number>>;
   totalPrice: number;
   numberFormatter: Intl.NumberFormat;
 };
@@ -79,8 +71,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
   const [addCart, setAddCart] = useState<cartProductType[]>([]);
-  const [productCount, setProductCount] = useState(1);
-
   // CREATE PRODUCT
   const createProduct = async (props: ProductParams) => {
     try {
@@ -182,8 +172,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         getProducts,
         addCart,
         setAddCart,
-        productCount,
-        setProductCount,
         totalPrice,
         numberFormatter,
       }}
