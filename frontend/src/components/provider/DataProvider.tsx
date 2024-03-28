@@ -2,6 +2,7 @@
 
 import { api } from "@/common";
 import {
+  cardProductType,
   generalCategoryType,
   ratingType,
   subCategoryType,
@@ -58,6 +59,10 @@ type DataContextType = {
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
   addRating: (props: ratingType) => void;
   getProducts: () => Promise<void>;
+  addCart: cardProductType[];
+  setAddCart: Dispatch<SetStateAction<cardProductType[]>>;
+  productCount: number;
+  setProductCount: Dispatch<SetStateAction<number>>;
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -70,6 +75,8 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
+  const [addCart, setAddCart] = useState<cardProductType[]>([]);
+  const [productCount, setProductCount] = useState(0);
 
   // CREATE PRODUCT
   const createProduct = async (props: ProductParams) => {
@@ -161,6 +168,10 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         addRating,
         setProducts,
         getProducts,
+        addCart,
+        setAddCart,
+        productCount,
+        setProductCount,
       }}
     >
       {children}

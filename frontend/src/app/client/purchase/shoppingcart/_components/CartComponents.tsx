@@ -4,9 +4,9 @@
 import { ListItem, Stack, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Image from "next/image";
-import { ProductParams } from "@/components/provider/DataProvider";
+import { cardProductType } from "@/common/types";
 
-export const CartComponents = (props: ProductParams) => {
+export const CartComponents = (props: cardProductType) => {
   return (
     <Stack
       width={"100%"}
@@ -23,7 +23,7 @@ export const CartComponents = (props: ProductParams) => {
       <Stack width={"100%"} direction={"row"} gap={3} paddingBottom={2}>
         <Stack position={"relative"} width={86} height={87}>
           <Image
-            src={props.images[0]}
+            src={props.thumbnailUrl}
             alt="product picture"
             width={86}
             height={87}
@@ -35,10 +35,10 @@ export const CartComponents = (props: ProductParams) => {
         </Stack>
         <Stack gap={1}>
           <Typography fontSize={14} fontWeight={800}>
-            {props.productName}
+            {props.name}
           </Typography>
           <Typography fontSize={12} fontWeight={800} color={"#A1A8C1"}>
-            Өнгө: {props.productType.productColor}
+            Өнгө: {props.color}
           </Typography>
         </Stack>
       </Stack>
@@ -74,7 +74,7 @@ export const CartComponents = (props: ProductParams) => {
             fontWeight={800}
             color={"#BEBFC2"}
           >
-            {props.remainQty}
+            {props.quantity}
           </Stack>
           <Stack
             width={"12px"}

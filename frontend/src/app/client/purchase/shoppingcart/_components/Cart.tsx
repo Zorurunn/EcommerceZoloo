@@ -4,49 +4,6 @@ import { Button, Stack, Typography } from "@mui/material";
 import { CartComponents } from "./CartComponents";
 import { useData } from "@/components/provider/DataProvider";
 
-// const data = [
-//   {
-//     name: "Электрон цаг",
-//     image: "/bindek/Rectangle34.png",
-//     color: "Мөнгөлөг",
-//     price: "750’000₮",
-//     total: "750’000₮",
-//     amount: "1",
-//   },
-//   {
-//     name: "Электрон цаг",
-//     image: "/bindek/Rectangle35.png",
-//     color: "Хар",
-//     price: "750’000₮",
-//     total: "750’000₮",
-//     amount: "1",
-//   },
-//   {
-//     name: "Электрон цаг",
-//     image: "/bindek/Rectangle36.png",
-//     color: "Улаан",
-//     price: "750’000₮",
-//     total: "750’000₮",
-//     amount: "1",
-//   },
-//   {
-//     name: "Электрон цаг",
-//     image: "/bindek/Rectangle37.png",
-//     color: "Саарал",
-//     price: "750’000₮",
-//     total: "750’000₮",
-//     amount: "1",
-//   },
-//   {
-//     name: "Электрон цаг",
-//     image: "/bindek/Rectangle38.png",
-//     color: "Хар саарал",
-//     price: "750’000₮",
-//     total: "750’000₮",
-//     amount: "1",
-//   },
-// ];
-
 export const Cart = () => {
   const { products } = useData();
   return (
