@@ -3,8 +3,11 @@ import { Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useData } from "@/components/provider/DataProvider";
 
 export const ProductScroll = () => {
+  const { products, generalCategories, subCategories } = useData();
+
   return (
     <Stack width={"100%"} height={"65%"}>
       <Stack
@@ -55,7 +58,7 @@ export const ProductScroll = () => {
             <Grid xs={1} item></Grid>
           </Grid>
           <Grid container>
-            {PRODUCT_INFO.map((item, index) => (
+            {products.map((item, index) => (
               <Grid
                 key={index}
                 container
@@ -91,19 +94,19 @@ export const ProductScroll = () => {
                       width={50}
                       height={50}
                     >
-                      <Image src={item.img} alt="" fill objectFit="cover" />
+                      <Image src={"/Chair.png"} alt="" fill objectFit="cover" />
                     </Stack>
                     <Stack>
                       <Typography fontSize={18} fontWeight={800}>
-                        {item.name}
+                        {item.productName}
                       </Typography>
-                      <Typography>{item.code}</Typography>
+                      <Typography>{item.serialNumber}</Typography>
                     </Stack>
                   </Stack>
                 </Grid>
 
                 <Grid xs={1.7} item>
-                  <Typography>{item.category}</Typography>
+                  <Typography>{item.subCategoryId}</Typography>
                 </Grid>
 
                 <Grid xs={1.7} item>
@@ -111,15 +114,15 @@ export const ProductScroll = () => {
                 </Grid>
 
                 <Grid xs={1.7} item>
-                  <Typography>{item.remainder}</Typography>
+                  <Typography>{item.remainQty}</Typography>
                 </Grid>
 
                 <Grid xs={1.7} item>
-                  <Typography>{item.soldOut}</Typography>
+                  <Typography>10</Typography>
                 </Grid>
 
                 <Grid xs={1.7} item>
-                  <Typography>{item.createdAt}</Typography>
+                  <Typography>2024-01-10</Typography>
                 </Grid>
 
                 <Grid xs={0.5} item>

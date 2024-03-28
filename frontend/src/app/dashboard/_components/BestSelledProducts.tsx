@@ -3,90 +3,13 @@ import React from "react";
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import { TableHeader } from "./TableHeader";
 import { BestSelledLine } from "./BestSelledLine";
+import { useData } from "@/components/provider/DataProvider";
 
 // todo: after server implementation delete this mock data
 // todo: use server side data instead of mock data
 
-const products = [
-  {
-    name: "MEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S AND MY HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-  {
-    name: "WOMEN'S HORSEBIT MULE",
-    id: "#1246GQ8989",
-    imgUrl: "/zoru/boot.jpg",
-    price: 135000,
-    soldQuantity: 15,
-  },
-];
 export const BestSelledProducts = () => {
+  const { products } = useData();
   return (
     <Stack
       overflow={"hidden"}
@@ -115,7 +38,7 @@ export const BestSelledProducts = () => {
             <Stack position={"absolute"} top={0} left={0}>
               {products.map((item, index) => {
                 return (
-                  <Stack key={item.id + index}>
+                  <Stack key={index}>
                     <BestSelledLine {...item} index={index + 1} />
                     <Divider />
                   </Stack>
