@@ -22,8 +22,14 @@ export const BestSelledLine = (props: ProductParams & indexType) => {
         {props.index}
       </Stack>
 
-      <Stack justifyContent={"center"} alignItems={"center"} height={"100%"}>
+      <Stack
+        justifyContent={"center"}
+        alignItems={"center"}
+        height={"100%"}
+        width={"100%"}
+      >
         <Stack
+          width={"100%"}
           direction={"row"}
           height={"100%"}
           sx={{
@@ -76,7 +82,7 @@ export const BestSelledLine = (props: ProductParams & indexType) => {
         10
       </Stack>
       <Stack justifyContent={"center"} alignItems={"center"}>
-        {new Intl.NumberFormat().format(props.price) + "₮"}
+        {new Intl.NumberFormat().format(props.price ?? 0) + "₮"}
       </Stack>
     </Stack>
   );
