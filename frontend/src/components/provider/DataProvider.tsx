@@ -53,7 +53,7 @@ type countityType = {
 type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
-  createProduct: (params: ProductParamsType) => Promise<void>;
+  createProduct: (params: ProductParams) => Promise<void>;
   selectedIndex: number;
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
