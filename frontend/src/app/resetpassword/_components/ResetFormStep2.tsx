@@ -2,7 +2,7 @@
 
 import { Stack, Typography } from "@mui/material";
 import { CustomInput } from "@/components";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -16,6 +16,7 @@ export const ResetFormStep2 = ({
 }) => {
   const { userEmail, setUserOtp } = useAuth();
   const [open, setOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const validationSchema = yup.object({
     code: yup.string().required("Нууц үг сэргээх кодоо оруулна уу"),
@@ -32,6 +33,13 @@ export const ResetFormStep2 = ({
       setOpen(false);
     },
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsClicked(false);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isClicked]);
 
   return (
     <Stack
@@ -51,20 +59,34 @@ export const ResetFormStep2 = ({
             <Typography ml={1} color={"primary.main"} component={"span"}>
               {userEmail}
             </Typography>
-            -руу сэргээх код илгээх болно.
+            -руу нууц үг сэргээх код илгээх болно.
           </Typography>
 
-          <CustomInput
-            name="code"
-            label="Нууц үг сэргээх код"
-            placeHolder="Нууц үг сэргээх кодоо оруулна уу"
-            type="text"
-            handleChange={formik.handleChange}
-            value={formik.values.code}
-            error={formik.touched.code && Boolean(formik.errors.code)}
-            onBlur={formik.handleBlur}
-            helperText={String(formik.errors.code)}
-          />
+          <Stack alignItems={"flex-end"} gap={1}>
+            <CustomInput
+              name="code"
+              label="Нууц үг сэргээх код"
+              placeHolder="Нууц үг сэргээх код оруулна уу"
+              type="text"
+              handleChange={formik.handleChange}
+              value={formik.values.code}
+              error={formik.touched.code && Boolean(formik.errors.code)}
+              helperText={String(formik.errors.code)}
+              onBlur={formik.handleBlur}
+            />
+
+            <Button
+              onClick={() => {
+                setIsClicked(true);
+              }}
+              sx={{
+                color: "#551a8b",
+              }}
+              disabled={isClicked}
+            >
+              Код дахин илгээх
+            </Button>
+          </Stack>
         </Stack>
         <Button
           fullWidth

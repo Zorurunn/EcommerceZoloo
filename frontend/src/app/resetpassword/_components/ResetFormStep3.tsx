@@ -44,6 +44,7 @@ export const ResetFormStep3 = ({
         newPassword: values.newPassword,
       });
       setIndex((prev) => prev + 1);
+      setIndex(0);
       setOpen(false);
     },
   });
@@ -99,7 +100,6 @@ export const ResetFormStep3 = ({
             if (index == 2) {
               router.push("/signin");
             }
-            setIndex(0);
           }}
           disabled={!formik.isValid || open}
           variant="contained"

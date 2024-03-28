@@ -64,6 +64,14 @@ export default function Home() {
     },
   });
 
+  // YAGAAD interval time nemsen be ???
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setOpen(false);
+  //   }, 4000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   return (
     <Stack gap={3} width={"100%"}>
       <BackTabs text="Бүтээгдэхүүн" />

@@ -129,7 +129,7 @@ export function CardFormStep3({
             onClick={() => {
               formik.handleSubmit();
               if (step == 4) {
-                router.push("singin");
+                router.push("signin");
                 setStep(0);
               }
               setOpen(false);

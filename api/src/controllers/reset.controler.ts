@@ -50,7 +50,7 @@ export const sendEmail: RequestHandler = async (req, res) => {
 
 // RESETPASSWORD
 export const reserPassword: RequestHandler = async (req, res) => {
-  const { email, code, rePassword } = req.body;
+  const { email, code, newPassword } = req.body;
 
   const user = await UserModel.findOne({ email: email, otp: code });
 
@@ -60,23 +60,14 @@ export const reserPassword: RequestHandler = async (req, res) => {
     });
   }
   try {
-    if (user.otp != code) {
-      return res.status(401).json({
-        message: "Нэг удаагийн код буруу байна.o",
+    if (user.otp == code) {
+      await UserModel.updateOne({
+        password: newPassword,
+        updatedAt: new Date(),
       });
     }
 
-    if (user.otp == code) {
-      const updatePassword = await UserModel.findOneAndUpdate(
-        { email: email },
-        {
-          password: rePassword,
-          updatedAt: new Date(),
-        }
-      );
-    }
-
-    res.json({ message: "amjilltai soligdloo" });
+    res.json({ message: "Хэрэглэгчийн нууц үг шинэчлэгдсэн" });
   } catch (error) {
     res.status(500).json(error);
   }

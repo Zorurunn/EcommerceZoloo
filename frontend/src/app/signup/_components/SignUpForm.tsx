@@ -165,7 +165,9 @@ export const SignUpForm = ({
         <Stack direction={"row"} justifyContent={"center"} gap={1}>
           <Typography>Бүртгэлтэй юу?</Typography>
           <Link href={"/signin"}>
-            <Typography borderBottom={1}>Нэвтрэх</Typography>
+            <Typography color={"#551a8b"} borderBottom={"1px solid #551a8b"}>
+              Нэвтрэх
+            </Typography>
           </Link>
         </Stack>
       </Stack>
