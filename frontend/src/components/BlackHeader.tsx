@@ -6,8 +6,10 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Link from "next/link";
 import Image from "next/image";
 import { NAVBAR_HEIGHT } from "@/constants";
+import { useRouter } from "next/navigation";
 
 export const BlackHeader = () => {
+  const router = useRouter();
   return (
     <Stack bgcolor={"#121316"} height={NAVBAR_HEIGHT} justifyContent={"center"}>
       <Stack
@@ -19,7 +21,16 @@ export const BlackHeader = () => {
         px={5}
         justifyContent={"space-between"}
       >
-        <Image src="/Logo.png" alt="" width={24} height={20.54} />
+        <Image
+          src="/Logo.png"
+          alt=""
+          width={24}
+          height={20.54}
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            router.push("/signin");
+          }}
+        />
         <Stack direction={"row"} gap={2} justifyContent={"center"}>
           <Link href={"./"}>
             <NotificationsNoneIcon
@@ -29,10 +40,7 @@ export const BlackHeader = () => {
           </Link>
           <Link href={"./"}>
             <Stack direction={"row"} gap={2} justifyContent={"center"}>
-              <PermIdentityIcon
-                fontSize="small"
-                sx={{ color: "#fff" }}
-              ></PermIdentityIcon>
+              <PermIdentityIcon fontSize="small" sx={{ color: "#fff" }} />
               <Typography fontSize={14} fontWeight={400} color={"#fff"}>
                 Username
               </Typography>

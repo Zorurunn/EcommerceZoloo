@@ -9,7 +9,7 @@ const ShoppingCart = () => {
   return (
     <Stack bgcolor={"#fff"}>
       <Head />
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"lg"}>
         <Stack width={"100%"} direction={"row"} gap={5} py={"100px"}>
           <Stack width="70%">
             <Title />

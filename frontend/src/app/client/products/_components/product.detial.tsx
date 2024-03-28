@@ -3,8 +3,15 @@ import Rating from "@mui/material/Rating";
 import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import { ProductParams } from "@/components/provider/DataProvider";
 
-export const Productdetial = () => {
+type ProductdetialProps = {
+  userId?: string;
+  productId?: string;
+};
+
+export const Productdetial = (props: ProductParams) => {
+  const { images, productName, price } = props;
   return (
     <Container>
       <Stack
@@ -80,7 +87,7 @@ export const Productdetial = () => {
               flexBasis={0}
             >
               <Image
-                src={"/bg.jpg"}
+                src={images[0]}
                 alt="zl"
                 fill
                 objectFit="cover"
@@ -92,7 +99,7 @@ export const Productdetial = () => {
         <Stack width={"50%"} gap={6} alignItems={"flex-start"}>
           <Stack gap={1.5}>
             <Typography color={"#111C85"} fontSize={36} fontWeight={800}>
-              sofa
+              {productName}
             </Typography>
             <Stack spacing={1} direction={"row"} alignItems={"center"}>
               <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
@@ -101,7 +108,7 @@ export const Productdetial = () => {
               </Typography>
             </Stack>
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
-              750000
+              {new Intl.NumberFormat().format(price) + "₮"}
             </Typography>
             <Stack></Stack>
             <Typography color={"#9295AA"} fontSize={17} fontWeight={400}>

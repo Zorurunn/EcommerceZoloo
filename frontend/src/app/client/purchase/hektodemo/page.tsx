@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import { Head } from "../_components/Head";
 import Main from "./_components/Main";
 

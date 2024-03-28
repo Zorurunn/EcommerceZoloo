@@ -1,5 +1,6 @@
 "use client";
 
+import { ProductRatingProps } from "@/app/client/products/_components/Product.Rating";
 import { api } from "@/common";
 import { generalCategoryType, subCategoryType } from "@/common/types";
 import { AxiosError } from "axios";
@@ -16,6 +17,7 @@ import {
 import { toast } from "react-toastify";
 
 export type ProductParams = {
+  _id: string;
   productName: string;
   generalCategoryId: string;
   subCategoryId: string;
@@ -46,6 +48,7 @@ type DataContextType = {
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
   setProducts: Dispatch<SetStateAction<ProductParams[]>>;
+  addRating: (props: ProductRatingProps) => void;
   getProducts: () => Promise<void>;
 };
 
@@ -88,7 +91,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   // GET PRODUCT
   const getProducts = async () => {
     try {
-      const { data } = await api.get("/getProduct", {
+      const { data } = await api.get("/getProducts", {
         headers: { Authorization: localStorage.getItem("token") },
       });
       setProducts(data);
@@ -117,6 +120,39 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  // add review
+  const addRating = async (props: ProductRatingProps) => {
+    const { userId, productId, comment, productRating } = props;
+    try {
+      const { data } = await api.post(
+        "/addRating",
+        { userId, productId, rate: productRating, comment },
+        { headers: { Authorization: localStorage.getItem("token") } }
+      );
+      console.log("Aaa");
+
+      // const reviewID = data.reviewID;
+
+      // const { data: dataComment } = await api.post(
+      //   "comment/addComment",
+      //   {
+      //     userId,
+      //     productId,
+      //     comment,
+      //     rate,
+      //   },
+      //   { headers: { Authorization: localStorage.getItem("token") } }
+      // );
+      // setRefresh((prev) => prev + 1);
+      // toast.success(data.message, {
+      //   position: "top-center",
+      //   hideProgressBar: true,
+      // });
+    } catch (error) {
+      console.log(error), "FFF";
+    }
+  };
+
   useEffect(() => {
     getProducts();
     getGeneralCategories();
@@ -132,6 +168,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         selectedIndex,
         setIndex,
         products,
+        addRating,
         setProducts,
         getProducts,
       }}

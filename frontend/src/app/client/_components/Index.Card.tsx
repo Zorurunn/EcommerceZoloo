@@ -8,7 +8,7 @@ const items = [
     bgImg: (
       <Stack
         width={"100%"}
-        height={"80vh"}
+        height={"70vh"}
         sx={{
           backgroundImage: "url(/bg.jpg)",
           backgroundPosition: "center",
