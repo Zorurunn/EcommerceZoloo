@@ -17,7 +17,7 @@ export const AssociationProduct = () => {
       <Stack width={"100%"} py={6}>
         <Stack alignItems={"flex-start"} gap={6}>
           <Stack color={"#151875"} fontSize={42} fontWeight={800}>
-            Холбоотой бүтээгдэхүүн
+            {/* Холбоотой бүтээгдэхүүн */}
           </Stack>
           <Grid
             width={"100%"}
