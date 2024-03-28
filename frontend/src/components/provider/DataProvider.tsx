@@ -8,7 +8,6 @@ import {
   subCategoryType,
 } from "@/common/types";
 import { AxiosError } from "axios";
-import { error } from "console";
 import {
   createContext,
   Dispatch,
@@ -178,8 +177,8 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
         selectedIndex,
         setIndex,
         products,
-        addRating,
         setProducts,
+        addRating,
         getProducts,
         addCart,
         setAddCart,
