@@ -87,13 +87,17 @@ const ProductGeneralCategory = (props: productGeneralCategoryType) => {
             Aнгилал сонгоно уу
           </MenuItem>
           {subCategories &&
-            subCategories.map((item) => {
-              return (
-                <MenuItem key={item._id} value={item._id}>
-                  {item.subCategoryName}
-                </MenuItem>
-              );
-            })}
+            subCategories
+              .filter((item) =>
+                item.generalCategoryId.includes(generalCategoryValue)
+              )
+              .map((item) => {
+                return (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.subCategoryName}
+                  </MenuItem>
+                );
+              })}
         </CustomInput>
       </Stack>
     </Stack>
