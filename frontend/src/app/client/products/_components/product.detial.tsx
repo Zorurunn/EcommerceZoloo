@@ -4,9 +4,11 @@ import { Button, Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { ProductParams, useData } from "@/components/provider/DataProvider";
 import { FavoriteBorderOutlined } from "@mui/icons-material";
+import { useState } from "react";
 
 export const Productdetial = (props: ProductParams) => {
-  const { addCart, setAddCart } = useData();
+  const { productCount, setProductCount, addCart, setAddCart } = useData();
+  const [selectImg, setSelectImg] = useState(0);
   const {
     images,
     productName,
@@ -37,53 +39,30 @@ export const Productdetial = (props: ProductParams) => {
               flexGrow={1}
               flexBasis={0}
             >
-              <Stack
-                borderRadius={1}
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={images[0]}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
-              <Stack
-                borderRadius={1}
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={images[1]}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
-              <Stack
-                width={"100%"}
-                height={"100%"}
-                position={"relative"}
-                flexBasis={"33.3%"}
-                flexGrow={1}
-              >
-                <Image
-                  src={images[2]}
-                  alt="zl"
-                  fill
-                  objectFit="cover"
-                  style={{ borderRadius: "3px" }}
-                />
-              </Stack>
+              {images &&
+                images.map((item, index) => {
+                  return (
+                    <Stack
+                      key={index}
+                      onClick={() => {
+                        setSelectImg(index);
+                      }}
+                      borderRadius={1}
+                      width={"100%"}
+                      height={"33%"}
+                      position={"relative"}
+                      bgcolor={"#FFFFFF"}
+                    >
+                      <Image
+                        src={item}
+                        alt="zurag bhgu bn"
+                        fill
+                        objectFit="cover"
+                        style={{ borderRadius: "3px" }}
+                      />
+                    </Stack>
+                  );
+                })}
             </Stack>
             <Stack
               width={"100%"}
@@ -93,8 +72,8 @@ export const Productdetial = (props: ProductParams) => {
               flexBasis={0}
             >
               <Image
-                src={images[3]}
-                alt="zl"
+                src={images[selectImg]}
+                alt="zurag bhgu bn"
                 fill
                 objectFit="cover"
                 style={{ borderRadius: "3px" }}
@@ -108,19 +87,27 @@ export const Productdetial = (props: ProductParams) => {
               {productName}
             </Typography>
             <Stack spacing={1} direction={"row"} alignItems={"center"}>
-              <Rating
-                name="half-rating"
-                defaultValue={rating?.starAverage}
-                precision={0.5}
-              />
+              <Rating value={props.rating?.starAverage} readOnly />
               <Typography color={"#5A5C7E"} fontSize={15}>
-                {rating?.ratedQty}
+                ({props.rating?.ratedQty})
               </Typography>
             </Stack>
             <Typography color={"#111C85"} fontSize={36} fontWeight={400}>
               {new Intl.NumberFormat().format(price ?? 0) + "₮"}
             </Typography>
-            <Stack></Stack>
+            <Stack direction={"row"} gap={1.5} alignItems={"center"}>
+              {colors &&
+                colors.map((item) => {
+                  return (
+                    <Stack
+                      width={20}
+                      height={20}
+                      borderRadius={"50%"}
+                      sx={{ backgroundColor: item }}
+                    ></Stack>
+                  );
+                })}
+            </Stack>
             <Typography color={"#9295AA"} fontSize={17} fontWeight={400}>
               {description}
             </Typography>

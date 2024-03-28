@@ -155,7 +155,19 @@ export const GeneralCard = (props: ProductParams) => {
         <Typography fontSize={18} fontWeight={700} color={"#151875"}>
           {productName}
         </Typography>
-        <Stack>{/* color input props */}</Stack>
+        <Stack direction={"row"} gap={1} alignItems={"center"}>
+          {colors &&
+            colors.map((item) => {
+              return (
+                <Stack
+                  width={10}
+                  height={10}
+                  borderRadius={"50%"}
+                  sx={{ backgroundColor: item }}
+                ></Stack>
+              );
+            })}
+        </Stack>
         <Stack
           fontFamily={"Josefin Sans"}
           fontSize={21}

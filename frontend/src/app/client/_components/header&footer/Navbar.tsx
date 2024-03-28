@@ -1,9 +1,7 @@
 "use client";
 import { InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 import { Container } from "@mui/material";
-import { TextFields } from "@mui/icons-material";
 import { usePathname, useRouter } from "next/navigation";
 
 export const Navbar = () => {
@@ -53,7 +51,6 @@ export const Navbar = () => {
                 <Typography fontSize={16} fontWeight={400}>
                   Нүүр
                 </Typography>
-                <KeyboardArrowDownIcon />
               </Stack>
 
               <Typography

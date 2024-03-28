@@ -26,7 +26,7 @@ export const NewProducts = () => {
             justifyContent={"space-between"}
           >
             {products &&
-              products.map((item) => (
+              products.slice(0, 8).map((item) => (
                 <Grid item xs={3}>
                   <Stack>
                     <GeneralCard {...item} />

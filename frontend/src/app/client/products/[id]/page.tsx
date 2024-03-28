@@ -12,6 +12,7 @@ const Page = () => {
   const { id } = useParams();
   const { products } = useData();
   const [thisProduct, setThisProduct] = useState<ProductParams>();
+
   useEffect(() => {
     if (products) {
       const product = products.filter((item) => item._id === id);

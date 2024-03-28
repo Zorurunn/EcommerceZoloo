@@ -96,30 +96,12 @@ export const MoreDetial = (props: ProductParams) => {
 
             <CustomTabPanel value={value} index={0}>
               <Stack gap={1}>
-                <Stack gap={1}>
-                  <Typography color={"#151875"} fontSize={22} fontWeight={800}>
-                    {productName}
-                  </Typography>
-                  <Typography color={"#A9ACC6"} fontSize={16} fontWeight={800}>
-                    {description}
-                  </Typography>
-                </Stack>
-                <Stack gap={1}>
-                  <Typography color={"#151875"} fontSize={22} fontWeight={800}>
-                    More details
-                  </Typography>
-                  <Stack direction={"row"} gap={2}>
-                    <ArrowForwardIcon />
-                    <Typography
-                      color={"#A9ACC6"}
-                      fontSize={16}
-                      fontWeight={800}
-                    >
-                      dlfwjbknlm,l Lorem ipsum, dolor sit amet consectetur
-                      adipisicing
-                    </Typography>
-                  </Stack>
-                </Stack>
+                <Typography color={"#151875"} fontSize={22} fontWeight={800}>
+                  {productName}
+                </Typography>
+                <Typography color={"#A9ACC6"} fontSize={16} fontWeight={800}>
+                  {description}
+                </Typography>
               </Stack>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
