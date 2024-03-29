@@ -7,9 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const categories = [
@@ -31,7 +29,7 @@ export function Footer() {
   const [activeTab, setActiveTab] = useState(" Нүүр");
 
   return (
-    <>
+    <div>
       <Stack bgcolor={"#EEEFFB"} py={12}>
         <Container maxWidth="lg">
           <Stack width={"100%"} direction={"row"} py={6}>
@@ -86,8 +84,8 @@ export function Footer() {
               alignItems={"start"}
             >
               <Stack gap={1}>
-                {categories.map((item) => (
-                  <>
+                {categories.map((item, index) => (
+                  <Stack key={item.name ?? "" + index}>
                     <Typography
                       fontSize={22}
                       fontWeight={800}
@@ -100,13 +98,12 @@ export function Footer() {
                         <Typography key={item.type}>{item.type}</Typography>
                       </Link>
                     </Stack>
-                  </>
+                  </Stack>
                 ))}
               </Stack>
               <Stack gap={1}>
-                {/* gukgkjgkgkgk */}
-                {other_categories.map((item) => (
-                  <>
+                {other_categories.map((item, index) => (
+                  <div key={item.name ?? "" + index}>
                     <Typography
                       fontSize={22}
                       fontWeight={800}
@@ -119,7 +116,7 @@ export function Footer() {
                         <Typography key={item.type}>{item.type}</Typography>
                       </Link>
                     </Stack>
-                  </>
+                  </div>
                 ))}
               </Stack>
             </Stack>
@@ -144,6 +141,6 @@ export function Footer() {
           </Stack>
         </Container>
       </Stack>
-    </>
+    </div>
   );
 }

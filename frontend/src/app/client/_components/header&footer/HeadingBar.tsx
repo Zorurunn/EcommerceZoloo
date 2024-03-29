@@ -15,11 +15,8 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import React, { useState } from "react";
 import { NAVBAR_HEIGHT } from "@/constants";
 import { useRouter } from "next/navigation";
-import { ShoppingBasketOutlined } from "@mui/icons-material";
 import { useData } from "@/components/provider/DataProvider";
 import { useAuth } from "@/components/provider/AuthProvider";
-import { userParamsType } from "@/common/types";
-
 export const HeadingBar = () => {
   const { addCart, user } = useData();
   const { isLoggedIn } = useAuth();

@@ -11,11 +11,13 @@ import { useData } from "@/components/provider/DataProvider";
 import { EditProfileImg } from "./EditProfileImg";
 import { CustomInput2 } from "./CustomInput2";
 import { SignOutConfirm } from "./SignOut";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const MyProfile = () => {
   const [open, setOpen] = useState(false);
   const [openSignOut, setOpenSignOut] = useState(false);
-  const { user } = useData();
+  const router = useRouter();
   const [imageUrl, setImageUrl] = useState("");
 
   return (
@@ -36,7 +38,7 @@ export const MyProfile = () => {
                 overflow={"hidden"}
                 position={"relative"}
               >
-                {/* <Image fill objectFit="cover" src={imageUrl} alt="" /> */}
+                <Image fill objectFit="cover" src={"/catler.svg"} alt="" />
               </Stack>
               <Box
                 onClick={() => {
@@ -96,8 +98,9 @@ export const MyProfile = () => {
             >
               <HistoryOutlinedIcon />
             </Stack>
-            <Typography>Захиалгын түүх</Typography>
+            <Typography>Mercant</Typography>
           </Stack>
+
           <Stack
             direction={"row"}
             width={"100%"}
