@@ -31,13 +31,21 @@ export const ListCardProducts = (props: ProductParams) => {
     <Stack width={1} flexDirection={"row"}>
       <Stack
         width={{ xs: 1 / 2, md: 1 / 4 }}
-        sx={{ aspectRatio: 1 / 1 }}
+        sx={{
+          aspectRatio: 1 / 1,
+          "&:hover .card": {
+            transform: "scale(1.05)",
+            transition: "0.2s ease",
+            bgcolor: "#EBF4F3",
+          },
+        }}
         position={"relative"}
         onClick={() => {
           router.push(`/client/products/${_id}`);
         }}
       >
         <Image
+          className="card"
           alt="card image"
           style={{ objectFit: "cover", mixBlendMode: "multiply" }}
           fill

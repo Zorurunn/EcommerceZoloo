@@ -1,6 +1,5 @@
 "use client";
 import { Container, Stack } from "@mui/material";
-import { Head } from "../_components/Head";
 import { Title } from "./_components/Title";
 import { Cart } from "./_components/Cart";
 import { PaymnetCard } from "./_components/PaymentCard";
@@ -10,7 +9,6 @@ const ShoppingCart = () => {
   const { totalPrice } = useData();
   return (
     <Stack bgcolor={"#fff"}>
-      <Head />
       <Container maxWidth={"lg"}>
         <Stack width={"100%"} direction={"row"} gap={5} py={"100px"}>
           <Stack width="70%">
@@ -25,5 +23,4 @@ const ShoppingCart = () => {
     </Stack>
   );
 };
-
 export default ShoppingCart;
