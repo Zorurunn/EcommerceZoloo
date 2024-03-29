@@ -14,10 +14,10 @@ import { PropsWithChildren } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "E Commerce",
-//   description: "Welcome to my web",
-// };
+export const metadata: Metadata = {
+  title: "E Commerce",
+  description: "Welcome to my web",
+};
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
