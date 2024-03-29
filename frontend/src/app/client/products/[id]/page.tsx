@@ -20,16 +20,14 @@ const Page = () => {
     }
   }, [products]);
 
+  if (!thisProduct) return null;
+
   return (
-    <>
-      {thisProduct && (
-        <Stack>
-          <Productdetial {...thisProduct} />
-          <MoreDetial {...thisProduct} />
-          <AssociationProduct />
-        </Stack>
-      )}
-    </>
+    <Stack>
+      <Productdetial {...thisProduct} />
+      <MoreDetial {...thisProduct} />
+      <AssociationProduct />
+    </Stack>
   );
 };
 

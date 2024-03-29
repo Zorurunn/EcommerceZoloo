@@ -8,13 +8,11 @@ import { HighLightProducts } from "./_components/HighLight.Products";
 
 export default function Home() {
   return (
-    <>
-      <Stack gap={4}>
-        <IndexCard />
-        <HighLightProducts />
-        <NewProducts />
-        <HomePageService />
-      </Stack>
-    </>
+    <Stack gap={4}>
+      <IndexCard />
+      <HighLightProducts />
+      <NewProducts />
+      <HomePageService />
+    </Stack>
   );
 }

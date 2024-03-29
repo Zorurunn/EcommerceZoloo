@@ -3,12 +3,9 @@ import { LeftSideBar } from "@/components/LeftSideBar";
 import { BlackHeader } from "@/components/BlackHeader";
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from "@/constants";
 import { Container, Stack } from "@mui/material";
+import { PropsWithChildren } from "react";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: PropsWithChildren) {
   return (
     <Stack>
       <BlackHeader />

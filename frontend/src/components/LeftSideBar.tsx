@@ -1,3 +1,5 @@
+"use client";
+
 import { SIDEBAR_LINES } from "@/constants";
 import { Button, Container, Stack, Typography } from "@mui/material";
 import Link from "next/link";
@@ -7,6 +9,7 @@ import React, { useState } from "react";
 export const LeftSideBar = () => {
   const [selectedOption, setSelectedOption] =
     useState<string>("Хяналтын самбар");
+
   const pathName = usePathname();
   return (
     <Stack gap={2}>

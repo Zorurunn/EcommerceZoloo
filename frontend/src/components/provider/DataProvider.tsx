@@ -60,8 +60,8 @@ type DataContextType = {
   setAddCart: Dispatch<SetStateAction<cartProductType[]>>;
   totalPrice: number;
   numberFormatter: Intl.NumberFormat;
-  user: userParamsType[];
-  setUser: Dispatch<SetStateAction<userParamsType[]>>;
+  user: userParamsType;
+  setUser: Dispatch<SetStateAction<userParamsType>>;
   getUser: (params: userParamsType) => Promise<void>;
   productCount: number;
   setProductCount: Dispatch<SetStateAction<number>>;
@@ -80,7 +80,7 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
   const [addCart, setAddCart] = useState<cartProductType[]>([]);
-  const [user, setUser] = useState<userParamsType[]>([]);
+  const [user, setUser] = useState<userParamsType>({} as userParamsType);
   const [productCount, setProductCount] = useState(1);
 
   // GET USER

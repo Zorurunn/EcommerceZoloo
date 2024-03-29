@@ -6,12 +6,10 @@ import { Tabs } from "./_components/Tabs";
 
 export default function Home() {
   return (
-    <>
-      <Stack>
-        <Tabs />
-        <Filter />
-        <OrderInfo />
-      </Stack>
-    </>
+    <Stack>
+      <Tabs />
+      <Filter />
+      <OrderInfo />
+    </Stack>
   );
 }

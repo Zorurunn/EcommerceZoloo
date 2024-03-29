@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 export const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
+
   return (
     <Stack width={"100%"} bgcolor={"#FFFFFF"}>
       <Container maxWidth={"lg"}>
@@ -29,9 +30,6 @@ export const Navbar = () => {
               fontWeight={700}
               color={"#0D0E43"}
               sx={{ cursor: "pointer" }}
-              onClick={() => {
-                router.push("/dashboard");
-              }}
             >
               Ecommerce
             </Typography>

@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
@@ -29,10 +28,11 @@ export default function RootLayout({
                 <BackDropProvider>{children}</BackDropProvider>
               </DataProvider>
             </AuthProvider>
-            <ToastContainer />
+
             <CssBaseline />
           </ThemeProvider>
         </AppRouterCacheProvider>
+        <ToastContainer />
       </body>
     </html>
   );
