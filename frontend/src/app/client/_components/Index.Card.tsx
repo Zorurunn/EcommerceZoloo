@@ -8,25 +8,23 @@ const items = [
     bgImg: (
       <Stack
         width={"100%"}
-        height={"70vh"}
-        sx={{
-          backgroundImage: "url(/bg.jpg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
+        height={"80vh"}
         justifyContent={"center"}
+        sx={{
+          backgroundImage: "url(/thumbnail/Guccibag.jpeg)",
+          backgroundPosition: "center",
+          backgroundSize: "contain",
+          objectFit: "contain",
+        }}
       >
         <Container maxWidth={"lg"}>
           <Stack width={"100%"} height={"100%"} alignItems={"flex-end"} gap={3}>
-            <Typography color={"#FB2E86"} fontSize={16} fontWeight={700}>
-              Тав тухтай орчинг таны амьдралд
+            <Typography color={"#FB2E86"} fontSize={20} fontWeight={700}>
+              GUCCI MOON SIDE MINI <br />
+              SHOULDER BAG
             </Typography>
-            <Typography color={"#FFFFFF"} fontSize={53} fontWeight={800}>
-              2024 оны хамгийн <br /> шинэ загвар
-            </Typography>
-            <Typography color={"#EBF4F3"} fontSize={16} fontWeight={700}>
-              Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
-              оруулж ирж байна
+            <Typography color={"#FFFFF7"} fontSize={58} fontWeight={800}>
+              онцлох загвар
             </Typography>
             <Button
               sx={{
@@ -51,64 +49,18 @@ const items = [
         height={"80vh"}
         justifyContent={"center"}
         sx={{
-          backgroundImage: "url(/product2.jpg)",
+          backgroundImage: "url(/thumbnail/sneakers1.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
       >
-        {" "}
         <Container maxWidth={"lg"}>
           <Stack width={"100%"} height={"100%"} alignItems={"flex-end"} gap={3}>
-            <Typography color={"#FB2E86"} fontSize={16} fontWeight={700}>
-              Тав тухтай орчинг таны амьдралд
+            <Typography color={"#FB2E86"} fontSize={40} fontWeight={700}>
+              Jordan 1 Low
             </Typography>
-            <Typography color={"#FFFFFF"} fontSize={53} fontWeight={800}>
-              2024 оны хамгийн <br /> шинэ загвар
-            </Typography>
-            <Typography color={"#EBF4F3"} fontSize={16} fontWeight={700}>
-              Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
-              оруулж ирж байна
-            </Typography>
-            <Button
-              sx={{
-                bgcolor: "#FB2E86",
-                color: "#FFFFFF",
-                py: "5px",
-                px: "10px",
-                width: "fit-content",
-              }}
-            >
-              Дэлгэрэнгүй
-            </Button>
-          </Stack>
-        </Container>
-      </Stack>
-    ),
-  },
-  {
-    bgImg: (
-      <Stack
-        width={"100%"}
-        height={"80vh"}
-        justifyContent={"center"}
-        sx={{
-          backgroundImage: "url(/product3.jpg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
-        {" "}
-        <Container maxWidth={"lg"}>
-          <Stack width={"100%"} height={"100%"} alignItems={"flex-end"} gap={3}>
-            <Typography color={"#FB2E86"} fontSize={16} fontWeight={700}>
-              Тав тухтай орчинг таны амьдралд
-            </Typography>
-            <Typography color={"#FFFFFF"} fontSize={53} fontWeight={800}>
-              2024 оны хамгийн <br /> шинэ загвар
-            </Typography>
-            <Typography color={"#EBF4F3"} fontSize={16} fontWeight={700}>
-              Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
-              оруулж ирж байна
+            <Typography color={"#FFFFF7"} fontSize={58} fontWeight={800}>
+              онцлох загвар
             </Typography>
             <Button
               sx={{
@@ -141,14 +93,12 @@ const items = [
         <Container maxWidth={"lg"}>
           <Stack width={"100%"} height={"100%"} alignItems={"flex-end"} gap={3}>
             <Typography color={"#FB2E86"} fontSize={16} fontWeight={700}>
-              Тав тухтай орчинг таны амьдралд
+              Nikon
+              <br />
+              D850
             </Typography>
             <Typography color={"#FFFFFF"} fontSize={53} fontWeight={800}>
-              2024 оны хамгийн <br /> шинэ загвар
-            </Typography>
-            <Typography color={"#EBF4F3"} fontSize={16} fontWeight={700}>
-              Швед улсын хамгийн шилдэг брэндийг албан ёсны <br /> эрхтэйгээр
-              оруулж ирж байна
+              онцлох загвар
             </Typography>
             <Button
               sx={{
