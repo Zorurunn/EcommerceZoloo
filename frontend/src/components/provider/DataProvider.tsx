@@ -49,7 +49,7 @@ export type ProductParams = {
 type DataContextType = {
   generalCategories: generalCategoryType[] | undefined;
   subCategories: subCategoryType[] | undefined;
-  createProduct: (params: ProductParamsType) => Promise<void>;
+  createProduct: (params: ProductParams) => Promise<void>;
   selectedIndex: number;
   setIndex: Dispatch<SetStateAction<number>>;
   products: ProductParams[];
@@ -79,7 +79,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
   const [subCategories, setSubCategories] = useState<subCategoryType[]>();
   const [selectedIndex, setIndex] = useState<number>(0);
   const [products, setProducts] = useState<ProductParams[]>([]);
-<<<<<<< HEAD
   const [addCart, setAddCart] = useState<cartProductType[]>([]);
   const [user, setUser] = useState<userParamsType[]>([]);
   const [productCount, setProductCount] = useState(1);
@@ -106,8 +105,6 @@ export const DataProvider = ({ children }: PropsWithChildren) => {
       console.log(error), "FFF";
     }
   };
-=======
->>>>>>> 7bd185e (kk)
 
   // CREATE PRODUCT
   const createProduct = async (props: ProductParams) => {

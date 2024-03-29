@@ -12,7 +12,7 @@ import { Loader } from "@/components/Loader";
 import { useRouter } from "next/navigation";
 
 export default function SignInForm() {
-  const { signIn, isLoggedIn } = useAuth();
+  const { signIn } = useAuth();
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
@@ -119,6 +119,17 @@ export default function SignInForm() {
           </Button>
         </Stack>
         <Stack width={"100%"} pt={2} gap={2}>
+          <Stack border={1} borderColor="#ECEDF0"></Stack>
+          <Typography
+            alignSelf={"center"}
+            color={"#551a8b"}
+            borderBottom={"1px solid #551a8b"}
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            Мерчант нэвтрэх
+          </Typography>
           <Stack border={1} borderColor="#ECEDF0"></Stack>
           <Button
             fullWidth
