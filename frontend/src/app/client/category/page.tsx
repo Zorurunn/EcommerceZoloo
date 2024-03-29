@@ -102,7 +102,6 @@ export default function Category() {
             </Stack>
           </Stack>
           <Box display={"flex"} flexDirection={"row"} width={1} gap={6}>
-            <Stack mr={"77px"}>{/* <FilterProdcut /> */}</Stack>
             <Stack alignItems={"center"} justifyContent={"center"}>
               {listView ? <AllProducts /> : <ListProducts />}
             </Stack>
